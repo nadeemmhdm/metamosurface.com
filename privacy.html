@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metamo Surface Studio - Privacy Policy</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="https://macoavell.com.my/wp-content/uploads/2020/04/logo.jpg">
+
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Metamo Surface Studio - Privacy Policy">
+    <meta property="og:image" content="https://macoavell.com.my/wp-content/uploads/2020/04/logo.jpg">
+    <meta property="og:description" content="Learn how Metamo Surface Studio collects, uses, and protects your personal information.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://metamo.com/privacy.html">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-text-color: #333;
+            --secondary-text-color: #666;
+            --accent-color: #d1b585;
+            --light-bg-color: #f8f8f8;
+            --dark-bg-color: #2c2c2c;
+            --white-color: #fff;
+            --header-height: 80px;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--primary-text-color);
+            background-color: var(--light-bg-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .preloader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--accent-color);
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: var(--white-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            transition: background-color var(--transition-speed) ease, height var(--transition-speed) ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .logo img {
+            height: 50px;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-text-color);
+            font-weight: 500;
+            transition: color var(--transition-speed) ease, transform 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .hamburger-menu {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--primary-text-color);
+            z-index: 1001;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .hamburger-menu:hover {
+            color: var(--accent-color);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--dark-bg-color);
+            color: var(--white-color);
+            z-index: 999;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            transition: right 0.4s ease-in-out;
+            padding-top: var(--header-height);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-menu-header .close-btn {
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--white-color);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu-header .close-btn:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 20px 0;
+            flex-grow: 1;
+        }
+
+        .mobile-menu ul li {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .mobile-menu ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--white-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+
+        .mobile-menu ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--accent-color);
+        }
+
+        /* Privacy Policy Section */
+        section.privacy-section {
+            padding: 100px 0;
+            margin-top: var(--header-height);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+
+        section.privacy-section.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .privacy-section h1 {
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 30px;
+            color: var(--primary-text-color);
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .privacy-section h2 {
+            font-size: 1.9em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--primary-text-color);
+            font-weight: 500;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 8px;
+        }
+
+        .privacy-section p {
+            font-size: 1.05em;
+            color: var(--secondary-text-color);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .privacy-section ul {
+            list-style-type: disc;
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: var(--secondary-text-color);
+            font-size: 1em;
+        }
+
+        .privacy-section ul ul {
+            list-style-type: circle;
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+
+        .privacy-section a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .privacy-section a:hover {
+            text-decoration: underline;
+            color: #c0a473;
+        }
+
+        .last-updated {
+            font-style: italic;
+            text-align: right;
+            font-size: 0.95em;
+            color: var(--secondary-text-color);
+            margin-bottom: 25px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg-color);
+            color: #ccc;
+            padding: 60px 0 30px;
+            font-size: 0.9em;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h4 {
+            color: var(--white-color);
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color var(--transition-speed) ease, transform 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .footer-column p {
+            margin-bottom: 10px;
+        }
+
+        .footer-column i.bx {
+            margin-right: 8px;
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+
+        .footer-social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social-icons a {
+            color: var(--white-color);
+            font-size: 24px;
+            transition: color var(--transition-speed) ease, transform 0.3s ease;
+        }
+
+        .footer-social-icons a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-signup img {
+            max-width: 150px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .newsletter-signup img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #888;
+            position: relative;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            color: var(--white-color);
+            background-color: rgba(0,0,0,0.6);
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            z-index: 998;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .scroll-to-top:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .privacy-section h1 { font-size: 2.2em; }
+            .privacy-section h2 { font-size: 1.6em; }
+            .privacy-section p, .privacy-section ul { font-size: 0.95em; }
+            .footer-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .nav-links { display: none; }
+            .hamburger-menu { display: block; }
+            .header { height: 60px; }
+            .logo img { height: 40px; }
+            .privacy-section { padding: 60px 0; margin-top: 60px; }
+            .privacy-section h1 { font-size: 1.8em; }
+            .privacy-section h2 { font-size: 1.4em; }
+            .privacy-section p, .privacy-section ul { font-size: 0.9em; }
+            .footer-grid { grid-template-columns: 1fr; gap: 25px; text-align: center; }
+            .footer-social-icons { justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .privacy-section h1 { font-size: 1.6em; }
+            .privacy-section h2 { font-size: 1.3em; }
+            .privacy-section p, .privacy-section ul { font-size: 0.85em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader" id="preloader">
+        <div class="preloader-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container navbar">
+            <div class="logo">
+                <a href="index.html" aria-label="Metamo Surface Studio Home"><img src="https://macoavell.com.my/wp-content/uploads/2020/04/logo.jpg" alt="Metamo Surface Studio Logo" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Logo+Not+Found'"></a>
+            </div>
+            <nav aria-label="Main navigation">
+                <ul class="nav-links">
+                    <li><a href="index.html">Back</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger-menu" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open mobile menu" role="button">
+                <i class='bx bx-menu'></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <a href="index.html" aria-label="Metamo Surface Studio Home"><img src="https://macoavell.com.my/wp-content/uploads/2020/04/logo.jpg" alt="Metamo Surface Studio Logo" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Logo+Not+Found'"></a>
+            </div>
+            <i class='bx bx-x close-btn' aria-label="Close mobile menu"></i>
+        </div>
+        <ul>
+            <li><a href="index.html">Back</a></li>
+        </ul>
+    </div>
+
+    <!-- Privacy Policy Section -->
+    <section class="privacy-section" aria-label="Privacy policy section">
+        <div class="container">
+            <h1>Privacy Policy</h1>
+            <p class="last-updated">Last Updated: July 27, 2025</p>
+
+            <p>This Privacy Policy describes how Metamo Surface Studio, powered by Metamo ("we," "us," or "our"), collects, uses, and discloses your personal information when you visit, use our services, or make a purchase from <a href="https://https://metamosurface.com/" rel="noopener noreferrer" aria-label="Visit MacoAvell website">https://metamo.com</a> (the "Site").</p>
+
+            <h2>1. Information We Collect</h2>
+            <p>We collect various types of information in connection with the services we provide, including:</p>
+            <ul>
+                <li><strong>Personal Information You Provide to Us:</strong>
+                    <ul>
+                        <li>Contact information (e.g., name, email address, phone number, mailing address)</li>
+                        <li>Account credentials (e.g., username, password)</li>
+                        <li>Payment information (e.g., credit card details, billing address - <em>Note: We do not store full payment card details on our servers; this is handled by our payment processor, Stripe.</em>)</li>
+                        <li>Communications with us (e.g., customer support inquiries, feedback)</li>
+                        <li>Partnership inquiry details (e.g., business information, project details)</li>
+                    </ul>
+                </li>
+                <li><strong>Automatically Collected Information:</strong>
+                    <ul>
+                        <li><strong>Usage Data:</strong> Information about how you access and use the Site, such as your IP address, browser type, operating system, referring URLs, pages viewed, time spent on pages, and clickstream data.</li>
+                        <li><strong>Cookies and Tracking Technologies:</strong> We use cookies and similar tracking technologies (like web beacons and pixels) to track activity on our Site and hold certain information.</li>
+                        <li><strong>Device Information:</strong> Details about the device you use to access the Site, including device type, operating system, and browser version.</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>2. How We Use Your Information</h2>
+            <p>We use the information we collect for various purposes, including to:</p>
+            <ul>
+                <li>Provide, operate, and maintain our Site and services.</li>
+                <li>Process your transactions and manage your orders.</li>
+                <li>Communicate with you, including responding to your inquiries and providing customer support.</li>
+                <li>Send you marketing and promotional communications (if you have opted in).</li>
+                <li>Improve and personalize your experience on our Site.</li>
+                <li>Monitor and analyze usage and trends to improve our services.</li>
+                <li>Detect, prevent, and address technical issues or security incidents.</li>
+                <li>Comply with legal obligations.</li>
+                <li>Facilitate partnerships and collaborations with professionals in the design and construction sectors.</li>
+            </ul>
+
+            <h2>3. Sharing Your Information</h2>
+            <p>We may share your information with third parties in the following circumstances:</p>
+            <ul>
+                <li><strong>Service Providers:</strong> We may share your information with third-party vendors and service providers who perform services on our behalf (e.g., payment processing via Stripe, hosting via our hosting provider, analytics via Google Analytics, email delivery via our email provider).</li>
+                <li><strong>Business Transfers:</strong> In connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business by another company.</li>
+                <li><strong>Legal Requirements:</strong> We may disclose your information if required to do so by law or in response to valid requests by public authorities (e.g., a court or government agency).</li>
+                <li><strong>With Your Consent:</strong> We may disclose your personal information for any other purpose with your consent.</li>
+            </ul>
+
+            <h2>4. Cookies and Tracking Technologies</h2>
+            <p>We use cookies and similar tracking technologies to track the activity on our Site and store certain information. Cookies are files with a small amount of data which may include an anonymous unique identifier. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Site.</p>
+            <p>Examples of Cookies we use:</p>
+            <ul>
+                <li><strong>Session Cookies:</strong> To operate our Site.</li>
+                <li><strong>Preference Cookies:</strong> To remember your preferences and settings.</li>
+                <li><strong>Security Cookies:</strong> For security purposes.</li>
+                <li><strong>Analytics Cookies:</strong> Google Analytics cookies to track site performance and user behavior.</li>
+            </ul>
+
+            <h2>5. Your Data Protection Rights</h2>
+            <p>Depending on your location, you may have the following data protection rights under applicable laws (e.g., GDPR, CCPA):</p>
+            <ul>
+                <li><strong>The right to access:</strong> You have the right to request copies of your personal data.</li>
+                <li><strong>The right to rectification:</strong> You have the right to request that we correct any information you believe is inaccurate or complete information you believe is incomplete.</li>
+                <li><strong>The right to erasure:</strong> You have the right to request that we erase your personal data, under certain conditions.</li>
+                <li><strong>The right to restrict processing:</strong> You have the right to request that we restrict the processing of your personal data, under certain conditions.</li>
+                <li><strong>The right to object to processing:</strong> You have the right to object to our processing of your personal data, under certain conditions.</li>
+                <li><strong>The right to data portability:</strong> You have the right to request that we transfer the data that we have collected to another organization, or directly to you, under certain conditions.</li>
+            </ul>
+            <p>If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us at <a href="mailto:metamosurfacestudio@gmail.com" aria-label="Email support">metamosurfacestudio@gmail.com</a>.</p>
+
+            <h2>6. Security of Your Information</h2>
+            <p>The security of your personal information is important to us, but no method of transmission over the Internet or electronic storage is 100% secure. We strive to use commercially acceptable means to protect your personal information, but we cannot guarantee its absolute security.</p>
+
+            <h2>7. Links to Other Sites</h2>
+            <p>Our Site may contain links to other sites that are not operated by us. If you click on a third-party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.</p>
+
+            <h2>8. Children's Privacy</h2>
+            <p>Our Site does not address anyone under the age of 18. We do not knowingly collect personally identifiable information from anyone under the age of 18. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact us. If we become aware that we have collected personal information from children without verification of parental consent, we take steps to remove that information from our servers.</p>
+
+            <h2>9. Changes to This Privacy Policy</h2>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. We will let you know via email and/or a prominent notice on our Site, prior to the change becoming effective and update the "Last Updated" date at the top of this Privacy Policy. You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.</p>
+
+            <h2>10. Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, please contact us:</p>
+            <ul>
+                <li>By email: <a href="mailto:metamosurfacestudio@gmail.com" aria-label="Email support">metamosurfacestudio@gmail.com</a></li>
+                <li>By phone: <a href="tel:+918291093932" aria-label="Call support">+91 8291093932</a></li>
+                <li>By visiting this page on our website: <a href="contact.html" aria-label="Visit contact page">Contact Us</a></li>
+                <li>By Address: Kerala, Malappuram, Kadampuzha, 676552, Chathankavu Para Road, Kanchippura</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <h4>India</h4>
+                <p>Kerala, Malappuram</p>
+                <p>Kadampuzha, 676552</p>
+                <p>Chathankavu Para Road, Kanchippura</p>
+                <p>support@metamo.com</p>
+                <p>+91 8291093932</p>
+            </div>
+            <div class="footer-column">
+                <h4>Sign Up to Our Newsletter</h4>
+                <div class="newsletter-signup">
+                    <a href="https://wa.me/+918291093932?text=Hi%20there%21%20I%27d%20love%20to%20add%20you%20to%20our%20exclusive%20newsletter%20broadcast.%20Stay%20updated%20with%20our%20latest%20news%2C%20special%20offers%2C%20and%20valuable%20content.%20Just%20click%20send%20to%20confirm%20your%20subscription%21" aria-label="Sign up for newsletter" rel="noopener noreferrer"><img src="https://macoavell.com.my/wp-content/uploads/2025/07/signup-b.jpg" alt="Sign Up for Newsletter" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Newsletter+Image+Not+Found'"></a>
+                </div>
+                <div class="footer-social-icons">
+                    <a href="https://www.facebook.com/metamosurface" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+                    <a href="https://www.instagram.com/metamosurface" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                    <a href="#" aria-label="Pinterest"><i class='bx bxl-pinterest'></i></a>
+                    <a href="https://www.youtube.com/metamosurface" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            <div class="footer-column">
+                <h4>Help Centre</h4>
+                <ul>
+                    <li><a href="contact.html" aria-label="Contact us">Contact Us</a></li>
+                    <li><a href="collab.html" aria-label="Be our partner">Be Our Partner</a></li>
+                    <li><a href="faq.html" aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li>
+                    <li><a href="terms.html" aria-label="Terms and conditions">Terms & Conditions</a></li>
+                    <li><a href="privacy.html" aria-label="Privacy policy">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © Metamo Surface Studio. All rights reserved.</p>
+            <a href="#" class="scroll-to-top" aria-label="Scroll to top"><i class='bx bx-chevron-up'></i></a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Preloader
+            const preloader = document.getElementById('preloader');
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    preloader.classList.add('hidden');
+                }, 500);
+            });
+
+            // Debounce Utility
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // Mobile Menu Toggle
+            const hamburger = document.querySelector('.hamburger-menu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeBtn = document.querySelector('.mobile-menu .close-btn');
+
+            function toggleMobileMenu() {
+                const isOpen = mobileMenu.classList.toggle('open');
+                hamburger.setAttribute('aria-expanded', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            }
+
+            hamburger.addEventListener('click', toggleMobileMenu);
+            closeBtn.addEventListener('click', toggleMobileMenu);
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    toggleMobileMenu();
+                });
+            });
+
+            // Scroll to Top
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            const handleScroll = debounce(() => {
+                scrollToTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+            }, 100);
+
+            window.addEventListener('scroll', handleScroll);
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Header Scroll Effects
+            const header = document.querySelector('.header');
+            const updateHeader = debounce(() => {
+                if (window.scrollY > 0) {
+                    header.style.height = '60px';
+                    header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                } else {
+                    header.style.height = 'var(--header-height)';
+                    header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+                }
+            }, 100);
+
+            window.addEventListener('scroll', updateHeader);
+
+            // Image Preloading and Fallback
+            const imageElements = document.querySelectorAll('.logo img, .newsletter-signup img');
+            const fallbackImage = 'https://via.placeholder.com/150?text=Image+Not+Found';
+
+            function preloadImages(imageUrls) {
+                imageUrls.forEach(url => {
+                    const img = new Image();
+                    img.src = url;
+                    img.loading = 'lazy';
+                    img.onerror = () => {
+                        console.warn(`Failed to load image: ${url}, using fallback.`);
+                        imageElements.forEach(el => {
+                            if (el.src === url) {
+                                el.src = el.getAttribute('onerror').match(/'([^']+)'/)[1];
+                            }
+                        });
+                    };
+                });
+            }
+
+            const imageUrls = [
+                'https://macoavell.com.my/wp-content/uploads/2020/04/logo.jpg',
+                'https://macoavell.com.my/wp-content/uploads/2025/07/signup-b.jpg',
+                fallbackImage
+            ];
+            preloadImages(imageUrls);
+
+            // Scroll-based Animations
+            const animateElements = document.querySelectorAll('section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            animateElements.forEach(el => observer.observe(el));
+
+            // Touch Swipe Support for Privacy Section
+            const privacySection = document.querySelector('.privacy-section');
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            privacySection.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            privacySection.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) {
+                    privacySection.classList.add('swipe-left');
+                    setTimeout(() => privacySection.classList.remove('swipe-left'), 300);
+                } else if (touchEndX - touchStartX > 50) {
+                    privacySection.classList.add('swipe-right');
+                    setTimeout(() => privacySection.classList.remove('swipe-right'), 300);
+                }
+            });
+
+            // Cleanup
+            window.addEventListener('unload', () => {
+                window.removeEventListener('scroll', handleScroll);
+                window.removeEventListener('scroll', updateHeader);
+            });
+        });
+    </script>
+</body>
+</html>

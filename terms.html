@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metamo Surface Studio - Terms & Conditions</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="logo.jpg">
+
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Metamo Surface Studio - Terms & Conditions">
+    <meta property="og:image" content="logo.jpg">
+    <meta property="og:description" content="Read the Terms & Conditions for using Metamo Surface Studio's services and website.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://metamo.com/terms.html">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-text-color: #333;
+            --secondary-text-color: #666;
+            --accent-color: #d1b585;
+            --light-bg-color: #f8f8f8;
+            --dark-bg-color: #2c2c2c;
+            --white-color: #fff;
+            --header-height: 80px;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--primary-text-color);
+            background-color: var(--light-bg-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .preloader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--accent-color);
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: var(--white-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            transition: background-color var(--transition-speed) ease, height var(--transition-speed) ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .logo img {
+            height: 50px;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-text-color);
+            font-weight: 500;
+            transition: color var(--transition-speed) ease, transform 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .hamburger-menu {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--primary-text-color);
+            z-index: 1001;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .hamburger-menu:hover {
+            color: var(--accent-color);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--dark-bg-color);
+            color: var(--white-color);
+            z-index: 999;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            transition: right 0.4s ease-in-out;
+            padding-top: var(--header-height);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-menu-header .close-btn {
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--white-color);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu-header .close-btn:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 20px 0;
+            flex-grow: 1;
+        }
+
+        .mobile-menu ul li {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .mobile-menu ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--white-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+
+        .mobile-menu ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--accent-color);
+        }
+
+        /* Terms & Conditions Section */
+        section.terms-section {
+            padding: 100px 0;
+            margin-top: var(--header-height);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+
+        section.terms-section.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .terms-section h1 {
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 30px;
+            color: var(--primary-text-color);
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .terms-section h2 {
+            font-size: 1.9em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--primary-text-color);
+            font-weight: 500;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 8px;
+        }
+
+        .terms-section h3 {
+            font-size: 1.5em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: var(--primary-text-color);
+            font-weight: 500;
+        }
+
+        .terms-section p {
+            font-size: 1.05em;
+            color: var(--secondary-text-color);
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .terms-section ul, .terms-section ol {
+            list-style-position: outside;
+            margin-left: 25px;
+            margin-bottom: 15px;
+            color: var(--secondary-text-color);
+            font-size: 1.05em;
+        }
+
+        .terms-section ul ul, .terms-section ol ol {
+            list-style-type: circle;
+            margin-left: 25px;
+        }
+
+        .terms-section a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .terms-section a:hover {
+            text-decoration: underline;
+            color: #c0a473;
+        }
+
+        .last-updated {
+            text-align: right;
+            font-size: 0.95em;
+            color: var(--secondary-text-color);
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        /* Table of Contents */
+        .toc {
+            position: sticky;
+            top: calc(var(--header-height) + 20px);
+            background: var(--white-color);
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            max-width: 300px;
+        }
+
+        .toc h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: var(--primary-text-color);
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc ul li {
+            margin-bottom: 10px;
+        }
+
+        .toc ul li a {
+            color: var(--secondary-text-color);
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.3s ease;
+        }
+
+        .toc ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg-color);
+            color: #ccc;
+            padding: 60px 0 30px;
+            font-size: 0.9em;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h4 {
+            color: var(--white-color);
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color var(--transition-speed) ease, transform 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .footer-column p {
+            margin-bottom: 10px;
+        }
+
+        .footer-column i.bx {
+            margin-right: 8px;
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+
+        .footer-social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social-icons a {
+            color: var(--white-color);
+            font-size: 24px;
+            transition: color var(--transition-speed) ease, transform 0.3s ease;
+        }
+
+        .footer-social-icons a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-signup img {
+            max-width: 150px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .newsletter-signup img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #888;
+            position: relative;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            color: var(--white-color);
+            background-color: rgba(0,0,0,0.6);
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            z-index: 998;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .scroll-to-top:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .terms-section h1 { font-size: 2.2em; }
+            .terms-section h2 { font-size: 1.6em; }
+            .terms-section h3 { font-size: 1.4em; }
+            .terms-section p, .terms-section ul, .terms-section ol { font-size: 0.95em; }
+            .toc { max-width: 100%; }
+            .footer-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .nav-links { display: none; }
+            .hamburger-menu { display: block; }
+            .header { height: 60px; }
+            .logo img { height: 40px; }
+            .terms-section { padding: 60px 0; margin-top: 60px; }
+            .terms-section h1 { font-size: 1.8em; }
+            .terms-section h2 { font-size: 1.4em; }
+            .terms-section h3 { font-size: 1.3em; }
+            .terms-section p, .terms-section ul, .terms-section ol { font-size: 0.9em; }
+            .toc { position: static; }
+            .footer-grid { grid-template-columns: 1fr; gap: 25px; text-align: center; }
+            .footer-social-icons { justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .terms-section h1 { font-size: 1.6em; }
+            .terms-section h2 { font-size: 1.3em; }
+            .terms-section h3 { font-size: 1.2em; }
+            .terms-section p, .terms-section ul, .terms-section ol { font-size: 0.85em; }
+            .toc h3 { font-size: 1.2em; }
+            .toc ul li a { font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader" id="preloader">
+        <div class="preloader-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container navbar">
+            <div class="logo">
+                <a href="index.html" aria-label="Metamo Surface Studio Home"><img src="logo.jpg" alt="Metamo Surface Studio Logo" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Logo+Not+Found'"></a>
+            </div>
+            <nav aria-label="Main navigation">
+                <ul class="nav-links">
+                    <li><a href="index.html">Back</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger-menu" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open mobile menu" role="button">
+                <i class='bx bx-menu'></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <a href="index.html" aria-label="Metamo Surface Studio Home"><img src="logo.jpg" alt="Metamo Surface Studio Logo" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Logo+Not+Found'"></a>
+            </div>
+            <i class='bx bx-x close-btn' aria-label="Close mobile menu"></i>
+        </div>
+        <ul>
+            <li><a href="index.html">Back</a></li>
+        </ul>
+    </div>
+
+    <!-- Terms & Conditions Section -->
+    <section class="terms-section" role="region" aria-label="Terms and Conditions section">
+        <div class="container">
+            <div class="toc">
+                <h3>Table of Contents</h3>
+                <ul>
+                    <li><a href="#accounts">1. Accounts</a></li>
+                    <li><a href="#intellectual-property">2. Intellectual Property</a></li>
+                    <li><a href="#purchases">3. Purchases</a></li>
+                    <li><a href="#partnership-program">4. Partnership Program</a></li>
+                    <li><a href="#links">5. Links To Other Web Sites</a></li>
+                    <li><a href="#termination">6. Termination</a></li>
+                    <li><a href="#indemnification">7. Indemnification</a></li>
+                    <li><a href="#limitation">8. Limitation Of Liability</a></li>
+                    <li><a href="#disclaimer">9. Disclaimer</a></li>
+                    <li><a href="#governing-law">10. Governing Law</a></li>
+                    <li><a href="#changes">11. Changes</a></li>
+                    <li><a href="#contact">12. Contact Us</a></li>
+                </ul>
+            </div>
+            <h1>Terms & Conditions</h1>
+            <p class="last-updated">Last Updated: July 25, 2025</p>
+
+            <p>Please read these Terms & Conditions ("Terms", "Terms & Conditions") carefully before using the <a href="https://metamosurface.com/" rel="noopener noreferrer" aria-label="Visit Metamo website">https://metamosurface.com/</a> website (the "Service") operated by Metamo Surface Studio, powered by Metamo ("us", "we", or "our").</p>
+
+            <p>Your access to and use of the Service is conditioned upon your acceptance of and compliance with these Terms. These Terms apply to all visitors, users, and others who wish to access or use the Service.</p>
+
+            <p>By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part of the terms, then you do not have permission to access the Service.</p>
+
+            <h2 id="accounts">1. Accounts</h2>
+            <p>If you create an account with us, you are responsible for maintaining the confidentiality of your account and password, including but not limited to the restriction of access to your computer and/or account. You agree to accept responsibility for any and all activities or actions that occur under your account and/or password. You must notify us immediately upon becoming aware of any breach of security or unauthorized use of your account.</p>
+            <p>You may not use as a username the name of another person or entity or that is not lawfully available for use, a name or trademark that is subject to any rights of another person or entity other than you without appropriate authorization, or a name that is otherwise offensive, vulgar, or obscene.</p>
+
+            <h2 id="intellectual-property">2. Intellectual Property</h2>
+            <p>The Service and its original content (excluding content provided by users), features, and functionality are and will remain the exclusive property of Metamo Surface Studio, powered by Metamo, and its licensors. The Service is protected by copyright, trademark, and other laws of both India and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of Metamo Surface Studio.</p>
+
+            <h2 id="purchases">3. Purchases</h2>
+            <p>If you wish to purchase any product or service made available through the Service ("Purchase"), you may be asked to supply certain information relevant to your Purchase including, without limitation, your credit card number, the expiration date of your credit card, your billing address, and your shipping information.</p>
+            <p>You represent and warrant that:</p>
+            <ul>
+                <li>you have the legal right to use any credit card(s) or other payment method(s) in connection with any Purchase; and that</li>
+                <li>the information you supply to us is true, correct, and complete.</li>
+            </ul>
+            <p>We reserve the right to refuse or cancel your order at any time for reasons including but not limited to: product or service availability, errors in the description or price of the product or service, error in your order, or other reasons. We reserve the right to refuse or cancel your order if fraud or an unauthorized or illegal transaction is suspected.</p>
+
+            <h3>Pricing & Availability</h3>
+            <p>All prices listed on the Service are subject to change without notice. While we strive to ensure accuracy, errors in pricing or product descriptions may occur. We reserve the right to correct any such errors, and to cancel any orders placed based on incorrect information.</p>
+
+            <h3>Shipping & Delivery</h3>
+            <p>Products will be shipped to the address specified by you during the order process. Shipping times are estimates and typically range from 5 to 15 business days, depending on location and product availability. Risk of loss and title for items purchased from us pass to you upon our delivery to the carrier.</p>
+
+            <h3>Returns & Refunds</h3>
+            <p>We accept returns for unopened, unused products within 30 days of purchase. Please refer to our <a href="returns.html" aria-label="View return policy">Return Policy</a> for details on how to return products and obtain refunds.</p>
+
+            <h2 id="partnership-program">4. Partnership Program</h2>
+            <p>Users who apply and are accepted into our Partnership Program ("Partners") agree to abide by additional specific terms and conditions governing their participation, which will be provided separately upon acceptance into the program. These may include terms related to commission structures, marketing guidelines, use of branding, collaboration responsibilities, and termination of partnership.</p>
+
+            <h2 id="links">5. Links To Other Web Sites</h2>
+            <p>Our Service may contain links to third-party web sites or services that are not owned or controlled by Metamo Surface Studio.</p>
+            <p>Metamo Surface Studio has no control over, and assumes no responsibility for the content, privacy policies, or practices of any third-party web sites or services. We do not warrant the offerings of any of these entities/individuals or their websites.</p>
+            <p>You acknowledge and agree that Metamo Surface Studio shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods, or services available on or through any such third-party web sites or services.</p>
+            <p>We strongly advise you to read the terms and conditions and privacy policies of any third-party web sites or services that you visit.</p>
+
+            <h2 id="termination">6. Termination</h2>
+            <p>We may terminate or suspend your access to the Service immediately, without prior notice or liability, under our sole discretion, for any reason whatsoever and without limitation, including but not limited to a breach of the Terms.</p>
+            <p>All provisions of the Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity, and limitations of liability.</p>
+
+            <h2 id="indemnification">7. Indemnification</h2>
+            <p>You agree to defend, indemnify, and hold harmless Metamo Surface Studio, powered by Metamo, and its licensees and licensors, and their employees, contractors, agents, officers, and directors, from and against any and all claims, damages, obligations, losses, liabilities, costs, or debt, and expenses (including but not limited to attorney's fees), resulting from or arising out of a) your use and access of the Service, by you or any person using your account and password; b) a breach of these Terms, or c) content posted on the Service.</p>
+
+            <h2 id="limitation">8. Limitation Of Liability</h2>
+            <p>In no event shall Metamo Surface Studio, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from (i) your access to or use of or inability to access or use the Service; (ii) any conduct or content of any third party on the Service; (iii) any content obtained from the Service; and (iv) unauthorized access, use, or alteration of your transmissions or content, whether based on warranty, contract, tort (including negligence), or any other legal theory, whether or not we have been informed of the possibility of such damage, and even if a remedy set forth herein is found to have failed of its essential purpose.</p>
+
+            <h2 id="disclaimer">9. Disclaimer</h2>
+            <p>Your use of the Service is at your sole risk. The Service is provided on an "AS IS" and "AS AVAILABLE" basis. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement, or course of performance.</p>
+            <p>Metamo Surface Studio, its subsidiaries, affiliates, and its licensors do not warrant that a) the Service will function uninterrupted, secure, or available at any particular time or location; b) any errors or defects will be corrected; c) the Service is free of viruses or other harmful components; or d) the results of using the Service will meet your requirements.</p>
+            <p>Metamo makes no warranties regarding the application or suitability of paints for specific surfaces, as results may vary based on user application, substrate condition, and environmental factors.</p>
+
+            <h2 id="governing-law">10. Governing Law</h2>
+            <p>These Terms shall be governed and construed in accordance with the laws of India, without regard to its conflict of law provisions.</p>
+            <p>Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect. These Terms constitute the entire agreement between us regarding our Service, and supersede and replace any prior agreements we might have had between us regarding the Service.</p>
+
+            <h2 id="changes">11. Changes</h2>
+            <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+            <p>By continuing to access or use our Service after any revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, you are no longer authorized to use the Service.</p>
+
+            <h2 id="contact">12. Contact Us</h2>
+            <p>If you have any questions about these Terms, please contact us:</p>
+            <ul>
+                <li>By email: <a href="mailto:smetamosurfacestudio@gmail.com" aria-label="Email support">metamosurfacestudio@gmail.com</a></li>
+                <li>By phone: <a href="tel:+918291093932" aria-label="Call support">+91 829109393932</a></li>
+                <li>By visiting this page on our website: <a href="contact.html" aria-label="Visit contact page">Contact Us</a></li>
+                <li>By address: Kerala, Malappuram, Kadampuzha, 676552, Chathankavu Para Road, Kanchippura</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <h4>India</h4>
+                <p>Kerala, Malappuram</p>
+                <p>Kadampuzha, 676552</p>
+                <p>Chathankavu Para Road, Kanchippura</p>
+                <p>support@metamo.com</p>
+                <p>+91 8291093932</a></p>
+            </div>
+            <div class="footer-column">
+                <h4>Sign Up to Our Newsletter</h4>
+                <div class="newsletter-signup">
+                    <a href="https://wa.me/+918291093932?text=Hi%20there%21%20I%27d%20love%20to%20add%20you%20to%20our%20exclusive%20newsletter%20broadcast.%20Stay%20updated%20with%20our%20latest%20news%2C%20special%20offers%2C%20and%20valuable%20content.%20Just%20click%20send%20to%20confirm%20your%20subscription%21" rel="noopener noreferrer" aria-label="Sign up for newsletter"><img src="https://macoavell.com.my/wp-content/uploads/2025/07/signup-b.jpg" alt="Sign Up for Newsletter" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Newsletter+Image+Not+Found'"></a>
+                </div>
+                <div class="footer-social-icons">
+                    <a href="https://www.facebook.com/metamosurface" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+                    <a href="https://www.instagram.com/metamosurface" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                    <a href="#" aria-label="Pinterest"><i class='bx bxl-pinterest'></i></a>
+                    <a href="https://www.youtube.com/metamosurface" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Help Centre</h4>
+                <ul>
+                    <li><a href="contact.html" aria-label="Contact us">Contact Us</a></li>
+                    <li><a href="collab.html" aria-label="Be our partner">Be Our Partner</a></li>
+                    <li><a href="faq.html" aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li>
+                    <li><a href="terms.html" aria-label="Terms and conditions">Terms & Conditions</a></li>
+                    <li><a href="privacy.html" aria-label="Privacy policy">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © Metamo Surface Studio. All rights reserved.</p>
+            <a href="#" class="scroll-to-top" aria-label="Scroll to top"><i class='bx bx-chevron-up'></i></a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Preloader
+            const preloader = document.getElementById('preloader');
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    preloader.classList.add('hidden');
+                }, 500);
+            });
+
+            // Debounce Utility
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // Mobile Menu Toggle
+            const hamburger = document.querySelector('.hamburger-menu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeBtn = document.querySelector('.mobile-menu .close-btn');
+
+            function toggleMobileMenu() {
+                const isOpen = mobileMenu.classList.toggle('open');
+                hamburger.setAttribute('aria-expanded', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            }
+
+            hamburger.addEventListener('click', toggleMobileMenu);
+            closeBtn.addEventListener('click', toggleMobileMenu);
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    toggleMobileMenu();
+                });
+            });
+
+            // Scroll to Top
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            const handleScroll = debounce(() => {
+                scrollToTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+            }, 100);
+
+            window.addEventListener('scroll', handleScroll);
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Header Scroll Effects
+            const header = document.querySelector('.header');
+            const updateHeader = debounce(() => {
+                if (window.scrollY > 0) {
+                    header.style.height = '60px';
+                    header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                } else {
+                    header.style.height = 'var(--header-height)';
+                    header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+                }
+            }, 100);
+
+            window.addEventListener('scroll', updateHeader);
+
+            // Image Preloading and Fallback
+            const imageElements = document.querySelectorAll('.logo img, .newsletter-signup img');
+            const fallbackImage = 'https://via.placeholder.com/150?text=Image+Not+Found';
+
+            function preloadImages(imageUrls) {
+                imageUrls.forEach(url => {
+                    const img = new Image();
+                    img.src = url;
+                    img.loading = 'lazy';
+                    img.onerror = () => {
+                        console.warn(`Failed to load image: ${url}, using fallback.`);
+                        imageElements.forEach(el => {
+                            if (el.src === url) {
+                                el.src = el.getAttribute('onerror').match(/'([^']+)'/)[1];
+                            }
+                        });
+                    };
+                });
+            }
+
+            const imageUrls = [
+                'https://macoavell.com.my/wp-content/uploads/2020/04/logo.jpg',
+                'https://macoavell.com.my/wp-content/uploads/2025/07/signup-b.jpg',
+                fallbackImage
+            ];
+            preloadImages(imageUrls);
+
+            // Scroll-based Animations
+            const animateElements = document.querySelectorAll('section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            animateElements.forEach(el => observer.observe(el));
+
+            // Table of Contents Highlight
+            const tocLinks = document.querySelectorAll('.toc ul li a');
+            const sections = document.querySelectorAll('.terms-section h2');
+
+            const highlightTOC = debounce(() => {
+                let currentSection = '';
+                sections.forEach(section => {
+                    const sectionTop = section.getBoundingClientRect().top;
+                    if (sectionTop <= 150) {
+                        currentSection = section.getAttribute('id');
+                    }
+                });
+
+                tocLinks.forEach(link => {
+                    link.style.fontWeight = 'normal';
+                    if (link.getAttribute('href') === `#${currentSection}`) {
+                        link.style.fontWeight = 'bold';
+                    }
+                });
+            }, 100);
+
+            window.addEventListener('scroll', highlightTOC);
+
+            // Cleanup
+            window.addEventListener('unload', () => {
+                window.removeEventListener('scroll', handleScroll);
+                window.removeEventListener('scroll', updateHeader);
+                window.removeEventListener('scroll', highlightTOC);
+            });
+        });
+    </script>
+</body>
+</html>

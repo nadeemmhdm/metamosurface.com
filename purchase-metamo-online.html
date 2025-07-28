@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Metamo Products Online</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="jpg" href="logo.jpg">
+
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Purchase Metamo Products Online">
+    <meta property="og:image" content="https://macoavell.com.my/wp-content/uploads/2020/04/logo.jpg">
+    <meta property="og:description" content="Explore and purchase our exquisite range of textured paints conveniently via WhatsApp.">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-text-color: #333;
+            --secondary-text-color: #666;
+            --accent-color: #d1b585;
+            --light-bg-color: #f8f8f8;
+            --dark-bg-color: #2c2c2c;
+            --white-color: #fff;
+            --header-height: 80px;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--primary-text-color);
+            overflow-x: hidden;
+            background-color: var(--light-bg-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .preloader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--accent-color);
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: var(--white-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            transition: background-color var(--transition-speed) ease, height var(--transition-speed) ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .logo img {
+            height: 50px;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-text-color);
+            font-weight: 500;
+            transition: color var(--transition-speed) ease, transform 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-links .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            list-style: none;
+            min-width: 180px;
+            padding: 10px 0;
+            border-radius: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease, visibility var(--transition-speed) ease;
+        }
+
+        .nav-links li.dropdown:hover .dropdown-menu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-links .dropdown-menu li {
+            margin: 0;
+        }
+
+        .nav-links .dropdown-menu a {
+            padding: 10px 15px;
+            display: block;
+            white-space: nowrap;
+            font-weight: 400;
+            transition: background-color 0.2s ease;
+        }
+
+        .nav-links .dropdown-menu a:hover {
+            background-color: var(--light-bg-color);
+        }
+
+        .nav-links .search-icon {
+            font-size: 24px;
+            cursor: pointer;
+            margin-left: 30px;
+            color: var(--primary-text-color);
+            transition: color var(--transition-speed) ease, transform 0.2s ease;
+        }
+
+        .nav-links .search-icon:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .hamburger-menu {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--primary-text-color);
+            z-index: 1001;
+            transition: color var(--transition-speed) ease;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--dark-bg-color);
+            color: var(--white-color);
+            z-index: 999;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            transition: right 0.4s ease-in-out;
+            padding-top: var(--header-height);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-menu-header .close-btn {
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--white-color);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu-header .close-btn:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 20px 0;
+            flex-grow: 1;
+        }
+
+        .mobile-menu ul li {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .mobile-menu ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--white-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+
+        .mobile-menu ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--accent-color);
+        }
+
+        .mobile-menu ul li.dropdown-mobile .dropdown-icon {
+            float: right;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .mobile-menu ul li.dropdown-mobile.active .dropdown-icon {
+            transform: rotate(90deg);
+        }
+
+        .mobile-menu .dropdown-mobile-menu {
+            display: none;
+            list-style: none;
+            background-color: rgba(0,0,0,0.2);
+            padding-left: 20px;
+        }
+
+        .mobile-menu .dropdown-mobile-menu li a {
+            padding: 10px 20px;
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 50vh;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white-color);
+            margin-top: var(--header-height);
+            overflow: hidden;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+
+        .hero-content.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            font-weight: 600;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* Product Grid Section */
+        .product-grid-section {
+            background-color: var(--light-bg-color);
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .product-grid-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: var(--primary-text-color);
+            font-weight: 600;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .product-card {
+            background-color: var(--white-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .product-card.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card img:hover {
+            transform: scale(1.05);
+        }
+
+        .product-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: var(--primary-text-color);
+            font-weight: 600;
+        }
+
+        .product-card p {
+            font-size: 1em;
+            color: var(--secondary-text-color);
+            margin-bottom: 20px;
+            padding: 0 15px;
+        }
+
+        .product-card .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 30px;
+            background-color: #25D366;
+            color: var(--white-color);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color var(--transition-speed) ease, transform 0.2s ease, box-shadow var(--transition-speed) ease;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .product-card .btn-whatsapp i.bx {
+            margin-right: 8px;
+            font-size: 1.4em;
+        }
+
+        .product-card .btn-whatsapp:hover {
+            background-color: #1DA851;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        /* Inquiry Form */
+        .inquiry-form-section {
+            background-color: var(--white-color);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .inquiry-form-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: var(--primary-text-color);
+            font-weight: 600;
+        }
+
+        .inquiry-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: var(--light-bg-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .inquiry-form .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .inquiry-form label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--primary-text-color);
+        }
+
+        .inquiry-form input,
+        .inquiry-form select,
+        .inquiry-form textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s ease;
+        }
+
+        .inquiry-form input:focus,
+        .inquiry-form select:focus,
+        .inquiry-form textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+
+        .inquiry-form input[aria-invalid="true"],
+        .inquiry-form select[aria-invalid="true"],
+        .inquiry-form textarea[aria-invalid="true"] {
+            border-color: #d32f2f;
+        }
+
+        .inquiry-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .inquiry-form button {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: var(--white-color);
+            border: none;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease, transform 0.2s ease, box-shadow var(--transition-speed) ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .inquiry-form button:hover {
+            background-color: #c0a473;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .inquiry-form button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .inquiry-form .btn-whatsapp-form {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 30px;
+            background-color: #25D366;
+            color: var(--white-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            margin-left: 10px;
+            transition: background-color var(--transition-speed) ease, transform 0.2s ease, box-shadow var(--transition-speed) ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .inquiry-form .btn-whatsapp-form i.bx {
+            margin-right: 8px;
+            font-size: 1.4em;
+        }
+
+        .inquiry-form .btn-whatsapp-form:hover {
+            background-color: #1DA851;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .form-error,
+        .form-success {
+            margin-top: 10px;
+            font-size: 0.9em;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .form-error.show,
+        .form-success.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .form-error {
+            color: #d32f2f;
+        }
+
+        .form-success {
+            color: #388e3c;
+        }
+
+        .form-loading {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            border: 4px solid var(--accent-color);
+            border-top: 4px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .form-loading.show {
+            display: block;
+        }
+
+        /* Partner Section */
+        .partner-section {
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white-color);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+            z-index: 0;
+        }
+
+        .partner-content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+
+        .partner-content.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .partner-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .partner-content p {
+            font-size: 1.1em;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .partner-content .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: var(--white-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: background-color var(--transition-speed) ease, transform 0.2s ease, box-shadow var(--transition-speed) ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .partner-content .btn:hover {
+            background-color: #c0a473;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg-color);
+            color: #ccc;
+            padding: 60px 0 30px;
+            font-size: 0.9em;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h4 {
+            color: var(--white-color);
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color var(--transition-speed) ease, transform 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .footer-column p {
+            margin-bottom: 10px;
+        }
+
+        .footer-column i.bx {
+            margin-right: 8px;
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+
+        .footer-social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social-icons a {
+            color: var(--white-color);
+            font-size: 24px;
+            transition: color var(--transition-speed) ease, transform 0.3s ease;
+        }
+
+        .footer-social-icons a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-signup {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-signup img {
+            max-width: 150px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .newsletter-signup img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #888;
+            position: relative;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            color: var(--white-color);
+            background-color: rgba(0,0,0,0.6);
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            z-index: 998;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .scroll-to-top:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 2.8em; }
+            .hero-content p { font-size: 1em; }
+            .product-grid-section h2, .partner-content h2, .inquiry-form-section h2 { font-size: 2em; }
+            .product-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; }
+            .product-card h3 { font-size: 1.4em; }
+            .product-card p { font-size: 0.95em; }
+            .product-card img { height: 200px; }
+            .product-card .btn-whatsapp { padding: 10px 25px; font-size: 0.9em; }
+            .inquiry-form { padding: 15px; }
+            .inquiry-form .btn-whatsapp-form { margin-left: 0; margin-top: 10px; }
+            .partner-section { height: 350px; }
+            .footer-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .nav-links { display: none; }
+            .hamburger-menu { display: block; }
+            .header { height: 60px; }
+            .logo img { height: 40px; }
+            .hero-section { height: 40vh; margin-top: 60px; }
+            .hero-content h1 { font-size: 2em; }
+            .hero-content p { font-size: 0.95em; }
+            section { padding: 50px 0; }
+            .product-grid-section h2, .partner-content h2, .inquiry-form-section h2 { font-size: 1.8em; }
+            .product-grid { grid-template-columns: 1fr; }
+            .product-card { max-width: 350px; margin: 0 auto; }
+            .product-card img { height: 220px; }
+            .product-card h3 { font-size: 1.3em; }
+            .product-card p { font-size: 0.9em; }
+            .product-card .btn-whatsapp { font-size: 0.85em; padding: 10px 20px; }
+            .inquiry-form input, .inquiry-form select, .inquiry-form textarea { font-size: 0.95em; }
+            .inquiry-form button, .inquiry-form .btn-whatsapp-form { font-size: 0.95em; padding: 10px 25px; }
+            .partner-section { height: 300px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 25px; text-align: center; }
+            .footer-social-icons { justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 1.8em; }
+            .hero-content p { font-size: 0.9em; }
+            .product-grid-section h2, .inquiry-form-section h2 { font-size: 1.6em; }
+            .product-card { max-width: 90%; }
+            .product-card img { height: 180px; }
+            .product-card h3 { font-size: 1.2em; }
+            .product-card p { font-size: 0.85em; }
+            .product-card .btn-whatsapp { font-size: 0.8em; padding: 8px 18px; }
+            .inquiry-form input, .inquiry-form select, .inquiry-form textarea { font-size: 0.9em; }
+            .inquiry-form button, .inquiry-form .btn-whatsapp-form { font-size: 0.9em; padding: 8px 20px; }
+            .partner-section { height: 250px; }
+            .partner-content h2 { font-size: 1.5em; }
+            .partner-content p { font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader" id="preloader">
+        <div class="preloader-spinner"></div>
+    </div>
+
+    <header class="header" role="banner">
+        <div class="container navbar">
+            <div class="logo">
+                <a href="index.html" aria-label="Metamo Surface Studio Home"><img src="logo.jpg" alt="Metamo Surface Studio Logo" loading="lazy"></a>
+            </div>
+            <nav aria-label="Main navigation">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="dropdown">
+                        <a href="#" aria-haspopup="true">Products <i class='bx bx-chevron-down'></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="purchase-metamo-online.html">Vellma</a></li>
+                            <li><a href="purchase-metamo-online.html">Vellplas</a></li>
+                            <li><a href="purchase-metamo-online.html">Vellcco</a></li>
+                            <li><a href="purchase-metamo-online.html">Vellwax</a></li>
+                            <li><a href="purchase-metamo-online.html">Vellwax Metallic</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="collab.html">Collab</a></li>
+                    <li><a href="purchase-metamo-online.html">Buy Online</a></li>
+                    <li><a href="search.html" class="search-icon" aria-label="Search"><i class='bx bx-search'></i></a></li>
+                </ul>
+            </nav>
+            <div class="hamburger-menu" aria-label="Open mobile menu" role="button">
+                <i class='bx bx-menu'></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <a href="index.html" aria-label="Metamo Surface Studio Home"><img src="https://macoavell.com.my/wp-content/uploads/2020/04/logo.jpg" alt="Metamo Surface Studio Logo" loading="lazy"></a>
+            </div>
+            <i class='bx bx-x close-btn' aria-label="Close mobile menu"></i>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li class="dropdown-mobile">
+                <a href="#" aria-haspopup="true">Products <i class='bx bx-chevron-right dropdown-icon'></i></a>
+                <ul class="dropdown-mobile-menu" role="menu">
+                    <li><a href="#">Vellma</a></li>
+                    <li><a href="#">Vellplas</a></li>
+                    <li><a href="#">Vellcco</a></li>
+                    <li><a href="#">Vellwax</a></li>
+                    <li><a href="#">Vellwax Metallic</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="collab.html">Collab</a></li>
+            <li><a href="purchase-metamo-online.html">Buy Online</a></li>
+            <li><a href="search.html"><i class='bx bx-search'></i> Search</a></li>
+        </ul>
+    </div>
+
+    <section class="hero-section" style="background-image: url('https://macoavell.com.my/wp-content/uploads/2020/04/wax-clear-2.png');" aria-label="Purchase hero section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Purchase Metamo Products Online</h1>
+            <p>Explore our exquisite range of textured paints and place your order conveniently via WhatsApp.</p>
+        </div>
+    </section>
+
+    <section class="product-grid-section" aria-label="Product catalog section">
+        <div class="container">
+            <h2>Our Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://macoavell.com.my/wp-content/uploads/2020/04/MA04-earth.jpg" alt="Vellma Product" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Vellma+Image+Not+Found'">
+                    <h3>Vellma</h3>
+                    <p>Experience the timeless elegance and smooth, luxurious finish of Vellma, perfect for sophisticated interiors.</p>
+                    <a href="#" class="btn-whatsapp" data-product-name="Vellma" aria-label="Purchase Vellma via WhatsApp"><i class='bx bxl-whatsapp'></i> Buy Now</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://www.dufferintile.com/cdn/shop/files/breccia-crema.jpg?v=1722544483&width=990" alt="Vellplas Product" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Vellplas+Image+Not+Found'">
+                    <h3>Vellplas</h3>
+                    <p>Achieve a durable and versatile textured surface with Vellplas, ideal for residential and commercial spaces.</p>
+                    <a href="#" class="btn-whatsapp" data-product-name="Vellplas" aria-label="Purchase Vellplas via WhatsApp"><i class='bx bxl-whatsapp'></i> Buy Now</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://macoavell.com.my/wp-content/uploads/2020/04/MA03-dim-grey-600x600.jpg" alt="Vellcco Product" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Vellcco+Image+Not+Found'">
+                    <h3>Vellcco</h3>
+                    <p>Create stunning, intricate patterns and effects with Vellcco, our premium decorative paint solution.</p>
+                    <a href="#" class="btn-whatsapp" data-product-name="Vellcco" aria-label="Purchase Vellcco via WhatsApp"><i class='bx bxl-whatsapp'></i> Buy Now</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://macoavell.com.my/wp-content/uploads/2020/04/MA10-emerald-600x600.jpg" alt="Vellwax Product" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Vellwax+Image+Not+Found'">
+                    <h3>Vellwax</h3>
+                    <p>Protect and enhance your textured surfaces with Vellwax, offering a subtle sheen and added durability.</p>
+                    <a href="#" class="btn-whatsapp" data-product-name="Vellwax" aria-label="Purchase Vellwax via WhatsApp"><i class='bx bxl-whatsapp'></i> Buy Now</a>
+                </div>
+                <div class="product-card">
+                    <img src="https://macoavell.com.my/wp-content/uploads/2020/04/MA16-sage-green-600x600.jpg" alt="Vellwax Metallic Product" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Vellwax+Metallic+Image+Not+Found'">
+                    <h3>Vellwax Metallic</h3>
+                    <p>Add a touch of modern glamour with Vellwax Metallic, providing a shimmering, metallic finish to your surfaces.</p>
+                    <a href="#" class="btn-whatsapp" data-product-name="Vellwax Metallic" aria-label="Purchase Vellwax Metallic via WhatsApp"><i class='bx bxl-whatsapp'></i> Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="inquiry-form-section" aria-label="Product inquiry form section">
+        <div class="container">
+            <h2>Have Questions or Need a Quote?</h2>
+            <form class="inquiry-form" id="inquiryForm" novalidate action="https://formspree.io/f/xnnzvavy" method="POST">
+                <input type="text" name="_gotcha" style="display:none;" aria-hidden="true">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required autocomplete="name" maxlength="100" aria-required="true" aria-describedby="formError">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required autocomplete="email" aria-required="true" aria-describedby="formError">
+                </div>
+                <div class="form-group">
+                    <label for="product">Select Product *</label>
+                    <select id="product" name="product" required aria-required="true" aria-describedby="formError">
+                        <option value="" disabled selected>Select a product</option>
+                        <option value="Vellma">Vellma</option>
+                        <option value="Vellplas">Vellplas</option>
+                        <option value="Vellcco">Vellcco</option>
+                        <option value="Vellwax">Vellwax</option>
+                        <option value="Vellwax Metallic">Vellwax Metallic</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message *</label>
+                    <textarea id="message" name="message" required maxlength="500" aria-required="true" aria-describedby="formError"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" id="submitBtn" aria-label="Send inquiry via email">Send Inquiry</button>
+                    <a href="#" class="btn-whatsapp-form" id="whatsappFormBtn" aria-label="Send inquiry via WhatsApp"><i class='bx bxl-whatsapp'></i> Send via WhatsApp</a>
+                </div>
+                <div class="form-error" id="formError" role="alert"></div>
+                <div class="form-success" id="formSuccess" role="alert"></div>
+                <div class="form-loading" id="formLoading"></div>
+            </form>
+        </div>
+    </section>
+
+    <section class="partner-section" style="background-image: url('https://macoavell.com.my/wp-content/uploads/2020/04/wax-clear-2.png');" aria-label="Call to action section">
+        <div class="partner-content">
+            <h2>Need Assistance or Custom Orders?</h2>
+            <p>Our team is ready to help you choose the perfect finish or discuss bulk purchase options.</p>
+            <a href="contact.html" class="btn" aria-label="Contact us for assistance">Contact Us</a>
+        </div>
+    </section>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <h4>India</h4>
+                <p>Kerala, Malappuram</p>
+                <p>Near AL Huda School, Kadampuzha</p>
+                <p>Road, Melmuri, Malapppuram</p>
+                <p>metamosurfacestudio@gmail.com</p>
+                <p>+91 98469 55954</p>
+            </div>
+            <div class="footer-column">
+                <h4>Sign Up to Our Newsletter</h4>
+                <div class="newsletter-signup">
+                    <a href="https://wa.me/918291093932?text=Hi%20there%21%20I%27d%20love%20to%20add%20you%20to%20our%20exclusive%20newsletter%20broadcast.%20Stay%20updated%20with%20our%20latest%20news%2C%20special%20offers%2C%20and%20valuable%20content.%20Just%20click%20send%20to%20confirm%20your%20subscription%21" aria-label="Sign up for newsletter"><img src="https://macoavell.com.my/wp-content/uploads/2025/07/signup-b.jpg" alt="Sign Up for Newsletter" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Newsletter+Image+Not+Found'"></a>
+                </div>
+                <div class="footer-social-icons">
+                    <a href="https://www.facebook.com/metamosurface" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+                    <a href="https://www.instagram.com/metamosurface" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                    <a href="#" aria-label="Pinterest"><i class='bx bxl-pinterest'></i></a>
+                    <a href="https://www.youtube.com/metamosurface" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Help Centre</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="collab.html">Be Our Partner</a></li>
+                    <li><a href="faq.html">Frequently Asked Questions</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © Metamo Surface Studio. All rights reserved.</p>
+            <a href="#" class="scroll-to-top" aria-label="Scroll to top"><i class='bx bx-chevron-up'></i></a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Preloader
+            const preloader = document.getElementById('preloader');
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    preloader.classList.add('hidden');
+                }, 500);
+            });
+
+            // Debounce Utility
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // Mobile Menu Toggle
+            const hamburger = document.querySelector('.hamburger-menu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeBtn = document.querySelector('.mobile-menu .close-btn');
+            const mobileDropdowns = document.querySelectorAll('.mobile-menu .dropdown-mobile');
+
+            function toggleMobileMenu() {
+                mobileMenu.classList.toggle('open');
+                document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+            }
+
+            hamburger.addEventListener('click', toggleMobileMenu);
+            closeBtn.addEventListener('click', toggleMobileMenu);
+
+            mobileMenu.querySelectorAll('a:not(.dropdown-mobile > a)').forEach(link => {
+                link.addEventListener('click', toggleMobileMenu);
+            });
+
+            mobileDropdowns.forEach(dropdown => {
+                const dropdownLink = dropdown.querySelector('a');
+                const dropdownMenu = dropdown.querySelector('.dropdown-mobile-menu');
+                dropdownLink.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                        dropdownMenu.style.display = dropdown.classList.contains('active') ? 'block' : 'none';
+                    }
+                });
+            });
+
+            // Scroll to Top
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            const handleScroll = debounce(() => {
+                scrollToTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+            }, 100);
+
+            window.addEventListener('scroll', handleScroll);
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Header Scroll Effects
+            const header = document.querySelector('.header');
+            const updateHeader = debounce(() => {
+                if (window.scrollY > 0) {
+                    header.style.height = '60px';
+                    header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                } else {
+                    header.style.height = 'var(--header-height)';
+                    header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+                }
+            }, 100);
+
+            window.addEventListener('scroll', updateHeader);
+
+            // Image Preloading and Fallback
+            const imageElements = document.querySelectorAll('.hero-section, .partner-section, .product-card img, .newsletter-signup img');
+            const fallbackImage = 'https://via.placeholder.com/600x400?text=Image+Not+Found';
+
+            function preloadImages(imageUrls) {
+                imageUrls.forEach(url => {
+                    const img = new Image();
+                    img.src = url;
+                    img.loading = 'lazy';
+                    img.onerror = () => {
+                        console.warn(`Failed to load image: ${url}, using fallback.`);
+                        imageElements.forEach(el => {
+                            if (el.tagName === 'IMG' && el.src === url) {
+                                el.src = el.getAttribute('onerror').match(/'([^']+)'/)[1];
+                            } else if (getComputedStyle(el).backgroundImage.includes(url)) {
+                                el.style.backgroundImage = `url('${fallbackImage}')`;
+                            }
+                        });
+                    };
+                });
+            }
+
+            const imageUrls = [
+                'https://macoavell.com.my/wp-content/uploads/2020/04/wax-clear-2.png',
+                'https://macoavell.com.my/wp-content/uploads/2020/04/MA04-earth.jpg',
+                'https://macoavell.com.my/wp-content/uploads/2020/04/MA05-cream.jpg',
+                'https://macoavell.com.my/wp-content/uploads/2020/04/MA03-dim-grey-600x600.jpg',
+                'https://macoavell.com.my/wp-content/uploads/2020/04/MA10-emerald-600x600.jpg',
+                'https://macoavell.com.my/wp-content/uploads/2020/04/MA16-sage-green-600x600.jpg',
+                'https://macoavell.com.my/wp-content/uploads/2020/04/logo.jpg',
+                'https://macoavell.com.my/wp-content/uploads/2025/07/signup-b.jpg',
+                fallbackImage
+            ];
+            preloadImages(imageUrls);
+
+            // Scroll-based Animations
+            const animateElements = document.querySelectorAll('section, .hero-content, .partner-content, .product-card');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        entry.target.style.transitionDelay = `${index * 0.2}s`;
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            animateElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection && heroSection.getBoundingClientRect().top < window.innerHeight) {
+                document.querySelector('.hero-content').classList.add('animated');
+            }
+
+            // WhatsApp Integration
+            const phoneNumber = '918291093932';
+            const whatsappButtons = document.querySelectorAll('.btn-whatsapp');
+            whatsappButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const productName = button.dataset.productName;
+                    const message = encodeURIComponent(`Hi, I'm interested in purchasing your product: ${productName}. Please provide more details and pricing.`);
+                    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+                    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+                });
+            });
+
+            // Inquiry Form Handling
+            const inquiryForm = document.getElementById('inquiryForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const whatsappFormBtn = document.getElementById('whatsappFormBtn');
+            const formError = document.getElementById('formError');
+            const formSuccess = document.getElementById('formSuccess');
+            const formLoading = document.getElementById('formLoading');
+            let lastSubmitTime = 0;
+            const submitCooldown = 30000; // 30 seconds
+
+            function sanitizeInput(input) {
+                const div = document.createElement('div');
+                div.textContent = input;
+                return div.innerHTML;
+            }
+
+            function setFieldError(field, isInvalid) {
+                field.setAttribute('aria-invalid', isInvalid);
+                if (isInvalid) {
+                    field.focus();
+                }
+            }
+
+            // Formspree Submission
+            inquiryForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const now = Date.now();
+                if (now - lastSubmitTime < submitCooldown) {
+                    formError.textContent = 'Please wait a moment before submitting again.';
+                    formError.classList.add('show');
+                    return;
+                }
+
+                const name = sanitizeInput(inquiryForm.name.value.trim());
+                const email = sanitizeInput(inquiryForm.email.value.trim());
+                const product = inquiryForm.product.value;
+                const message = sanitizeInput(inquiryForm.message.value.trim());
+
+                // Reset field states
+                [inquiryForm.name, inquiryForm.email, inquiryForm.product, inquiryForm.message].forEach(field => {
+                    setFieldError(field, false);
+                });
+
+                // Validation
+                formError.textContent = '';
+                formSuccess.textContent = '';
+                formError.classList.remove('show');
+                formSuccess.classList.remove('show');
+                let valid = true;
+
+                if (!name) {
+                    formError.textContent = 'Please enter your full name.';
+                    setFieldError(inquiryForm.name, true);
+                    valid = false;
+                } else if (!/^[a-zA-Z\s'-]+$/.test(name)) {
+                    formError.textContent = 'Name should only contain letters, spaces, apostrophes, or hyphens.';
+                    setFieldError(inquiryForm.name, true);
+                    valid = false;
+                }
+
+                if (!email) {
+                    formError.textContent = 'Please enter your email address.';
+                    setFieldError(inquiryForm.email, true);
+                    valid = false;
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    formError.textContent = 'Please enter a valid email address.';
+                    setFieldError(inquiryForm.email, true);
+                    valid = false;
+                }
+
+                if (!product) {
+                    formError.textContent = 'Please select a product.';
+                    setFieldError(inquiryForm.product, true);
+                    valid = false;
+                }
+
+                if (!message) {
+                    formError.textContent = 'Please enter your message.';
+                    setFieldError(inquiryForm.message, true);
+                    valid = false;
+                } else if (message.length > 500) {
+                    formError.textContent = 'Message cannot exceed 500 characters.';
+                    setFieldError(inquiryForm.message, true);
+                    valid = false;
+                }
+
+                if (!valid) {
+                    formError.classList.add('show');
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                formLoading.classList.add('show');
+
+                try {
+                    const response = await fetch(inquiryForm.action, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name,
+                            email,
+                            product,
+                            message,
+                            _gotcha: inquiryForm._gotcha.value
+                        })
+                    });
+
+                    if (response.ok) {
+                        formSuccess.textContent = 'Your inquiry has been sent successfully!';
+                        formSuccess.classList.add('show');
+                        inquiryForm.reset();
+                        lastSubmitTime = now;
+                    } else {
+                        const errorData = await response.json();
+                        formError.textContent = errorData.error || 'An error occurred. Please try again.';
+                        formError.classList.add('show');
+                    }
+                } catch (error) {
+                    formError.textContent = 'Network error. Please try again later.';
+                    formError.classList.add('show');
+                } finally {
+                    formLoading.classList.remove('show');
+                    submitBtn.disabled = false;
+                    setTimeout(() => {
+                        formSuccess.textContent = '';
+                        formError.textContent = '';
+                        formSuccess.classList.remove('show');
+                        formError.classList.remove('show');
+                    }, 5000);
+                }
+            });
+
+            // WhatsApp Form Submission
+            whatsappFormBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const name = sanitizeInput(inquiryForm.name.value.trim());
+                const email = sanitizeInput(inquiryForm.email.value.trim());
+                const product = inquiryForm.product.value;
+                const message = sanitizeInput(inquiryForm.message.value.trim());
+
+                // Validation
+                formError.textContent = '';
+                formSuccess.textContent = '';
+                formError.classList.remove('show');
+                formSuccess.classList.remove('show');
+                let valid = true;
+
+                if (!name) {
+                    formError.textContent = 'Please enter your full name.';
+                    setFieldError(inquiryForm.name, true);
+                    valid = false;
+                } else if (!/^[a-zA-Z\s'-]+$/.test(name)) {
+                    formError.textContent = 'Name should only contain letters, spaces, apostrophes, or hyphens.';
+                    setFieldError(inquiryForm.name, true);
+                    valid = false;
+                }
+
+                if (!email) {
+                    formError.textContent = 'Please enter your email address.';
+                    setFieldError(inquiryForm.email, true);
+                    valid = false;
+                } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    formError.textContent = 'Please enter a valid email address.';
+                    setFieldError(inquiryForm.email, true);
+                    valid = false;
+                }
+
+                if (!product) {
+                    formError.textContent = 'Please select a product.';
+                    setFieldError(inquiryForm.product, true);
+                    valid = false;
+                }
+
+                if (!message) {
+                    formError.textContent = 'Please enter your message.';
+                    setFieldError(inquiryForm.message, true);
+                    valid = false;
+                } else if (message.length > 500) {
+                    formError.textContent = 'Message cannot exceed 500 characters.';
+                    setFieldError(inquiryForm.message, true);
+                    valid = false;
+                }
+
+                if (valid) {
+                    const whatsappMessage = encodeURIComponent(`Inquiry from ${name} (${email}):\nProduct: ${product}\nMessage: ${message}`);
+                    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
+                    window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+                    formSuccess.textContent = 'Your inquiry has been sent via WhatsApp!';
+                    formSuccess.classList.add('show');
+                    inquiryForm.reset();
+                    lastSubmitTime = Date.now();
+                    setTimeout(() => {
+                        formSuccess.textContent = '';
+                        formSuccess.classList.remove('show');
+                    }, 5000);
+                } else {
+                    formError.classList.add('show');
+                }
+            });
+
+            // Debounced Form Input Validation
+            const validateInput = debounce((input, regex, errorMessage, field) => {
+                if (!input.value.trim()) {
+                    formError.textContent = errorMessage;
+                    formError.classList.add('show');
+                    setFieldError(field, true);
+                } else if (regex && !regex.test(input.value.trim())) {
+                    formError.textContent = errorMessage;
+                    formError.classList.add('show');
+                    setFieldError(field, true);
+                } else {
+                    setFieldError(field, false);
+                }
+            }, 300);
+
+            inquiryForm.name.addEventListener('input', () => {
+                validateInput(inquiryForm.name, /^[a-zA-Z\s'-]+$/, 'Name should only contain letters, spaces, apostrophes, or hyphens.', inquiryForm.name);
+            });
+
+            inquiryForm.email.addEventListener('input', () => {
+                validateInput(inquiryForm.email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Please enter a valid email address.', inquiryForm.email);
+            });
+
+            // Touch Swipe Support for Product Grid
+            const productGridSection = document.querySelector('.product-grid-section');
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            productGridSection.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            productGridSection.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) {
+                    productGridSection.classList.add('swipe-left');
+                    setTimeout(() => productGridSection.classList.remove('swipe-left'), 300);
+                } else if (touchEndX - touchStartX > 50) {
+                    productGridSection.classList.add('swipe-right');
+                    setTimeout(() => productGridSection.classList.remove('swipe-right'), 300);
+                }
+            });
+
+            // Cleanup
+            window.addEventListener('unload', () => {
+                window.removeEventListener('scroll', handleScroll);
+                window.removeEventListener('scroll', updateHeader);
+            });
+        });
+    </script>
+</body>
+</html>

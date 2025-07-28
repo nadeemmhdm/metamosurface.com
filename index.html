@@ -4,18 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Metamo Surface Studio</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="jpg" href="logo.jpg">
+
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Metamo Surface Studio">
+    <meta property="og:image" content="your-logo-url.png">
+    <meta property="og:description" content="Designing immersive surfaces for a better tomorrow.">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
     <style>
         :root {
-            --primary-text-color: #333;
-            --secondary-text-color: #666;
-            --accent-color: #d1b585; /* A color close to the button/background in some images */
-            --light-bg-color: #f8f8f8;
-            --dark-bg-color: #2c2c2c;
+            --primary-text-color: #1a1a1a;
+            --secondary-text-color: #4a4a4a;
+            --accent-color: #c7a05b;
+            --light-bg-color: #f9f9f9;
+            --dark-bg-color: #1f1f1f;
             --white-color: #fff;
             --header-height: 80px;
-            --transition-speed: 0.3s;
+            --transition-speed: 0.4s;
         }
 
         * {
@@ -30,31 +42,64 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             color: var(--primary-text-color);
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden;
             background-color: var(--light-bg-color);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1240px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* --- Header --- */
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .preloader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--accent-color);
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .header {
             width: 100%;
             position: fixed;
             top: 0;
             left: 0;
             background-color: var(--white-color);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             z-index: 1000;
             height: var(--header-height);
             display: flex;
             align-items: center;
-            transition: background-color var(--transition-speed) ease;
+            transition: all var(--transition-speed) ease;
         }
 
         .navbar {
@@ -66,8 +111,12 @@
         }
 
         .logo img {
-            height: 50px; /* Adjust as needed */
-            vertical-align: middle;
+            height: 55px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -77,7 +126,7 @@
         }
 
         .nav-links li {
-            margin-left: 30px;
+            margin-left: 35px;
             position: relative;
         }
 
@@ -85,11 +134,12 @@
             text-decoration: none;
             color: var(--primary-text-color);
             font-weight: 500;
-            transition: color var(--transition-speed) ease;
+            transition: color var(--transition-speed) ease, transform 0.2s ease;
         }
 
         .nav-links a:hover {
             color: var(--accent-color);
+            transform: translateY(-2px);
         }
 
         .nav-links .dropdown-menu {
@@ -98,14 +148,14 @@
             top: 100%;
             left: 0;
             background-color: var(--white-color);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
             list-style: none;
-            min-width: 180px;
-            padding: 10px 0;
-            border-radius: 5px;
+            min-width: 200px;
+            padding: 12px 0;
+            border-radius: 8px;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(10px);
+            transform: translateY(15px);
             transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease, visibility var(--transition-speed) ease;
         }
 
@@ -121,44 +171,51 @@
         }
 
         .nav-links .dropdown-menu a {
-            padding: 10px 15px;
+            padding: 12px 20px;
             display: block;
-            white-space: nowrap;
             font-weight: 400;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
 
-        .nav-links .search-icon {
-            font-size: 24px;
-            cursor: pointer;
-            margin-left: 30px;
-            color: var(--primary-text-color);
-            transition: color var(--transition-speed) ease;
-        }
-        .nav-links .search-icon:hover {
+        .nav-links .dropdown-menu a:hover {
+            background-color: var(--light-bg-color);
             color: var(--accent-color);
         }
 
-        .hamburger-menu {
-            display: none; /* Hidden on desktop */
-            font-size: 30px;
+        .nav-links .search-icon {
+            font-size: 26px;
             cursor: pointer;
+            margin-left: 35px;
             color: var(--primary-text-color);
-            z-index: 1001; /* Above mobile menu */
+            transition: color var(--transition-speed) ease, transform 0.2s ease;
         }
 
-        /* Off-canvas Mobile Menu */
+        .nav-links .search-icon:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .hamburger-menu {
+            display: none;
+            font-size: 32px;
+            cursor: pointer;
+            color: var(--primary-text-color);
+            z-index: 1001;
+            transition: color var(--transition-speed) ease;
+        }
+
         .mobile-menu {
             position: fixed;
             top: 0;
-            right: -300px; /* Hidden off-screen */
-            width: 300px;
+            right: -320px;
+            width: 320px;
             height: 100vh;
             background-color: var(--dark-bg-color);
             color: var(--white-color);
             z-index: 999;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.25);
             transition: right 0.4s ease-in-out;
-            padding-top: var(--header-height); /* Space for header */
+            padding-top: var(--header-height);
             display: flex;
             flex-direction: column;
         }
@@ -172,28 +229,33 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.15);
         }
 
         .mobile-menu-header .close-btn {
-            font-size: 30px;
+            font-size: 32px;
             cursor: pointer;
             color: var(--white-color);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu-header .close-btn:hover {
+            color: var(--accent-color);
         }
 
         .mobile-menu ul {
             list-style: none;
             padding: 20px 0;
-            flex-grow: 1; /* Allows it to take available space */
+            flex-grow: 1;
         }
 
         .mobile-menu ul li {
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
         }
 
         .mobile-menu ul li a {
             display: block;
-            padding: 15px 20px;
+            padding: 15px 25px;
             color: var(--white-color);
             text-decoration: none;
             font-weight: 500;
@@ -201,7 +263,7 @@
         }
 
         .mobile-menu ul li a:hover {
-            background-color: rgba(255,255,255,0.1);
+            background-color: rgba(255,255,255,0.12);
             color: var(--accent-color);
         }
 
@@ -209,6 +271,7 @@
             float: right;
             transition: transform var(--transition-speed) ease;
         }
+
         .mobile-menu ul li.dropdown-mobile.active .dropdown-icon {
             transform: rotate(90deg);
         }
@@ -216,29 +279,28 @@
         .mobile-menu .dropdown-mobile-menu {
             display: none;
             list-style: none;
-            background-color: rgba(0,0,0,0.2);
-            padding-left: 20px;
+            background-color: rgba(0,0,0,0.25);
+            padding-left: 25px;
         }
 
         .mobile-menu .dropdown-mobile-menu li a {
-            padding: 10px 20px;
-            font-size: 0.9em;
-            color: rgba(255,255,255,0.8);
+            padding: 12px 25px;
+            font-size: 0.95em;
+            color: rgba(255,255,255,0.85);
         }
 
-        /* --- Hero Section --- */
         .hero-section {
             position: relative;
             width: 100%;
-            height: 70vh; /* Adjust height as needed */
-            background: url('index.html image 1.jpg') no-repeat center center/cover;
+            height: 75vh;
+            background: url('https://plus.unsplash.com/premium_photo-1661780295073-98db12600af0?fm=jpg') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: var(--white-color);
-            margin-top: var(--header-height); /* Offset for fixed header */
-            overflow: hidden; /* Hide overflow for animations */
+            margin-top: var(--header-height);
+            overflow: hidden;
         }
 
         .hero-overlay {
@@ -247,34 +309,37 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.45);
             z-index: 0;
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
-            padding: 20px;
-            opacity: 0; /* For animation */
-            transform: translateY(20px); /* For animation */
-            transition: opacity 1s ease-out 0.5s, transform 1s ease-out 0.5s;
+            padding: 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
         }
+
         .hero-content.animated {
             opacity: 1;
             transform: translateY(0);
         }
 
         .hero-content h1 {
-            font-size: 3.5em;
-            margin-bottom: 15px;
-            font-weight: 600;
-            line-height: 1.2;
+            font-size: 3.8em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.3;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .hero-content p {
-            font-size: 1.2em;
-            max-width: 800px;
-            margin: 0 auto 20px;
+            font-size: 1.3em;
+            max-width: 850px;
+            margin: 0 auto 25px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
 
         .hero-content span {
@@ -282,281 +347,302 @@
             font-weight: 700;
         }
 
-        /* Shared Section Styles for Animation */
         section {
-            padding: 80px 0;
+            padding: 100px 0;
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
             transition: opacity 1s ease-out, transform 1s ease-out;
-            position: relative; /* For scroll-based animations */
+            position: relative;
         }
+
         section.animated {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* --- About Section --- */
         .about-section {
             background-color: var(--light-bg-color);
             text-align: center;
         }
 
         .about-section h2 {
-            font-size: 2.5em;
-            margin-bottom: 30px;
+            font-size: 2.8em;
+            margin-bottom: 35px;
             color: var(--primary-text-color);
             font-weight: 600;
         }
 
         .about-section p {
-            font-size: 1.1em;
-            max-width: 900px;
+            font-size: 1.15em;
+            max-width: 950px;
             margin: 0 auto;
             color: var(--secondary-text-color);
-            line-height: 1.8;
+            line-height: 1.9;
         }
 
-        /* --- Our Story Section --- */
         .our-story-section {
             background-color: var(--white-color);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 50px;
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
-            padding-left: 20px; /* Adjust padding for visual balance */
+            gap: 60px;
+            flex-wrap: wrap;
+            padding-left: 20px;
             padding-right: 20px;
         }
 
         .story-content {
             background-color: var(--light-bg-color);
-            padding: 40px;
-            border-radius: 10px;
-            max-width: 550px; /* Slightly larger max-width */
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 45px;
+            border-radius: 12px;
+            max-width: 600px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
             text-align: left;
         }
 
         .story-content h3 {
-            font-size: 2em;
-            margin-bottom: 20px;
+            font-size: 2.2em;
+            margin-bottom: 25px;
             color: var(--primary-text-color);
             font-weight: 600;
         }
 
         .story-content p {
-            font-size: 1em;
+            font-size: 1.05em;
             color: var(--secondary-text-color);
-            margin-bottom: 30px;
+            margin-bottom: 35px;
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 14px 35px;
             background-color: var(--accent-color);
             color: var(--white-color);
             text-decoration: none;
             border-radius: 50px;
-            transition: background-color var(--transition-speed) ease, transform 0.2s ease, box-shadow var(--transition-speed) ease;
+            transition: background-color var(--transition-speed) ease, transform 0.3s ease, box-shadow var(--transition-speed) ease;
             font-weight: 500;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.12);
         }
 
         .btn:hover {
-            background-color: #c0a473; /* Slightly darker accent */
-            transform: translateY(-3px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            background-color: #b5914a;
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
         }
 
         .story-image {
-            width: 500px; /* Slightly larger fixed width for the image container */
-            height: 380px; /* Slightly larger fixed height for the image container */
-            /* Default background will be set by JS or first image in array */
+            width: 550px;
+            aspect-ratio: 4 / 3;
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
             position: relative;
-            overflow: hidden; /* Hide overflow for dots */
-            transition: background-image 0.5s ease-in-out; /* Smooth transition for background image */
+            overflow: hidden;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+
+        .story-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.2), rgba(0,0,0,0));
+            z-index: 0;
+        }
+
+        .story-image:hover {
+            transform: scale(1.02);
+        }
+
+        .story-image img {
+            display: none; /* For lazy loading */
         }
 
         .story-image-dots {
             position: absolute;
-            bottom: 15px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 8px;
-            background-color: rgba(0,0,0,0.3); /* Add background for readability */
-            padding: 8px 15px;
-            border-radius: 20px;
+            gap: 10px;
+            background-color: rgba(0,0,0,0.35);
+            padding: 10px 20px;
+            border-radius: 25px;
+            z-index: 1;
         }
 
         .story-image-dots .dot {
-            width: 10px;
-            height: 10px;
-            background-color: rgba(255,255,255,0.6);
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255,255,255,0.7);
             border-radius: 50%;
             cursor: pointer;
-            transition: background-color var(--transition-speed) ease, transform 0.2s ease;
+            transition: background-color var(--transition-speed) ease, transform 0.3s ease;
         }
 
         .story-image-dots .dot.active,
         .story-image-dots .dot:hover {
             background-color: var(--accent-color);
-            transform: scale(1.2);
+            transform: scale(1.3);
         }
 
-        /* --- Latest Post & Inspiration --- */
         .blog-section {
             background-color: var(--light-bg-color);
         }
 
         .blog-grid {
             display: grid;
-            grid-template-columns: 1fr 2fr; /* Latest Post on left, Inspiration on right */
-            gap: 40px;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
             align-items: flex-start;
         }
 
         .latest-post, .inspiration {
             background-color: var(--white-color);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         }
 
         .latest-post h3, .inspiration h3 {
-            font-size: 1.8em;
-            margin-bottom: 25px;
+            font-size: 2em;
+            margin-bottom: 30px;
             color: var(--primary-text-color);
             font-weight: 600;
         }
 
         .latest-post-card {
-            background-color: #f0ede9; /* Background color from image */
-            border-radius: 8px;
+            background-color: #f0ede9;
+            border-radius: 10px;
             overflow: hidden;
             position: relative;
-            height: 400px; /* Fixed height for the card */
+            height: 420px;
             display: flex;
-            align-items: flex-end; /* Align content to bottom */
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            /* Background image set directly */
+            align-items: flex-end;
+            padding: 25px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
             color: var(--white-color);
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
+
         .latest-post-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
 
         .latest-post-card .overlay-content {
             position: relative;
-            z-index: 1; /* Ensure content is above background */
+            z-index: 1;
         }
 
         .latest-post-card h4 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
+            font-size: 1.6em;
+            margin-bottom: 12px;
             font-weight: 500;
         }
 
         .latest-post-card p {
-            font-size: 0.9em;
-            color: rgba(255,255,255,0.9);
+            font-size: 0.95em;
+            color: rgba(255,255,255,0.95);
         }
 
         .inspiration-content h4 {
-            font-size: 1.5em;
-            margin-bottom: 15px;
+            font-size: 1.6em;
+            margin-bottom: 20px;
             color: var(--primary-text-color);
             font-weight: 500;
         }
 
         .inspiration-content p {
-            font-size: 1em;
+            font-size: 1.05em;
             color: var(--secondary-text-color);
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         .how-helps-card {
-            margin-top: 30px;
+            margin-top: 35px;
             display: flex;
-            gap: 20px;
+            gap: 25px;
             align-items: center;
-            padding: 20px;
-            background-color: #fcfcfc;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-            transition: transform 0.3s ease;
+            padding: 25px;
+            background-color: #fdfdfd;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
+
         .how-helps-card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
         }
 
         .how-helps-card .card-image {
-            min-width: 150px; /* Fixed width for image */
-            height: 100px; /* Fixed height */
-            /* Background image set directly */
+            min-width: 160px;
+            height: 110px;
             background-repeat: no-repeat;
             background-position: center center;
             background-size: cover;
-            border-radius: 5px;
-            flex-shrink: 0; /* Prevent shrinking */
-            transition: background-image 0.5s ease-in-out; /* Smooth transition for background image */
+            border-radius: 8px;
+            flex-shrink: 0;
+            transition: transform 0.5s ease;
+        }
+
+        .how-helps-card .card-image:hover {
+            transform: scale(1.03);
         }
 
         .how-helps-card .card-text h5 {
-            font-size: 1.2em;
-            margin-bottom: 8px;
+            font-size: 1.3em;
+            margin-bottom: 10px;
             color: var(--primary-text-color);
             font-weight: 500;
         }
 
         .how-helps-card .card-text p {
-            font-size: 0.9em;
+            font-size: 0.95em;
             color: var(--secondary-text-color);
         }
 
         .how-helps-card-dots {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 25px;
             display: flex;
             justify-content: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .how-helps-card-dots .dot {
-            width: 10px;
-            height: 10px;
-            background-color: #ccc;
+            width: 12px;
+            height: 12px;
+            background-color: #d0d0d0;
             border-radius: 50%;
             cursor: pointer;
-            transition: background-color var(--transition-speed) ease, transform 0.2s ease;
+            transition: background-color var(--transition-speed) ease, transform 0.3s ease;
         }
 
         .how-helps-card-dots .dot.active,
         .how-helps-card-dots .dot:hover {
             background-color: var(--accent-color);
-            transform: scale(1.2);
+            transform: scale(1.3);
         }
 
         .btn-more-inspiration {
-            margin-top: 30px;
+            margin-top: 35px;
             text-align: center;
         }
 
-        /* --- Partner Section --- */
         .partner-section {
-            background: url('index.html image 6.jpg') no-repeat center center/cover;
-            height: 400px; /* Fixed height for visual consistency */
+            background: url('https://macoavell.com.my/wp-content/uploads/2020/01/sample5.jpg') no-repeat center center/cover;
+            height: 420px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -564,7 +650,7 @@
             color: var(--white-color);
             text-align: center;
             position: relative;
-            overflow: hidden; /* For overlay and animations */
+            overflow: hidden;
         }
 
         .partner-section::before {
@@ -574,72 +660,74 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5); /* Dark overlay */
+            background-color: rgba(0,0,0,0.55);
             z-index: 0;
         }
 
         .partner-content {
             position: relative;
             z-index: 1;
-            padding: 20px;
-            opacity: 0; /* For animation */
-            transform: translateY(20px); /* For animation */
-            transition: opacity 1s ease-out, transform 1s ease-out;
+            padding: 25px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
         }
+
         .partner-content.animated {
             opacity: 1;
             transform: translateY(0);
         }
 
         .partner-content h2 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
+            font-size: 2.8em;
+            margin-bottom: 25px;
             font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .partner-content p {
-            font-size: 1.1em;
-            max-width: 700px;
-            margin: 0 auto 30px;
+            font-size: 1.15em;
+            max-width: 750px;
+            margin: 0 auto 35px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
 
-        /* --- Tagline Section --- */
         .tagline-section {
             background-color: var(--accent-color);
             color: var(--white-color);
-            padding: 50px 0;
+            padding: 60px 0;
             text-align: center;
-            font-size: 2em;
+            font-size: 2.2em;
             font-weight: 500;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.1);
-            opacity: 0; /* For animation */
-            transform: translateY(20px); /* For animation */
+            box-shadow: 0 -6px 20px rgba(0,0,0,0.12);
+            opacity: 0;
+            transform: translateY(30px);
             transition: opacity 1s ease-out, transform 1s ease-out;
         }
+
         .tagline-section.animated {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* --- Footer --- */
         .footer {
             background-color: var(--dark-bg-color);
-            color: #ccc;
-            padding: 60px 0 30px;
-            font-size: 0.9em;
+            color: #d0d0d0;
+            padding: 70px 0 40px;
+            font-size: 0.95em;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjusted minmax for more flexibility */
-            gap: 40px;
-            margin-bottom: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
         }
 
         .footer-column h4 {
             color: var(--white-color);
-            margin-bottom: 20px;
-            font-size: 1.1em;
+            margin-bottom: 25px;
+            font-size: 1.2em;
             font-weight: 600;
         }
 
@@ -648,11 +736,11 @@
         }
 
         .footer-column ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .footer-column ul li a {
-            color: #ccc;
+            color: #d0d0d0;
             text-decoration: none;
             transition: color var(--transition-speed) ease;
         }
@@ -662,350 +750,406 @@
         }
 
         .footer-column p {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .footer-column i.bx {
-            margin-right: 8px;
-            font-size: 1.2em;
+            margin-right: 10px;
+            font-size: 1.3em;
             vertical-align: middle;
         }
 
         .footer-social-icons {
             display: flex;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 18px;
+            margin-top: 25px;
         }
 
         .footer-social-icons a {
             color: var(--white-color);
-            font-size: 24px;
-            transition: color var(--transition-speed) ease;
+            font-size: 26px;
+            transition: color var(--transition-speed) ease, transform 0.3s ease;
         }
 
         .footer-social-icons a:hover {
             color: var(--accent-color);
-        }
-
-        .newsletter-signup {
-            text-align: center; /* Center the image */
-            margin-bottom: 20px;
+            transform: translateY(-3px);
         }
 
         .newsletter-signup img {
-            max-width: 150px; /* Adjust as needed */
+            max-width: 160px;
             height: auto;
-            display: block; /* Ensure no extra space below image */
-            margin: 0 auto; /* Center the image */
-            filter: grayscale(100%); /* Make it blend more */
-            transition: filter 0.3s ease;
+            display: block;
+            margin: 0 auto;
+            filter: grayscale(100%);
+            transition: filter 0.4s ease, transform 0.3s ease;
         }
+
         .newsletter-signup img:hover {
             filter: grayscale(0%);
+            transform: scale(1.05);
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #444;
-            color: #888;
+            padding-top: 40px;
+            border-top: 1px solid #555;
+            color: #999;
             position: relative;
         }
 
         .scroll-to-top {
-            position: fixed; /* Changed to fixed for better accessibility */
-            right: 20px;
-            bottom: 20px;
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
             color: var(--white-color);
-            background-color: rgba(0,0,0,0.6);
-            padding: 10px;
+            background-color: rgba(0,0,0,0.7);
+            padding: 12px;
             border-radius: 50%;
-            font-size: 24px;
+            font-size: 26px;
             cursor: pointer;
-            display: none; /* Hidden by default */
-            z-index: 998; /* Below mobile menu */
+            display: none;
+            z-index: 998;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
+
         .scroll-to-top:hover {
             background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .chatbot-container {
+            position: fixed;
+            right: 25px;
+            bottom: 90px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .chatbot-toggle {
+            background-color: var(--accent-color);
+            color: var(--white-color);
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.15) rotate(360deg);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.35);
+        }
+
+        .chatbot-toggle i {
+            font-size: 28px;
+        }
+
+        .chatbot-window {
+            display: none;
+            width: 380px;
+            max-height: 550px;
+            background-color: var(--white-color);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .chatbot-window.open {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--accent-color), #b5914a);
+            color: var(--white-color);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .chatbot-header h4 {
+            margin: 0;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+
+        .chatbot-header .close-chatbot {
+            cursor: pointer;
+            font-size: 24px;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .chatbot-header .close-chatbot:hover {
+            transform: rotate(90deg);
+            color: #fff;
+        }
+
+        .chatbot-body {
+            padding: 20px;
+            height: 380px;
+            overflow-y: auto;
+            background-color: #f5f5f5;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) #e0e0e0;
+        }
+
+        .chatbot-body::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chatbot-body::-webkit-scrollbar-track {
+            background: #e0e0e0;
+            border-radius: 10px;
+        }
+
+        .chatbot-body::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 10px;
+        }
+
+        .chatbot-message {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .chatbot-message.bot {
+            justify-content: flex-start;
+        }
+
+        .chatbot-message.user {
+            justify-content: flex-end;
+        }
+
+        .chatbot-message .message-content {
+            max-width: 80%;
+            padding: 14px 20px;
+            border-radius: 20px;
+            line-height: 1.6;
+            font-size: 0.95em;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .chatbot-message.bot .message-content {
+            background-color: var(--white-color);
+            color: var(--primary-text-color);
+            border-bottom-left-radius: 4px;
+        }
+
+        .chatbot-message.user .message-content {
+            background-color: var(--accent-color);
+            color: var(--white-color);
+            border-bottom-right-radius: 4px;
+        }
+
+        .chatbot-typing {
+            display: none;
+            padding: 14px 20px;
+            color: var(--secondary-text-color);
+            font-style: italic;
+            animation: pulse 1.2s infinite;
+        }
+
+        .chatbot-typing.show {
+            display: block;
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 20px;
+            border-top: 1px solid #eee;
+            background-color: var(--white-color);
+        }
+
+        .chatbot-input input {
+            flex-grow: 1;
+            padding: 14px 20px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            font-size: 0.95em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .chatbot-input input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 8px rgba(199,160,91,0.3);
+        }
+
+        .chatbot-input button {
+            background-color: var(--accent-color);
+            color: var(--white-color);
+            border: none;
+            padding: 14px 24px;
+            border-radius: 25px;
+            margin-left: 15px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .chatbot-input button:hover {
+            background-color: #b5914a;
             transform: translateY(-3px);
         }
 
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-        /* ======================================================= */
-        /* RESPONSIVE DESIGN              */
-        /* ======================================================= */
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; transform: scale(0.95); }
+            50% { opacity: 1; transform: scale(1); }
+        }
 
-        /* Tablets and smaller desktops (992px) */
         @media (max-width: 992px) {
-            .hero-content h1 {
-                font-size: 2.8em;
-            }
-            .hero-content p {
-                font-size: 1em;
-            }
-
-            .about-section h2, .partner-content h2 {
-                font-size: 2em;
-            }
-            .about-section p, .partner-content p {
-                font-size: 1em;
-            }
-
-            .our-story-section {
-                flex-direction: column;
-                gap: 30px;
-                padding: 60px 20px;
-            }
-            .story-content, .story-image {
-                max-width: 100%; /* Allow full width */
-                width: auto;
-                height: auto;
-                min-height: 300px; /* Ensure some height for image */
-            }
-            .story-image {
-                background-size: cover; /* Ensure image covers the space */
-            }
-
-            .blog-grid {
-                grid-template-columns: 1fr; /* Stack columns on smaller screens */
-                gap: 30px;
-            }
-
-            .latest-post h3, .inspiration h3 {
-                font-size: 1.5em;
-            }
-
-            .latest-post-card {
-                height: 350px;
-            }
-
-            .how-helps-card {
-                flex-direction: column; /* Stack image and text */
-                text-align: center;
-            }
-            .how-helps-card .card-image {
-                min-width: unset; /* Remove fixed width */
-                width: 100%;
-                height: 180px; /* Adjust height for stacked image */
-            }
-
-            .partner-section {
-                height: 350px;
-            }
-
-            .tagline-section {
-                font-size: 1.5em;
-                padding: 40px 20px;
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-                gap: 30px;
-            }
+            .hero-content h1 { font-size: 3.2em; }
+            .hero-content p { font-size: 1.2em; }
+            .about-section h2, .partner-content h2 { font-size: 2.4em; }
+            .about-section p, .partner-content p { font-size: 1.1em; line-height: 1.8; }
+            .our-story-section { flex-direction: column; gap: 40px; padding: 70px 20px; }
+            .story-content { max-width: 100%; }
+            .story-image { max-width: 100%; width: 100%; aspect-ratio: 4 / 3; }
+            .blog-grid { grid-template-columns: 1fr; gap: 40px; }
+            .latest-post h3, .inspiration h3 { font-size: 1.8em; }
+            .latest-post-card { height: 380px; }
+            .how-helps-card { flex-direction: column; text-align: center; }
+            .how-helps-card .card-image { min-width: unset; width: 100%; height: 200px; }
+            .partner-section { height: 380px; }
+            .tagline-section { font-size: 1.8em; padding: 50px 20px; }
+            .footer-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+            .chatbot-window { width: 340px; max-height: 500px; }
         }
 
-        /* Mobile phones (768px and below) */
         @media (max-width: 768px) {
-            .navbar .nav-links {
-                display: none; /* Hide desktop menu */
-            }
-            .hamburger-menu {
-                display: block; /* Show hamburger icon */
-            }
-
-            .header {
-                height: 60px; /* Smaller header on mobile */
-            }
-            .logo img {
-                height: 40px;
-            }
-
-            .hero-section {
-                height: 60vh;
-                margin-top: 60px;
-            }
-            .hero-content h1 {
-                font-size: 2em;
-            }
-            .hero-content p {
-                font-size: 0.9em;
-            }
-
-            section {
-                padding: 50px 0;
-            }
-
-            .about-section h2, .partner-content h2 {
-                font-size: 1.8em;
-            }
-            .about-section p, .partner-content p {
-                font-size: 0.9em;
-            }
-
-            .story-content {
-                padding: 30px;
-            }
-            .story-content h3 {
-                font-size: 1.6em;
-            }
-            .story-content p {
-                font-size: 0.9em;
-            }
-
-            .latest-post, .inspiration {
-                padding: 20px;
-            }
-            .latest-post h3, .inspiration h3 {
-                font-size: 1.3em;
-            }
-            .latest-post-card {
-                height: 300px;
-            }
-            .latest-post-card h4 {
-                font-size: 1.3em;
-            }
-            .latest-post-card p {
-                font-size: 0.8em;
-            }
-            .inspiration-content h4 {
-                font-size: 1.3em;
-            }
-            .inspiration-content p {
-                font-size: 0.9em;
-            }
-
-            .how-helps-card .card-text h5 {
-                font-size: 1em;
-            }
-            .how-helps-card .card-text p {
-                font-size: 0.8em;
-            }
-
-            .partner-section {
-                height: 300px;
-            }
-            .partner-content h2 {
-                font-size: 1.8em;
-            }
-            .partner-content p {
-                font-size: 0.9em;
-            }
-            .btn {
-                padding: 10px 25px;
-                font-size: 0.9em;
-            }
-
-            .tagline-section {
-                font-size: 1.2em;
-                padding: 30px 15px;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr; /* Stack all footer columns */
-                gap: 25px;
-                text-align: center;
-            }
-            .footer-social-icons {
-                justify-content: center; /* Center social icons */
-            }
+            .navbar .nav-links { display: none; }
+            .hamburger-menu { display: block; }
+            .header { height: 65px; }
+            .logo img { height: 45px; }
+            .hero-section { height: 65vh; margin-top: 65px; }
+            .hero-content h1 { font-size: 2.4em; }
+            .hero-content p { font-size: 1.1em; }
+            section { padding: 60px 0; }
+            .about-section h2, .partner-content h2 { font-size: 2.2em; }
+            .about-section p, .partner-content p { font-size: 1.05em; }
+            .story-content { padding: 35px; }
+            .story-content h3 { font-size: 2em; }
+            .story-content p { font-size: 1.05em; }
+            .story-image { aspect-ratio: 4 / 3; }
+            .latest-post, .inspiration { padding: 25px; }
+            .latest-post h3, .inspiration h3 { font-size: 1.7em; }
+            .latest-post-card { height: 320px; }
+            .latest-post-card h4 { font-size: 1.4em; }
+            .latest-post-card p { font-size: 0.9em; }
+            .inspiration-content h4 { font-size: 1.5em; }
+            .inspiration-content p { font-size: 1.05em; }
+            .how-helps-card .card-text h5 { font-size: 1.2em; }
+            .how-helps-card .card-text p { font-size: 0.95em; }
+            .partner-section { height: 320px; }
+            .partner-content h2 { font-size: 2em; }
+            .partner-content p { font-size: 1.05em; }
+            .btn { padding: 12px 30px; font-size: 0.95em; }
+            .tagline-section { font-size: 1.6em; padding: 40px 15px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
+            .footer-social-icons { justify-content: center; }
+            .chatbot-container { right: 20px; bottom: 80px; }
+            .chatbot-window { width: 320px; max-height: 450px; }
+            .chatbot-body { height: 320px; }
         }
 
-        /* Small mobile phones (480px and below) */
         @media (max-width: 480px) {
-            .hero-content h1 {
-                font-size: 1.8em;
-            }
-            .hero-content p {
-                font-size: 0.8em;
-            }
-
-            .story-content {
-                padding: 20px;
-            }
-            .story-content h3 {
-                font-size: 1.4em;
-            }
-
-            .latest-post-card {
-                height: 250px;
-            }
-            .latest-post-card h4 {
-                font-size: 1.1em;
-            }
-            .latest-post-card p {
-                font-size: 0.75em;
-            }
-
-            .how-helps-card .card-image {
-                height: 150px;
-            }
-            .how-helps-card-dots {
-                margin-top: 15px;
-            }
-
-            .partner-section {
-                height: 250px;
-            }
-            .partner-content h2 {
-                font-size: 1.5em;
-            }
-            .partner-content p {
-                font-size: 0.8em;
-            }
-
-            .tagline-section {
-                font-size: 1em;
-                padding: 25px 10px;
-            }
+            .hero-content h1 { font-size: 2em; }
+            .hero-content p { font-size: 1em; }
+            .story-content { padding: 25px; }
+            .story-content h3 { font-size: 1.8em; }
+            .story-image { aspect-ratio: 4 / 3; }
+            .latest-post-card { height: 280px; }
+            .latest-post-card h4 { font-size: 1.3em; }
+            .latest-post-card p { font-size: 0.85em; }
+            .how-helps-card .card-image { height: 160px; }
+            .how-helps-card-dots { margin-top: 20px; }
+            .partner-section { height: 280px; }
+            .partner-content h2 { font-size: 1.8em; }
+            .partner-content p { font-size: 0.95em; }
+            .tagline-section { font-size: 1.4em; padding: 30px 10px; }
+            .chatbot-window { width: 280px; max-height: 400px; }
+            .chatbot-body { height: 260px; }
+            .chatbot-input input { font-size: 0.9em; }
+            .chatbot-input button { padding: 12px 16px; }
         }
     </style>
 </head>
 <body>
-    <header class="header">
+    <div class="preloader" id="preloader">
+        <div class="preloader-spinner"></div>
+    </div>
+
+    <header class="header" role="banner">
         <div class="container navbar">
             <div class="logo">
-                <a href="index.html"><img src="logo.jpg" alt="Metamo Surface Studio Logo"></a>
+                <a href="index.html" aria-label="Metamo Surface Studio Home"><img src="logo.jpg" alt="Metamo Surface Studio Logo" loading="lazy"></a>
             </div>
-            <nav>
+            <nav aria-label="Main navigation">
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About</a></li>
                     <li class="dropdown">
-                        <a href="#">Products <i class='bx bx-chevron-down'></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Vellma</a></li>
-                            <li><a href="#">Vellplas</a></li>
-                            <li><a href="#">Vellcco</a></li>
-                            <li><a href="#">Vellwax</a></li>
-                            <li><a href="#">Vellwax Metallic</a></li>
+                        <a href="#" aria-haspopup="true">Products <i class='bx bx-chevron-down'></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="purchase-metamo-online.html">Vellma</a></li>
+                            <li><a href="purchase-metamo-online.html">Vellplas</a></li>
+                            <li><a href="purchase-metamo-online.html">Vellcco</a></li>
+                            <li><a href="purchase-metamo-online.html">Vellwax</a></li>
+                            <li><a href="purchase-metamo-online.html">Vellwax Metallic</a></li>
                         </ul>
                     </li>
                     <li><a href="contact.html">Contact Us</a></li>
                     <li><a href="collab.html">Collab</a></li>
                     <li><a href="purchase-metamo-online.html">Buy Online</a></li>
-                    <li><a href="search.html" class="search-icon"><i class='bx bx-search'></i></a></li>
+                    <li><a href="search.html" class="search-icon" aria-label="Search"><i class='bx bx-search'></i></a></li>
                 </ul>
             </nav>
-            <div class="hamburger-menu">
+            <div class="hamburger-menu" aria-label="Open mobile menu" role="button">
                 <i class='bx bx-menu'></i>
             </div>
         </div>
     </header>
 
-    <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
         <div class="mobile-menu-header">
             <div class="logo">
-                <a href="index.html"><img src="logo.jpg" alt="Metamo Surface Studio Logo"></a>
+                <a href="index.html" aria-label="Metamo Surface Studio Home"><img src="logo.jpg" alt="Metamo Surface Studio Logo"></a>
             </div>
-            <i class='bx bx-x close-btn'></i>
+            <i class='bx bx-x close-btn' aria-label="Close mobile menu"></i>
         </div>
         <ul>
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li class="dropdown-mobile">
-                <a href="#">Products <i class='bx bx-chevron-right dropdown-icon'></i></a>
-                <ul class="dropdown-mobile-menu">
+                <a href="#" aria-haspopup="true">Products <i class='bx bx-chevron-right dropdown-icon'></i></a>
+                <ul class="dropdown-mobile-menu" role="menu">
                     <li><a href="#">Vellma</a></li>
                     <li><a href="#">Vellplas</a></li>
                     <li><a href="#">Vellcco</a></li>
@@ -1020,41 +1164,61 @@
         </ul>
     </div>
 
-    <section class="hero-section" style="background-image: url('https://plus.unsplash.com/premium_photo-1661780295073-98db12600af0?fm=jpg');">
+    <div class="chatbot-container" role="complementary">
+        <div class="chatbot-toggle" aria-label="Open chatbot" role="button">
+            <i class='bx bx-message-rounded-dots'></i>
+        </div>
+        <div class="chatbot-window" id="chatbotWindow" role="dialog" aria-label="Chatbot">
+            <div class="chatbot-header">
+                <h4>Metamo Assistant</h4>
+                <i class='bx bx-x close-chatbot' aria-label="Close chatbot"></i>
+            </div>
+            <div class="chatbot-body" id="chatbotBody">
+                <div class="chatbot-message bot">
+                    <div class="message-content">Hello! Welcome to Metamo Surface Studio. How can I assist you today?</div>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" placeholder="Type your message..." id="chatbotInput" aria-label="Chatbot input">
+                <button id="chatbotSend" aria-label="Send message">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero-section" aria-label="Hero section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1>Welcome to the world of Texture Wall</h1>
+            <h1>Welcome to the World of Texture Wall</h1>
             <p>Where every surface becomes a statement, and design comes to life through depth, detail, and tactile beauty. <span>Hello Metamo</span></p>
         </div>
     </section>
 
-    <section class="about-section">
+    <section class="about-section" aria-label="About section">
         <div class="container">
-            <h2>About MacoAvell Textured Paint Supplier</h2>
-            <p>MacoAvell is a Malaysian brand of textured paint supplier and manufacturer, specializing in premium lime-based textured paint, Venetian plaster, and wax finishes for interior and exterior textured walls. MacoAvell is available in a range of stunning colours, the range of Eco Friendly Textured Wall effects, finishes, and wall designs that are almost limitless. Here are the main product lines: Vellma, Vellplas, Vellcco, Vellwax, and Vellwax Metallic. Available in Glossy, Matte, Rough, Stones, and metallic. Learn more from our YouTube channel.</p>
+            <h2>About Metamo Textured Paint Supplier</h2>
+            <p>Metamo is a Malaysian brand of textured paint supplier and manufacturer, specializing in premium lime-based textured paint, Venetian plaster, and wax finishes for interior and exterior textured walls. MacoAvell is available in a range of stunning colours, the range of Eco Friendly Textured Wall effects, finishes, and wall designs that are almost limitless. Here are the main product lines: Vellma, Vellplas, Vellcco, Vellwax, and Vellwax Metallic. Available in Glossy, Matte, Rough, Stones, and metallic. Learn more from our YouTube channel.</p>
         </div>
     </section>
 
-    <section class="our-story-section">
+    <section class="our-story-section" aria-label="Our story section">
         <div class="story-content">
             <h3>Our Story So Far</h3>
-            <p>As a texture paint supplier, MacoAvell offers a comprehensive range of decorative plaster finishes and special effects textured walls. MacoAvell doesn't follow trends, but sets them. MacoAvell actively collaborates with interior designers, architects, builders, and painters to deliver bespoke decorative textured wall finishes tailored to every project's vision. Learn More...</p>
+            <p>As a texture paint supplier, Metamo offers a comprehensive range of decorative plaster finishes and special effects textured walls. MacoAvell doesn't follow trends, but sets them. MacoAvell actively collaborates with interior designers, architects, builders, and painters to deliver bespoke decorative textured wall finishes tailored to every project's vision. Learn More...</p>
             <a href="about.html" class="btn">More About Us</a>
         </div>
         <div class="story-image">
             <div class="story-image-dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot active" aria-label="Slide 1"></span>
+                <span class="dot" aria-label="Slide 2"></span>
+                <span class="dot" aria-label="Slide 3"></span>
+                <span class="dot" aria-label="Slide 4"></span>
+                <span class="dot" aria-label="Slide 5"></span>
+                <span class="dot" aria-label="Slide 6"></span>
             </div>
         </div>
     </section>
 
-    <section class="blog-section">
+    <section class="blog-section" aria-label="Blog section">
         <div class="container blog-grid">
             <div class="latest-post">
                 <h3>LATEST POST</h3>
@@ -1074,13 +1238,13 @@
                 <div class="how-helps-card">
                     <div class="card-image"></div>
                     <div class="card-text">
-                        <h5>How MacoAvell Helps Interior Designers Create Unique Spaces</h5>
-                        <p>MacoAvell helps interior designers create unique spaces by offering high-quality texture finishes that go beyond standard paint. Each product is crafted to add depth, character, and [...]</p>
+                        <h5>How Metamo Helps Interior Designers Create Unique Spaces</h5>
+                        <p>Metamo helps interior designers create unique spaces by offering high-quality texture finishes that go beyond standard paint. Each product is crafted to add depth, character, and [...]</p>
                     </div>
                 </div>
                 <div class="how-helps-card-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
+                    <span class="dot active" aria-label="Slide 1"></span>
+                    <span class="dot" aria-label="Slide 2"></span>
                 </div>
                 <div class="btn-more-inspiration">
                     <a href="contact.html" class="btn">Get More Inspiration</a>
@@ -1089,41 +1253,41 @@
         </div>
     </section>
 
-    <section class="partner-section" style="background-image: url('https://macoavell.com.my/wp-content/uploads/2020/01/sample5.jpg');">
+    <section class="partner-section" aria-label="Partner section">
         <div class="partner-content">
             <h2>Be Our Partner</h2>
-            <p>MacoAvell invites professionals across the design and construction sectors: interior designers, architects, painters, contractors, and even store dealers to join our network, to grow together.</p>
+            <p>Metamo invites professionals across the design and construction sectors: interior designers, architects, painters, contractors, and even store dealers to join our network, to grow together.</p>
             <a href="https://wa.me/918291093932?text=MacoAvell%20invites%20you%20to%20partner%20with%20us%21%20We%27re%20looking%20for%20passionate%20professionals%20across%20design%20and%20construction%E2%80%94interior%20designers%2C%20architects%2C%20painters%2C%20contractors%2C%20and%20store%20dealers.%20Let%27s%20grow%20together.%20Click%20send%20to%20learn%20more%20about%20joining%20our%20network%21" class="btn">APPLY NOW</a>
         </div>
     </section>
 
-    <section class="tagline-section">
+    <section class="tagline-section" aria-label="Tagline section">
         <div class="container">
             Your Textured Paint Supplier. Period!
         </div>
     </section>
 
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container footer-grid">
             <div class="footer-column">
                 <h4>India</h4>
                 <p>Kerala, Malappuram</p>
-                <p>Kadampuzha, 676552</p>
-                <p>Chathankavu Para Road, Kanchippura</p>
+                <p>Near AL Huda School, Kadampuzha</p>
+                <p>Road, Melmuri, Malapppuram</p>
                 <p>metamosurfacestudio@gmail.com</p>
                 <p>+91 98469 55954</p>
             </div>
             <div class="footer-column">
                 <h4>Sign Up to Our Newsletter</h4>
                 <div class="newsletter-signup">
-                    <a href="https://wa.me/8291093932?text=Hi%20there%21%20I%27d%20love%20to%20add%20you%20to%20our%20exclusive%20newsletter%20broadcast.%20Stay%20updated%20with%20our%20latest%20news%2C%20special%20offers%2C%20and%20valuable%20content.%20Just%20click%20send%20to%20confirm%20your%20subscription%21"><img src="https://macoavell.com.my/wp-content/uploads/2025/07/signup-b.jpg" alt="Sign Up for Newsletter"></a>
+                    <a href="https://wa.me/8291093932?text=Hi%20there%21%20I%27d%20love%20to%20add%20you%20to%20our%20exclusive%20newsletter%20broadcast.%20Stay%20updated%20with%20our%20latest%20news%2C%20special%20offers%2C%20and%20valuable%20content.%20Just%20click%20send%20to%20confirm%20your%20subscription%21" aria-label="Sign up for newsletter"><img src="https://macoavell.com.my/wp-content/uploads/2025/07/signup-b.jpg" alt="Sign Up for Newsletter"></a>
                 </div>
                 <div class="footer-social-icons">
-                    <a href="#"><i class='bx bxl-facebook'></i></a>
-                    <a href="#"><i class='bx bxl-instagram'></i></a>
-                    <a href="#"><i class='bx bxl-pinterest'></i></a>
-                    <a href="#"><i class='bx bxl-youtube'></i></a>
-                    <a href="#"><i class='bx bxl-linkedin'></i></a>
+                    <a href="#" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+                    <a href="#" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                    <a href="#" aria-label="Pinterest"><i class='bx bxl-pinterest'></i></a>
+                    <a href="#" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
                 </div>
             </div>
             <div class="footer-column">
@@ -1131,7 +1295,7 @@
                 <ul>
                     <li><a href="contact.html">Contact Us</a></li>
                     <li><a href="collab.html">Be Our Partner</a></li>
-                    <li><a href="faq.html">Frequency Asked Questions</a></li>
+                    <li><a href="faq.html">Frequently Asked Questions</a></li>
                     <li><a href="terms.html">Terms & Conditions</a></li>
                     <li><a href="privacy.html">Privacy Policy</a></li>
                 </ul>
@@ -1139,64 +1303,70 @@
         </div>
         <div class="footer-bottom">
             <p>Copyright © Metamo Surface Studio. All rights reserved.</p>
-            <a href="#" class="scroll-to-top"><i class='bx bx-chevron-up'></i></a>
+            <a href="#" class="scroll-to-top" aria-label="Scroll to top"><i class='bx bx-chevron-up'></i></a>
         </div>
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // --- Preloader ---
+            const preloader = document.getElementById('preloader');
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    preloader.classList.add('hidden');
+                }, 500);
+            });
+
+            // --- Debounce Utility ---
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
             // --- Mobile Menu Toggle ---
             const hamburger = document.querySelector('.hamburger-menu');
             const mobileMenu = document.getElementById('mobileMenu');
             const closeBtn = document.querySelector('.mobile-menu .close-btn');
             const mobileDropdowns = document.querySelectorAll('.mobile-menu .dropdown-mobile');
 
-            hamburger.addEventListener('click', () => {
-                mobileMenu.classList.add('open');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            function toggleMobileMenu() {
+                mobileMenu.classList.toggle('open');
+                document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+            }
+
+            hamburger.addEventListener('click', toggleMobileMenu);
+            closeBtn.addEventListener('click', toggleMobileMenu);
+
+            mobileMenu.querySelectorAll('a:not(.dropdown-mobile > a)').forEach(link => {
+                link.addEventListener('click', toggleMobileMenu);
             });
 
-            closeBtn.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-                document.body.style.overflow = ''; // Restore scrolling
-            });
-
-            // Close mobile menu when a link is clicked
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('open');
-                    document.body.style.overflow = '';
-                });
-            });
-
-            // Mobile dropdown toggle
             mobileDropdowns.forEach(dropdown => {
                 const dropdownLink = dropdown.querySelector('a');
                 const dropdownMenu = dropdown.querySelector('.dropdown-mobile-menu');
                 dropdownLink.addEventListener('click', (e) => {
-                    if (window.innerWidth <= 768) { // Only enable on mobile
+                    if (window.innerWidth <= 768) {
                         e.preventDefault();
                         dropdown.classList.toggle('active');
-                        // Toggle display using CSS for smoother animation if desired, or simple block/none
-                        if (dropdownMenu.style.display === 'block') {
-                            dropdownMenu.style.display = 'none';
-                        } else {
-                            dropdownMenu.style.display = 'block';
-                        }
+                        dropdownMenu.style.display = dropdown.classList.contains('active') ? 'block' : 'none';
                     }
                 });
             });
 
-
-            // --- Scroll to Top functionality ---
+            // --- Scroll to Top ---
             const scrollToTopBtn = document.querySelector('.scroll-to-top');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) { // Show button after scrolling down 300px
-                    scrollToTopBtn.style.display = 'flex'; // Use flex for centering icon
-                } else {
-                    scrollToTopBtn.style.display = 'none';
-                }
-            });
+            const handleScroll = debounce(() => {
+                scrollToTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+            }, 100);
+
+            window.addEventListener('scroll', handleScroll);
 
             scrollToTopBtn.addEventListener('click', () => {
                 window.scrollTo({
@@ -1205,149 +1375,368 @@
                 });
             });
 
-            // --- Header Shrink/Shadow on Scroll ---
+            // --- Header Scroll Effects ---
             const header = document.querySelector('.header');
-            window.addEventListener('scroll', () => {
+            const updateHeader = debounce(() => {
                 if (window.scrollY > 0) {
-                    header.style.height = '60px'; // Shrink header
-                    header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                    header.style.height = '65px';
+                    header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.12)';
                 } else {
-                    header.style.height = 'var(--header-height)'; // Original height
-                    header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+                    header.style.height = 'var(--header-height)';
+                    header.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
                 }
-            });
+            }, 100);
 
-            // --- Image Slider Functionality for 'Our Story' ---
+            window.addEventListener('scroll', updateHeader);
+
+            // --- Image Slider for 'Our Story' ---
             const storyImageDots = document.querySelectorAll('.story-image-dots .dot');
             const storyImage = document.querySelector('.story-image');
+            const fallbackImage = 'https://via.placeholder.com/400x400?text=Image+Not+Found';
             const storyImages = [
-                'https://macoavell.com.my/wp-content/uploads/2020/01/sample1-400x400.jpg',
                 'https://macoavell.com.my/wp-content/uploads/2020/01/vellplas1-400x400.jpg',
-                'https://macoavell.com.my/wp-content/uploads/2020/01/plaster2-400x400.jpg',
+                'img1.jpg',
                 'https://macoavell.com.my/wp-content/uploads/2020/01/plaster1-400x400.jpg',
                 'https://macoavell.com.my/wp-content/uploads/2020/01/sample3-400x400.jpg',
                 'https://macoavell.com.my/wp-content/uploads/2020/01/sample2-400x400.jpg',
                 'https://macoavell.com.my/wp-content/uploads/2020/01/sample5-400x400.jpg'
-                // Add more images as needed for the slider
             ];
             let currentStoryImageIndex = 0;
             let storyImageInterval;
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            function preloadImages(imageUrls) {
+                imageUrls.forEach(url => {
+                    const img = new Image();
+                    img.src = url;
+                    img.loading = 'lazy';
+                    img.onerror = () => {
+                        console.warn(`Failed to load image: ${url}, using fallback.`);
+                        img.src = fallbackImage;
+                    };
+                });
+            }
 
             function updateStoryImage() {
-                storyImage.style.backgroundImage = `url('${storyImages[currentStoryImageIndex]}')`;
-                storyImageDots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentStoryImageIndex);
-                });
+                if (currentStoryImageIndex < storyImages.length) {
+                    const img = new Image();
+                    img.src = storyImages[currentStoryImageIndex];
+                    img.loading = 'lazy';
+                    storyImage.style.opacity = '0';
+                    img.onload = () => {
+                        storyImage.style.backgroundImage = `url('${img.src}')`;
+                        storyImage.style.opacity = '1';
+                        storyImageDots.forEach((dot, index) => {
+                            dot.classList.toggle('active', index === currentStoryImageIndex);
+                        });
+                    };
+                    img.onerror = () => {
+                        storyImage.style.backgroundImage = `url('${fallbackImage}')`;
+                        storyImage.style.opacity = '1';
+                        storyImageDots.forEach((dot, index) => {
+                            dot.classList.toggle('active', index === currentStoryImageIndex);
+                        });
+                    };
+                }
             }
 
             function startStoryImageAutoPlay() {
-                clearInterval(storyImageInterval); // Clear any existing interval
-                storyImageInterval = setInterval(() => {
-                    currentStoryImageIndex = (currentStoryImageIndex + 1) % storyImages.length;
-                    updateStoryImage();
-                }, 5000); // Change image every 5 seconds
+                clearInterval(storyImageInterval);
+                if (storyImages.length > 1) {
+                    storyImageInterval = setInterval(() => {
+                        currentStoryImageIndex = (currentStoryImageIndex + 1) % storyImages.length;
+                        updateStoryImage();
+                    }, 5000);
+                }
             }
 
-            // Create dots dynamically if you want more flexibility, or ensure static dots match images array length
-            // For now, I'm assuming 3 dots based on the previous structure and adding two more images.
-            // If you add more images, you'll need more dots in the HTML as well, or modify this JS to create them.
             if (storyImages.length > storyImageDots.length) {
-                console.warn("Number of story images exceeds number of dots. Consider adding more dots in HTML or dynamically generating them.");
+                console.warn("Number of story images exceeds number of dots.");
             }
 
             storyImageDots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    currentStoryImageIndex = index;
+                if (index < storyImages.length) {
+                    dot.addEventListener('click', () => {
+                        currentStoryImageIndex = index;
+                        updateStoryImage();
+                        startStoryImageAutoPlay();
+                    });
+                }
+            });
+
+            // Touch Swipe Support
+            storyImage.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            storyImage.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) {
+                    currentStoryImageIndex = (currentStoryImageIndex + 1) % storyImages.length;
                     updateStoryImage();
-                    startStoryImageAutoPlay(); // Restart autoplay on manual click
-                });
+                    startStoryImageAutoPlay();
+                } else if (touchEndX - touchStartX > 50) {
+                    currentStoryImageIndex = (currentStoryImageIndex - 1 + storyImages.length) % storyImages.length;
+                    updateStoryImage();
+                    startStoryImageAutoPlay();
+                }
             });
 
             if (storyImages.length > 0) {
-                 updateStoryImage(); // Set initial image
-                 if (storyImages.length > 1) { // Only start autoplay if there's more than one image
-                    startStoryImageAutoPlay();
-                 }
+                preloadImages(storyImages);
+                updateStoryImage();
+                startStoryImageAutoPlay();
             }
 
-
-            // --- Image Slider Functionality for 'How MacoAvell Helps' ---
+            // --- Image Slider for 'How MacoAvell Helps' ---
             const howHelpsCardDots = document.querySelectorAll('.how-helps-card-dots .dot');
             const howHelpsCardImage = document.querySelector('.how-helps-card .card-image');
             const howHelpsCardText = document.querySelector('.how-helps-card .card-text');
-
             const howHelpsContent = [
                 {
                     image: 'https://www.homeglazer.com/wp-content/uploads/2024/04/5-Reason-Why-Texture-Paint-Costs-More-Than-Normal-Paint.jpg',
-                    title: 'How MacoAvell Helps Interior Designers Create Unique Spaces',
-                    description: 'MacoAvell helps interior designers create unique spaces by offering high-quality texture finishes that go beyond standard paint. Each product is crafted to add depth, character, and [...]'
+                    title: 'How Metamo Helps Interior Designers Create Unique Spaces',
+                    description: 'Metamo helps interior designers create unique spaces by offering high-quality texture finishes that go beyond standard paint. Each product is crafted to add depth, character, and a unique aesthetic.'
                 },
                 {
-                    image: 'https://homeglazer.com/wp-content/uploads/2024/04/Texture-Paint-2.jpg', // Using the provided image
+                    image: 'https://homeglazer.com/wp-content/uploads/2024/04/Texture-Paint-2.jpg',
                     title: 'Innovative Finishes for Modern Homes',
                     description: 'Explore our innovative finishes that bring a modern touch to any contemporary living space, elevating the aesthetic appeal with unique textures.'
                 }
-                // Add more content items as needed
             ];
             let currentHowHelpsIndex = 0;
             let howHelpsInterval;
 
             function updateHowHelpsCard() {
-                const item = howHelpsContent[currentHowHelpsIndex];
-                howHelpsCardImage.style.backgroundImage = `url('${item.image}')`;
-                howHelpsCardText.querySelector('h5').textContent = item.title;
-                howHelpsCardText.querySelector('p').textContent = item.description;
-                howHelpsCardDots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentHowHelpsIndex);
-                });
+                if (currentHowHelpsIndex < howHelpsContent.length) {
+                    const item = howHelpsContent[currentHowHelpsIndex];
+                    const img = new Image();
+                    img.src = item.image;
+                    img.loading = 'lazy';
+                    howHelpsCardImage.style.opacity = '0';
+                    img.onload = () => {
+                        howHelpsCardImage.style.backgroundImage = `url('${img.src}')`;
+                        howHelpsCardImage.style.opacity = '1';
+                        howHelpsCardText.querySelector('h5').textContent = item.title;
+                        howHelpsCardText.querySelector('p').textContent = item.description;
+                        howHelpsCardDots.forEach((dot, index) => {
+                            dot.classList.toggle('active', index === currentHowHelpsIndex);
+                        });
+                    };
+                    img.onerror = () => {
+                        howHelpsCardImage.style.backgroundImage = `url('${fallbackImage}')`;
+                        howHelpsCardImage.style.opacity = '1';
+                        howHelpsCardText.querySelector('h5').textContent = item.title;
+                        howHelpsCardText.querySelector('p').textContent = item.description;
+                        howHelpsCardDots.forEach((dot, index) => {
+                            dot.classList.toggle('active', index === currentHowHelpsIndex);
+                        });
+                    };
+                }
             }
 
             function startHowHelpsAutoPlay() {
                 clearInterval(howHelpsInterval);
-                howHelpsInterval = setInterval(() => {
-                    currentHowHelpsIndex = (currentHowHelpsIndex + 1) % howHelpsContent.length;
-                    updateHowHelpsCard();
-                }, 7000); // Change content every 7 seconds
-            }
-
-            // Similarly, ensure dots in HTML match howHelpsContent.length or are generated dynamically
-            if (howHelpsContent.length > howHelpsCardDots.length) {
-                 console.warn("Number of 'How Helps' contents exceeds number of dots. Consider adding more dots in HTML or dynamically generating them.");
-            }
-
-            howHelpsCardDots.forEach((dot, index) => {
-                dot.addEventListener('click', () => {
-                    currentHowHelpsIndex = index;
-                    updateHowHelpsCard();
-                    startHowHelpsAutoPlay(); // Restart autoplay on manual click
-                });
-            });
-
-            if (howHelpsContent.length > 0) {
-                updateHowHelpsCard(); // Set initial content
                 if (howHelpsContent.length > 1) {
-                    startHowHelpsAutoPlay();
+                    howHelpsInterval = setInterval(() => {
+                        currentHowHelpsIndex = (currentHowHelpsIndex + 1) % howHelpsContent.length;
+                        updateHowHelpsCard();
+                    }, 7000);
                 }
             }
 
+            if (howHelpsContent.length > howHelpsCardDots.length) {
+                console.warn("Number of 'How Helps' contents exceeds number of dots.");
+            }
 
-            // --- Scroll-based Animations (IntersectionObserver) ---
+            howHelpsCardDots.forEach((dot, index) => {
+                if (index < howHelpsContent.length) {
+                    dot.addEventListener('click', () => {
+                        currentHowHelpsIndex = index;
+                        updateHowHelpsCard();
+                        startHowHelpsAutoPlay();
+                    });
+                }
+            });
+
+            if (howHelpsContent.length > 0) {
+                preloadImages(howHelpsContent.map(item => item.image));
+                updateHowHelpsCard();
+                startHowHelpsAutoPlay();
+            }
+
+            // --- Chatbot Functionality ---
+            const chatbotToggle = document.querySelector('.chatbot-toggle');
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const chatbotClose = document.querySelector('.close-chatbot');
+            const chatbotInput = document.getElementById('chatbotInput');
+            const chatbotSend = document.getElementById('chatbotSend');
+            const chatbotBody = document.getElementById('chatbotBody');
+
+            const responses = {
+                'hello': 'Hi! How can I assist you today?',
+                'hi': 'Hello there! Excited to help you explore Metamo’s textured wall solutions. What’s on your mind?',
+                'good morning': 'Good morning! Ready to make your walls stunning with Metamo’s textures? How can I help you today?',
+                'good afternoon': 'Good afternoon! Looking to transform your space with our textured paints? Let me know what you need!',
+                'good evening': 'Good evening! Let’s talk about how Metamo can elevate your interiors. What’s your question?',
+                'bye': 'Goodbye! Feel free to return anytime for help with Metamo’s textured wall solutions!',
+                'thank you': 'You’re very welcome! Anything else I can assist you with?',
+                'thanks': 'No problem! Let me know if you have more questions about our products or services!',
+                'how are you': 'I’m doing great, thanks for asking! How about you—ready to dive into some wall texture ideas?',
+                'what’s up': 'Just hanging out, ready to answer your questions about Metamo’s textured paints! What’s up with you?',
+                'products': 'Metamo offers a range of premium textured paints including Vellma, Vellplas, Vellcco, Vellwax, and Vellwax Metallic. Available in Glossy, Matte, Rough, Stones, and Metallic finishes. Want details on any specific product?',
+                'vellma': 'Vellma is a premium lime-based textured paint, perfect for creating elegant, eco-friendly wall finishes. Would you like to know more about its applications or colors?',
+                'vellplas': 'Vellplas offers a versatile plaster finish, ideal for both interior and exterior walls. Interested in its unique features or available styles?',
+                'vellcco': 'Vellcco provides a sophisticated textured finish, blending modern and traditional aesthetics. Shall I share more about its benefits?',
+                'vellwax': 'Vellwax is a high-quality wax finish that enhances the durability and shine of textured walls. Want to learn about its metallic variant too?',
+                'vellwax metallic': 'Vellwax Metallic adds a stunning metallic sheen to your walls, perfect for luxurious interiors. Would you like application tips?',
+                'contact': 'You can reach us at metamosurfacestudio@gmail.com or +91 98469 55954. Alternatively, visit our Contact Us page for more options!',
+                'buy': 'You can purchase our products online via our "Buy Online" page. Would you like the link or more details on the process?',
+                'shop': 'Visit our "Buy Online" page to shop Metamo’s full range of textured paints and finishes. Need help choosing a product?',
+                'online store': 'Our online store offers Vellma, Vellplas, Vellcco, Vellwax, and more! Check it out on our "Buy Online" page or ask for specific product details!',
+                'partner': 'Interested in partnering with us? Check out our "Be Our Partner" page or apply directly via WhatsApp at +91 8291093932!',
+                'colors': 'Metamo offers a stunning range of colors for our products, from vibrant hues to subtle tones. Want to explore color options for a specific product like Vellma or Vellcco?',
+                'eco-friendly': 'Our products, like Vellma, are eco-friendly and made with sustainable materials. Interested in how we ensure environmental responsibility?',
+                'application': 'Applying our textured paints is straightforward with the right tools and techniques. Would you like tips for a specific product or a guide for beginners?',
+                'price': 'Pricing depends on the product and quantity. Please visit our "Buy Online" page or contact us at +91 98469 55954 for a detailed quote!',
+                'samples': 'We offer product samples to help you choose the perfect finish. Want to know how to request a sample kit?',
+                'durability': 'Metamo finishes like Vellwax and Vellplas are designed for long-lasting durability, even in high-traffic areas. Curious about maintenance tips?',
+                'interior': 'Our products are perfect for interior walls, offering textures from smooth Venetian plaster to bold metallic finishes. Which room are you designing?',
+                'exterior': 'Vellplas and other products are ideal for exterior walls, with weather-resistant properties. Want advice on exterior applications?',
+                'custom': 'We provide bespoke textured wall solutions tailored to your vision. Tell me about your project, and I’ll suggest the best options!',
+                'delivery': 'We ship across India and select international locations. Check our "Buy Online" page for delivery details or contact us for specifics!',
+                'warranty': 'Our products come with a quality guarantee. Want to know more about our warranty terms or how to care for your textured walls?',
+                'maintenance': 'Maintaining Metamo finishes is easy with regular cleaning. Would you like specific care instructions for Vellwax or another product?',
+                'inspiration': 'Looking for design ideas? Check our "Inspiration" section for stunning textured wall designs or ask me for project-specific suggestions!',
+                'architects': 'We collaborate with architects to create unique wall finishes. Interested in our partnership programs or case studies?',
+                'designers': 'Metamo works closely with interior designers to bring their visions to life. Want to explore how our textures can enhance your designs?',
+                'painters': 'Our products are painter-friendly, with easy application techniques. Need tips or training resources for applying our finishes?',
+                'stores': 'Looking to stock Metamo products? Join our dealer network via our "Be Our Partner" page or WhatsApp at +91 8291093932!',
+                'youtube': 'Our YouTube channel has tutorials, inspiration, and product showcases. Would you like the link or details on specific videos?',
+                'glossy': 'Glossy finishes, like those in Vellwax, add a sleek, reflective look to walls. Interested in glossy options for your project?',
+                'matte': 'Matte finishes, available in products like Vellma, offer a subtle, elegant look. Want to know which spaces suit matte textures best?',
+                'rough': 'Rough textures, such as those in Vellplas, create bold, tactile surfaces. Curious about how to incorporate rough finishes in your design?',
+                'stones': 'Our Stones finish mimics natural stone textures for a rustic charm. Would you like ideas for using this in your space?',
+                'metallic': 'Metallic finishes like Vellwax Metallic add luxury and shine. Want tips on pairing metallic textures with your décor?',
+                'order': 'You can place an order on our "Buy Online" page or contact us at +91 98469 55954 for assistance. Need help with the process?',
+                'payment': 'We accept various payment methods on our online store, including cards and online transfers. Want details on payment options?',
+                'shipping': 'Shipping is available across India with estimated delivery times on our "Buy Online" page. Want to check shipping for a specific product?',
+                'discount': 'Check our website for current promotions or contact us at +91 98469 55954 for special offers. Looking for bulk discounts?',
+                'catalog': 'Our product catalog is available on the website or by request. Would you like a digital copy or details on specific products?',
+                'texture': 'Our textures range from smooth plasters to rugged stone-like finishes. Which texture are you interested in for your project?',
+                'consultation': 'We offer consultations for designers and homeowners to choose the perfect finish. Want to schedule one?',
+                'installation': 'Our products are easy to install with proper guidance. Need a step-by-step guide or professional installer recommendations?',
+                'quality': 'Metamo products are crafted for premium quality and durability. Curious about our manufacturing process or certifications?',
+                'support': 'Our support team is here for you! Contact us at metamosurfacestudio@gmail.com or +91 98469 55954. What do you need help with?',
+                'feedback': 'We’d love to hear your feedback! Share your thoughts via our Contact Us page or directly at metamosurfacestudio@gmail.com.',
+                'portfolio': 'Explore our portfolio in the "Inspiration" section for stunning project examples. Want ideas for a specific space?',
+                'trends': 'Metamo sets trends with innovative textures. Want to know about the latest wall design trends we’re pioneering?',
+                'samples request': 'To request samples, visit our website or contact us at +91 98469 55954. Which product are you interested in sampling?',
+                'dealer': 'Become a Metamo dealer through our "Be Our Partner" page. Interested in the benefits of our dealer program?',
+                'nadeem': 'Hi 🖐 Nadeem! Let’s customize your experience. Tell me about your project or preferences, and I’ll tailor some suggestions for you!',
+                'developer': 'Hi! For developer-related queries, please contact nadeemmuhammed702@gmail.com. Need help with anything specific?',
+                'default': 'I’m not sure about that, but I’m here to help! Could you clarify or ask about our products, partnerships, or contact details?'
+            };
+
+            function addMessage(message, type) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `chatbot-message ${type}`;
+                messageDiv.innerHTML = `<div class="message-content">${message}</div>`;
+                chatbotBody.appendChild(messageDiv);
+                chatbotBody.scrollTop = chatbotBody.scrollHeight;
+            }
+
+            function showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'chatbot-typing show';
+                typingDiv.textContent = 'Metamo Assistant is typing...';
+                chatbotBody.appendChild(typingDiv);
+                chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                return typingDiv;
+            }
+
+            function removeTypingIndicator(typingDiv) {
+                if (typingDiv && typingDiv.parentNode) {
+                    typingDiv.remove();
+                }
+            }
+
+            function getBotResponse(userInput) {
+                const input = userInput.toLowerCase().trim();
+                for (const key in responses) {
+                    if (input.includes(key)) {
+                        return responses[key];
+                    }
+                }
+                return responses['default'];
+            }
+
+            function handleChatbotInput() {
+                const userInput = chatbotInput.value.trim();
+                if (userInput) {
+                    addMessage(userInput, 'user');
+                    chatbotInput.value = '';
+                    const typingDiv = showTypingIndicator();
+                    setTimeout(() => {
+                        removeTypingIndicator(typingDiv);
+                        const botResponse = getBotResponse(userInput);
+                        addMessage(botResponse, 'bot');
+                    }, 1000);
+                }
+            }
+
+            function closeChatbot() {
+                chatbotWindow.classList.remove('open');
+            }
+
+            chatbotToggle.addEventListener('click', (e) => {
+                e.stopPropagation();
+                chatbotWindow.classList.toggle('open');
+            });
+
+            chatbotClose.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeChatbot();
+            });
+
+            chatbotSend.addEventListener('click', (e) => {
+                e.stopPropagation();
+                handleChatbotInput();
+            });
+
+            chatbotInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && chatbotInput.value.trim()) {
+                    e.stopPropagation();
+                    handleChatbotInput();
+                }
+            });
+
+            // Click outside to close chatbot
+            document.addEventListener('click', (e) => {
+                if (chatbotWindow.classList.contains('open') && !chatbotWindow.contains(e.target) && !chatbotToggle.contains(e.target)) {
+                    closeChatbot();
+                }
+            });
+
+            // Prevent clicks inside chatbot from closing it
+            chatbotWindow.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+
+            // --- Scroll-based Animations ---
             const animateElements = document.querySelectorAll('section, .hero-content, .partner-content, .tagline-section');
             const observerOptions = {
-                root: null, /* viewport */
+                root: null,
                 rootMargin: '0px',
-                threshold: 0.15 /* Percentage of element visibility to trigger */
+                threshold: 0.2
             };
 
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('animated');
-                        if (entry.target.classList.contains('hero-content')) {
-                            // Specific animation for hero content might be a slight delay
-                            entry.target.style.transitionDelay = '0.5s';
-                        }
-                        observer.unobserve(entry.target); // Stop observing once animated
+                        observer.unobserve(entry.target);
                     }
                 });
             }, observerOptions);
@@ -1356,13 +1745,18 @@
                 observer.observe(el);
             });
 
-            // Animate hero content immediately if it's in view on load
-            // This checks if the hero section is already in view when the page loads
             const heroSection = document.querySelector('.hero-section');
             if (heroSection && heroSection.getBoundingClientRect().top < window.innerHeight) {
                 document.querySelector('.hero-content').classList.add('animated');
             }
+
+            // --- Cleanup on Page Unload ---
+            window.addEventListener('unload', () => {
+                clearInterval(storyImageInterval);
+                clearInterval(howHelpsInterval);
+                window.removeEventListener('scroll', handleScroll);
+                window.removeEventListener('scroll', updateHeader);
+            });
         });
     </script>
-</body>
 </html>

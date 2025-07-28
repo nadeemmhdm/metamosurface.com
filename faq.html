@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metamo Surface Studio - FAQ</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="https://macoavell.com.my/wp-content/uploads/2020/04/logo.jpg">
+
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Metamo Surface Studio - FAQ">
+    <meta property="og:image" content="https://macoavell.com.my/wp-content/uploads/2020/04/logo.jpg">
+    <meta property="og:description" content="Find answers to frequently asked questions about Metamo Surface Studio's products and services.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://macoavell.com.my/faq.html">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-text-color: #333;
+            --secondary-text-color: #666;
+            --accent-color: #d1b585;
+            --light-bg-color: #f8f8f8;
+            --dark-bg-color: #2c2c2c;
+            --white-color: #fff;
+            --header-height: 80px;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--primary-text-color);
+            background-color: var(--light-bg-color);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .preloader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--accent-color);
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: var(--white-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            transition: background-color var(--transition-speed) ease, height var(--transition-speed) ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .logo img {
+            height: 50px;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-text-color);
+            font-weight: 500;
+            transition: color var(--transition-speed) ease, transform 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .hamburger-menu {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--primary-text-color);
+            z-index: 1001;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .hamburger-menu:hover {
+            color: var(--accent-color);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--dark-bg-color);
+            color: var(--white-color);
+            z-index: 999;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            transition: right 0.4s ease-in-out;
+            padding-top: var(--header-height);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-menu-header .close-btn {
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--white-color);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu-header .close-btn:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 20px 0;
+            flex-grow: 1;
+        }
+
+        .mobile-menu ul li {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .mobile-menu ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--white-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+
+        .mobile-menu ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--accent-color);
+        }
+
+        /* FAQ Section */
+        section.faq-section {
+            padding: 100px 0;
+            margin-top: var(--header-height);
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+
+        section.faq-section.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .faq-section h1 {
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 40px;
+            color: var(--primary-text-color);
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .faq-section h2 {
+            font-size: 1.9em;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            color: var(--primary-text-color);
+            font-weight: 500;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 8px;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            background-color: var(--white-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            background-color: var(--light-bg-color);
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1.1em;
+            color: var(--primary-text-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color var(--transition-speed) ease;
+        }
+
+        .faq-question:hover {
+            background-color: #f0ede9;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 1.2em;
+            color: var(--accent-color);
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .faq-question.active::after {
+            content: '-';
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 15px 20px;
+            background-color: var(--white-color);
+            display: none;
+            border-top: 1px solid #eee;
+            color: var(--secondary-text-color);
+            font-size: 1em;
+            line-height: 1.8;
+        }
+
+        .faq-answer p {
+            margin-bottom: 10px;
+        }
+
+        .faq-answer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .faq-answer a:hover {
+            text-decoration: underline;
+            color: #c0a473;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background-color: var(--white-color);
+            border: 2px solid var(--accent-color);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-info:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-info h3 {
+            font-size: 1.9em;
+            margin-bottom: 20px;
+            color: var(--primary-text-color);
+            font-weight: 600;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            color: var(--secondary-text-color);
+            font-size: 1.05em;
+        }
+
+        .contact-info a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+            color: #c0a473;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg-color);
+            color: #ccc;
+            padding: 60px 0 30px;
+            font-size: 0.9em;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h4 {
+            color: var(--white-color);
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color var(--transition-speed) ease, transform 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .footer-column p {
+            margin-bottom: 10px;
+        }
+
+        .footer-column i.bx {
+            margin-right: 8px;
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+
+        .footer-social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social-icons a {
+            color: var(--white-color);
+            font-size: 24px;
+            transition: color var(--transition-speed) ease, transform 0.3s ease;
+        }
+
+        .footer-social-icons a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-signup img {
+            max-width: 150px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .newsletter-signup img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #888;
+            position: relative;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            color: var(--white-color);
+            background-color: rgba(0,0,0,0.6);
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            z-index: 998;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .scroll-to-top:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .faq-section h1 { font-size: 2.2em; }
+            .faq-section h2 { font-size: 1.6em; }
+            .faq-question { font-size: 1em; padding: 12px 15px; }
+            .faq-answer { font-size: 0.95em; padding: 12px 15px; }
+            .contact-info h3 { font-size: 1.6em; }
+            .contact-info p { font-size: 0.95em; }
+            .footer-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .nav-links { display: none; }
+            .hamburger-menu { display: block; }
+            .header { height: 60px; }
+            .logo img { height: 40px; }
+            .faq-section { padding: 60px 0; margin-top: 60px; }
+            .faq-section h1 { font-size: 1.8em; }
+            .faq-section h2 { font-size: 1.4em; }
+            .faq-question { font-size: 0.95em; padding: 10px 15px; }
+            .faq-answer { font-size: 0.9em; padding: 10px 15px; }
+            .contact-info { padding: 20px; }
+            .contact-info h3 { font-size: 1.4em; }
+            .contact-info p { font-size: 0.9em; }
+            .footer-grid { grid-template-columns: 1fr; gap: 25px; text-align: center; }
+            .footer-social-icons { justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .faq-section h1 { font-size: 1.6em; }
+            .faq-section h2 { font-size: 1.3em; }
+            .faq-question { font-size: 0.9em; padding: 8px 12px; }
+            .faq-answer { font-size: 0.85em; padding: 8px 12px; }
+            .contact-info h3 { font-size: 1.3em; }
+            .contact-info p { font-size: 0.85em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader" id="preloader">
+        <div class="preloader-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container navbar">
+            <div class="logo">
+                <a href="index.html" aria-label="Metamo Surface Studio Home"><img src="https://macoavell.com.my/wp-content/uploads/2020/04/logo.jpg" alt="Metamo Surface Studio Logo" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Logo+Not+Found'"></a>
+            </div>
+            <nav aria-label="Main navigation">
+                <ul class="nav-links">
+                    <li><a href="index.html">Back</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger-menu" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open mobile menu" role="button">
+                <i class='bx bx-menu'></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <a href="index.html" aria-label="Metamo Surface Studio Home"><img src="https://macoavell.com.my/wp-content/uploads/2020/04/logo.jpg" alt="Metamo Surface Studio Logo" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Logo+Not+Found'"></a>
+            </div>
+            <i class='bx bx-x close-btn' aria-label="Close mobile menu"></i>
+        </div>
+        <ul>
+            <li><a href="index.html">Back</a></li>
+        </ul>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq-section" aria-label="Frequently Asked Questions section">
+        <div class="container">
+            <h1>Frequently Asked Questions (FAQ)</h1>
+
+            <div class="faq-section">
+                <h2>General Questions</h2>
+                <div class="faq-item">
+                    <div class="faq-question" role="button" aria-expanded="false" aria-controls="faq1">What is Metamo Surface Studio?</div>
+                    <div class="faq-answer" id="faq1">
+                        <p>Metamo Surface Studio, powered by metamo, is a leading provider of premium lime-based textured paints, Venetian plaster, and wax finishes for interior and exterior walls. We aim to transform spaces with eco-friendly, innovative surface solutions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" role="button" aria-expanded="false" aria-controls="faq2">How can I contact your customer support?</div>
+                    <div class="faq-answer" id="faq2">
+                        <p>You can reach our customer support team by email at <a href="mailto:support@metamo.com" aria-label="Email support">support@macoavell.com.my</a> or by phone at <a href="tel:+918291093932" aria-label="Call support">+91 8291093932</a>. Our support hours are Monday - Friday, 9 AM - 5 PM IST.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" role="button" aria-expanded="false" aria-controls="faq3">Where are you located?</div>
+                    <div class="faq-answer" id="faq3">
+                        <p>Our main office is located at Kerala, Malappuram, Kadampuzha, 676552, Chathankavu Para Road, Kanchippura. We serve clients across India and internationally.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <h2>Products & Services</h2>
+                <div class="faq-item">
+                    <div class="faq-question" role="button" aria-expanded="false" aria-controls="faq4">What types of products does Metamo offer?</div>
+                    <div class="faq-answer" id="faq4">
+                        <p>Metamo specializes in high-quality decorative paints and textured finishes, including Vellma, Vellplas, Vellcco, Vellwax, and Vellwax Metallic, available in Glossy, Matte, Rough, Stones, and metallic finishes for various design applications.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" role="button" aria-expanded="false" aria-controls="faq5">How do I choose the right product for my project?</div>
+                    <div class="faq-answer" id="faq5">
+                        <p>We recommend consulting with our design experts or visiting our <a href="https://macoavell.com.my" rel="noopener noreferrer" aria-label="Visit MacoAvell website">website</a> to review product details. Contact our sales team with your project requirements, and we’ll guide you to the best solution.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" role="button" aria-expanded="false" aria-controls="faq6">Do you offer product samples?</div>
+                    <div class="faq-answer" id="faq6">
+                        <p>Yes, we offer sample kits for most of our products. Please contact us at <a href="mailto:support@metamo.com" aria-label="Email support">support@macoavell.com.my</a> to inquire about specific samples.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <h2>Partnership Program</h2>
+                <div class="faq-item">
+                    <div class="faq-question" role="button" aria-expanded="false" aria-controls="faq7">Who can join the Metamo Surface Studio partnership program?</div>
+                    <div class="faq-answer" id="faq7">
+                        <p>Our program is open to professionals in the design and construction sectors, including interior designers, architects, painters, contractors, and store dealers interested in integrating our innovative surface solutions into their work.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" role="button" aria-expanded="false" aria-controls="faq8">What are the benefits of becoming a partner?</div>
+                    <div class="faq-answer" id="faq8">
+                        <p>Partners gain access to exclusive product lines, training, marketing support, preferred pricing, project collaboration opportunities, and lead referrals.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" role="button" aria-expanded="false" aria-controls="faq9">How do I apply to become a partner?</div>
+                    <div class="faq-answer" id="faq9">
+                        <p>Submit an inquiry via our <a href="https://wa.me/+918291093932?text=MacoAvell%20Partnership%20Inquiry" rel="noopener noreferrer" aria-label="Contact via WhatsApp for partnership">WhatsApp link</a>. Our team will review your application, finalize an agreement, and provide onboarding resources.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <h2>Ordering & Shipping</h2>
+                <div class="faq-item">
+                    <div class="faq-question" role="button" aria-expanded="false" aria-controls="faq10">What are your shipping options and delivery times?</div>
+                    <div class="faq-answer" id="faq10">
+                        <p>We offer standard and expedited shipping options. Delivery times vary based on location and product availability, typically ranging from 5 to 15 business days. You will receive tracking information once your order ships.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" role="button" aria-expanded="false" aria-controls="faq11">What is your return policy?</div>
+                    <div class="faq-answer" id="faq11">
+                        <p>We accept returns for unopened, unused products within 30 days of purchase. Please review our full <a href="terms.html" aria-label="View terms and conditions">Terms & Conditions</a> for detailed information.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-info">
+                <h3>Still Have Questions?</h3>
+                <p>If you couldn't find the answer you were looking for, please don't hesitate to reach out to our team:</p>
+                <p>Email: <a href="mailto:support@metamo.com" aria-label="Email support">support@metamo.com</a></p>
+                <p>Phone: <a href="tel:+918291093932" aria-label="Call support">+91 8291093932</a></p>
+                <p>Or visit our <a href="contact.html" aria-label="Visit contact page">Contact Us</a> page.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <h4>India</h4>
+                <p>Kerala, Malappuram</p>
+                <p>Kadampuzha, 676552</p>
+                <p>Chathankavu Para Road, Kanchippura</p>
+                <p>support@metamo.com</p>
+                <p>+91 8291093932</p>
+            </div>
+            <div class="footer-column">
+                <h4>Sign Up to Our Newsletter</h4>
+                <div class="newsletter-signup">
+                    <a href="https://wa.me/+918291093932?text=Hi%20there%21%20I%27d%20love%20to%20add%20you%20to%20our%20exclusive%20newsletter%20broadcast.%20Stay%20updated%20with%20our%20latest%20news%2C%20special%20offers%2C%20and%20valuable%20content.%20Just%20click%20send%20to%20confirm%20your%20subscription%21" rel="noopener noreferrer" aria-label="Sign up for newsletter"><img src="https://macoavell.com.my/wp-content/uploads/2025/07/signup-b.jpg" alt="Sign Up for Newsletter" loading="lazy" onerror="this.src='https://via.placeholder.com/150?text=Newsletter+Image+Not+Found'"></a>
+                </div>
+                <div class="footer-social-icons">
+                    <a href="https://www.facebook.com/metamosurface" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+                    <a href="https://www.instagram.com/metamosurface" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                    <a href="#" aria-label="Pinterest"><i class='bx bxl-pinterest'></i></a>
+                    <a href="https://www.youtube.com/metamosurface" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Help Centre</h4>
+                <ul>
+                    <li><a href="contact.html" aria-label="Contact us">Contact Us</a></li>
+                    <li><a href="collab.html" aria-label="Be our partner">Be Our Partner</a></li>
+                    <li><a href="faq.html" aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li>
+                    <li><a href="terms.html" aria-label="Terms and conditions">Terms & Conditions</a></li>
+                    <li><a href="privacy.html" aria-label="Privacy policy">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © Metamo Surface Studio. All rights reserved.</p>
+            <a href="#" class="scroll-to-top" aria-label="Scroll to top"><i class='bx bx-chevron-up'></i></a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Preloader
+            const preloader = document.getElementById('preloader');
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    preloader.classList.add('hidden');
+                }, 500);
+            });
+
+            // Debounce Utility
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // Mobile Menu Toggle
+            const hamburger = document.querySelector('.hamburger-menu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeBtn = document.querySelector('.mobile-menu .close-btn');
+
+            function toggleMobileMenu() {
+                const isOpen = mobileMenu.classList.toggle('open');
+                hamburger.setAttribute('aria-expanded', isOpen);
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            }
+
+            hamburger.addEventListener('click', toggleMobileMenu);
+            closeBtn.addEventListener('click', toggleMobileMenu);
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    toggleMobileMenu();
+                });
+            });
+
+            // FAQ Toggle with Keyboard Support
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach((question, index) => {
+                const answer = question.nextElementSibling;
+                question.setAttribute('tabindex', '0');
+                question.setAttribute('aria-controls', `faq${index + 1}`);
+
+                const toggleFAQ = () => {
+                    const isActive = question.classList.contains('active');
+                    faqQuestions.forEach(otherQuestion => {
+                        if (otherQuestion !== question) {
+                            otherQuestion.classList.remove('active');
+                            otherQuestion.setAttribute('aria-expanded', 'false');
+                            otherQuestion.nextElementSibling.style.display = 'none';
+                        }
+                    });
+
+                    if (isActive) {
+                        question.classList.remove('active');
+                        question.setAttribute('aria-expanded', 'false');
+                        answer.style.display = 'none';
+                    } else {
+                        question.classList.add('active');
+                        question.setAttribute('aria-expanded', 'true');
+                        answer.style.display = 'block';
+                    }
+                };
+
+                question.addEventListener('click', toggleFAQ);
+                question.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleFAQ();
+                    }
+                });
+            });
+
+            // Scroll to Top
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            const handleScroll = debounce(() => {
+                scrollToTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+            }, 100);
+
+            window.addEventListener('scroll', handleScroll);
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Header Scroll Effects
+            const header = document.querySelector('.header');
+            const updateHeader = debounce(() => {
+                if (window.scrollY > 0) {
+                    header.style.height = '60px';
+                    header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                } else {
+                    header.style.height = 'var(--header-height)';
+                    header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+                }
+            }, 100);
+
+            window.addEventListener('scroll', updateHeader);
+
+            // Image Preloading and Fallback
+            const imageElements = document.querySelectorAll('.logo img, .newsletter-signup img');
+            const fallbackImage = 'https://via.placeholder.com/150?text=Image+Not+Found';
+
+            function preloadImages(imageUrls) {
+                imageUrls.forEach(url => {
+                    const img = new Image();
+                    img.src = url;
+                    img.loading = 'lazy';
+                    img.onerror = () => {
+                        console.warn(`Failed to load image: ${url}, using fallback.`);
+                        imageElements.forEach(el => {
+                            if (el.src === url) {
+                                el.src = el.getAttribute('onerror').match(/'([^']+)'/)[1];
+                            }
+                        });
+                    };
+                });
+            }
+
+            const imageUrls = [
+                'https://macoavell.com.my/wp-content/uploads/2020/04/logo.jpg',
+                'https://macoavell.com.my/wp-content/uploads/2025/07/signup-b.jpg',
+                fallbackImage
+            ];
+            preloadImages(imageUrls);
+
+            // Scroll-based Animations
+            const animateElements = document.querySelectorAll('section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            animateElements.forEach(el => observer.observe(el));
+
+            // Touch Swipe Support for FAQ Section
+            const faqSection = document.querySelector('.faq-section');
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            faqSection.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            faqSection.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) {
+                    faqSection.classList.add('swipe-left');
+                    setTimeout(() => faqSection.classList.remove('swipe-left'), 300);
+                } else if (touchEndX - touchStartX > 50) {
+                    faqSection.classList.add('swipe-right');
+                    setTimeout(() => faqSection.classList.remove('swipe-right'), 300);
+                }
+            });
+
+            // Cleanup
+            window.addEventListener('unload', () => {
+                window.removeEventListener('scroll', handleScroll);
+                window.removeEventListener('scroll', updateHeader);
+            });
+        });
+    </script>
+</body>
+</html>

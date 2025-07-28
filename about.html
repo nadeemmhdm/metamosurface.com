@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metamo Surface Studio</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="jpg" href="logo.jpg">
+
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Metamo Surface Studio">
+    <meta property="og:image" content="your-logo-url.png">
+    <meta property="og:description" content="Designing immersive surfaces for a better tomorrow.">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+        :root {
+            --primary-text-color: #333;
+            --secondary-text-color: #666;
+            --accent-color: #d1b585;
+            --light-bg-color: #f8f8f8;
+            --dark-bg-color: #2c2c2c;
+            --white-color: #fff;
+            --header-height: 80px;
+            --transition-speed: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            color: var(--primary-text-color);
+            overflow-x: hidden;
+            background-color: var(--light-bg-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .preloader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--accent-color);
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Header */
+        .header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: var(--white-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            z-index: 1000;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
+            transition: background-color var(--transition-speed) ease, height var(--transition-speed) ease;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .logo img {
+            height: 50px;
+            vertical-align: middle;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-text-color);
+            font-weight: 500;
+            transition: color var(--transition-speed) ease, transform 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-links .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            list-style: none;
+            min-width: 180px;
+            padding: 10px 0;
+            border-radius: 5px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease, visibility var(--transition-speed) ease;
+        }
+
+        .nav-links li.dropdown:hover .dropdown-menu {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .nav-links .dropdown-menu li {
+            margin: 0;
+        }
+
+        .nav-links .dropdown-menu a {
+            padding: 10px 15px;
+            display: block;
+            white-space: nowrap;
+            font-weight: 400;
+            transition: background-color 0.2s ease;
+        }
+
+        .nav-links .dropdown-menu a:hover {
+            background-color: var(--light-bg-color);
+        }
+
+        .nav-links .search-icon {
+            font-size: 24px;
+            cursor: pointer;
+            margin-left: 30px;
+            color: var(--primary-text-color);
+            transition: color var(--transition-speed) ease, transform 0.2s ease;
+        }
+
+        .nav-links .search-icon:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .hamburger-menu {
+            display: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--primary-text-color);
+            z-index: 1001;
+            transition: color var(--transition-speed) ease;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--dark-bg-color);
+            color: var(--white-color);
+            z-index: 999;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            transition: right 0.4s ease-in-out;
+            padding-top: var(--header-height);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mobile-menu.open {
+            right: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .mobile-menu-header .close-btn {
+            font-size: 30px;
+            cursor: pointer;
+            color: var(--white-color);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu-header .close-btn:hover {
+            color: var(--accent-color);
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            padding: 20px 0;
+            flex-grow: 1;
+        }
+
+        .mobile-menu ul li {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .mobile-menu ul li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--white-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+
+        .mobile-menu ul li a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--accent-color);
+        }
+
+        .mobile-menu ul li.dropdown-mobile .dropdown-icon {
+            float: right;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .mobile-menu ul li.dropdown-mobile.active .dropdown-icon {
+            transform: rotate(90deg);
+        }
+
+        .mobile-menu .dropdown-mobile-menu {
+            display: none;
+            list-style: none;
+            background-color: rgba(0,0,0,0.2);
+            padding-left: 20px;
+        }
+
+        .mobile-menu .dropdown-mobile-menu li a {
+            padding: 10px 20px;
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 50vh;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white-color);
+            margin-top: var(--header-height);
+            overflow: hidden;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+
+        .hero-content.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-content h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            font-weight: 600;
+            line-height: 1.2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* Shared Section Styles */
+        section {
+            padding: 80px 0;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        section.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Text Sections */
+        .text-section {
+            background-color: var(--light-bg-color);
+            text-align: center;
+        }
+
+        .text-section.white-bg {
+            background-color: var(--white-color);
+        }
+
+        .text-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: var(--primary-text-color);
+            font-weight: 600;
+        }
+
+        .text-section p {
+            font-size: 1.1em;
+            max-width: 900px;
+            margin: 0 auto 20px;
+            color: var(--secondary-text-color);
+            line-height: 1.8;
+        }
+
+        .text-section ul {
+            max-width: 800px;
+            margin: 0 auto 20px;
+            list-style: none;
+            text-align: left;
+            padding-left: 20px;
+            color: var(--secondary-text-color);
+        }
+
+        .text-section ul li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .text-section ul li::before {
+            content: '\2022';
+            color: var(--accent-color);
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Image & Text Section */
+        .image-text-section {
+            background-color: var(--white-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            padding: 80px 20px;
+        }
+
+        .image-text-section.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .image-text-content {
+            background-color: var(--light-bg-color);
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 550px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .image-text-content:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-text-content h3 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: var(--primary-text-color);
+            font-weight: 600;
+        }
+
+        .image-text-content p {
+            font-size: 1em;
+            color: var(--secondary-text-color);
+            margin-bottom: 30px;
+        }
+
+        .image-text-placeholder {
+            width: 500px;
+            aspect-ratio: 4 / 3;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s ease, opacity 0.5s ease;
+            background-image: url('https://via.placeholder.com/500x375?text=Image+Not+Found');
+        }
+
+        .image-text-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.2), rgba(0,0,0,0));
+            z-index: 0;
+        }
+
+        .image-text-placeholder:hover {
+            transform: scale(1.02);
+        }
+
+        .image-text-placeholder img {
+            display: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: var(--white-color);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color var(--transition-speed) ease, transform 0.3s ease, box-shadow var(--transition-speed) ease;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn:hover {
+            background-color: #c0a473;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        /* Partner Section */
+        .partner-section {
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white-color);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+            z-index: 0;
+        }
+
+        .partner-content {
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+
+        .partner-content.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .partner-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .partner-content p {
+            font-size: 1.1em;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark-bg-color);
+            color: #ccc;
+            padding: 60px 0 30px;
+            font-size: 0.9em;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h4 {
+            color: var(--white-color);
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-column p {
+            margin-bottom: 10px;
+        }
+
+        .footer-column i.bx {
+            margin-right: 8px;
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+
+        .footer-social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social-icons a {
+            color: var(--white-color);
+            font-size: 24px;
+            transition: color var(--transition-speed) ease, transform 0.3s ease;
+        }
+
+        .footer-social-icons a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .newsletter-signup {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-signup img {
+            max-width: 150px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .newsletter-signup img:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #888;
+            position: relative;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            color: var(--white-color);
+            background-color: rgba(0,0,0,0.6);
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            z-index: 998;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .scroll-to-top:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 2.8em; }
+            .hero-content p { font-size: 1em; }
+            .text-section h2, .partner-content h2, .image-text-content h3 { font-size: 2em; }
+            .text-section p, .image-text-content p, .partner-content p { font-size: 1em; line-height: 1.7; }
+            .image-text-section { flex-direction: column; gap: 30px; padding: 60px 20px; }
+            .image-text-placeholder { width: 100%; aspect-ratio: 4 / 3; }
+            .partner-section { height: 350px; }
+            .footer-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar .nav-links { display: none; }
+            .hamburger-menu { display: block; }
+            .header { height: 60px; }
+            .logo img { height: 40px; }
+            .hero-section { height: 40vh; margin-top: 60px; }
+            .hero-content h1 { font-size: 2em; }
+            .hero-content p { font-size: 0.9em; }
+            section { padding: 50px 0; }
+            .text-section h2, .partner-content h2, .image-text-content h3 { font-size: 1.8em; }
+            .text-section p, .image-text-content p, .partner-content p { font-size: 0.95em; }
+            .btn { padding: 10px 25px; font-size: 0.9em; }
+            .image-text-content { padding: 30px; }
+            .image-text-placeholder { aspect-ratio: 4 / 3; }
+            .partner-section { height: 300px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 25px; text-align: center; }
+            .footer-social-icons { justify-content: center; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 { font-size: 1.8em; }
+            .hero-content p { font-size: 0.85em; }
+            .text-section h2, .partner-content h2, .image-text-content h3 { font-size: 1.6em; }
+            .text-section p, .image-text-content p, .partner-content p { font-size: 0.9em; }
+            .image-text-content { padding: 20px; }
+            .image-text-placeholder { aspect-ratio: 4 / 3; }
+            .partner-section { height: 250px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader" id="preloader">
+        <div class="preloader-spinner"></div>
+    </div>
+
+    <header class="header" role="banner">
+        <div class="container navbar">
+            <div class="logo">
+                <a href="index.html" aria-label="Metamo Surface Studio Home"><img src="logo.jpg" alt="Metamo Surface Studio Logo" loading="lazy"></a>
+            </div>
+            <nav aria-label="Main navigation">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li class="dropdown">
+                        <a href="#" aria-haspopup="true">Products <i class='bx bx-chevron-down'></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="purchase-metamo-online.html">Vellma</a></li>
+                            <li><a href="purchase-metamo-online.html">Vellplas</a></li>
+                            <li><a href="purchase-metamo-online.html">Vellcco</a></li>
+                            <li><a href="purchase-metamo-online.html">Vellwax</a></li>
+                            <li><a href="purchase-metamo-online.html">Vellwax Metallic</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="collab.html">Collab</a></li>
+                    <li><a href="purchase-metamo-online.html">Buy Online</a></li>
+                    <li><a href="search.html" class="search-icon" aria-label="Search"><i class='bx bx-search'></i></a></li>
+                </ul>
+            </nav>
+            <div class="hamburger-menu" aria-label="Open mobile menu" role="button">
+                <i class='bx bx-menu'></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
+        <div class="mobile-menu-header">
+            <div class="logo">
+                <a href="index.html" aria-label="Metamo Surface Studio Home"><img src="logo.jpg" alt="Metamo Surface Studio Logo"></a>
+            </div>
+            <i class='bx bx-x close-btn' aria-label="Close mobile menu"></i>
+        </div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li class="dropdown-mobile">
+                <a href="#" aria-haspopup="true">Products <i class='bx bx-chevron-right dropdown-icon'></i></a>
+                <ul class="dropdown-mobile-menu" role="menu">
+                    <li><a href="#">Vellma</a></li>
+                    <li><a href="#">Vellplas</a></li>
+                    <li><a href="#">Vellcco</a></li>
+                    <li><a href="#">Vellwax</a></li>
+                    <li><a href="#">Vellwax Metallic</a></li>
+                </ul>
+            </li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="collab.html">Collab</a></li>
+            <li><a href="purchase-metamo-online.html">Buy Online</a></li>
+            <li><a href="search.html"><i class='bx bx-search'></i> Search</a></li>
+        </ul>
+    </div>
+
+    <section class="hero-section" style="background-image: url('https://macoavell.com.my/wp-content/uploads/2020/04/about4.png');" aria-label="About hero section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>About Metamo Surface Studio</h1>
+            <p>Crafting Unforgettable Surfaces, Inspiring Spaces.</p>
+        </div>
+    </section>
+
+    <section class="text-section white-bg" aria-label="Our vision section">
+        <div class="container">
+            <h2>Our Vision</h2>
+            <p>To be the leading innovator in textured paint solutions, transforming ordinary spaces into extraordinary experiences through sustainable, high-quality, and artistically diverse surface finishes.</p>
+        </div>
+    </section>
+
+    <section class="image-text-section" aria-label="Our mission section">
+        <div class="image-text-content">
+            <h3>Our Mission</h3>
+            <p>Our mission is to empower designers, architects, and homeowners with versatile and durable textured paint products. We commit to:</p>
+            <ul>
+                <li>Providing premium, eco-friendly materials.</li>
+                <li>Fostering creativity through a wide range of finishes and colors.</li>
+                <li>Delivering exceptional customer support and collaboration.</li>
+                <li>Driving innovation in surface technology.</li>
+            </ul>
+        </div>
+        <div class="image-text-placeholder" style="background-image: url('https://macoavell.com.my/wp-content/uploads/2020/04/about5.png');" aria-label="Our mission image"></div>
+    </section>
+
+    <section class="text-section" aria-label="Our values section">
+        <div class="container">
+            <h2>Our Values</h2>
+            <p>At Metamo Surface Studio, our core values guide every brushstroke and decision:</p>
+            <ul>
+                <li><strong>Innovation:</strong> Constantly exploring new techniques and materials.</li>
+                <li><strong>Quality:</strong> Unwavering commitment to superior products and finishes.</li>
+                <li><strong>Sustainability:</strong> Dedicated to environmentally responsible practices.</li>
+                <li><strong>Collaboration:</strong> Building strong partnerships with clients and industry professionals.</li>
+                <li><strong>Integrity:</strong> Operating with transparency, honesty, and respect.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="image-text-section reverse" aria-label="Why choose us section">
+        <div class="image-text-content">
+            <h3>Why Choose Metamo Surface Studio?</h3>
+            <p>With years of expertise in the textured paint industry, we offer:</p>
+            <ul>
+                <li>A diverse portfolio of unique finishes (Vellma, Vellplas, Vellcco, Vellwax).</li>
+                <li>Customizable solutions to match any design aesthetic.</li>
+                <li>Products renowned for their durability and ease of application.</li>
+                <li>A team of specialists ready to provide technical support and artistic guidance.</li>
+            </ul>
+            <a href="purchase-metamo-online.html" class="btn">Explore Our Products</a>
+        </div>
+        <div class="image-text-placeholder" style="background-image: url('https://macoavell.com.my/wp-content/uploads/2025/05/2-2-500x500.jpg');" aria-label="Why choose us image"></div>
+    </section>
+
+    <section class="partner-section" style="background-image: url('https://wallpapercave.com/dwp2x/wp6610917.jpg');" aria-label="Call to action section">
+        <div class="partner-content">
+            <h2>Let's Create Something Beautiful Together</h2>
+            <p>Ready to transform your space? Contact us for a consultation or to learn more about our textured paint solutions.</p>
+            <a href="contact.html" class="btn">GET IN TOUCH</a>
+        </div>
+    </section>
+
+    <footer class="footer" role="contentinfo">
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <h4>India</h4>
+                <p>Kerala, Malappuram</p>
+                <p>Near AL Huda School, Kadampuzha</p>
+                <p>Road, Melmuri, Malapppuram</p>
+                <p>metamosurfacestudio@gmail.com</p>
+                <p>+91 98469 55954</p>
+            </div>
+            <div class="footer-column">
+                <h4>Sign Up to Our Newsletter</h4>
+                <div class="newsletter-signup">
+                    <a href="https://wa.me/8291093932?text=Hi%20there%21%20I%27d%20love%20to%20add%20you%20to%20our%20exclusive%20newsletter%20broadcast.%20Stay%20updated%20with%20our%20latest%20news%2C%20special%20offers%2C%20and%20valuable%20content.%20Just%20click%20send%20to%20confirm%20your%20subscription%21" aria-label="Sign up for newsletter"><img src="https://macoavell.com.my/wp-content/uploads/2025/07/signup-b.jpg" alt="Sign Up for Newsletter"></a>
+                </div>
+                <div class="footer-social-icons">
+                    <a href="https://www.facebook.com/metamosurface" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
+                    <a href="https://www.instagram.com/metamosurface" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
+                    <a href="#" aria-label="Pinterest"><i class='bx bxl-pinterest'></i></a>
+                    <a href="https://www.youtube.com/metamosurface" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Help Centre</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="collab.html">Be Our Partner</a></li>
+                    <li><a href="faq.html">Frequently Asked Questions</a></li>
+                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © Metamo Surface Studio. All rights reserved.</p>
+            <a href="#" class="scroll-to-top" aria-label="Scroll to top"><i class='bx bx-chevron-up'></i></a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Preloader
+            const preloader = document.getElementById('preloader');
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    preloader.classList.add('hidden');
+                }, 500);
+            });
+
+            // Debounce Utility
+            function debounce(func, wait) {
+                let timeout;
+                return function executedFunction(...args) {
+                    const later = () => {
+                        clearTimeout(timeout);
+                        func(...args);
+                    };
+                    clearTimeout(timeout);
+                    timeout = setTimeout(later, wait);
+                };
+            }
+
+            // Mobile Menu Toggle
+            const hamburger = document.querySelector('.hamburger-menu');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeBtn = document.querySelector('.mobile-menu .close-btn');
+            const mobileDropdowns = document.querySelectorAll('.mobile-menu .dropdown-mobile');
+
+            function toggleMobileMenu() {
+                mobileMenu.classList.toggle('open');
+                document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+            }
+
+            hamburger.addEventListener('click', toggleMobileMenu);
+            closeBtn.addEventListener('click', toggleMobileMenu);
+
+            mobileMenu.querySelectorAll('a:not(.dropdown-mobile > a)').forEach(link => {
+                link.addEventListener('click', toggleMobileMenu);
+            });
+
+            mobileDropdowns.forEach(dropdown => {
+                const dropdownLink = dropdown.querySelector('a');
+                const dropdownMenu = dropdown.querySelector('.dropdown-mobile-menu');
+                dropdownLink.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault();
+                        dropdown.classList.toggle('active');
+                        dropdownMenu.style.display = dropdown.classList.contains('active') ? 'block' : 'none';
+                    }
+                });
+            });
+
+            // Scroll to Top
+            const scrollToTopBtn = document.querySelector('.scroll-to-top');
+            const handleScroll = debounce(() => {
+                scrollToTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
+            }, 100);
+
+            window.addEventListener('scroll', handleScroll);
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Header Scroll Effects
+            const header = document.querySelector('.header');
+            const updateHeader = debounce(() => {
+                if (window.scrollY > 0) {
+                    header.style.height = '60px';
+                    header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                } else {
+                    header.style.height = 'var(--header-height)';
+                    header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
+                }
+            }, 100);
+
+            window.addEventListener('scroll', updateHeader);
+
+            // Image Preloading and Fallback
+            const imageSections = document.querySelectorAll('.image-text-placeholder, .hero-section, .partner-section');
+            const fallbackImage = 'https://via.placeholder.com/500x375?text=Image+Not+Found';
+
+            function preloadImages(imageUrls) {
+                imageUrls.forEach(url => {
+                    const img = new Image();
+                    img.src = url;
+                    img.loading = 'lazy';
+                    img.onerror = () => {
+                        console.warn(`Failed to load image: ${url}, using fallback.`);
+                        img.src = fallbackImage;
+                    };
+                });
+            }
+
+            const imageUrls = [
+                'https://macoavell.com.my/wp-content/uploads/2020/04/about4.png',
+                'https://macoavell.com.my/wp-content/uploads/2020/04/about5.png',
+                'https://macoavell.com.my/wp-content/uploads/2025/05/2-2-500x500.jpg',
+                'https://wallpapercave.com/dwp2x/wp6610917.jpg',
+                fallbackImage
+            ];
+            preloadImages(imageUrls);
+
+            imageSections.forEach(section => {
+                const bgImage = getComputedStyle(section).backgroundImage;
+                if (bgImage === 'none' || bgImage === '') {
+                    section.style.backgroundImage = `url('${fallbackImage}')`;
+                }
+            });
+
+            // Scroll-based Animations
+            const animateElements = document.querySelectorAll('section, .hero-content, .partner-content');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        entry.target.style.transitionDelay = `${index * 0.2}s`;
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            animateElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            const heroSection = document.querySelector('.hero-section');
+            if (heroSection && heroSection.getBoundingClientRect().top < window.innerHeight) {
+                document.querySelector('.hero-content').classList.add('animated');
+            }
+
+            // Touch Swipe Support for Image Sections
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            imageSections.forEach(section => {
+                section.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+
+                section.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    if (touchStartX - touchEndX > 50) {
+                        section.classList.add('swipe-left');
+                        setTimeout(() => section.classList.remove('swipe-left'), 300);
+                    } else if (touchEndX - touchStartX > 50) {
+                        section.classList.add('swipe-right');
+                        setTimeout(() => section.classList.remove('swipe-right'), 300);
+                    }
+                });
+            });
+
+            // Cleanup
+            window.addEventListener('unload', () => {
+                window.removeEventListener('scroll', handleScroll);
+                window.removeEventListener('scroll', updateHeader);
+            });
+        });
+    </script>
+</body>
+</html>
