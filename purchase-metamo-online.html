@@ -4,20 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Purchase Metamo Products Online</title>
-
     <!-- Favicon -->
     <link rel="icon" type="jpg" href="logo.jpg">
-
     <!-- Open Graph for social sharing -->
     <meta property="og:title" content="Purchase Metamo Products Online">
     <meta property="og:image" content="https://macoavell.com.my/wp-content/uploads/2020/04/logo.jpg">
     <meta property="og:description" content="Explore and purchase our exquisite range of textured paints conveniently via WhatsApp.">
     <meta property="og:type" content="website">
-
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-
     <style>
         :root {
             --primary-text-color: #333;
@@ -29,17 +25,14 @@
             --header-height: 80px;
             --transition-speed: 0.3s;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         html {
             scroll-behavior: smooth;
         }
-
         body {
             font-family: 'Poppins', sans-serif;
             line-height: 1.7;
@@ -47,13 +40,11 @@
             overflow-x: hidden;
             background-color: var(--light-bg-color);
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
         /* Preloader */
         .preloader {
             position: fixed;
@@ -68,12 +59,10 @@
             z-index: 9999;
             transition: opacity 0.5s ease;
         }
-
         .preloader.hidden {
             opacity: 0;
             pointer-events: none;
         }
-
         .preloader-spinner {
             width: 50px;
             height: 50px;
@@ -82,12 +71,10 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
         /* Header */
         .header {
             width: 100%;
@@ -102,7 +89,6 @@
             align-items: center;
             transition: background-color var(--transition-speed) ease, height var(--transition-speed) ease;
         }
-
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -110,40 +96,33 @@
             height: 100%;
             width: 100%;
         }
-
         .logo img {
             height: 90px;
             vertical-align: middle;
             transition: transform 0.3s ease;
         }
-
         .logo img:hover {
             transform: scale(1.05);
         }
-
         .nav-links {
             list-style: none;
             display: flex;
             align-items: center;
         }
-
         .nav-links li {
             margin-left: 30px;
             position: relative;
         }
-
         .nav-links a {
             text-decoration: none;
             color: var(--primary-text-color);
             font-weight: 500;
             transition: color var(--transition-speed) ease, transform 0.2s ease;
         }
-
         .nav-links a:hover {
             color: var(--accent-color);
             transform: translateY(-2px);
         }
-
         .nav-links .dropdown-menu {
             display: none;
             position: absolute;
@@ -160,18 +139,15 @@
             transform: translateY(10px);
             transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease, visibility var(--transition-speed) ease;
         }
-
         .nav-links li.dropdown:hover .dropdown-menu {
             display: block;
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
         }
-
         .nav-links .dropdown-menu li {
             margin: 0;
         }
-
         .nav-links .dropdown-menu a {
             padding: 10px 15px;
             display: block;
@@ -179,11 +155,9 @@
             font-weight: 400;
             transition: background-color 0.2s ease;
         }
-
         .nav-links .dropdown-menu a:hover {
             background-color: var(--light-bg-color);
         }
-
         .nav-links .search-icon {
             font-size: 24px;
             cursor: pointer;
@@ -191,12 +165,10 @@
             color: var(--primary-text-color);
             transition: color var(--transition-speed) ease, transform 0.2s ease;
         }
-
         .nav-links .search-icon:hover {
             color: var(--accent-color);
             transform: scale(1.1);
         }
-
         .hamburger-menu {
             display: none;
             font-size: 30px;
@@ -205,7 +177,6 @@
             z-index: 1001;
             transition: color var(--transition-speed) ease;
         }
-
         /* Mobile Menu */
         .mobile-menu {
             position: fixed;
@@ -222,11 +193,9 @@
             display: flex;
             flex-direction: column;
         }
-
         .mobile-menu.open {
             right: 0;
         }
-
         .mobile-menu-header {
             display: flex;
             justify-content: space-between;
@@ -234,28 +203,23 @@
             padding: 20px;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-
         .mobile-menu-header .close-btn {
             font-size: 30px;
             cursor: pointer;
             color: var(--white-color);
             transition: color 0.3s ease;
         }
-
         .mobile-menu-header .close-btn:hover {
             color: var(--accent-color);
         }
-
         .mobile-menu ul {
             list-style: none;
             padding: 20px 0;
             flex-grow: 1;
         }
-
         .mobile-menu ul li {
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
-
         .mobile-menu ul li a {
             display: block;
             padding: 15px 20px;
@@ -264,34 +228,28 @@
             font-weight: 500;
             transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
         }
-
         .mobile-menu ul li a:hover {
             background-color: rgba(255,255,255,0.1);
             color: var(--accent-color);
         }
-
         .mobile-menu ul li.dropdown-mobile .dropdown-icon {
             float: right;
             transition: transform var(--transition-speed) ease;
         }
-
         .mobile-menu ul li.dropdown-mobile.active .dropdown-icon {
             transform: rotate(90deg);
         }
-
         .mobile-menu .dropdown-mobile-menu {
             display: none;
             list-style: none;
             background-color: rgba(0,0,0,0.2);
             padding-left: 20px;
         }
-
         .mobile-menu .dropdown-mobile-menu li a {
             padding: 10px 20px;
             font-size: 0.9em;
             color: rgba(255,255,255,0.8);
         }
-
         /* Hero Section */
         .hero-section {
             position: relative;
@@ -308,7 +266,6 @@
             margin-top: var(--header-height);
             overflow: hidden;
         }
-
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -318,7 +275,6 @@
             background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
             z-index: 0;
         }
-
         .hero-content {
             position: relative;
             z-index: 1;
@@ -327,12 +283,10 @@
             transform: translateY(30px);
             transition: opacity 1.2s ease-out, transform 1.2s ease-out;
         }
-
         .hero-content.animated {
             opacity: 1;
             transform: translateY(0);
         }
-
         .hero-content h1 {
             font-size: 3.5em;
             margin-bottom: 15px;
@@ -340,35 +294,30 @@
             line-height: 1.2;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
-
         .hero-content p {
             font-size: 1.2em;
             max-width: 800px;
             margin: 0 auto 20px;
             text-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
-
         /* Product Grid Section */
         .product-grid-section {
             background-color: var(--light-bg-color);
             text-align: center;
             padding: 80px 0;
         }
-
         .product-grid-section h2 {
             font-size: 2.5em;
             margin-bottom: 40px;
             color: var(--primary-text-color);
             font-weight: 600;
         }
-
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
             justify-content: center;
         }
-
         .product-card {
             background-color: var(--white-color);
             border-radius: 10px;
@@ -381,17 +330,14 @@
             transform: translateY(20px);
             transition: opacity 1s ease-out, transform 1s ease-out;
         }
-
         .product-card.animated {
             opacity: 1;
             transform: translateY(0);
         }
-
         .product-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
-
         .product-card img {
             width: 100%;
             height: 250px;
@@ -400,25 +346,21 @@
             margin-bottom: 15px;
             transition: transform 0.3s ease;
         }
-
         .product-card img:hover {
             transform: scale(1.05);
         }
-
         .product-card h3 {
             font-size: 1.6em;
             margin-bottom: 10px;
             color: var(--primary-text-color);
             font-weight: 600;
         }
-
         .product-card p {
             font-size: 1em;
             color: var(--secondary-text-color);
             margin-bottom: 20px;
             padding: 0 15px;
         }
-
         .product-card .btn-whatsapp {
             display: inline-flex;
             align-items: center;
@@ -430,33 +372,46 @@
             transition: background-color var(--transition-speed) ease, transform 0.2s ease, box-shadow var(--transition-speed) ease;
             font-weight: 500;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-right: 10px;
         }
-
         .product-card .btn-whatsapp i.bx {
             margin-right: 8px;
             font-size: 1.4em;
         }
-
         .product-card .btn-whatsapp:hover {
             background-color: #1DA851;
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0,0,0,0.15);
         }
-
+        .product-card .btn-view-more {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: var(--white-color);
+            text-decoration: none;
+            border-radius: 50px;
+            transition: background-color var(--transition-speed) ease, transform 0.2s ease, box-shadow var(--transition-speed) ease;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .product-card .btn-view-more:hover {
+            background-color: #c0a473;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
         /* Inquiry Form */
         .inquiry-form-section {
             background-color: var(--white-color);
             padding: 60px 0;
             text-align: center;
         }
-
         .inquiry-form-section h2 {
             font-size: 2.5em;
             margin-bottom: 30px;
             color: var(--primary-text-color);
             font-weight: 600;
         }
-
         .inquiry-form {
             max-width: 600px;
             margin: 0 auto;
@@ -466,19 +421,16 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.08);
             position: relative;
         }
-
         .inquiry-form .form-group {
             margin-bottom: 20px;
             text-align: left;
         }
-
         .inquiry-form label {
             display: block;
             font-weight: 500;
             margin-bottom: 8px;
             color: var(--primary-text-color);
         }
-
         .inquiry-form input,
         .inquiry-form select,
         .inquiry-form textarea {
@@ -490,25 +442,21 @@
             font-family: 'Poppins', sans-serif;
             transition: border-color 0.3s ease;
         }
-
         .inquiry-form input:focus,
         .inquiry-form select:focus,
         .inquiry-form textarea:focus {
             border-color: var(--accent-color);
             outline: none;
         }
-
         .inquiry-form input[aria-invalid="true"],
         .inquiry-form select[aria-invalid="true"],
         .inquiry-form textarea[aria-invalid="true"] {
             border-color: #d32f2f;
         }
-
         .inquiry-form textarea {
             resize: vertical;
             min-height: 100px;
         }
-
         .inquiry-form button {
             display: inline-flex;
             align-items: center;
@@ -522,20 +470,17 @@
             transition: background-color var(--transition-speed) ease, transform 0.2s ease, box-shadow var(--transition-speed) ease;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-
         .inquiry-form button:hover {
             background-color: #c0a473;
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0,0,0,0.15);
         }
-
         .inquiry-form button:disabled {
             background-color: #ccc;
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
         }
-
         .inquiry-form .btn-whatsapp-form {
             display: inline-flex;
             align-items: center;
@@ -549,18 +494,15 @@
             transition: background-color var(--transition-speed) ease, transform 0.2s ease, box-shadow var(--transition-speed) ease;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-
         .inquiry-form .btn-whatsapp-form i.bx {
             margin-right: 8px;
             font-size: 1.4em;
         }
-
         .inquiry-form .btn-whatsapp-form:hover {
             background-color: #1DA851;
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0,0,0,0.15);
         }
-
         .form-error,
         .form-success {
             margin-top: 10px;
@@ -570,21 +512,17 @@
             transform: translateY(10px);
             transition: opacity 0.3s ease, transform 0.3s ease;
         }
-
         .form-error.show,
         .form-success.show {
             opacity: 1;
             transform: translateY(0);
         }
-
         .form-error {
             color: #d32f2f;
         }
-
         .form-success {
             color: #388e3c;
         }
-
         .form-loading {
             display: none;
             position: absolute;
@@ -598,11 +536,9 @@
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
-
         .form-loading.show {
             display: block;
         }
-
         /* Partner Section */
         .partner-section {
             background-repeat: no-repeat;
@@ -618,7 +554,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .partner-section::before {
             content: '';
             position: absolute;
@@ -629,7 +564,6 @@
             background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
             z-index: 0;
         }
-
         .partner-content {
             position: relative;
             z-index: 1;
@@ -638,26 +572,22 @@
             transform: translateY(30px);
             transition: opacity 1.2s ease-out, transform 1.2s ease-out;
         }
-
         .partner-content.animated {
             opacity: 1;
             transform: translateY(0);
         }
-
         .partner-content h2 {
             font-size: 2.5em;
             margin-bottom: 20px;
             font-weight: 600;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
-
         .partner-content p {
             font-size: 1.1em;
             max-width: 700px;
             margin: 0 auto 30px;
             text-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
-
         .partner-content .btn {
             display: inline-flex;
             align-items: center;
@@ -670,13 +600,11 @@
             transition: background-color var(--transition-speed) ease, transform 0.2s ease, box-shadow var(--transition-speed) ease;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-
         .partner-content .btn:hover {
             background-color: #c0a473;
             transform: translateY(-3px);
             box-shadow: 0 6px 15px rgba(0,0,0,0.15);
         }
-
         /* Footer */
         .footer {
             background-color: var(--dark-bg-color);
@@ -684,72 +612,59 @@
             padding: 60px 0 30px;
             font-size: 0.9em;
         }
-
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 40px;
             margin-bottom: 50px;
         }
-
         .footer-column h4 {
             color: var(--white-color);
             margin-bottom: 20px;
             font-size: 1.1em;
             font-weight: 600;
         }
-
         .footer-column ul {
             list-style: none;
         }
-
         .footer-column ul li {
             margin-bottom: 10px;
         }
-
         .footer-column ul li a {
             color: #ccc;
             text-decoration: none;
             transition: color var(--transition-speed) ease, transform 0.3s ease;
         }
-
         .footer-column ul li a:hover {
             color: var(--accent-color);
             transform: translateX(5px);
         }
-
         .footer-column p {
             margin-bottom: 10px;
         }
-
         .footer-column i.bx {
             margin-right: 8px;
             font-size: 1.2em;
             vertical-align: middle;
         }
-
         .footer-social-icons {
             display: flex;
             gap: 15px;
             margin-top: 20px;
         }
-
         .footer-social-icons a {
             color: var(--white-color);
             font-size: 24px;
             transition: color var(--transition-speed) ease, transform 0.3s ease;
         }
-
         .footer-social-icons a:hover {
             color: var(--accent-color);
             transform: translateY(-3px);
         }
-
         .newsletter-signup {
             text-align: center;
             margin-bottom: 20px;
         }
-
         .newsletter-signup img {
             max-width: 150px;
             height: auto;
@@ -758,12 +673,10 @@
             filter: grayscale(100%);
             transition: filter 0.3s ease, transform 0.3s ease;
         }
-
         .newsletter-signup img:hover {
             filter: grayscale(0%);
             transform: scale(1.05);
         }
-
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
@@ -771,7 +684,6 @@
             color: #888;
             position: relative;
         }
-
         .scroll-to-top {
             position: fixed;
             right: 20px;
@@ -786,12 +698,10 @@
             z-index: 998;
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
-
         .scroll-to-top:hover {
             background-color: var(--accent-color);
             transform: translateY(-5px);
         }
-
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero-content h1 { font-size: 2.8em; }
@@ -802,12 +712,12 @@
             .product-card p { font-size: 0.95em; }
             .product-card img { height: 200px; }
             .product-card .btn-whatsapp { padding: 10px 25px; font-size: 0.9em; }
+            .product-card .btn-view-more { padding: 10px 25px; font-size: 0.9em; }
             .inquiry-form { padding: 15px; }
             .inquiry-form .btn-whatsapp-form { margin-left: 0; margin-top: 10px; }
             .partner-section { height: 350px; }
             .footer-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; }
         }
-
         @media (max-width: 768px) {
             .navbar .nav-links { display: none; }
             .hamburger-menu { display: block; }
@@ -823,14 +733,14 @@
             .product-card img { height: 220px; }
             .product-card h3 { font-size: 1.3em; }
             .product-card p { font-size: 0.9em; }
-            .product-card .btn-whatsapp { font-size: 0.85em; padding: 10px 20px; }
+            .product-card .btn-whatsapp { font-size: 0.85em; padding: 10px 20px; margin-right: 0; margin-bottom: 10px; }
+            .product-card .btn-view-more { font-size: 0.85em; padding: 10px 20px; }
             .inquiry-form input, .inquiry-form select, .inquiry-form textarea { font-size: 0.95em; }
             .inquiry-form button, .inquiry-form .btn-whatsapp-form { font-size: 0.95em; padding: 10px 25px; }
             .partner-section { height: 300px; }
             .footer-grid { grid-template-columns: 1fr; gap: 25px; text-align: center; }
             .footer-social-icons { justify-content: center; }
         }
-
         @media (max-width: 480px) {
             .hero-content h1 { font-size: 1.8em; }
             .hero-content p { font-size: 0.9em; }
@@ -839,7 +749,8 @@
             .product-card img { height: 180px; }
             .product-card h3 { font-size: 1.2em; }
             .product-card p { font-size: 0.85em; }
-            .product-card .btn-whatsapp { font-size: 0.8em; padding: 8px 18px; }
+            .product-card .btn-whatsapp { font-size: 0.8em; padding: 8px 18px; margin-right: 0; margin-bottom: 10px; }
+            .product-card .btn-view-more { font-size: 0.8em; padding: 8px 18px; }
             .inquiry-form input, .inquiry-form select, .inquiry-form textarea { font-size: 0.9em; }
             .inquiry-form button, .inquiry-form .btn-whatsapp-form { font-size: 0.9em; padding: 8px 20px; }
             .partner-section { height: 250px; }
@@ -852,7 +763,6 @@
     <div class="preloader" id="preloader">
         <div class="preloader-spinner"></div>
     </div>
-
     <header class="header" role="banner">
         <div class="container navbar">
             <div class="logo">
@@ -883,7 +793,6 @@
             </div>
         </div>
     </header>
-
     <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
         <div class="mobile-menu-header">
             <div class="logo">
@@ -910,53 +819,35 @@
             <li><a href="search.html"><i class='bx bx-search'></i> Search</a></li>
         </ul>
     </div>
-
-    <section class="hero-section" style="background-image: url('https://macoavell.com.my/wp-content/uploads/2020/04/wax-clear-2.png');" aria-label="Purchase hero section">
+    <section class="hero-section" style="background-image: url('https://www.twaf.com.my/inspiration/assets/products/aurora-colours/vetro/03.jpg');" aria-label="Purchase hero section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>Purchase Metamo Products Online</h1>
             <p>Explore our exquisite range of textured paints and place your order conveniently via WhatsApp.</p>
         </div>
     </section>
-
     <section class="product-grid-section" aria-label="Product catalog section">
         <div class="container">
             <h2>Our Products</h2>
             <div class="product-grid">
                 <div class="product-card">
-                    <img src="https://macoavell.com.my/wp-content/uploads/2020/04/MA04-earth.jpg" alt="Vellma Product" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Vellma+Image+Not+Found'">
-                    <h3>Vellma</h3>
-                    <p>Experience the timeless elegance and smooth, luxurious finish of Vellma, perfect for sophisticated interiors.</p>
+                    <img src="https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-401.jpg" alt="Vellma Product" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Vellma+Image+Not+Found'">
+                    <h3>VETRO</h3>
+                    <p>Experience the timeless elegance and smooth, luxurious finish of VETRO, perfect for sophisticated interiors.</p>
                     <a href="#" class="btn-whatsapp" data-product-name="Vellma" aria-label="Purchase Vellma via WhatsApp"><i class='bx bxl-whatsapp'></i> Buy Now</a>
+                    <a href="VETRO.pdf" class="btn-view-more" aria-label="View more about Vellma">View More</a>
                 </div>
                 <div class="product-card">
-                    <img src="https://www.dufferintile.com/cdn/shop/files/breccia-crema.jpg?v=1722544483&width=990" alt="Vellplas Product" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Vellplas+Image+Not+Found'">
-                    <h3>Vellplas</h3>
-                    <p>Achieve a durable and versatile textured surface with Vellplas, ideal for residential and commercial spaces.</p>
+                    <img src="https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-03.jpg" alt="Vellplas Product" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Vellplas+Image+Not+Found'">
+                    <h3>CEMENTO</h3>
+                    <p>Achieve a durable and versatile textured surface with CEMENTO, ideal for residential and commercial spaces.</p>
                     <a href="#" class="btn-whatsapp" data-product-name="Vellplas" aria-label="Purchase Vellplas via WhatsApp"><i class='bx bxl-whatsapp'></i> Buy Now</a>
+                    <a href="CEMENTO.pdf" class="btn-view-more" aria-label="View more about Vellplas">View More</a>
                 </div>
-                <div class="product-card">
-                    <img src="https://macoavell.com.my/wp-content/uploads/2020/04/MA03-dim-grey-600x600.jpg" alt="Vellcco Product" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Vellcco+Image+Not+Found'">
-                    <h3>Vellcco</h3>
-                    <p>Create stunning, intricate patterns and effects with Vellcco, our premium decorative paint solution.</p>
-                    <a href="#" class="btn-whatsapp" data-product-name="Vellcco" aria-label="Purchase Vellcco via WhatsApp"><i class='bx bxl-whatsapp'></i> Buy Now</a>
-                </div>
-                <div class="product-card">
-                    <img src="https://macoavell.com.my/wp-content/uploads/2020/04/MA10-emerald-600x600.jpg" alt="Vellwax Product" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Vellwax+Image+Not+Found'">
-                    <h3>Vellwax</h3>
-                    <p>Protect and enhance your textured surfaces with Vellwax, offering a subtle sheen and added durability.</p>
-                    <a href="#" class="btn-whatsapp" data-product-name="Vellwax" aria-label="Purchase Vellwax via WhatsApp"><i class='bx bxl-whatsapp'></i> Buy Now</a>
-                </div>
-                <div class="product-card">
-                    <img src="https://macoavell.com.my/wp-content/uploads/2020/04/MA16-sage-green-600x600.jpg" alt="Vellwax Metallic Product" loading="lazy" onerror="this.src='https://via.placeholder.com/600x400?text=Vellwax+Metallic+Image+Not+Found'">
-                    <h3>Vellwax Metallic</h3>
-                    <p>Add a touch of modern glamour with Vellwax Metallic, providing a shimmering, metallic finish to your surfaces.</p>
-                    <a href="#" class="btn-whatsapp" data-product-name="Vellwax Metallic" aria-label="Purchase Vellwax Metallic via WhatsApp"><i class='bx bxl-whatsapp'></i> Buy Now</a>
-                </div>
+                
             </div>
         </div>
     </section>
-
     <section class="inquiry-form-section" aria-label="Product inquiry form section">
         <div class="container">
             <h2>Have Questions or Need a Quote?</h2>
@@ -995,7 +886,6 @@
             </form>
         </div>
     </section>
-
     <section class="partner-section" style="background-image: url('https://macoavell.com.my/wp-content/uploads/2020/04/wax-clear-2.png');" aria-label="Call to action section">
         <div class="partner-content">
             <h2>Need Assistance or Custom Orders?</h2>
@@ -1003,7 +893,6 @@
             <a href="contact.html" class="btn" aria-label="Contact us for assistance">Contact Us</a>
         </div>
     </section>
-
     <footer class="footer" role="contentinfo">
         <div class="container footer-grid">
             <div class="footer-column">
@@ -1043,7 +932,6 @@
             <a href="#" class="scroll-to-top" aria-label="Scroll to top"><i class='bx bx-chevron-up'></i></a>
         </div>
     </footer>
-
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // Preloader
@@ -1053,7 +941,6 @@
                     preloader.classList.add('hidden');
                 }, 500);
             });
-
             // Debounce Utility
             function debounce(func, wait) {
                 let timeout;
@@ -1066,25 +953,20 @@
                     timeout = setTimeout(later, wait);
                 };
             }
-
             // Mobile Menu Toggle
             const hamburger = document.querySelector('.hamburger-menu');
             const mobileMenu = document.getElementById('mobileMenu');
             const closeBtn = document.querySelector('.mobile-menu .close-btn');
             const mobileDropdowns = document.querySelectorAll('.mobile-menu .dropdown-mobile');
-
             function toggleMobileMenu() {
                 mobileMenu.classList.toggle('open');
                 document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
             }
-
             hamburger.addEventListener('click', toggleMobileMenu);
             closeBtn.addEventListener('click', toggleMobileMenu);
-
             mobileMenu.querySelectorAll('a:not(.dropdown-mobile > a)').forEach(link => {
                 link.addEventListener('click', toggleMobileMenu);
             });
-
             mobileDropdowns.forEach(dropdown => {
                 const dropdownLink = dropdown.querySelector('a');
                 const dropdownMenu = dropdown.querySelector('.dropdown-mobile-menu');
@@ -1096,22 +978,18 @@
                     }
                 });
             });
-
             // Scroll to Top
             const scrollToTopBtn = document.querySelector('.scroll-to-top');
             const handleScroll = debounce(() => {
                 scrollToTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
             }, 100);
-
             window.addEventListener('scroll', handleScroll);
-
             scrollToTopBtn.addEventListener('click', () => {
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
                 });
             });
-
             // Header Scroll Effects
             const header = document.querySelector('.header');
             const updateHeader = debounce(() => {
@@ -1123,13 +1001,10 @@
                     header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.05)';
                 }
             }, 100);
-
             window.addEventListener('scroll', updateHeader);
-
             // Image Preloading and Fallback
             const imageElements = document.querySelectorAll('.hero-section, .partner-section, .product-card img, .newsletter-signup img');
             const fallbackImage = 'https://via.placeholder.com/600x400?text=Image+Not+Found';
-
             function preloadImages(imageUrls) {
                 imageUrls.forEach(url => {
                     const img = new Image();
@@ -1147,7 +1022,6 @@
                     };
                 });
             }
-
             const imageUrls = [
                 'https://macoavell.com.my/wp-content/uploads/2020/04/wax-clear-2.png',
                 'https://macoavell.com.my/wp-content/uploads/2020/04/MA04-earth.jpg',
@@ -1160,7 +1034,6 @@
                 fallbackImage
             ];
             preloadImages(imageUrls);
-
             // Scroll-based Animations
             const animateElements = document.querySelectorAll('section, .hero-content, .partner-content, .product-card');
             const observerOptions = {
@@ -1168,7 +1041,6 @@
                 rootMargin: '0px',
                 threshold: 0.1
             };
-
             const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach((entry, index) => {
                     if (entry.isIntersecting) {
@@ -1178,16 +1050,13 @@
                     }
                 });
             }, observerOptions);
-
             animateElements.forEach(el => {
                 observer.observe(el);
             });
-
             const heroSection = document.querySelector('.hero-section');
             if (heroSection && heroSection.getBoundingClientRect().top < window.innerHeight) {
                 document.querySelector('.hero-content').classList.add('animated');
             }
-
             // WhatsApp Integration
             const phoneNumber = '918291093932';
             const whatsappButtons = document.querySelectorAll('.btn-whatsapp');
@@ -1200,7 +1069,6 @@
                     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
                 });
             });
-
             // Inquiry Form Handling
             const inquiryForm = document.getElementById('inquiryForm');
             const submitBtn = document.getElementById('submitBtn');
@@ -1210,20 +1078,17 @@
             const formLoading = document.getElementById('formLoading');
             let lastSubmitTime = 0;
             const submitCooldown = 30000; // 30 seconds
-
             function sanitizeInput(input) {
                 const div = document.createElement('div');
                 div.textContent = input;
                 return div.innerHTML;
             }
-
             function setFieldError(field, isInvalid) {
                 field.setAttribute('aria-invalid', isInvalid);
                 if (isInvalid) {
                     field.focus();
                 }
             }
-
             // Formspree Submission
             inquiryForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
@@ -1233,24 +1098,20 @@
                     formError.classList.add('show');
                     return;
                 }
-
                 const name = sanitizeInput(inquiryForm.name.value.trim());
                 const email = sanitizeInput(inquiryForm.email.value.trim());
                 const product = inquiryForm.product.value;
                 const message = sanitizeInput(inquiryForm.message.value.trim());
-
                 // Reset field states
                 [inquiryForm.name, inquiryForm.email, inquiryForm.product, inquiryForm.message].forEach(field => {
                     setFieldError(field, false);
                 });
-
                 // Validation
                 formError.textContent = '';
                 formSuccess.textContent = '';
                 formError.classList.remove('show');
                 formSuccess.classList.remove('show');
                 let valid = true;
-
                 if (!name) {
                     formError.textContent = 'Please enter your full name.';
                     setFieldError(inquiryForm.name, true);
@@ -1260,7 +1121,6 @@
                     setFieldError(inquiryForm.name, true);
                     valid = false;
                 }
-
                 if (!email) {
                     formError.textContent = 'Please enter your email address.';
                     setFieldError(inquiryForm.email, true);
@@ -1270,13 +1130,11 @@
                     setFieldError(inquiryForm.email, true);
                     valid = false;
                 }
-
                 if (!product) {
                     formError.textContent = 'Please select a product.';
                     setFieldError(inquiryForm.product, true);
                     valid = false;
                 }
-
                 if (!message) {
                     formError.textContent = 'Please enter your message.';
                     setFieldError(inquiryForm.message, true);
@@ -1286,15 +1144,12 @@
                     setFieldError(inquiryForm.message, true);
                     valid = false;
                 }
-
                 if (!valid) {
                     formError.classList.add('show');
                     return;
                 }
-
                 submitBtn.disabled = true;
                 formLoading.classList.add('show');
-
                 try {
                     const response = await fetch(inquiryForm.action, {
                         method: 'POST',
@@ -1310,7 +1165,6 @@
                             _gotcha: inquiryForm._gotcha.value
                         })
                     });
-
                     if (response.ok) {
                         formSuccess.textContent = 'Your inquiry has been sent successfully!';
                         formSuccess.classList.add('show');
@@ -1335,7 +1189,6 @@
                     }, 5000);
                 }
             });
-
             // WhatsApp Form Submission
             whatsappFormBtn.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -1343,14 +1196,12 @@
                 const email = sanitizeInput(inquiryForm.email.value.trim());
                 const product = inquiryForm.product.value;
                 const message = sanitizeInput(inquiryForm.message.value.trim());
-
                 // Validation
                 formError.textContent = '';
                 formSuccess.textContent = '';
                 formError.classList.remove('show');
                 formSuccess.classList.remove('show');
                 let valid = true;
-
                 if (!name) {
                     formError.textContent = 'Please enter your full name.';
                     setFieldError(inquiryForm.name, true);
@@ -1360,7 +1211,6 @@
                     setFieldError(inquiryForm.name, true);
                     valid = false;
                 }
-
                 if (!email) {
                     formError.textContent = 'Please enter your email address.';
                     setFieldError(inquiryForm.email, true);
@@ -1370,13 +1220,11 @@
                     setFieldError(inquiryForm.email, true);
                     valid = false;
                 }
-
                 if (!product) {
                     formError.textContent = 'Please select a product.';
                     setFieldError(inquiryForm.product, true);
                     valid = false;
                 }
-
                 if (!message) {
                     formError.textContent = 'Please enter your message.';
                     setFieldError(inquiryForm.message, true);
@@ -1386,7 +1234,6 @@
                     setFieldError(inquiryForm.message, true);
                     valid = false;
                 }
-
                 if (valid) {
                     const whatsappMessage = encodeURIComponent(`Inquiry from ${name} (${email}):\nProduct: ${product}\nMessage: ${message}`);
                     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${whatsappMessage}`;
@@ -1403,7 +1250,6 @@
                     formError.classList.add('show');
                 }
             });
-
             // Debounced Form Input Validation
             const validateInput = debounce((input, regex, errorMessage, field) => {
                 if (!input.value.trim()) {
@@ -1418,24 +1264,19 @@
                     setFieldError(field, false);
                 }
             }, 300);
-
             inquiryForm.name.addEventListener('input', () => {
                 validateInput(inquiryForm.name, /^[a-zA-Z\s'-]+$/, 'Name should only contain letters, spaces, apostrophes, or hyphens.', inquiryForm.name);
             });
-
             inquiryForm.email.addEventListener('input', () => {
                 validateInput(inquiryForm.email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Please enter a valid email address.', inquiryForm.email);
             });
-
             // Touch Swipe Support for Product Grid
             const productGridSection = document.querySelector('.product-grid-section');
             let touchStartX = 0;
             let touchEndX = 0;
-
             productGridSection.addEventListener('touchstart', (e) => {
                 touchStartX = e.changedTouches[0].screenX;
             });
-
             productGridSection.addEventListener('touchend', (e) => {
                 touchEndX = e.changedTouches[0].screenX;
                 if (touchStartX - touchEndX > 50) {
@@ -1446,7 +1287,6 @@
                     setTimeout(() => productGridSection.classList.remove('swipe-right'), 300);
                 }
             });
-
             // Cleanup
             window.addEventListener('unload', () => {
                 window.removeEventListener('scroll', handleScroll);
@@ -1455,5 +1295,4 @@
         });
     </script>
 </body>
-
 </html>
