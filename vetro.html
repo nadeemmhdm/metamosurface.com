@@ -16,17 +16,16 @@
         :root {
             --primary: #2c3e50;
             --secondary: #e67e22;
+            --secondary-dark: #f39c12;
             --light: #ecf0f1;
             --dark: #2c3e50;
             --accent: #3498db;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Poppins', sans-serif;
             color: #333;
@@ -34,17 +33,14 @@
             background-color: #f9f9f9;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-
         body.dark-mode {
-            background-color: #1a1a1a;
-            color: #f9f9f9;
+            background-color: #121212;
+            color: #e0e0e0 !important;
         }
-
         h1, h2, h3, h4, h5 {
             font-family: 'Playfair Display', serif;
             font-weight: 600;
         }
-
         /* Navigation */
         .navbar {
             padding: 15px 0;
@@ -52,21 +48,17 @@
             background-color: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-
         .navbar.dark-mode {
-            background-color: rgba(26, 26, 26, 0.95);
+            background: linear-gradient(to bottom, rgba(40, 40, 40, 0.95), rgba(20, 20, 20, 0.95));
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
-
         .navbar-brand img {
-            height: 50px;
+            height: 80px;
             transition: transform 0.3s ease;
         }
-
-        .navbar-brand img:hover {
-            transform: scale(1.1);
+        .navbar-brand:hover img {
+            transform: scale(1.05);
         }
-
         .nav-link {
             color: var(--dark);
             font-weight: 500;
@@ -75,12 +67,14 @@
             position: relative;
             padding: 10px 0;
         }
-
         .nav-link:hover {
             color: var(--secondary);
             transform: translateY(-2px);
         }
-
+        .nav-link.active {
+            color: var(--secondary);
+            font-weight: 600;
+        }
         .nav-link::after {
             content: '';
             position: absolute;
@@ -91,37 +85,33 @@
             background-color: var(--secondary);
             transition: width 0.3s ease;
         }
-
-        .nav-link:hover::after {
+        .nav-link:hover::after, .nav-link.active::after {
             width: 100%;
         }
-
         .nav-link.dark-mode {
-            color: #f9f9f9;
+            color: #f9f9f9 !important;
         }
-
         .nav-link.dark-mode:hover {
-            color: var(--secondary);
+            color: var(--secondary-dark) !important;
         }
-
+        .nav-link.dark-mode.active {
+            color: var(--accent) !important;
+        }
         /* Search Bar */
         .search-form {
             position: relative;
             max-width: 200px;
         }
-
         .search-form input {
             padding-right: 40px;
             border-radius: 20px;
             border: 1px solid var(--light);
             transition: all 0.3s ease;
         }
-
         .search-form input:focus {
             border-color: var(--secondary);
             box-shadow: 0 0 5px rgba(230, 126, 34, 0.3);
         }
-
         .search-form button {
             position: absolute;
             right: 5px;
@@ -131,21 +121,20 @@
             border: none;
             color: var(--dark);
         }
-
         .search-form button:hover {
             color: var(--secondary);
         }
-
         .search-form.dark-mode input {
-            background-color: #2c2c2c;
-            border-color: #444;
-            color: #f9f9f9;
+            background-color: #2c2c2c !important;
+            border-color: #444 !important;
+            color: #e0e0e0 !important;
         }
-
         .search-form.dark-mode button {
-            color: #f9f9f9;
+            color: #e0e0e0 !important;
         }
-
+        .search-form.dark-mode button:hover {
+            color: var(--secondary-dark) !important;
+        }
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/01.jpg') no-repeat center center/cover;
@@ -155,23 +144,19 @@
             color: white;
             position: relative;
         }
-
         .hero-content {
             animation: fadeInUp 1s ease-out;
         }
-
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 20px;
             animation: fadeInUp 1s ease-out 0.2s both;
         }
-
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 30px;
             animation: fadeInUp 1s ease-out 0.4s both;
         }
-
         .btn-primary {
             background-color: var(--secondary);
             border: none;
@@ -180,30 +165,31 @@
             transition: all 0.3s ease;
             animation: fadeInUp 1s ease-out 0.6s both;
         }
-
         .btn-primary:hover {
             background-color: var(--primary);
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-
+        .btn-primary.dark-mode {
+            background-color: var(--secondary-dark) !important;
+        }
+        .btn-primary.dark-mode:hover {
+            background-color: var(--accent) !important;
+        }
         /* Section Styling */
         section {
             padding: 80px 0;
         }
-
         .section-title {
             text-align: center;
             margin-bottom: 60px;
         }
-
         .section-title h2 {
             font-size: 2.5rem;
             position: relative;
             display: inline-block;
             padding-bottom: 15px;
         }
-
         .section-title h2::after {
             content: '';
             position: absolute;
@@ -214,7 +200,9 @@
             left: 50%;
             transform: translateX(-50%);
         }
-
+        .section-title.dark-mode h2::after {
+            background: var(--secondary-dark) !important;
+        }
         /* About Section */
         .about-img {
             border-radius: 10px;
@@ -222,11 +210,9 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             animation: fadeInLeft 1s ease-out;
         }
-
         .about-content {
             animation: fadeInRight 1s ease-out;
         }
-
         /* Products Section */
         .product-card {
             background: white;
@@ -237,28 +223,26 @@
             margin-bottom: 30px;
             animation: fadeInUp 1s ease-out;
         }
-
+        .product-card.dark-mode {
+            background: #1e1e1e !important;
+        }
         .product-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
-
         .product-img {
             height: 200px;
             overflow: hidden;
         }
-
         .product-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
-
         .product-card:hover .product-img img {
             transform: scale(1.1);
         }
-
         /* Product Details Section */
         .product-details-img {
             border-radius: 10px;
@@ -266,120 +250,142 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             cursor: pointer;
             transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+            position: relative;
         }
-
         .product-details-img:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
-
         .product-details-img img {
             width: 100%;
             transition: opacity 0.3s ease-out;
         }
-
         .product-details-img.active img {
-            opacity: 0.5;
-            border: 2px solid var(--secondary);
+            opacity: 0.8;
+            border: 3px solid var(--secondary);
         }
-
+        .product-details-img.active::after {
+            content: '\f058';
+            font-family: 'boxicons';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: var(--secondary);
+            font-size: 24px;
+        }
+        .product-details-img.dark-mode.active img {
+            border-color: var(--secondary-dark) !important;
+        }
+        .product-details-img.dark-mode.active::after {
+            color: var(--secondary-dark);
+        }
         .color-item {
             position: relative;
             text-align: center;
+            margin-bottom: 20px;
         }
-
         .color-code-label {
             font-size: 0.9rem;
-            margin-top: 5px;
+            margin-top: 8px;
             color: var(--dark);
             transition: color 0.3s ease;
-        }
-
-        .color-item.active .color-code-label {
-            color: var(--secondary);
             font-weight: 500;
         }
-
+        .color-item.active .color-code-label {
+            color: var(--secondary);
+            font-weight: 600;
+            transform: scale(1.05);
+        }
         .color-item.dark-mode .color-code-label {
-            color: #f9f9f9;
+            color: #e0e0e0 !important;
         }
-
         .color-item.dark-mode.active .color-code-label {
-            color: var(--secondary);
+            color: var(--secondary-dark) !important;
         }
-
-        .fullscreen-img {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
+        .product-details-content {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
         }
-
-        .fullscreen-img.active {
-            display: flex;
-            animation: fadeIn 0.5s ease-out;
+        .product-details-content.dark-mode {
+            background: #1e1e1e !important;
         }
-
-        .fullscreen-img img {
-            max-width: 90vw;
-            max-height: 90vh;
-            animation: zoomIn 0.5s ease-out;
+        .product-details-content:hover {
+            transform: translateY(-5px);
         }
-
-        .carousel-control-prev,
-        .carousel-control-next {
-            width: 5%;
-            background: rgba(0, 0, 0, 0.5);
-            transition: opacity 0.3s ease-out;
+        .product-specs {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
         }
-
-        .carousel-control-prev:hover,
-        .carousel-control-next:hover {
-            opacity: 0.8;
+        .product-specs.dark-mode {
+            border-top-color: #444 !important;
         }
-
-        .carousel-control-prev-icon,
-        .carousel-control-next-icon {
-            background-color: var(--secondary);
+        .product-specs li {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
         }
-
-        /* Back Arrow */
-        .back-arrow {
-            display: inline-flex;
-            align-items: center;
-            color: var(--dark);
-            text-decoration: none;
-            margin-bottom: 20px;
-            transition: all 0.3s ease-out;
-        }
-
-        .back-arrow:hover {
-            color: var(--secondary);
-            transform: translateX(-5px);
-        }
-
-        .back-arrow.dark-mode {
-            color: #f9f9f9;
-        }
-
         /* Inspiration Section */
+        .inspiration {
+            padding: 80px 0;
+        }
+        .inspiration-gallery {
+            column-count: 3;
+            column-gap: 20px;
+        }
         .inspiration-item {
-            margin-bottom: 30px;
+            break-inside: avoid;
+            margin-bottom: 20px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: fadeInUp 1s ease-out;
         }
-
-        .inspiration-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        .inspiration-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
-
+        .inspiration-img {
+            position: relative;
+        }
+        .inspiration-img img {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+        }
+        .inspiration-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 15px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        .inspiration-content.dark-mode {
+            background: rgba(0, 0, 0, 0.75) !important;
+        }
+        .inspiration-content h4 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        .inspiration-content p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .inspiration-item:hover .inspiration-content {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .inspiration-item.dark-mode:hover .inspiration-content {
+            background: rgba(0, 0, 0, 0.85) !important;
+        }
         /* Testimonials Section */
         .testimonial-card {
             background: white;
@@ -389,7 +395,9 @@
             margin-bottom: 30px;
             animation: fadeInUp 1s ease-out;
         }
-
+        .testimonial-card.dark-mode {
+            background: #1e1e1e !important;
+        }
         /* Contact Section */
         .contact-info {
             background: var(--primary);
@@ -398,7 +406,17 @@
             border-radius: 10px;
             animation: fadeInLeft 1s ease-out;
         }
-
+        .contact-info.dark-mode {
+            background: #1e1e1e !important;
+        }
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .contact-info a:hover {
+            color: var(--secondary);
+        }
         .contact-form {
             background: white;
             padding: 40px;
@@ -406,20 +424,28 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             animation: fadeInRight 1s ease-out;
         }
-
+        .contact-form.dark-mode {
+            background: #1e1e1e !important;
+        }
+        .contact-form.dark-mode .form-control {
+            background-color: #2c2c2c !important;
+            color: #e0e0e0 !important;
+            border-color: #444 !important;
+        }
         /* Footer */
         footer {
             background: var(--dark);
             color: white;
             padding: 60px 0 30px;
         }
-
+        footer.dark-mode {
+            background: #0a0a0a !important;
+        }
         .footer-links h5 {
             margin-bottom: 20px;
             position: relative;
             padding-bottom: 10px;
         }
-
         .footer-links h5::after {
             content: '';
             position: absolute;
@@ -429,27 +455,31 @@
             bottom: 0;
             left: 0;
         }
-
+        .footer-links.dark-mode h5::after {
+            background: var(--secondary-dark) !important;
+        }
         .footer-links ul {
             list-style: none;
             padding: 0;
         }
-
         .footer-links li {
             margin-bottom: 10px;
         }
-
         .footer-links a {
             color: #ccc;
             text-decoration: none;
             transition: all 0.3s ease-out;
         }
-
+        .footer-links.dark-mode a {
+            color: #e0e0e0 !important;
+        }
         .footer-links a:hover {
             color: var(--secondary);
             padding-left: 5px;
         }
-
+        .footer-links.dark-mode a:hover {
+            color: var(--secondary-dark) !important;
+        }
         .social-icons a {
             display: inline-block;
             width: 40px;
@@ -462,12 +492,16 @@
             margin-right: 10px;
             transition: all 0.3s ease-out;
         }
-
+        .social-icons.dark-mode a {
+            background: rgba(255, 255, 255, 0.15) !important;
+        }
         .social-icons a:hover {
             background: var(--secondary);
             transform: translateY(-5px);
         }
-
+        .social-icons.dark-mode a:hover {
+            background: var(--secondary-dark) !important;
+        }
         /* Back to Top Button */
         #back-to-top {
             position: fixed;
@@ -486,20 +520,16 @@
             opacity: 0;
             transition: opacity 0.3s ease-out, transform 0.3s ease-out;
         }
-
         #back-to-top.show {
             opacity: 1;
             transform: translateY(0);
         }
-
         #back-to-top:hover {
             transform: translateY(-5px);
         }
-
         #back-to-top.dark-mode {
-            background: #d35400;
+            background: var(--secondary-dark) !important;
         }
-
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -511,7 +541,6 @@
                 transform: translateY(0);
             }
         }
-
         @keyframes fadeInLeft {
             from {
                 opacity: 0;
@@ -522,7 +551,6 @@
                 transform: translateX(0);
             }
         }
-
         @keyframes fadeInRight {
             from {
                 opacity: 0;
@@ -533,7 +561,6 @@
                 transform: translateX(0);
             }
         }
-
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -542,38 +569,22 @@
                 opacity: 1;
             }
         }
-
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.5);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
-
         .animate__animated {
             animation-duration: 0.8s;
         }
-
         /* Page Content */
         .page-content {
             display: none;
             animation: fadeInUp 0.5s ease-out;
         }
-
         .page-content.active {
             display: block;
         }
-
         /* Privacy Policy */
         .privacy-content {
             background: white;
@@ -581,29 +592,30 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
-
+        .privacy-content.dark-mode {
+            background: #1e1e1e !important;
+        }
         /* Share Buttons */
         .share-buttons a {
             margin-right: 10px;
             color: var(--dark);
             transition: color 0.3s ease-out;
         }
-
         .share-buttons a:hover {
             color: var(--secondary);
             animation: pulse 0.5s ease-out;
         }
-
         .share-buttons.dark-mode a {
-            color: #f9f9f9;
+            color: #e0e0e0 !important;
         }
-
+        .share-buttons.dark-mode a:hover {
+            color: var(--secondary-dark) !important;
+        }
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
                 font-size: 2.5rem;
             }
-
             .section-title h2 {
                 font-size: 2rem;
             }
@@ -611,23 +623,28 @@
                 max-width: 100%;
                 margin-top: 10px;
             }
+            .inspiration-gallery {
+                column-count: 2;
+            }
         }
-
         @media (max-width: 768px) {
             .hero {
                 height: 80vh;
             }
-
             .hero h1 {
                 font-size: 2rem;
             }
-
             .about-img, .about-content {
                 margin-bottom: 30px;
             }
-
             .color-item {
                 margin-bottom: 20px;
+            }
+            .inspiration-gallery {
+                column-count: 1;
+            }
+            .navbar-brand img {
+                height: 30px;
             }
         }
     </style>
@@ -636,9 +653,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container">
-            <a class="navbar-brand animate__animated animate__pulse" href="#">
-                <img src="logo.jpg" alt="Metamo Surface Studio Logo" id="logo-img">
-            </a>
+            <a class="navbar-brand animate__animated animate__pulse" href="#"><img src="logo.jpg" alt="Metamo Surface Studio Logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -902,25 +917,33 @@
                                 <div class="color-code-label" data-color-code="#B0A695">#B0A695</div>
                             </div>
                         </div>
-                        <div class="fullscreen-img" id="fullscreen-img">
-                            <img src="" alt="Fullscreen Product Image">
-                            <button class="btn btn-close btn-lg" style="position: absolute; top: 20px; right: 20px; color: white; background: rgba(0,0,0,0.5); border: none;"></button>
-                        </div>
                     </div>
                     <div class="col-lg-6 animate__animated animate__fadeInRight">
-                        <h3>Features</h3>
-                        <p id="product-features">Click a color to view its features</p>
-                        <p>Color Code: <span id="color-code"></span></p>
-                        <div class="share-buttons mt-3">
-                            <a href="#" class="share-btn" data-type="facebook"><i class='bx bxl-facebook bx-md'></i></a>
-                            <a href="#" class="share-btn" data-type="twitter"><i class='bx bxl-twitter bx-md'></i></a>
-                            <a href="#" class="share-btn" data-type="whatsapp"><i class='bx bxl-whatsapp bx-md'></i></a>
-                            <a href="#" class="share-btn" data-type="linkedin"><i class='bx bxl-linkedin bx-md'></i></a>
-                            <a href="#" class="share-btn" data-type="pinterest"><i class='bx bxl-pinterest bx-md'></i></a>
+                        <div class="product-details-content">
+                            <h3>Features</h3>
+                            <p id="product-features">Click a color to view its features</p>
+                            <p>Color Code: <span id="color-code"></span></p>
+                            <div class="product-specs">
+                                <h4>Specifications</h4>
+                                <ul>
+                                    <li><strong>Material:</strong> <span id="product-material"></span></li>
+                                    <li><strong>Thickness:</strong> 20mm</li>
+                                    <li><strong>Finish:</strong> Polished</li>
+                                    <li><strong>Application:</strong> Countertops, Walls, Flooring</li>
+                                    <li><strong>Warranty:</strong> 5 Years</li>
+                                </ul>
+                            </div>
+                            <div class="share-buttons mt-3">
+                                <a href="#" class="share-btn" data-type="facebook"><i class='bx bxl-facebook bx-md'></i></a>
+                                <a href="#" class="share-btn" data-type="twitter"><i class='bx bxl-twitter bx-md'></i></a>
+                                <a href="#" class="share-btn" data-type="whatsapp"><i class='bx bxl-whatsapp bx-md'></i></a>
+                                <a href="#" class="share-btn" data-type="linkedin"><i class='bx bxl-linkedin bx-md'></i></a>
+                                <a href="#" class="share-btn" data-type="pinterest"><i class='bx bxl-pinterest bx-md'></i></a>
+                            </div>
+                            <a href="#" id="buy-now" class="btn btn-success mt-3">
+                                <i class='bx bx-cart'></i> Buy Now
+                            </a>
                         </div>
-                        <a href="#" id="buy-now" class="btn btn-success mt-3">
-                            <i class='bx bx-cart'></i> Buy Now
-                        </a>
                     </div>
                 </div>
             </div>
@@ -999,57 +1022,65 @@
                     <h2>Inspiration Gallery</h2>
                     <p>Discover how our artisanal textures transform spaces</p>
                 </div>
-                <div class="row">
-                    <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp">
-                        <div class="inspiration-item">
-                            <div class="inspiration-img">
-                                <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/01.jpg" alt="Inspiration 1" class="img-fluid">
-                            </div>
-                            <div class="inspiration-content pt-3">
+                <div class="inspiration-gallery">
+                    <div class="inspiration-item animate__animated animate__fadeInUp">
+                        <div class="inspiration-img">
+                            <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/01.jpg" alt="Inspiration 1">
+                            <div class="inspiration-content">
                                 <h4>Modern Kitchen</h4>
                                 <p>Textured quartz countertops for a sleek, artisanal look.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
-                        <div class="inspiration-item">
-                            <div class="inspiration-img">
-                                <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/02.jpg" alt="Inspiration 2" class="img-fluid">
-                            </div>
-                            <div class="inspiration-content pt-3">
+                    <div class="inspiration-item animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                        <div class="inspiration-img">
+                            <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/02.jpg" alt="Inspiration 2">
+                            <div class="inspiration-content">
                                 <h4>Elegant Bathroom</h4>
                                 <p>Artisanal marble surfaces for a luxurious experience.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
-                        <div class="inspiration-item">
-                            <div class="inspiration-img">
-                                <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/03.jpg" alt="Inspiration 3" class="img-fluid">
-                            </div>
-                            <div class="inspiration-content pt-3">
+                    <div class="inspiration-item animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <div class="inspiration-img">
+                            <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/03.jpg" alt="Inspiration 3">
+                            <div class="inspiration-content">
                                 <h4>Commercial Space</h4>
                                 <p>Durable artisanal granite for high-traffic areas.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
-                        <div class="inspiration-item">
-                            <div class="inspiration-img">
-                                <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/04.jpg" alt="Inspiration 4" class="img-fluid">
-                            </div>
-                            <div class="inspiration-content pt-3">
+                    <div class="inspiration-item animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
+                        <div class="inspiration-img">
+                            <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/04.jpg" alt="Inspiration 4">
+                            <div class="inspiration-content">
                                 <h4>Commercial Space</h4>
                                 <p>Durable artisanal granite for high-traffic areas.</p>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
-                        <div class="inspiration-item">
-                            <div class="inspiration-img">
-                                <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/07.jpg" alt="Inspiration 5" class="img-fluid">
+                    <div class="inspiration-item animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">
+                        <div class="inspiration-img">
+                            <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/05.jpg" alt="Inspiration 5">
+                            <div class="inspiration-content">
+                                <h4>Modern Interior</h4>
+                                <p>Artisanal textures for a contemporary aesthetic.</p>
                             </div>
-                            <div class="inspiration-content pt-3">
+                        </div>
+                    </div>
+                    <div class="inspiration-item animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">
+                        <div class="inspiration-img">
+                            <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/06.jpg" alt="Inspiration 5">
+                            <div class="inspiration-content">
+                                <h4>Modern Interior</h4>
+                                <p>Artisanal textures for a contemporary aesthetic.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inspiration-item animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">
+                        <div class="inspiration-img">
+                            <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/07.jpg" alt="Inspiration 5">
+                            <div class="inspiration-content">
                                 <h4>Modern Interior</h4>
                                 <p>Artisanal textures for a contemporary aesthetic.</p>
                             </div>
@@ -1129,21 +1160,21 @@
                                 <i class='bx bx-envelope bx-md me-4'></i>
                                 <div>
                                     <h5>Email</h5>
-                                    <p>metamosurfacestudio@gmail.com</p>
+                                    <p><a href="mailto:metamosurfacestudio@gmail.com">metamosurfacestudio@gmail.com</a></p>
                                 </div>
                             </div>
                             <div class="contact-item d-flex mb-4">
                                 <i class='bx bx-phone bx-md me-4'></i>
                                 <div>
                                     <h5>Phone</h5>
-                                    <p>+91 98469 55954</p>
+                                    <p><a href="tel:+919846955954">+91 98469 55954</a></p>
                                 </div>
                             </div>
                             <div class="contact-item d-flex">
                                 <i class='bx bxl-whatsapp bx-md me-4'></i>
                                 <div>
                                     <h5>WhatsApp</h5>
-                                    <p><a href="https://wa.me/919846955954" target="_blank" style="color: white;">+91 98469 55954</a></p>
+                                    <p><a href="https://wa.me/919846955954" target="_blank">+91 98469 55954</a></p>
                                 </div>
                             </div>
                         </div>
@@ -1151,30 +1182,30 @@
                     <div class="col-lg-7 animate__animated animate__fadeInRight">
                         <div class="contact-form">
                             <h3 class="mb-4">Send Message</h3>
-                            <form>
+                            <form action="https://formspree.io/f/xeozkkag" method="POST">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="name" class="form-label">Your Name</label>
-                                            <input type="text" class="form-control" id="name" required>
+                                            <input type="text" class="form-control" id="name" name="name" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Your Email</label>
-                                            <input type="email" class="form-control" id="email" required>
+                                            <input type="email" class="form-control" id="email" name="email" required>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="mb-3">
                                             <label for="subject" class="form-label">Subject</label>
-                                            <input type="text" class="form-control" id="subject" required>
+                                            <input type="text" class="form-control" id="subject" name="subject" required>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="mb-3">
                                             <label for="message" class="form-label">Message</label>
-                                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -1231,8 +1262,8 @@
                         <h5>Contact Info</h5>
                         <ul>
                             <li><i class='bx bx-map me-2'></i> Malappuram, Kerala</li>
-                            <li><i class='bx bx-phone me-2'></i> +91 98469 55954</li>
-                            <li><i class='bx bx-envelope me-2'></i> metamosurfacestudio@gmail.com</li>
+                            <li><i class='bx bx-phone me-2'></i> <a href="tel:+919846955954">+91 98469 55954</a></li>
+                            <li><i class='bx bx-envelope me-2'></i> <a href="mailto:metamosurfacestudio@gmail.com">metamosurfacestudio@gmail.com</a></li>
                             <li><i class='bx bxl-whatsapp me-2'></i> <a href="https://wa.me/919846955954" target="_blank">+91 98469 55954</a></li>
                         </ul>
                     </div>
@@ -1297,239 +1328,223 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Product data with color codes
-            const productData = {
-                marble: {
-                    title: 'VETRO',
-                    description: 'Elegant textured marble surfaces with unique artisanal patterns.',
-                    mainImg: 'https://www.twaf.com.my/inspiration/assets/products/aurora-colours/vetro/02.jpg',
-                    colors: [
-                        { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-401.jpg', code: '#D3CFC8', features: 'Durable and elegant' },
-                        { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-402.jpg', code: '#F0EDE4', features: 'Classic white finish' },
-                        { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-403.jpg', code: '#B0A695', features: 'Veined texture' }
-                    ]
-                },
-                quartz: {
-                    title: 'CEMENTO',
-                    description: 'Non-porous, artisanal textured quartz for modern countertops.',
-                    mainImg: 'https://www.twaf.com.my/inspiration/assets/products/cement/cemento/04.jpg',
-                    colors: [
-                        { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-01.jpg', code: '#F5F5F0', features: 'Scratch-resistant, low maintenance' },
-                        { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-02.jpg', code: '#E8ECEF', features: 'Sleek modern look' },
-                        { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-03.jpg', code: '#D9D7D2', features: 'Non-porous surface' }
-                    ]
-                },
-                granite: {
-                    title: 'SETA',
-                    description: 'Natural granite with distinctive artisanal textures.',
-                    mainImg: 'https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/05.jpg',
-                    colors: [
-                        { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-201.jpg', code: '#A79B8E', features: 'Unique patterns, long-lasting' },
-                        { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-202.jpg', code: '#8A7B6F', features: 'Bold natural design' },
-                        { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-203.jpg', code: '#6D5D4B', features: 'High durability' }
-                    ]
-                }
-            };
-
-            // Page navigation
-            const pageLinks = document.querySelectorAll('[data-page]');
-            const pageContents = document.querySelectorAll('.page-content');
-            const productTitle = document.getElementById('product-title');
-            const productDescription = document.getElementById('product-description');
-            const productMainImg = document.getElementById('product-main-img');
-            const productFeatures = document.getElementById('product-features');
-            const colorCode = document.getElementById('color-code');
-            const buyNowBtn = document.getElementById('buy-now');
-            const logoImg = document.getElementById('logo-img');
-            const fullscreenImg = document.getElementById('fullscreen-img');
-            const fullscreenImgSrc = fullscreenImg.querySelector('img');
-            const colorOptions = document.getElementById('color-options');
-
-            // Check system theme and set logo
-            function updateTheme() {
-                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                    document.body.classList.add('dark-mode');
-                    document.querySelectorAll('.nav-link, .search-form, .back-arrow, .color-item').forEach(el => el.classList.add('dark-mode'));
-                    logoImg.src = 'logo.png';
-                } else {
-                    document.body.classList.remove('dark-mode');
-                    document.querySelectorAll('.nav-link, .search-form, .back-arrow, .color-item').forEach(el => el.classList.remove('dark-mode'));
-                    logoImg.src = 'logo1.png';
-                }
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Product data with color codes and materials
+        const productData = {
+            marble: {
+                title: 'VETRO',
+                description: 'Elegant textured marble surfaces with unique artisanal patterns.',
+                mainImg: 'https://www.twaf.com.my/inspiration/assets/products/aurora-colours/vetro/02.jpg',
+                material: 'Marble',
+                colors: [
+                    { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-401.jpg', code: '#D3CFC8', features: 'Durable and elegant' },
+                    { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-402.jpg', code: '#F0EDE4', features: 'Classic white finish' },
+                    { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-403.jpg', code: '#B0A695', features: 'Veined texture' },
+                    { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-404.jpg', code: '#B0A695', features: 'Veined texture' },
+                    { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-405.jpg', code: '#B0A695', features: 'Veined texture' },
+                    { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-406.jpg', code: '#B0A695', features: 'Veined texture' }
+                ]
+            },
+            quartz: {
+                title: 'CEMENTO',
+                description: 'Non-porous, artisanal textured quartz for modern countertops.',
+                mainImg: 'https://www.twaf.com.my/inspiration/assets/products/cement/cemento/04.jpg',
+                material: 'Quartz',
+                colors: [
+                    { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-01.jpg', code: '#F5F5F0', features: 'Scratch-resistant, low maintenance' },
+                    { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-02.jpg', code: '#E8ECEF', features: 'Sleek modern look' },
+                    { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-03.jpg', code: '#D9D7D2', features: 'Non-porous surface' },
+                    { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-04.jpg', code: '#B0A695', features: 'Veined texture' },
+                    { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-05.jpg', code: '#B0A695', features: 'Veined texture' },
+                    { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-06.jpg', code: '#B0A695', features: 'Veined texture' }
+                ]
+            },
+            granite: {
+                title: 'SETA',
+                description: 'Natural granite with distinctive artisanal textures.',
+                mainImg: 'https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/05.jpg',
+                material: 'Granite',
+                colors: [
+                    { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-201.jpg', code: '#A79B8E', features: 'Unique patterns, long-lasting' },
+                    { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-202.jpg', code: '#8A7B6F', features: 'Bold natural design' },
+                    { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-203.jpg', code: '#6D5D4B', features: 'High durability' },
+                    { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-204.jpg', code: '#6D5D4B', features: 'High durability' },
+                    { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-205.jpg', code: '#6D5D4B', features: 'High durability' },
+                    { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-206.jpg', code: '#6D5D4B', features: 'High durability' }
+                ]
             }
-            updateTheme();
-            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+        };
 
-            function updateProductDetails(productType) {
-                if (productData[productType]) {
-                    productTitle.textContent = productData[productType].title;
-                    productDescription.textContent = productData[productType].description;
-                    productMainImg.src = productData[productType].mainImg;
-                    productFeatures.textContent = 'Click a color to view its features';
-                    colorCode.textContent = '';
+        // Page navigation
+        const pageLinks = document.querySelectorAll('[data-page]');
+        const pageContents = document.querySelectorAll('.page-content');
+        const productTitle = document.getElementById('product-title');
+        const productDescription = document.getElementById('product-description');
+        const productMainImg = document.getElementById('product-main-img');
+        const productFeatures = document.getElementById('product-features');
+        const colorCode = document.getElementById('color-code');
+        const productMaterial = document.getElementById('product-material');
+        const buyNowBtn = document.getElementById('buy-now');
+        const colorOptions = document.getElementById('color-options');
 
-                    // Update color options
-                    colorOptions.innerHTML = productData[productType].colors.map((color, index) => `
-                        <div class="col-4 color-item animate__animated animate__fadeInUp" style="animation-delay: ${index * 0.2}s;">
-                            <div class="product-details-img">
-                                <img src="${color.img}" alt="Color ${index + 1}" class="img-fluid color-img" data-color-code="${color.code}" data-features="${color.features}" data-product="${productType}">
-                            </div>
-                            <div class="color-code-label" data-color-code="${color.code}">${color.code}</div>
+        // Theme handling
+        function updateTheme() {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.body.classList.add('dark-mode');
+                document.querySelectorAll('.navbar, .nav-link, .search-form, .back-arrow, .color-item, .product-card, .testimonial-card, .contact-info, .contact-form, .privacy-content, .footer-links, .social-icons, #back-to-top, .product-details-content').forEach(el => el.classList.add('dark-mode'));
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.querySelectorAll('.navbar, .nav-link, .search-form, .back-arrow, .color-item, .product-card, .testimonial-card, .contact-info, .contact-form, .privacy-content, .footer-links, .social-icons, #back-to-top, .product-details-content').forEach(el => el.classList.remove('dark-mode'));
+            }
+        }
+        updateTheme();
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+
+        function updateProductDetails(productType) {
+            if (productData[productType]) {
+                productTitle.textContent = productData[productType].title;
+                productDescription.textContent = productData[productType].description;
+                productMainImg.src = productData[productType].mainImg;
+                productFeatures.textContent = 'Click a color to view its features';
+                productMaterial.textContent = productData[productType].material;
+                colorCode.textContent = '';
+
+                // Update color options
+                colorOptions.innerHTML = productData[productType].colors.map((color, index) => `
+                    <div class="col-4 color-item animate__animated animate__fadeInUp" style="animation-delay: ${index * 0.2}s;">
+                        <div class="product-details-img">
+                            <img src="${color.img}" alt="Color ${index + 1}" class="img-fluid color-img" data-color-code="${color.code}" data-features="${color.features}" data-product="${productType}">
                         </div>
-                    `).join('');
+                        <div class="color-code-label" data-color-code="${color.code}">${color.code}</div>
+                    </div>
+                `).join('');
 
-                    buyNowBtn.onclick = () => {
-                        const message = `I'm interested in purchasing ${productData[productType].title}. Please provide more details.`;
-                        window.open(`https://wa.me/919846955954?text=${encodeURIComponent(message)}`, '_blank');
-                    };
+                buyNowBtn.onclick = () => {
+                    const message = `I'm interested in purchasing ${productData[productType].title}. Please provide more details.`;
+                    window.open(`https://wa.me/919846955954?text=${encodeURIComponent(message)}`, '_blank');
+                };
 
-                    const shareButtons = document.querySelectorAll('.share-btn');
-                    shareButtons.forEach(btn => {
-                        btn.onclick = (e) => {
-                            e.preventDefault();
-                            const type = btn.getAttribute('data-type');
-                            const url = window.location.href.split('?')[0] + `?product=${productType}`;
-                            let shareUrl = '';
-                            if (type === 'facebook') {
-                                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-                            } else if (type === 'twitter') {
-                                shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=Check out ${productData[productType].title} from Metamo Surface Studio!`;
-                            } else if (type === 'whatsapp') {
-                                shareUrl = `https://wa.me/?text=Check out ${productData[productType].title} from Metamo Surface Studio: ${url}`;
-                            } else if (type === 'linkedin') {
-                                shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
-                            } else if (type === 'pinterest') {
-                                shareUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(productData[productType].mainImg)}&description=${encodeURIComponent(productData[productType].title)}`;
-                            }
-                            window.open(shareUrl, '_blank');
-                        };
-                    });
-
-                    // Add event listeners to new color images
-                    const colorImgs = document.querySelectorAll('.color-img');
-                    colorImgs.forEach(img => {
-                        img.addEventListener('click', handleColorClick);
-                        img.addEventListener('touchstart', handleColorClick);
-                    });
-                    if (colorImgs.length > 0) {
-                        colorImgs[0].classList.add('active');
-                        colorImgs[0].closest('.color-item').classList.add('active');
-                        productMainImg.src = colorImgs[0].src;
-                        productFeatures.textContent = colorImgs[0].getAttribute('data-features');
-                        colorCode.textContent = colorImgs[0].getAttribute('data-color-code');
-                    }
-                }
-            }
-
-            function handleColorClick(e) {
-                e.preventDefault();
-                const colorImgs = document.querySelectorAll('.color-img');
-                const colorItems = document.querySelectorAll('.color-item');
-                colorImgs.forEach(i => i.classList.remove('active'));
-                colorItems.forEach(item => item.classList.remove('active'));
-                this.classList.add('active');
-                this.closest('.color-item').classList.add('active');
-                productMainImg.src = this.src;
-                productFeatures.textContent = this.getAttribute('data-features');
-                colorCode.textContent = this.getAttribute('data-color-code');
-                this.style.animation = 'pulse 0.5s ease-out';
-                setTimeout(() => {
-                    this.style.animation = '';
-                }, 500);
-                fullscreenImgSrc.src = this.src;
-                fullscreenImg.classList.add('active');
-            }
-
-            const urlParams = new URLSearchParams(window.location.search);
-            const productParam = urlParams.get('product');
-            if (productParam && productData[productParam]) {
-                pageContents.forEach(content => content.classList.remove('active'));
-                document.getElementById('product-details').classList.add('active');
-                pageLinks.forEach(link => link.classList.remove('active'));
-                document.querySelector(`[data-page="product-details"][data-product="${productParam}"]`)?.classList.add('active');
-                updateProductDetails(productParam);
-                window.scrollTo(0, 0);
-            }
-
-            pageLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const targetPage = this.getAttribute('data-page');
-                    const productType = this.getAttribute('data-product');
-
-                    pageLinks.forEach(navLink => navLink.classList.remove('active'));
-                    this.classList.add('active');
-
-                    pageContents.forEach(content => content.classList.remove('active'));
-                    document.getElementById(targetPage).classList.add('active');
-
-                    if (targetPage === 'product-details' && productType) {
-                        updateProductDetails(productType);
-                    }
-
-                    window.scrollTo(0, 0);
-                });
-            });
-
-            fullscreenImg.addEventListener('click', (e) => {
-                if (e.target.tagName !== 'BUTTON') {
-                    fullscreenImg.classList.remove('active');
-                }
-            });
-
-            const closeBtn = fullscreenImg.querySelector('.btn-close');
-            if (closeBtn) {
-                closeBtn.addEventListener('click', () => {
-                    fullscreenImg.classList.remove('active');
-                });
-            }
-
-            const searchInputs = [document.getElementById('searchInput'), document.getElementById('productSearchInput')];
-            const productRows = [document.getElementById('products-preview-row'), document.getElementById('products-row')];
-
-            searchInputs.forEach((input, index) => {
-                input.addEventListener('input', function() {
-                    const searchTerm = this.value.toLowerCase().trim();
-                    const row = productRows[index];
-                    const productCards = row.querySelectorAll('.product-card');
-                    let found = false;
-
-                    productCards.forEach(card => {
-                        const productType = card.getAttribute('data-product');
-                        const productName = productData[productType].title.toLowerCase();
-                        if (searchTerm === '' || productName.includes(searchTerm)) {
-                            card.style.display = 'block';
-                            found = true;
-                            card.classList.remove('animate__animated', 'animate__fadeInUp');
-                            void card.offsetWidth;
-                            card.classList.add('animate__animated', 'animate__fadeInUp');
-                        } else {
-                            card.style.display = 'none';
+                const shareButtons = document.querySelectorAll('.share-btn');
+                shareButtons.forEach(btn => {
+                    btn.onclick = (e) => {
+                        e.preventDefault();
+                        const type = btn.getAttribute('data-type');
+                        const url = window.location.href.split('?')[0] + `?product=${productType}`;
+                        let shareUrl = '';
+                        if (type === 'facebook') {
+                            shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+                        } else if (type === 'twitter') {
+                            shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=Check out ${productData[productType].title} from Metamo Surface Studio!`;
+                        } else if (type === 'whatsapp') {
+                            shareUrl = `https://wa.me/?text=Check out ${productData[productType].title} from Metamo Surface Studio: ${url}`;
+                        } else if (type === 'linkedin') {
+                            shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+                        } else if (type === 'pinterest') {
+                            shareUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(productData[productType].mainImg)}&description=${encodeURIComponent(productData[productType].title)}`;
                         }
-                    });
+                        window.open(shareUrl, '_blank');
+                    };
+                });
 
-                    if (!found && searchTerm !== '') {
-                        row.innerHTML = '<div class="col-12 text-center animate__animated animate__fadeInUp"><p>No products found for "' + searchTerm + '".</p></div>';
-                    } else if (searchTerm === '') {
-                        row.innerHTML = productCards.length ? Array.from(productCards).map(card => card.outerHTML).join('') : '';
-                        productCards.forEach(card => {
-                            card.classList.remove('animate__animated', 'animate__fadeInUp');
-                            void card.offsetWidth;
-                            card.classList.add('animate__animated', 'animate__fadeInUp');
-                        });
+                // Add event listeners to new color images
+                const colorImgs = document.querySelectorAll('.color-img');
+                colorImgs.forEach(img => {
+                    img.addEventListener('click', handleColorClick);
+                    img.addEventListener('touchstart', handleColorClick);
+                });
+
+                if (colorImgs.length > 0) {
+                    colorImgs[0].classList.add('active');
+                    colorImgs[0].closest('.color-item').classList.add('active');
+                    productMainImg.src = colorImgs[0].src;
+                    productFeatures.textContent = colorImgs[0].getAttribute('data-features');
+                    colorCode.textContent = colorImgs[0].getAttribute('data-color-code');
+                }
+            }
+        }
+
+        function handleColorClick(e) {
+            e.preventDefault();
+            const colorImgs = document.querySelectorAll('.color-img');
+            const colorItems = document.querySelectorAll('.color-item');
+            colorImgs.forEach(i => i.classList.remove('active'));
+            colorItems.forEach(item => item.classList.remove('active'));
+            this.classList.add('active');
+            this.closest('.color-item').classList.add('active');
+            productMainImg.src = this.src;
+            productFeatures.textContent = this.getAttribute('data-features');
+            colorCode.textContent = this.getAttribute('data-color-code');
+            this.style.animation = 'pulse 0.5s ease-out';
+            setTimeout(() => {
+                this.style.animation = '';
+            }, 500);
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const productParam = urlParams.get('product');
+        if (productParam && productData[productParam]) {
+            pageContents.forEach(content => content.classList.remove('active'));
+            document.getElementById('product-details').classList.add('active');
+            pageLinks.forEach(link => link.classList.remove('active'));
+            document.querySelector(`[data-page="product-details"][data-product="${productParam}"]`)?.classList.add('active');
+            updateProductDetails(productParam);
+            window.scrollTo(0, 0);
+        }
+
+        pageLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetPage = this.getAttribute('data-page');
+                const productType = this.getAttribute('data-product');
+                pageLinks.forEach(navLink => navLink.classList.remove('active'));
+                this.classList.add('active');
+                pageContents.forEach(content => content.classList.remove('active'));
+                document.getElementById(targetPage).classList.add('active');
+                if (targetPage === 'product-details' && productType) {
+                    updateProductDetails(productType);
+                }
+                window.scrollTo(0, 0);
+            });
+        });
+
+        const searchInputs = [document.getElementById('searchInput'), document.getElementById('productSearchInput')];
+        const productRows = [document.getElementById('products-preview-row'), document.getElementById('products-row')];
+        searchInputs.forEach((input, index) => {
+            input.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                const row = productRows[index];
+                const productCards = row.querySelectorAll('.product-card');
+                let found = false;
+                productCards.forEach(card => {
+                    const productType = card.getAttribute('data-product');
+                    const productName = productData[productType].title.toLowerCase();
+                    if (searchTerm === '' || productName.includes(searchTerm)) {
+                        card.style.display = 'block';
+                        found = true;
+                        card.classList.remove('animate__animated', 'animate__fadeInUp');
+                        void card.offsetWidth;
+                        card.classList.add('animate__animated', 'animate__fadeInUp');
+                    } else {
+                        card.style.display = 'none';
                     }
                 });
+                if (!found && searchTerm !== '') {
+                    row.innerHTML = '<div class="col-12 text-center animate__animated animate__fadeInUp"><p>No products found for "' + searchTerm + '".</p></div>';
+                } else if (searchTerm === '') {
+                    row.innerHTML = productCards.length ? Array.from(productCards).map(card => card.outerHTML).join('') : row.innerHTML;
+                }
             });
+        });
 
+        // Back to top button
             const animateElements = document.querySelectorAll('.animate__animated');
             function checkScroll() {
                 animateElements.forEach(element => {
                     const elementPosition = element.getBoundingClientRect().top;
                     const screenPosition = window.innerHeight / 1.3;
                     if (elementPosition < screenPosition && !element.classList.contains('animate__fadeInUp')) {
-                        element.classList.add('animate__fadeInUp');
+                        element.classList.add('animate__animated', 'animate__fadeInUp');
                     }
                 });
             }
@@ -1559,6 +1574,6 @@
                 });
             }
         });
-    </script>
+</script>
 </body>
 </html>
