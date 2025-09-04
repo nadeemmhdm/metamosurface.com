@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metamo Surface Studio</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Animate.css for animations -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e67e22;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --accent: #3498db;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f9f9f9;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+
+        /* Navigation */
+        .navbar {
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar.dark-mode {
+            background-color: rgba(26, 26, 26, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-brand img {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-brand img:hover {
+            transform: scale(1.1);
+        }
+
+        .nav-link {
+            color: var(--dark);
+            font-weight: 500;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 10px 0;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.dark-mode {
+            color: #f9f9f9;
+        }
+
+        .nav-link.dark-mode:hover {
+            color: var(--secondary);
+        }
+
+        /* Search Bar */
+        .search-form {
+            position: relative;
+            max-width: 200px;
+        }
+
+        .search-form input {
+            padding-right: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--light);
+            transition: all 0.3s ease;
+        }
+
+        .search-form input:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 5px rgba(230, 126, 34, 0.3);
+        }
+
+        .search-form button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--dark);
+        }
+
+        .search-form button:hover {
+            color: var(--secondary);
+        }
+
+        .search-form.dark-mode input {
+            background-color: #2c2c2c;
+            border-color: #444;
+            color: #f9f9f9;
+        }
+
+        .search-form.dark-mode button {
+            color: #f9f9f9;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/01.jpg') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* About Section */
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .about-content {
+            animation: fadeInRight 1s ease-out;
+        }
+
+        /* Products Section */
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        /* Product Details Section */
+        .product-details-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+        }
+
+        .product-details-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-details-img img {
+            width: 100%;
+            transition: opacity 0.3s ease-out;
+        }
+
+        .product-details-img.active img {
+            opacity: 0.5;
+            border: 2px solid var(--secondary);
+        }
+
+        .color-item {
+            position: relative;
+            text-align: center;
+        }
+
+        .color-code-label {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            color: var(--dark);
+            transition: color 0.3s ease;
+        }
+
+        .color-item.active .color-code-label {
+            color: var(--secondary);
+            font-weight: 500;
+        }
+
+        .color-item.dark-mode .color-code-label {
+            color: #f9f9f9;
+        }
+
+        .color-item.dark-mode.active .color-code-label {
+            color: var(--secondary);
+        }
+
+        .fullscreen-img {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fullscreen-img.active {
+            display: flex;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .fullscreen-img img {
+            max-width: 90vw;
+            max-height: 90vh;
+            animation: zoomIn 0.5s ease-out;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%;
+            background: rgba(0, 0, 0, 0.5);
+            transition: opacity 0.3s ease-out;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            opacity: 0.8;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: var(--secondary);
+        }
+
+        /* Back Arrow */
+        .back-arrow {
+            display: inline-flex;
+            align-items: center;
+            color: var(--dark);
+            text-decoration: none;
+            margin-bottom: 20px;
+            transition: all 0.3s ease-out;
+        }
+
+        .back-arrow:hover {
+            color: var(--secondary);
+            transform: translateX(-5px);
+        }
+
+        .back-arrow.dark-mode {
+            color: #f9f9f9;
+        }
+
+        /* Inspiration Section */
+        .inspiration-item {
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .inspiration-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Testimonials Section */
+        .testimonial-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            background: var(--primary);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            animation: fadeInRight 1s ease-out;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-links h5 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h5::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease-out;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s ease-out;
+        }
+
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        }
+
+        #back-to-top.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #back-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        #back-to-top.dark-mode {
+            background: #d35400;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .animate__animated {
+            animation-duration: 0.8s;
+        }
+
+        /* Page Content */
+        .page-content {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* Privacy Policy */
+        .privacy-content {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Share Buttons */
+        .share-buttons a {
+            margin-right: 10px;
+            color: var(--dark);
+            transition: color 0.3s ease-out;
+        }
+
+        .share-buttons a:hover {
+            color: var(--secondary);
+            animation: pulse 0.5s ease-out;
+        }
+
+        .share-buttons.dark-mode a {
+            color: #f9f9f9;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            .search-form {
+                max-width: 100%;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                height: 80vh;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-img, .about-content {
+                margin-bottom: 30px;
+            }
+
+            .color-item {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand animate__animated animate__pulse" href="#">
+                <img src="logo.png" alt="Metamo Surface Studio Logo" id="logo-img">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active animate__animated animate__fadeIn" href="#" data-page="home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="products" style="animation-delay: 0.1s;">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="about" style="animation-delay: 0.2s;">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="inspiration" style="animation-delay: 0.3s;">Inspiration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="contact" style="animation-delay: 0.4s;">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="search-form d-flex animate__animated animate__fadeIn" style="animation-delay: 0.5s;">
+                            <input type="text" class="form-control" placeholder="Search products..." id="searchInput">
+                            <button type="submit"><i class='bx bx-search'></i></button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Home Page -->
+    <div id="home" class="page-content active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="hero-content animate__animated animate__fadeInUp">
+                            <h1>Artisanal Texture Surfaces</h1>
+                            <p>Metamo Surface Studio crafts modern artisanal texture products that blend aesthetics, durability, and sustainability for your spaces.</p>
+                            <a href="#" class="btn btn-primary" data-page="products">Explore Products</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Products Preview Section -->
+        <section class="products-preview">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>Featured Artisanal Products</h2>
+                    <p>Discover our premium textured surface solutions</p>
+                </div>
+                <div class="row" id="products-preview-row">
+                    <div class="col-md-4 animate__animated animate__fadeInUp">
+                        <div class="product-card" data-product="marble">
+                            <div class="product-img">
+                                <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/vetro/02.jpg" alt="Artisanal Marble">
+                            </div>
+                            <div class="product-content p-4">
+                                <h4>VETRO</h4>
+                                <p>Elegant textured marble surfaces with unique artisanal patterns.</p>
+                                <a href="#" class="btn btn-outline-primary" data-page="product-details" data-product="marble">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                        <div class="product-card" data-product="quartz">
+                            <div class="product-img">
+                                <img src="https://www.twaf.com.my/inspiration/assets/products/cement/cemento/04.jpg" alt="Textured Quartz">
+                            </div>
+                            <div class="product-content p-4">
+                                <h4>CEMENTO</h4>
+                                <p>Non-porous, artisanal textured quartz for modern countertops.</p>
+                                <a href="#" class="btn btn-outline-primary" data-page="product-details" data-product="quartz">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <div class="product-card" data-product="granite">
+                            <div class="product-img">
+                                <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/05.jpg" alt="Artisanal Granite">
+                            </div>
+                            <div class="product-content p-4">
+                                <h4>SETA</h4>
+                                <p>Natural granite with distinctive artisanal textures.</p>
+                                <a href="#" class="btn btn-outline-primary" data-page="product-details" data-product="granite">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>Why Choose Us</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 animate__animated animate__fadeInUp">
+                        <div class="text-center">
+                            <i class='bx bx-check-shield bx-lg' style="color: var(--secondary); margin-bottom: 20px;"></i>
+                            <h4>Premium Quality</h4>
+                            <p>Our artisanal surfaces are crafted with top-tier materials.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                        <div class="text-center">
+                            <i class='bx bx-customize bx-lg' style="color: var(--secondary); margin-bottom: 20px;"></i>
+                            <h4>Artisanal Craftsmanship</h4>
+                            <p>Unique textures designed to elevate your spaces.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <div class="text-center">
+                            <i class='bx bx-time-five bx-lg' style="color: var(--secondary); margin-bottom: 20px;"></i>
+                            <h4>Timely Delivery</h4>
+                            <p>We ensure prompt delivery for all projects.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Preview Section -->
+        <section class="about-preview">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 animate__animated animate__fadeInLeft">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="About Metamo Surface" class="img-fluid about-img">
+                    </div>
+                    <div class="col-lg-6 animate__animated animate__fadeInRight">
+                        <h2>About Metamo Surface Studio</h2>
+                        <p>We specialize in modern artisanal texture products, crafted in Kerala, India, to transform spaces with elegance and durability.</p>
+                        <p>Our commitment to quality and unique designs sets us apart.</p>
+                        <a href="#" class="btn btn-primary" data-page="about">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonials Section -->
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>What Our Clients Say</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 animate__animated animate__fadeInUp">
+                        <div class="testimonial-card">
+                            <p>"The artisanal marble textures transformed our kitchen beautifully!"</p>
+                            <h5>John Mathew</h5>
+                            <p>Residential Client</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                        <div class="testimonial-card">
+                            <p>"The textured quartz added a modern touch to our office space."</p>
+                            <h5>Anna Varghese</h5>
+                            <p>Commercial Client</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <div class="testimonial-card">
+                            <p>"The granite textures are stunning and durable!"</p>
+                            <h5>Rahul Nair</h5>
+                            <p>Residential Client</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Products Page -->
+    <div id="products" class="page-content">
+        <section class="products" style="padding-top: 120px;">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>SURFACE COLOR PALETTE</h2>
+                    <p>Explore our modern artisanal texture surfaces</p>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <form class="search-form d-flex">
+                            <input type="text" class="form-control" placeholder="Search products..." id="productSearchInput">
+                            <button type="submit"><i class='bx bx-search'></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row" id="products-row">
+                    <div class="col-md-4 animate__animated animate__fadeInUp">
+                        <div class="product-card" data-product="marble">
+                            <div class="product-img">
+                                <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/vetro/02.jpg" alt="Artisanal Marble">
+                            </div>
+                            <div class="product-content p-4">
+                                <h4>VETRO</h4>
+                                <p>Elegant textured marble surfaces with unique artisanal patterns.</p>
+                                <a href="#" class="btn btn-outline-primary" data-page="product-details" data-product="marble">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                        <div class="product-card" data-product="quartz">
+                            <div class="product-img">
+                                <img src="https://www.twaf.com.my/inspiration/assets/products/cement/cemento/04.jpg" alt="Textured Quartz">
+                            </div>
+                            <div class="product-content p-4">
+                                <h4>CEMENTO</h4>
+                                <p>Non-porous, artisanal textured quartz for modern countertops.</p>
+                                <a href="#" class="btn btn-outline-primary" data-page="product-details" data-product="quartz">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <div class="product-card" data-product="granite">
+                            <div class="product-img">
+                                <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/05.jpg" alt="Artisanal Granite">
+                            </div>
+                            <div class="product-content p-4">
+                                <h4>SETA</h4>
+                                <p>Natural granite with distinctive artisanal textures.</p>
+                                <a href="#" class="btn btn-outline-primary" data-page="product-details" data-product="granite">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Product Details Page -->
+    <div id="product-details" class="page-content">
+        <section class="product-details" style="padding-top: 120px;">
+            <div class="container">
+                <a href="#" class="back-arrow animate__animated animate__fadeIn" data-page="products"><i class='bx bx-arrow-back me-2'></i> Back to Products</a>
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2 id="product-title">Product Details</h2>
+                    <p id="product-description">Select a color to view its features</p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 animate__animated animate__fadeInLeft">
+                        <div class="product-details-img">
+                            <img id="product-main-img" src="https://www.twaf.com.my/products/assets/packaging/AC-Vetro.jpg" alt="Product Main Image" class="img-fluid">
+                        </div>
+                        <div class="row mt-4" id="color-options">
+                            <div class="col-4 color-item">
+                                <div class="product-details-img">
+                                    <img src="https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-401.jpg" alt="Color 1" class="img-fluid color-img" data-color-code="#D3CFC8" data-features="Durable and elegant" data-product="marble">
+                                </div>
+                                <div class="color-code-label" data-color-code="#D3CFC8">#D3CFC8</div>
+                            </div>
+                            <div class="col-4 color-item">
+                                <div class="product-details-img">
+                                    <img src="https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-402.jpg" alt="Color 2" class="img-fluid color-img" data-color-code="#F0EDE4" data-features="Classic white finish" data-product="marble">
+                                </div>
+                                <div class="color-code-label" data-color-code="#F0EDE4">#F0EDE4</div>
+                            </div>
+                            <div class="col-4 color-item">
+                                <div class="product-details-img">
+                                    <img src="https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-403.jpg" alt="Color 3" class="img-fluid color-img" data-color-code="#B0A695" data-features="Veined texture" data-product="marble">
+                                </div>
+                                <div class="color-code-label" data-color-code="#B0A695">#B0A695</div>
+                            </div>
+                        </div>
+                        <div class="fullscreen-img" id="fullscreen-img">
+                            <img src="" alt="Fullscreen Product Image">
+                            <button class="btn btn-close btn-lg" style="position: absolute; top: 20px; right: 20px; color: white; background: rgba(0,0,0,0.5); border: none;"></button>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 animate__animated animate__fadeInRight">
+                        <h3>Features</h3>
+                        <p id="product-features">Click a color to view its features</p>
+                        <p>Color Code: <span id="color-code"></span></p>
+                        <div class="share-buttons mt-3">
+                            <a href="#" class="share-btn" data-type="facebook"><i class='bx bxl-facebook bx-md'></i></a>
+                            <a href="#" class="share-btn" data-type="twitter"><i class='bx bxl-twitter bx-md'></i></a>
+                            <a href="#" class="share-btn" data-type="whatsapp"><i class='bx bxl-whatsapp bx-md'></i></a>
+                            <a href="#" class="share-btn" data-type="linkedin"><i class='bx bxl-linkedin bx-md'></i></a>
+                            <a href="#" class="share-btn" data-type="pinterest"><i class='bx bxl-pinterest bx-md'></i></a>
+                        </div>
+                        <a href="#" id="buy-now" class="btn btn-success mt-3">
+                            <i class='bx bx-cart'></i> Buy Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- About Page -->
+    <div id="about" class="page-content">
+        <section class="about" style="padding-top: 120px;">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>About Us</h2>
+                    <p>Learn more about Metamo Surface Studio</p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 animate__animated animate__fadeInLeft">
+                        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="About Us" class="img-fluid about-img">
+                    </div>
+                    <div class="col-lg-6 animate__animated animate__fadeInRight">
+                        <h3>Our Story</h3>
+                        <p>Metamo Surface Studio, based in Malappuram, Kerala, specializes in modern artisanal texture products, blending traditional craftsmanship with contemporary design.</p>
+                        <p>Our surfaces are crafted to inspire and endure, transforming spaces with unique textures.</p>
+                        <h3>Our Mission</h3>
+                        <p>To deliver artisanal surface solutions that elevate spaces with quality and innovation.</p>
+                        <h3>Our Values</h3>
+                        <ul>
+                            <li>Artisanal excellence</li>
+                            <li>Innovative textures</li>
+                            <li>Customer satisfaction</li>
+                            <li>Sustainability</li>
+                        </ul>
+                        <a href="https://wa.me/919846955954" target="_blank" class="btn btn-success mt-3">
+                            <i class='bx bxl-whatsapp'></i> Contact via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Team Section -->
+        <section class="team">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>Our Team</h2>
+                    <p>Meet the experts behind Metamo Surface Studio</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 animate__animated animate__fadeInUp">
+                        <div class="text-center">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Team Member 1" class="img-fluid rounded-circle mb-3" style="width: 150px;">
+                            <h4>Ahmed Khan</h4>
+                            <p>Founder & CEO</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                        <div class="text-center">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Team Member 2" class="img-fluid rounded-circle mb-3" style="width: 150px;">
+                            <h4>Sneha Menon</h4>
+                            <p>Design Director</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <div class="text-center">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Team Member 3" class="img-fluid rounded-circle mb-3" style="width: 150px;">
+                            <h4>Vikram Patel</h4>
+                            <p>Operations Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Inspiration Page -->
+    <div id="inspiration" class="page-content">
+        <section class="inspiration" style="padding-top: 120px;">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>Inspiration Gallery</h2>
+                    <p>Discover how our artisanal textures transform spaces</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp">
+                        <div class="inspiration-item">
+                            <div class="inspiration-img">
+                                <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/01.jpg" alt="Inspiration 1" class="img-fluid">
+                            </div>
+                            <div class="inspiration-content pt-3">
+                                <h4>Modern Kitchen</h4>
+                                <p>Textured quartz countertops for a sleek, artisanal look.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                        <div class="inspiration-item">
+                            <div class="inspiration-img">
+                                <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/02.jpg" alt="Inspiration 2" class="img-fluid">
+                            </div>
+                            <div class="inspiration-content pt-3">
+                                <h4>Elegant Bathroom</h4>
+                                <p>Artisanal marble surfaces for a luxurious experience.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <div class="inspiration-item">
+                            <div class="inspiration-img">
+                                <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/03.jpg" alt="Inspiration 3" class="img-fluid">
+                            </div>
+                            <div class="inspiration-content pt-3">
+                                <h4>Commercial Space</h4>
+                                <p>Durable artisanal granite for high-traffic areas.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <div class="inspiration-item">
+                            <div class="inspiration-img">
+                                <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/04.jpg" alt="Inspiration 4" class="img-fluid">
+                            </div>
+                            <div class="inspiration-content pt-3">
+                                <h4>Commercial Space</h4>
+                                <p>Durable artisanal granite for high-traffic areas.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <div class="inspiration-item">
+                            <div class="inspiration-img">
+                                <img src="https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/07.jpg" alt="Inspiration 5" class="img-fluid">
+                            </div>
+                            <div class="inspiration-content pt-3">
+                                <h4>Modern Interior</h4>
+                                <p>Artisanal textures for a contemporary aesthetic.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- FAQ Section -->
+        <section class="faq">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Answers to common questions about our artisanal products</p>
+                </div>
+                <div class="accordion" id="faqAccordion">
+                    <div class="accordion-item animate__animated animate__fadeInUp">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                What materials do you offer?
+                            </button>
+                        </h2>
+                        <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We offer artisanal marble, textured quartz, granite, and custom surface solutions.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                How long does installation take?
+                            </button>
+                        </h2>
+                        <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Installation typically takes 2-5 days, depending on project size.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                Do you offer warranties?
+                            </button>
+                        </h2>
+                        <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, we provide warranties on our artisanal products. Contact us for details.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Contact Page -->
+    <div id="contact" class="page-content">
+        <section class="contact" style="padding-top: 120px;">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>Contact Us</h2>
+                    <p>Get in touch for inquiries about our artisanal products</p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-5 animate__animated animate__fadeInLeft">
+                        <div class="contact-info">
+                            <h3 class="mb-4">Get In Touch</h3>
+                            <div class="contact-item d-flex mb-4">
+                                <i class='bx bx-map bx-md me-4'></i>
+                                <div>
+                                    <h5>Address</h5>
+                                    <p>Near AL Huda School, Kadampuzha Road, Melmuri, Malappuram, Kerala, India</p>
+                                </div>
+                            </div>
+                            <div class="contact-item d-flex mb-4">
+                                <i class='bx bx-envelope bx-md me-4'></i>
+                                <div>
+                                    <h5>Email</h5>
+                                    <p>metamosurfacestudio@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="contact-item d-flex mb-4">
+                                <i class='bx bx-phone bx-md me-4'></i>
+                                <div>
+                                    <h5>Phone</h5>
+                                    <p>+91 98469 55954</p>
+                                </div>
+                            </div>
+                            <div class="contact-item d-flex">
+                                <i class='bx bxl-whatsapp bx-md me-4'></i>
+                                <div>
+                                    <h5>WhatsApp</h5>
+                                    <p><a href="https://wa.me/919846955954" target="_blank" style="color: white;">+91 98469 55954</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 animate__animated animate__fadeInRight">
+                        <div class="contact-form">
+                            <h3 class="mb-4">Send Message</h3>
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Your Name</label>
+                                            <input type="text" class="form-control" id="name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Your Email</label>
+                                            <input type="email" class="form-control" id="email" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="subject" class="form-label">Subject</label>
+                                            <input type="text" class="form-control" id="subject" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="message" class="form-label">Message</label>
+                                            <textarea class="form-control" id="message" rows="5" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary">Send Message</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <h3 class="text-white mb-4">Metamo Surface Studio</h3>
+                    <p>Transforming spaces with modern artisanal texture surfaces. Quality, innovation, and craftsmanship are our core values.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="animate__animated animate__pulse"><i class='bx bxl-facebook'></i></a>
+                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.1s;"><i class='bx bxl-instagram'></i></a>
+                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.2s;"><i class='bx bxl-twitter'></i></a>
+                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.3s;"><i class='bx bxl-linkedin'></i></a>
+                        <a href="https://wa.me/919846955954" target="_blank" class="animate__animated animate__pulse" style="animation-delay: 0.4s;"><i class='bx bxl-whatsapp'></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-5">
+                    <div class="footer-links">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="#" data-page="home">Home</a></li>
+                            <li><a href="#" data-page="products">Products</a></li>
+                            <li><a href="#" data-page="about">About</a></li>
+                            <li><a href="#" data-page="inspiration">Inspiration</a></li>
+                            <li><a href="#" data-page="contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-5">
+                    <div class="footer-links">
+                        <h5>Products</h5>
+                        <ul>
+                            <li><a href="#" data-page="product-details" data-product="marble">Artisanal Marble</a></li>
+                            <li><a href="#" data-page="product-details" data-product="quartz">Textured Quartz</a></li>
+                            <li><a href="#" data-page="product-details" data-product="granite">Artisanal Granite</a></li>
+                            <li><a href="#">Custom Solutions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-5">
+                    <div class="footer-links">
+                        <h5>Contact Info</h5>
+                        <ul>
+                            <li><i class='bx bx-map me-2'></i> Malappuram, Kerala</li>
+                            <li><i class='bx bx-phone me-2'></i> +91 98469 55954</li>
+                            <li><i class='bx bx-envelope me-2'></i> metamosurfacestudio@gmail.com</li>
+                            <li><i class='bx bxl-whatsapp me-2'></i> <a href="https://wa.me/919846955954" target="_blank">+91 98469 55954</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="border-top pt-4 mt-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="mb-0">© 2023 Metamo Surface Studio. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Back to Top Button -->
+    <div id="back-to-top" title="Back to Top" class="animate__animated animate__fadeIn">
+        <i class='bx bx-chevron-up'></i>
+    </div>
+    <!-- Privacy Policy Modal -->
+    <div class="modal fade" id="privacyModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Privacy Policy</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="privacy-content animate__animated animate__fadeIn">
+                        <h3>Privacy Policy</h3>
+                        <p>Last updated: September 20, 2023</p>
+                        <h4>1. Information We Collect</h4>
+                        <p>We may collect personal information that you provide to us when using our website, including but not limited to your name, email address, phone number, and any other information you choose to provide.</p>
+                        <h4>2. How We Use Your Information</h4>
+                        <p>We use the information we collect to:</p>
+                        <ul>
+                            <li>Provide, maintain, and improve our services</li>
+                            <li>Respond to your comments, questions, and requests</li>
+                            <li>Send you technical notices, updates, and support messages</li>
+                            <li>Communicate with you about products, services, and events</li>
+                        </ul>
+                        <h4>3. Sharing Your Information</h4>
+                        <p>We do not share your personal information with third parties except as described in this Privacy Policy.</p>
+                        <h4>4. Security</h4>
+                        <p>We take reasonable measures to help protect your personal information from loss, theft, misuse, and unauthorized access.</p>
+                        <h4>5. Your Choices</h4>
+                        <p>You may update or delete your information at any time by contacting us at metamosurfacestudio@gmail.com.</p>
+                        <h4>6. Changes to This Privacy Policy</h4>
+                        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+                        <h4>7. Contact Us</h4>
+                        <p>If you have any questions about this Privacy Policy, please contact us at metamosurfacestudio@gmail.com.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Product data with color codes
+            const productData = {
+                marble: {
+                    title: 'VETRO',
+                    description: 'Elegant textured marble surfaces with unique artisanal patterns.',
+                    mainImg: 'https://www.twaf.com.my/inspiration/assets/products/aurora-colours/vetro/02.jpg',
+                    colors: [
+                        { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-401.jpg', code: '#D3CFC8', features: 'Durable and elegant' },
+                        { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-402.jpg', code: '#F0EDE4', features: 'Classic white finish' },
+                        { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-403.jpg', code: '#B0A695', features: 'Veined texture' }
+                    ]
+                },
+                quartz: {
+                    title: 'CEMENTO',
+                    description: 'Non-porous, artisanal textured quartz for modern countertops.',
+                    mainImg: 'https://www.twaf.com.my/inspiration/assets/products/cement/cemento/04.jpg',
+                    colors: [
+                        { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-01.jpg', code: '#F5F5F0', features: 'Scratch-resistant, low maintenance' },
+                        { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-02.jpg', code: '#E8ECEF', features: 'Sleek modern look' },
+                        { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-03.jpg', code: '#D9D7D2', features: 'Non-porous surface' }
+                    ]
+                },
+                granite: {
+                    title: 'SETA',
+                    description: 'Natural granite with distinctive artisanal textures.',
+                    mainImg: 'https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/05.jpg',
+                    colors: [
+                        { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-201.jpg', code: '#A79B8E', features: 'Unique patterns, long-lasting' },
+                        { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-202.jpg', code: '#8A7B6F', features: 'Bold natural design' },
+                        { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-203.jpg', code: '#6D5D4B', features: 'High durability' }
+                    ]
+                }
+            };
+
+            // Page navigation
+            const pageLinks = document.querySelectorAll('[data-page]');
+            const pageContents = document.querySelectorAll('.page-content');
+            const productTitle = document.getElementById('product-title');
+            const productDescription = document.getElementById('product-description');
+            const productMainImg = document.getElementById('product-main-img');
+            const productFeatures = document.getElementById('product-features');
+            const colorCode = document.getElementById('color-code');
+            const buyNowBtn = document.getElementById('buy-now');
+            const logoImg = document.getElementById('logo-img');
+            const fullscreenImg = document.getElementById('fullscreen-img');
+            const fullscreenImgSrc = fullscreenImg.querySelector('img');
+            const colorOptions = document.getElementById('color-options');
+
+            // Check system theme and set logo
+            function updateTheme() {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.body.classList.add('dark-mode');
+                    document.querySelectorAll('.nav-link, .search-form, .back-arrow, .color-item').forEach(el => el.classList.add('dark-mode'));
+                    logoImg.src = 'logo.png';
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    document.querySelectorAll('.nav-link, .search-form, .back-arrow, .color-item').forEach(el => el.classList.remove('dark-mode'));
+                    logoImg.src = 'logo1.png';
+                }
+            }
+            updateTheme();
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+
+            function updateProductDetails(productType) {
+                if (productData[productType]) {
+                    productTitle.textContent = productData[productType].title;
+                    productDescription.textContent = productData[productType].description;
+                    productMainImg.src = productData[productType].mainImg;
+                    productFeatures.textContent = 'Click a color to view its features';
+                    colorCode.textContent = '';
+
+                    // Update color options
+                    colorOptions.innerHTML = productData[productType].colors.map((color, index) => `
+                        <div class="col-4 color-item animate__animated animate__fadeInUp" style="animation-delay: ${index * 0.2}s;">
+                            <div class="product-details-img">
+                                <img src="${color.img}" alt="Color ${index + 1}" class="img-fluid color-img" data-color-code="${color.code}" data-features="${color.features}" data-product="${productType}">
+                            </div>
+                            <div class="color-code-label" data-color-code="${color.code}">${color.code}</div>
+                        </div>
+                    `).join('');
+
+                    buyNowBtn.onclick = () => {
+                        const message = `I'm interested in purchasing ${productData[productType].title}. Please provide more details.`;
+                        window.open(`https://wa.me/919846955954?text=${encodeURIComponent(message)}`, '_blank');
+                    };
+
+                    const shareButtons = document.querySelectorAll('.share-btn');
+                    shareButtons.forEach(btn => {
+                        btn.onclick = (e) => {
+                            e.preventDefault();
+                            const type = btn.getAttribute('data-type');
+                            const url = window.location.href.split('?')[0] + `?product=${productType}`;
+                            let shareUrl = '';
+                            if (type === 'facebook') {
+                                shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+                            } else if (type === 'twitter') {
+                                shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=Check out ${productData[productType].title} from Metamo Surface Studio!`;
+                            } else if (type === 'whatsapp') {
+                                shareUrl = `https://wa.me/?text=Check out ${productData[productType].title} from Metamo Surface Studio: ${url}`;
+                            } else if (type === 'linkedin') {
+                                shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
+                            } else if (type === 'pinterest') {
+                                shareUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(productData[productType].mainImg)}&description=${encodeURIComponent(productData[productType].title)}`;
+                            }
+                            window.open(shareUrl, '_blank');
+                        };
+                    });
+
+                    // Add event listeners to new color images
+                    const colorImgs = document.querySelectorAll('.color-img');
+                    colorImgs.forEach(img => {
+                        img.addEventListener('click', handleColorClick);
+                        img.addEventListener('touchstart', handleColorClick);
+                    });
+                    if (colorImgs.length > 0) {
+                        colorImgs[0].classList.add('active');
+                        colorImgs[0].closest('.color-item').classList.add('active');
+                        productMainImg.src = colorImgs[0].src;
+                        productFeatures.textContent = colorImgs[0].getAttribute('data-features');
+                        colorCode.textContent = colorImgs[0].getAttribute('data-color-code');
+                    }
+                }
+            }
+
+            function handleColorClick(e) {
+                e.preventDefault();
+                const colorImgs = document.querySelectorAll('.color-img');
+                const colorItems = document.querySelectorAll('.color-item');
+                colorImgs.forEach(i => i.classList.remove('active'));
+                colorItems.forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+                this.closest('.color-item').classList.add('active');
+                productMainImg.src = this.src;
+                productFeatures.textContent = this.getAttribute('data-features');
+                colorCode.textContent = this.getAttribute('data-color-code');
+                this.style.animation = 'pulse 0.5s ease-out';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 500);
+                fullscreenImgSrc.src = this.src;
+                fullscreenImg.classList.add('active');
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const productParam = urlParams.get('product');
+            if (productParam && productData[productParam]) {
+                pageContents.forEach(content => content.classList.remove('active'));
+                document.getElementById('product-details').classList.add('active');
+                pageLinks.forEach(link => link.classList.remove('active'));
+                document.querySelector(`[data-page="product-details"][data-product="${productParam}"]`)?.classList.add('active');
+                updateProductDetails(productParam);
+                window.scrollTo(0, 0);
+            }
+
+            pageLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetPage = this.getAttribute('data-page');
+                    const productType = this.getAttribute('data-product');
+
+                    pageLinks.forEach(navLink => navLink.classList.remove('active'));
+                    this.classList.add('active');
+
+                    pageContents.forEach(content => content.classList.remove('active'));
+                    document.getElementById(targetPage).classList.add('active');
+
+                    if (targetPage === 'product-details' && productType) {
+                        updateProductDetails(productType);
+                    }
+
+                    window.scrollTo(0, 0);
+                });
+            });
+
+            fullscreenImg.addEventListener('click', (e) => {
+                if (e.target.tagName !== 'BUTTON') {
+                    fullscreenImg.classList.remove('active');
+                }
+            });
+
+            const closeBtn = fullscreenImg.querySelector('.btn-close');
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    fullscreenImg.classList.remove('active');
+                });
+            }
+
+            const searchInputs = [document.getElementById('searchInput'), document.getElementById('productSearchInput')];
+            const productRows = [document.getElementById('products-preview-row'), document.getElementById('products-row')];
+
+            searchInputs.forEach((input, index) => {
+                input.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase().trim();
+                    const row = productRows[index];
+                    const productCards = row.querySelectorAll('.product-card');
+                    let found = false;
+
+                    productCards.forEach(card => {
+                        const productType = card.getAttribute('data-product');
+                        const productName = productData[productType].title.toLowerCase();
+                        if (searchTerm === '' || productName.includes(searchTerm)) {
+                            card.style.display = 'block';
+                            found = true;
+                            card.classList.remove('animate__animated', 'animate__fadeInUp');
+                            void card.offsetWidth;
+                            card.classList.add('animate__animated', 'animate__fadeInUp');
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+
+                    if (!found && searchTerm !== '') {
+                        row.innerHTML = '<div class="col-12 text-center animate__animated animate__fadeInUp"><p>No products found for "' + searchTerm + '".</p></div>';
+                    } else if (searchTerm === '') {
+                        row.innerHTML = productCards.length ? Array.from(productCards).map(card => card.outerHTML).join('') : '';
+                        productCards.forEach(card => {
+                            card.classList.remove('animate__animated', 'animate__fadeInUp');
+                            void card.offsetWidth;
+                            card.classList.add('animate__animated', 'animate__fadeInUp');
+                        });
+                    }
+                });
+            });
+
+            const animateElements = document.querySelectorAll('.animate__animated');
+            function checkScroll() {
+                animateElements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const screenPosition = window.innerHeight / 1.3;
+                    if (elementPosition < screenPosition && !element.classList.contains('animate__fadeInUp')) {
+                        element.classList.add('animate__fadeInUp');
+                    }
+                });
+            }
+
+            const backToTop = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            });
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            checkScroll();
+            window.addEventListener('scroll', checkScroll);
+
+            const contactForm = document.querySelector('.contact-form form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! We will get back to you soon.');
+                    this.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
