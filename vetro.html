@@ -644,7 +644,7 @@
                 column-count: 1;
             }
             .navbar-brand img {
-                height: 30px;
+                height: 60px;
             }
         }
     </style>
@@ -692,7 +692,7 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="hero-content animate__animated animate__fadeInUp">
-                            <h1>Artisanal Texture Surfaces</h1>
+                            <h1>Welcome to the World of Texture Wall</h1>
                             <p>Metamo Surface Studio crafts modern artisanal texture products that blend aesthetics, durability, and sustainability for your spaces.</p>
                             <a href="#" class="btn btn-primary" data-page="products">Explore Products</a>
                         </div>
@@ -704,8 +704,8 @@
         <section class="products-preview">
             <div class="container">
                 <div class="section-title animate__animated animate__fadeInDown">
-                    <h2>Featured Artisanal Products</h2>
-                    <p>Discover our premium textured surface solutions</p>
+                    <h3>Featured Artisanal Products</h3>
+                    <p>Where every surface becomes a statement, and design comes to life through depth, detail, and tactile beauty.</p>
                 </div>
                 <div class="row" id="products-preview-row">
                     <div class="col-md-4 animate__animated animate__fadeInUp">
@@ -1375,7 +1375,6 @@
                 ]
             }
         };
-
         // Page navigation
         const pageLinks = document.querySelectorAll('[data-page]');
         const pageContents = document.querySelectorAll('.page-content');
@@ -1387,7 +1386,6 @@
         const productMaterial = document.getElementById('product-material');
         const buyNowBtn = document.getElementById('buy-now');
         const colorOptions = document.getElementById('color-options');
-
         // Theme handling
         function updateTheme() {
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -1400,7 +1398,6 @@
         }
         updateTheme();
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
-
         function updateProductDetails(productType) {
             if (productData[productType]) {
                 productTitle.textContent = productData[productType].title;
@@ -1409,7 +1406,6 @@
                 productFeatures.textContent = 'Click a color to view its features';
                 productMaterial.textContent = productData[productType].material;
                 colorCode.textContent = '';
-
                 // Update color options
                 colorOptions.innerHTML = productData[productType].colors.map((color, index) => `
                     <div class="col-4 color-item animate__animated animate__fadeInUp" style="animation-delay: ${index * 0.2}s;">
@@ -1419,12 +1415,10 @@
                         <div class="color-code-label" data-color-code="${color.code}">${color.code}</div>
                     </div>
                 `).join('');
-
                 buyNowBtn.onclick = () => {
                     const message = `I'm interested in purchasing ${productData[productType].title}. Please provide more details.`;
                     window.open(`https://wa.me/919846955954?text=${encodeURIComponent(message)}`, '_blank');
                 };
-
                 const shareButtons = document.querySelectorAll('.share-btn');
                 shareButtons.forEach(btn => {
                     btn.onclick = (e) => {
@@ -1446,14 +1440,12 @@
                         window.open(shareUrl, '_blank');
                     };
                 });
-
                 // Add event listeners to new color images
                 const colorImgs = document.querySelectorAll('.color-img');
                 colorImgs.forEach(img => {
                     img.addEventListener('click', handleColorClick);
                     img.addEventListener('touchstart', handleColorClick);
                 });
-
                 if (colorImgs.length > 0) {
                     colorImgs[0].classList.add('active');
                     colorImgs[0].closest('.color-item').classList.add('active');
@@ -1463,7 +1455,6 @@
                 }
             }
         }
-
         function handleColorClick(e) {
             e.preventDefault();
             const colorImgs = document.querySelectorAll('.color-img');
@@ -1480,7 +1471,6 @@
                 this.style.animation = '';
             }, 500);
         }
-
         const urlParams = new URLSearchParams(window.location.search);
         const productParam = urlParams.get('product');
         if (productParam && productData[productParam]) {
@@ -1491,7 +1481,6 @@
             updateProductDetails(productParam);
             window.scrollTo(0, 0);
         }
-
         pageLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1507,7 +1496,6 @@
                 window.scrollTo(0, 0);
             });
         });
-
         const searchInputs = [document.getElementById('searchInput'), document.getElementById('productSearchInput')];
         const productRows = [document.getElementById('products-preview-row'), document.getElementById('products-row')];
         searchInputs.forEach((input, index) => {
@@ -1536,7 +1524,6 @@
                 }
             });
         });
-
         // Back to top button
             const animateElements = document.querySelectorAll('.animate__animated');
             function checkScroll() {
@@ -1548,7 +1535,6 @@
                     }
                 });
             }
-
             const backToTop = document.getElementById('back-to-top');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 300) {
@@ -1557,14 +1543,11 @@
                     backToTop.classList.remove('show');
                 }
             });
-
             backToTop.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-
             checkScroll();
             window.addEventListener('scroll', checkScroll);
-
             const contactForm = document.querySelector('.contact-form form');
             if (contactForm) {
                 contactForm.addEventListener('submit', function(e) {
