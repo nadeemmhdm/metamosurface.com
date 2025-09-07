@@ -29,8 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-06.jpg', code: '#B0A695', features: 'Veined texture' }
             ]
         },
-        granite: {
-            title: 'SET',
+        graniter: {
+            title: 'SETA',
             description: 'Natural granite with distinctive artisanal textures.',
             mainImg: 'https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/05.jpg',
             material: 'Granite',
