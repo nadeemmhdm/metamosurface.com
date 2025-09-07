@@ -1,49 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Product data with color codes and materials
-    const productData = {
-        marble: {
-            title: 'VETRO',
-            description: 'Elegant textured marble surfaces with unique artisanal patterns.',
-            mainImg: 'https://www.twaf.com.my/inspiration/assets/products/aurora-colours/vetro/02.jpg',
-            material: 'Marble',
-            colors: [
-                { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-401.jpg', code: '#D3CFC8', features: 'Durable and elegant' },
-                { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-402.jpg', code: '#F0EDE4', features: 'Classic white finish' },
-                { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-403.jpg', code: '#B0A695', features: 'Veined texture' },
-                { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-404.jpg', code: '#B0A695', features: 'Veined texture' },
-                { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-405.jpg', code: '#B0A695', features: 'Veined texture' },
-                { img: 'https://www.twaf.com.my/products/aurora-colours/vetro/assets/colours/VET-406.jpg', code: '#B0A695', features: 'Veined texture' }
-            ]
-        },
-        quartz: {
-            title: 'CEMENTO',
-            description: 'Non-porous, artisanal textured quartz for modern countertops.',
-            mainImg: 'https://www.twaf.com.my/inspiration/assets/products/cement/cemento/04.jpg',
-            material: 'Quartz',
-            colors: [
-                { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-01.jpg', code: '#F5F5F0', features: 'Scratch-resistant, low maintenance' },
-                { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-02.jpg', code: '#E8ECEF', features: 'Sleek modern look' },
-                { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-03.jpg', code: '#D9D7D2', features: 'Non-porous surface' },
-                { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-04.jpg', code: '#B0A695', features: 'Veined texture' },
-                { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-05.jpg', code: '#B0A695', features: 'Veined texture' },
-                { img: 'https://www.twaf.com.my/products/cement/cemento/assets/colours/CE-06.jpg', code: '#B0A695', features: 'Veined texture' }
-            ]
-        },
-        graniter: {
-            title: 'SETA',
-            description: 'Natural granite with distinctive artisanal textures.',
-            mainImg: 'https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/05.jpg',
-            material: 'Granite',
-            colors: [
-                { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-201.jpg', code: '#A79B8E', features: 'Unique patterns, long-lasting' },
-                { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-202.jpg', code: '#8A7B6F', features: 'Bold natural design' },
-                { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-203.jpg', code: '#6D5D4B', features: 'High durability' },
-                { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-204.jpg', code: '#6D5D4B', features: 'High durability' },
-                { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-205.jpg', code: '#6D5D4B', features: 'High durability' },
-                { img: 'https://www.twaf.com.my/products/aurora-colours/seta/assets/colours/ST-206.jpg', code: '#6D5D4B', features: 'High durability' }
-            ]
-        }
-    };
     // Theme-based logo switching
     const logoImg = document.getElementById('navbar-logo');
     function updateTheme() {
