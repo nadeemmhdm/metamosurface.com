@@ -535,6 +535,61 @@
         .social-icons.dark-mode a:hover {
             background: var(--secondary-dark) !important;
         }
+        /* Footer copyright text */
+footer p {
+    margin: 0;
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* Hyperlink inside footer copyright */
+footer p a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+footer p a:hover {
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Dark mode variant */
+footer.dark-mode p {
+    color: #e0e0e0;
+}
+
+footer.dark-mode p a {
+    color: var(--secondary-dark) !important;
+}
+
+footer.dark-mode p a:hover {
+    color: #fff !important;
+}
+
+/* Privacy Policy link inside footer */
+footer a.privacy-link {
+    color: #ccc;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+footer a.privacy-link:hover {
+    color: var(--secondary);
+    transform: translateY(-2px);
+}
+
+/* Dark mode */
+footer.dark-mode a.privacy-link {
+    color: #e0e0e0 !important;
+}
+
+footer.dark-mode a.privacy-link:hover {
+    color: var(--secondary-dark) !important;
+}
+
         /* Back to Top Button */
         #back-to-top {
             position: fixed;
