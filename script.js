@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         granite: {
-            title: 'SETA',
+            title: 'SET',
             description: 'Natural granite with distinctive artisanal textures.',
             mainImg: 'https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/05.jpg',
             material: 'Granite',
