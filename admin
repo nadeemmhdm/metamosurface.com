@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metamo Surface Studio - Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e67e22;
+            --secondary-dark: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --accent: #3498db;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0 !important;
+        }
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        /* Navigation */
+        .navbar {
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar.dark-mode {
+            background: linear-gradient(to bottom, #000000, #000000);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        .navbar-brand img {
+            height: 80px;
+            transition: transform 0.3s ease;
+        }
+        @media (max-width: 768px) {
+            .navbar-brand img {
+                height: 60px;
+            }
+        }
+        .navbar-brand:hover img {
+            transform: scale(1.05);
+        }
+        .nav-link {
+            color: var(--dark);
+            font-weight: 500;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 10px 0;
+        }
+        .nav-link:hover {
+            color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        .nav-link.active {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .nav-link.dark-mode {
+            color: #f9f9f9 !important;
+        }
+        .nav-link.dark-mode:hover {
+            color: var(--secondary-dark) !important;
+        }
+        .nav-link.dark-mode.active {
+            color: var(--accent) !important;
+        }
+        /* Admin Container */
+        .admin-container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .admin-container.dark-mode {
+            background-color: #1e1e1e;
+        }
+        .product-card-admin, .card, .form-control {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .product-card-admin.dark-mode, .card.dark-mode, .form-control.dark-mode {
+            background: #2c2c2c !important;
+            border-color: #444 !important;
+            color: #e0e0e0 !important;
+        }
+        .product-card-admin:hover, .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .product-card-admin .card-img-top {
+            height: 200px;
+            object-fit: cover;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .btn-primary {
+            background-color: var(--secondary);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary.dark-mode {
+            background-color: var(--secondary-dark) !important;
+        }
+        .btn-primary.dark-mode:hover {
+            background-color: var(--accent) !important;
+        }
+        .btn-success {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            transition: all 0.3s ease;
+        }
+        .btn-success:hover {
+            background-color: #2e8b57;
+            border-color: #2e8b57;
+            transform: translateY(-2px);
+        }
+        .btn-warning, .btn-danger {
+            transition: transform 0.3s ease;
+        }
+        .btn-warning:hover, .btn-danger:hover {
+            transform: scale(1.05);
+        }
+        /* Section Title Style */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .section-title.dark-mode h2::after {
+            background: var(--secondary-dark) !important;
+        }
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate__animated {
+            animation-duration: 0.8s;
+        }
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        footer.dark-mode {
+            background: #0a0a0a !important;
+        }
+        .footer-links h5 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-links h5::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+        .footer-links.dark-mode h5::after {
+            background: var(--secondary-dark) !important;
+        }
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease-out;
+        }
+        .footer-links.dark-mode a {
+            color: #e0e0e0 !important;
+        }
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        .footer-links.dark-mode a:hover {
+            color: var(--secondary-dark) !important;
+        }
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s ease-out;
+        }
+        .social-icons.dark-mode a {
+            background: rgba(255, 255, 255, 0.15) !important;
+        }
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        .social-icons.dark-mode a:hover {
+            background: var(--secondary-dark) !important;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand animate__animated animate__pulse" href="index.html"><img src="logo.jpg" alt="Metamo Surface Studio Logo" id="navbar-logo" style="height: 80px;"></a>
+            <button class="btn btn-secondary" id="logoutBtn" style="display:none;"><i class='bx bx-log-out'></i> Logout</button>
+        </div>
+    </nav>
+    <div class="admin-container animate__animated animate__fadeIn">
+        <h2 class="text-center mb-4 animate__animated animate__fadeInDown">Admin Panel</h2>
+
+        <div id="admin-login-form" class="animate__animated animate__fadeInUp">
+            <h3 class="mb-3">Admin Login</h3>
+            <form id="login-form">
+                <div class="mb-3">
+                    <label for="admin-email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="admin-email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="admin-password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="admin-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <div id="login-error" class="text-danger mt-2"></div>
+            </form>
+        </div>
+
+        <div id="admin-content" style="display:none;">
+            <div class="d-flex justify-content-between align-items-center mb-4 animate__animated animate__fadeIn">
+                <h3>Product Management</h3>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productModal" id="addProductBtn">Add New Product</button>
+            </div>
+            <div id="product-list" class="row">
+                </div>
+            
+            <hr class="my-5">
+
+            <div class="d-flex justify-content-between align-items-center mb-4 animate__animated animate__fadeIn">
+                <h3>Inspiration Gallery Management</h3>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#inspirationModal" id="addInspirationBtn">Add New Inspiration</button>
+            </div>
+            <div id="inspiration-list" class="row">
+                </div>
+
+            <hr class="my-5">
+
+            <div class="d-flex justify-content-between align-items-center mb-4 animate__animated animate__fadeIn">
+                <h3>FAQ Management</h3>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#faqModal" id="addFaqBtn">Add New FAQ</button>
+            </div>
+            <div id="faq-list" class="row">
+                </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalTitle">Add/Edit Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="product-form">
+                        <input type="hidden" id="product-id">
+                        <div class="mb-3">
+                            <label for="product-name" class="form-label">Product Name</label>
+                            <input type="text" class="form-control" id="product-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="product-desc" class="form-label">Description</label>
+                            <textarea class="form-control" id="product-desc" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="product-img" class="form-label">Image URL</label>
+                            <input type="url" class="form-control" id="product-img" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="product-pdf" class="form-label">PDF URL</label>
+                            <input type="url" class="form-control" id="product-pdf" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="inspirationModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="inspirationModalTitle">Add/Edit Inspiration</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="inspiration-form">
+                        <input type="hidden" id="inspiration-id">
+                        <div class="mb-3">
+                            <label for="inspiration-name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="inspiration-name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inspiration-desc" class="form-label">Description</label>
+                            <textarea class="form-control" id="inspiration-desc" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="inspiration-img" class="form-label">Image URL</label>
+                            <input type="url" class="form-control" id="inspiration-img" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Inspiration</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="faqModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="faqModalTitle">Add/Edit FAQ</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="faq-form">
+                        <input type="hidden" id="faq-id">
+                        <div class="mb-3">
+                            <label for="faq-question" class="form-label">Question</label>
+                            <input type="text" class="form-control" id="faq-question" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="faq-answer" class="form-label">Answer</label>
+                            <textarea class="form-control" id="faq-answer" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save FAQ</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <h3 class="text-white mb-4">Metamo Surface Studio</h3>
+                    <p>Transforming spaces with modern artisanal texture surfaces. Quality, innovation, and craftsmanship are our core values.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="animate__animated animate__pulse"><i class='bx bxl-facebook'></i></a>
+                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.1s;"><i class='bx bxl-instagram'></i></a>
+                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.2s;"><i class='bx bxl-twitter'></i></a>
+                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.3s;"><i class='bx bxl-linkedin'></i></a>
+                        <a href="https://wa.me/919846955954" target="_blank" class="animate__animated animate__pulse" style="animation-delay: 0.4s;"><i class='bx bxl-whatsapp'></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-5">
+                    <div class="footer-links">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="index.html">Products</a></li>
+                            <li><a href="index.html">About</a></li>
+                            <li><a href="index.html">Inspiration</a></li>
+                            <li><a href="index.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-5">
+                    <div class="footer-links">
+                        <h5>Products</h5>
+                        <ul>
+                            <li><a href="#">Artisanal Marble</a></li>
+                            <li><a href="#">Textured Quartz</a></li>
+                            <li><a href="#">Artisanal Granite</a></li>
+                            <li><a href="#">Custom Solutions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-5">
+                    <div class="footer-links">
+                        <h5>Contact Info</h5>
+                        <ul>
+                            <li><i class='bx bx-map me-2'></i> Malappuram, Kerala</li>
+                            <li><i class='bx bx-phone me-2'></i> <a href="tel:+919846955954">+91 98469 55954</a></li>
+                            <li><i class='bx bx-envelope me-2'></i> <a href="mailto:metamosurfacestudio@gmail.com">metamosurfacestudio@gmail.com</a></li>
+                            <li><i class='bx bxl-whatsapp me-2'></i> <a href="https://wa.me/919846955954" target="_blank">+91 98469 55954</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="border-top pt-4 mt-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="mb-0">© 2023 Metamo Surface Studio. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" class="privacy-link">Privacy Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDlIeEmGM0r9xuyCvFZXNB9Cyyu4KULXPg",
+            authDomain: "vibra-ad479.firebaseapp.com",
+            databaseURL: "https://vibra-ad479-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "vibra-ad479",
+            storageBucket: "vibra-ad479.firebasestorage.app",
+            messagingSenderId: "674699657815",
+            appId: "1:674699657815:web:51c2615670c69eddfb9912",
+            measurementId: "G-Z1VH91YW1H"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const auth = firebase.auth();
+        
+        const productsRef = database.ref('products');
+        const inspirationsRef = database.ref('inspirations');
+        const faqsRef = database.ref('faqs');
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const adminLoginForm = document.getElementById('admin-login-form');
+            const adminContent = document.getElementById('admin-content');
+            const loginForm = document.getElementById('login-form');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const productList = document.getElementById('product-list');
+            const inspirationList = document.getElementById('inspiration-list');
+            const faqList = document.getElementById('faq-list');
+            const logoImg = document.getElementById('navbar-logo');
+
+            const productForm = document.getElementById('product-form');
+            const inspirationForm = document.getElementById('inspiration-form');
+            const faqForm = document.getElementById('faq-form');
+            
+            const productModal = new bootstrap.Modal(document.getElementById('productModal'));
+            const inspirationModal = new bootstrap.Modal(document.getElementById('inspirationModal'));
+            const faqModal = new bootstrap.Modal(document.getElementById('faqModal'));
+
+            // Dark Mode Functionality
+            function updateTheme() {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.body.classList.add('dark-mode');
+                    logoImg.src = 'logo1.jpg';
+                    document.querySelectorAll('.navbar, .admin-container, .card, .form-control, .product-card-admin, .btn-primary, .footer-links, .social-icons').forEach(el => el.classList.add('dark-mode'));
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    logoImg.src = 'logo.jpg';
+                    document.querySelectorAll('.navbar, .admin-container, .card, .form-control, .product-card-admin, .btn-primary, .footer-links, .social-icons').forEach(el => el.classList.remove('dark-mode'));
+                }
+            }
+            updateTheme();
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+
+            // Check authentication status
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    adminLoginForm.style.display = 'none';
+                    adminContent.style.display = 'block';
+                    logoutBtn.style.display = 'block';
+                    loadAdminData();
+                } else {
+                    adminLoginForm.style.display = 'block';
+                    adminContent.style.display = 'none';
+                    logoutBtn.style.display = 'none';
+                }
+            });
+
+            // Login functionality
+            loginForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('admin-email').value;
+                const password = document.getElementById('admin-password').value;
+                auth.signInWithEmailAndPassword(email, password)
+                    .then(() => {
+                        document.getElementById('login-error').textContent = '';
+                    })
+                    .catch(error => {
+                        document.getElementById('login-error').textContent = error.message;
+                    });
+            });
+
+            // Logout functionality
+            logoutBtn.addEventListener('click', () => {
+                auth.signOut();
+            });
+
+            const loadAdminData = () => {
+                loadProducts();
+                loadInspirations();
+                loadFaqs();
+            };
+
+            // Product Management
+            const loadProducts = () => {
+                productsRef.on('value', (snapshot) => {
+                    productList.innerHTML = '';
+                    snapshot.forEach(childSnapshot => {
+                        const product = childSnapshot.val();
+                        const productId = childSnapshot.key;
+                        const productAdminCard = `
+                            <div class="col-md-4 mb-4 animate__animated animate__fadeInUp">
+                                <div class="card product-card-admin">
+                                    <img src="${product.imageUrl}" class="card-img-top" alt="${product.name}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${product.name}</h5>
+                                        <p class="card-text">${product.description.substring(0, 50)}...</p>
+                                        <button class="btn btn-warning btn-sm edit-product" data-id="${productId}">Edit</button>
+                                        <button class="btn btn-danger btn-sm delete-product" data-id="${productId}">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        productList.innerHTML += productAdminCard;
+                    });
+                    document.querySelectorAll('.edit-product').forEach(btn => {
+                        btn.addEventListener('click', editProduct);
+                    });
+                    document.querySelectorAll('.delete-product').forEach(btn => {
+                        btn.addEventListener('click', deleteProduct);
+                    });
+                    updateTheme(); // Re-apply theme to new elements
+                });
+            };
+
+            document.getElementById('addProductBtn').addEventListener('click', () => {
+                productForm.reset();
+                document.getElementById('product-id').value = '';
+                document.getElementById('productModalTitle').textContent = 'Add New Product';
+            });
+
+            productForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = document.getElementById('product-id').value;
+                const name = document.getElementById('product-name').value;
+                const description = document.getElementById('product-desc').value;
+                const imageUrl = document.getElementById('product-img').value;
+                const pdfUrl = document.getElementById('product-pdf').value;
+                const data = { name, description, imageUrl, pdfUrl, timestamp: new Date().toISOString() };
+
+                if (id) {
+                    productsRef.child(id).update(data);
+                } else {
+                    productsRef.push(data);
+                }
+                productModal.hide();
+                productForm.reset();
+            });
+
+            const editProduct = (e) => {
+                const productId = e.target.getAttribute('data-id');
+                productsRef.child(productId).once('value', (snapshot) => {
+                    const product = snapshot.val();
+                    document.getElementById('product-id').value = productId;
+                    document.getElementById('product-name').value = product.name;
+                    document.getElementById('product-desc').value = product.description;
+                    document.getElementById('product-img').value = product.imageUrl;
+                    document.getElementById('product-pdf').value = product.pdfUrl;
+                    document.getElementById('productModalTitle').textContent = 'Edit Product';
+                    productModal.show();
+                });
+            };
+
+            const deleteProduct = (e) => {
+                const productId = e.target.getAttribute('data-id');
+                if (confirm('Are you sure you want to delete this product?')) {
+                    productsRef.child(productId).remove();
+                }
+            };
+
+            // Inspiration Management
+            const loadInspirations = () => {
+                inspirationsRef.on('value', (snapshot) => {
+                    inspirationList.innerHTML = '';
+                    snapshot.forEach(childSnapshot => {
+                        const inspiration = childSnapshot.val();
+                        const inspirationId = childSnapshot.key;
+                        const inspirationAdminCard = `
+                            <div class="col-md-4 mb-4 animate__animated animate__fadeInUp">
+                                <div class="card">
+                                    <img src="${inspiration.imageUrl}" class="card-img-top" alt="${inspiration.name}">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${inspiration.name}</h5>
+                                        <p class="card-text">${inspiration.description.substring(0, 50)}...</p>
+                                        <button class="btn btn-warning btn-sm edit-inspiration" data-id="${inspirationId}">Edit</button>
+                                        <button class="btn btn-danger btn-sm delete-inspiration" data-id="${inspirationId}">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        inspirationList.innerHTML += inspirationAdminCard;
+                    });
+                    document.querySelectorAll('.edit-inspiration').forEach(btn => {
+                        btn.addEventListener('click', editInspiration);
+                    });
+                    document.querySelectorAll('.delete-inspiration').forEach(btn => {
+                        btn.addEventListener('click', deleteInspiration);
+                    });
+                    updateTheme();
+                });
+            };
+
+            document.getElementById('addInspirationBtn').addEventListener('click', () => {
+                inspirationForm.reset();
+                document.getElementById('inspiration-id').value = '';
+                document.getElementById('inspirationModalTitle').textContent = 'Add New Inspiration';
+            });
+
+            inspirationForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = document.getElementById('inspiration-id').value;
+                const name = document.getElementById('inspiration-name').value;
+                const description = document.getElementById('inspiration-desc').value;
+                const imageUrl = document.getElementById('inspiration-img').value;
+                const data = { name, description, imageUrl, timestamp: new Date().toISOString() };
+                
+                if (id) {
+                    inspirationsRef.child(id).update(data);
+                } else {
+                    inspirationsRef.push(data);
+                }
+                inspirationModal.hide();
+                inspirationForm.reset();
+            });
+
+            const editInspiration = (e) => {
+                const inspirationId = e.target.getAttribute('data-id');
+                inspirationsRef.child(inspirationId).once('value', (snapshot) => {
+                    const inspiration = snapshot.val();
+                    document.getElementById('inspiration-id').value = inspirationId;
+                    document.getElementById('inspiration-name').value = inspiration.name;
+                    document.getElementById('inspiration-desc').value = inspiration.description;
+                    document.getElementById('inspiration-img').value = inspiration.imageUrl;
+                    document.getElementById('inspirationModalTitle').textContent = 'Edit Inspiration';
+                    inspirationModal.show();
+                });
+            };
+
+            const deleteInspiration = (e) => {
+                const inspirationId = e.target.getAttribute('data-id');
+                if (confirm('Are you sure you want to delete this inspiration image?')) {
+                    inspirationsRef.child(inspirationId).remove();
+                }
+            };
+
+            // FAQ Management
+            const loadFaqs = () => {
+                faqsRef.on('value', (snapshot) => {
+                    faqList.innerHTML = '';
+                    snapshot.forEach(childSnapshot => {
+                        const faq = childSnapshot.val();
+                        const faqId = childSnapshot.key;
+                        const faqItem = `
+                            <div class="col-md-12 mb-3 animate__animated animate__fadeInUp">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${faq.question}</h5>
+                                        <p class="card-text">${faq.answer.substring(0, 100)}...</p>
+                                        <button class="btn btn-warning btn-sm edit-faq" data-id="${faqId}">Edit</button>
+                                        <button class="btn btn-danger btn-sm delete-faq" data-id="${faqId}">Delete</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        faqList.innerHTML += faqItem;
+                    });
+                    document.querySelectorAll('.edit-faq').forEach(btn => {
+                        btn.addEventListener('click', editFaq);
+                    });
+                    document.querySelectorAll('.delete-faq').forEach(btn => {
+                        btn.addEventListener('click', deleteFaq);
+                    });
+                    updateTheme();
+                });
+            };
+
+            document.getElementById('addFaqBtn').addEventListener('click', () => {
+                faqForm.reset();
+                document.getElementById('faq-id').value = '';
+                document.getElementById('faqModalTitle').textContent = 'Add New FAQ';
+            });
+
+            faqForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const id = document.getElementById('faq-id').value;
+                const question = document.getElementById('faq-question').value;
+                const answer = document.getElementById('faq-answer').value;
+                const data = { question, answer, timestamp: new Date().toISOString() };
+                
+                if (id) {
+                    faqsRef.child(id).update(data);
+                } else {
+                    faqsRef.push(data);
+                }
+                faqModal.hide();
+                faqForm.reset();
+            });
+
+            const editFaq = (e) => {
+                const faqId = e.target.getAttribute('data-id');
+                faqsRef.child(faqId).once('value', (snapshot) => {
+                    const faq = snapshot.val();
+                    document.getElementById('faq-id').value = faqId;
+                    document.getElementById('faq-question').value = faq.question;
+                    document.getElementById('faq-answer').value = faq.answer;
+                    document.getElementById('faqModalTitle').textContent = 'Edit FAQ';
+                    faqModal.show();
+                });
+            };
+
+            const deleteFaq = (e) => {
+                const faqId = e.target.getAttribute('data-id');
+                if (confirm('Are you sure you want to delete this FAQ?')) {
+                    faqsRef.child(faqId).remove();
+                }
+            };
+        });
+    </script>
+</body>
+</html>
