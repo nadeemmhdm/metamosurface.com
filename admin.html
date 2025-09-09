@@ -100,7 +100,7 @@
         }
         /* Admin Container */
         .admin-container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 50px auto;
             padding: 30px;
             background-color: #ffffff;
@@ -150,15 +150,19 @@
         .btn-primary.dark-mode:hover {
             background-color: var(--accent) !important;
         }
-        .btn-success {
+        .btn-success, .btn-secondary {
             background-color: var(--accent);
             border-color: var(--accent);
             transition: all 0.3s ease;
         }
-        .btn-success:hover {
+        .btn-success:hover, .btn-secondary:hover {
             background-color: #2e8b57;
             border-color: #2e8b57;
             transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
         }
         .btn-warning, .btn-danger {
             transition: transform 0.3s ease;
@@ -305,7 +309,10 @@
         <div id="admin-content" style="display:none;">
             <div class="d-flex justify-content-between align-items-center mb-4 animate__animated animate__fadeIn">
                 <h3>Product Management</h3>
-                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productModal" id="addProductBtn">Add New Product</button>
+                <div class="d-flex gap-2">
+                    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#productModal" id="addProductBtn">Add New Product</button>
+                    <button class="btn btn-secondary" id="generateLinkBtn">Generate Link</button>
+                </div>
             </div>
             <div id="product-list" class="row">
                 </div>
@@ -507,6 +514,7 @@
             const adminContent = document.getElementById('admin-content');
             const loginForm = document.getElementById('login-form');
             const logoutBtn = document.getElementById('logoutBtn');
+            const generateLinkBtn = document.getElementById('generateLinkBtn');
             const productList = document.getElementById('product-list');
             const inspirationList = document.getElementById('inspiration-list');
             const faqList = document.getElementById('faq-list');
@@ -568,6 +576,13 @@
                 auth.signOut();
             });
 
+            // Generate Link functionality
+            if (generateLinkBtn) {
+                generateLinkBtn.addEventListener('click', () => {
+                    window.location.href = 'https://websitetester.free.nf';
+                });
+            }
+
             const loadAdminData = () => {
                 loadProducts();
                 loadInspirations();
@@ -582,7 +597,7 @@
                         const product = childSnapshot.val();
                         const productId = childSnapshot.key;
                         const productAdminCard = `
-                            <div class="col-md-4 mb-4 animate__animated animate__fadeInUp">
+                            <div class="col-6 col-md-3 mb-4 animate__animated animate__fadeInUp">
                                 <div class="card product-card-admin">
                                     <img src="${product.imageUrl}" class="card-img-top" alt="${product.name}">
                                     <div class="card-body">
@@ -659,7 +674,7 @@
                         const inspiration = childSnapshot.val();
                         const inspirationId = childSnapshot.key;
                         const inspirationAdminCard = `
-                            <div class="col-md-4 mb-4 animate__animated animate__fadeInUp">
+                            <div class="col-6 col-md-3 mb-4 animate__animated animate__fadeInUp">
                                 <div class="card">
                                     <img src="${inspiration.imageUrl}" class="card-img-top" alt="${inspiration.name}">
                                     <div class="card-body">
@@ -734,7 +749,7 @@
                         const faq = childSnapshot.val();
                         const faqId = childSnapshot.key;
                         const faqItem = `
-                            <div class="col-md-12 mb-3 animate__animated animate__fadeInUp">
+                            <div class="col-6 col-md-3 mb-4 animate__animated animate__fadeInUp">
                                 <div class="card">
                                     <div class="card-body">
                                         <h5 class="card-title">${faq.question}</h5>
