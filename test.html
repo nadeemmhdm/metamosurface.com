@@ -253,23 +253,29 @@
             line-height: 1.9;
         }
         /* Products Section */
-        .product-card {
-            background: black;
-            border-radius: 10px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-            animation: fadeInUp 1s ease-out;
-        }
-        .product-card.dark-mode {
-            background: #1e1e1e !important;
-            border: 1px solid #444;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        .product-card.dark-mode h4, .product-card.dark-mode p {
-            color: #e0e0e0;
-        }
+/* Light Mode (default) */
+.product-card {
+    background: white; /* Changed from black to white */
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    animation: fadeInUp 1s ease-out;
+    color: black; /* Added to ensure black text in light mode */
+}
+.product-card h4, .product-card p {
+    color: black; /* Added to ensure text is black in light mode */
+}
+/* Dark Mode */
+.product-card.dark-mode {
+    background: #1e1e1e !important; /* Retained dark background */
+    border: 1px solid #444;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.product-card.dark-mode h4, .product-card.dark-mode p {
+    color: #e0e0e0; /* Retained light text for dark mode */
+}
         .product-card.dark-mode a {
             color: #e67e22; /* Use a brighter accent color for links */
         }
