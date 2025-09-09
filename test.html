@@ -253,9 +253,18 @@
             animation: fadeInUp 1s ease-out;
         }
         .product-card.dark-mode {
-            background: #1c1c1c !important;
-            border: 1px solid #333;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            background: #1e1e1e !important;
+            border: 1px solid #444;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        .product-card.dark-mode h4, .product-card.dark-mode p {
+            color: #e0e0e0;
+        }
+        .product-card.dark-mode a {
+            color: #e67e22; /* Use a brighter accent color for links */
+        }
+        .product-card.dark-mode a:hover {
+            color: #f39c12; /* A slightly different accent for hover */
         }
         .product-card:hover {
             transform: translateY(-10px);
@@ -788,8 +797,6 @@
                         </form>
                     </div>
                 </div>
-                <div class="row" id="products-row">
-                <div class="row" id="products-row">
                 <div class="row" id="products-row">
                     </div>
             </div>
