@@ -724,6 +724,7 @@
         }
         .modal-body {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 0;
@@ -731,7 +732,7 @@
         }
         .modal-body img {
             max-width: 95vw;
-            max-height: 95vh;
+            max-height: 85vh;
             object-fit: contain;
         }
         .modal-header .btn-close {
@@ -741,24 +742,64 @@
             z-index: 1060;
             filter: invert(1);
             color: white;
+            font-size: 2rem;
+            opacity: 1;
+            transition: transform 0.2s ease;
+        }
+        .modal-header .btn-close:hover {
+            transform: rotate(90deg);
         }
         .modal-nav-button {
+            position: fixed; /* Use fixed to keep them at the screen edges */
             top: 50%;
             transform: translateY(-50%);
             z-index: 1060;
+            background: rgba(0, 0, 0, 0.6); /* Slightly more prominent background */
+            color: white;
+            border: none;
+            width: 60px; /* Slightly larger buttons */
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            font-size: 2rem; /* Larger icon */
+        }
+        .modal-nav-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+        #prevBtn {
+            left: 20px;
+        }
+        #nextBtn {
+            right: 20px;
         }
         #modalContent {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
+            position: static;
+            transform: none;
+            bottom: unset;
+            left: unset;
             text-align: center;
             color: white;
             background: rgba(0, 0, 0, 0.5);
             padding: 10px 20px;
             border-radius: 8px;
             max-width: 90%;
+            margin-top: 15px; /* Add some space above the text */
             z-index: 1060;
+            font-size: 0.9rem; /* Adjust font size for mobile */
+            width: fit-content;
+        }
+        #modalContent h4 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        #modalContent p {
+            font-size: 1rem;
+            margin: 0;
         }
         .modal-content.dark-mode {
             background-color: black !important;
