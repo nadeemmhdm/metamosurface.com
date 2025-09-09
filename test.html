@@ -400,7 +400,6 @@
             border-color: #444 !important;
         }
         /* Footer */
-        /* Footer */
         footer {
             background: var(--dark);
             color: white;
@@ -485,60 +484,6 @@
         .social-icons.dark-mode a:hover {
             background: var(--secondary-dark) !important;
         }
-        /* Footer copyright text */
-footer p {
-    margin: 0;
-    font-size: 14px;
-    color: #ccc;
-}
-
-/* Hyperlink inside footer copyright */
-footer p a {
-    color: var(--secondary);
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-footer p a:hover {
-    color: white;
-    transform: translateY(-2px);
-}
-
-/* Dark mode variant */
-footer.dark-mode p {
-    color: #e0e0e0;
-}
-
-footer.dark-mode p a {
-    color: var(--secondary-dark) !important;
-}
-
-footer.dark-mode p a:hover {
-    color: #fff !important;
-}
-
-/* Privacy Policy link inside footer */
-footer a.privacy-link {
-    color: #ccc;
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-footer a.privacy-link:hover {
-    color: var(--secondary);
-    transform: translateY(-2px);
-}
-
-/* Dark mode */
-footer.dark-mode a.privacy-link {
-    color: #e0e0e0 !important;
-}
-
-footer.dark-mode a.privacy-link:hover {
-    color: var(--secondary-dark) !important;
-}
         /* Back to Top Button */
         #back-to-top {
             position: fixed;
@@ -757,6 +702,67 @@ footer.dark-mode a.privacy-link:hover {
         }
         #modalImage {
             max-height: 80vh;
+        }
+        /* Full-screen Modal Styles */
+        .modal-xl {
+            --bs-modal-width: 100vw;
+            --bs-modal-margin: 0;
+            --bs-modal-padding: 0;
+        }
+        .modal-dialog {
+            margin: 0;
+            max-width: 100vw;
+        }
+        .modal-content {
+            height: 100vh;
+            border-radius: 0;
+            border: none;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            height: 100%;
+        }
+        .modal-body img {
+            max-width: 95vw;
+            max-height: 95vh;
+            object-fit: contain;
+        }
+        .modal-header .btn-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1060;
+            filter: invert(1);
+            color: white;
+        }
+        .modal-nav-button {
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1060;
+        }
+        #modalContent {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 8px;
+            max-width: 90%;
+            z-index: 1060;
+        }
+        .modal-content.dark-mode {
+            background-color: black !important;
+            color: #e0e0e0 !important;
         }
     </style>
 </head>
@@ -1094,11 +1100,11 @@ footer.dark-mode a.privacy-link:hover {
                     <h3 class="text-white mb-4">Metamo Surface Studio</h3>
                     <p>Transforming spaces with modern artisanal texture surfaces. Quality, innovation, and craftsmanship are our core values.</p>
                     <div class="social-icons mt-4">
-                        <a href="https://www.facebook.com/metamosurface" class="animate__animated animate__pulse"><i class='bx bxl-facebook'></i></a>
-                        <a href="https://www.instagram.com/metamosurface" class="animate__animated animate__pulse" style="animation-delay: 0.1s;"><i class='bx bxl-instagram'></i></a>
-                        <a href="https://www.x.com/metamosurface" class="animate__animated animate__pulse" style="animation-delay: 0.2s;"><i class='bx bxl-twitter'></i></a>
-                        <a href="https://www.linkedin.com/metamosurface" class="animate__animated animate__pulse" style="animation-delay: 0.3s;"><i class='bx bxl-linkedin'></i></a>
-                        <a href="https://wa.me/919846955954?text=I'm%20interested%20in%20the%20model%20service%20offered%20by%20Metamo%20Surface%20Studio.%20Could%20you%20please%20provide%20more%20details?%20Thank%20you!" target="_blank" class="animate__animated animate__pulse" style="animation-delay: 0.4s;"><i class='bx bxl-whatsapp'></i></a>
+                        <a href="#" class="animate__animated animate__pulse"><i class='bx bxl-facebook'></i></a>
+                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.1s;"><i class='bx bxl-instagram'></i></a>
+                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.2s;"><i class='bx bxl-twitter'></i></a>
+                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.3s;"><i class='bx bxl-linkedin'></i></a>
+                        <a href="https://wa.me/919846955954" target="_blank" class="animate__animated animate__pulse" style="animation-delay: 0.4s;"><i class='bx bxl-whatsapp'></i></a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 mb-5">
@@ -1106,7 +1112,7 @@ footer.dark-mode a.privacy-link:hover {
                         <h5>Quick Links</h5>
                         <ul>
                             <li><a href="#" data-page="home">Home</a></li>
-                            <li><a href="#" data-page="products">Colletions</a></li>
+                            <li><a href="#" data-page="products">Products</a></li>
                             <li><a href="#" data-page="about">About</a></li>
                             <li><a href="#" data-page="inspiration">Gallery</a></li>
                             <li><a href="#" data-page="contact">Contact</a></li>
@@ -1117,13 +1123,10 @@ footer.dark-mode a.privacy-link:hover {
                     <div class="footer-links">
                         <h5>Products</h5>
                         <ul>
-                            <li><a href="VETRO.pdf" data-page="product-details">VETRO</a></li>
-                            <li><a href="MARMARINO.pdf" data-page="product-details">MARMARINO</a></li>
-                            <li><a href="CEMENTO.pdf" data-page="product-details">CEMENTO</a></li>
-                            <li><a href="SETA.pdf" data-page="product-details">SETA</a></li>
-                            <li><a href="VELLCCO.pdf" data-page="product-details">VELLCCO</a></li>
-                            <li><a href="VELLPLAS.pdf" data-page="product-details">VELLPLAS</a></li>
-                            <li><a href="UNIQUE.pdf">Custom Solutions</a></li>
+                            <li><a href="#">Artisanal Marble</a></li>
+                            <li><a href="#">Textured Quartz</a></li>
+                            <li><a href="#">Artisanal Granite</a></li>
+                            <li><a href="#">Custom Solutions</a></li>
                         </ul>
                     </div>
                 </div>
@@ -1142,7 +1145,7 @@ footer.dark-mode a.privacy-link:hover {
             <div class="border-top pt-4 mt-4">
                 <div class="row">
                     <div class="col-md-6">
-                        <p class="mb-0">© 2023 Metamo Surface Studio. All Rights Reserved. Developed by <a href="https://heliocreation.pages.dev/">Heliocreation</a></p>
+                        <p class="mb-0">© 2023 Metamo Surface Studio. All Rights Reserved.</p>
                     </div>
                     <div class="col-md-6 text-md-end">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" class="privacy-link">Privacy Policy</a>
