@@ -98,6 +98,16 @@
         .nav-link.dark-mode.active {
             color: var(--accent) !important;
         }
+        /* Navbar Toggler */
+        .navbar-toggler {
+            border-color: #f9f9f9;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(0, 0, 0)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        .navbar.dark-mode .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(255, 255, 255)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
         /* Search Bar */
         .search-form {
             position: relative;
@@ -258,7 +268,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
         .product-card.dark-mode h4, .product-card.dark-mode p {
-            color: #000000;
+            color: #e0e0e0;
         }
         .product-card.dark-mode a {
             color: #e67e22; /* Use a brighter accent color for links */
@@ -300,6 +310,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: fadeInUp 1s ease-out;
+            cursor: pointer;
         }
         .inspiration-item:hover {
             transform: scale(1.03);
@@ -389,6 +400,7 @@
             border-color: #444 !important;
         }
         /* Footer */
+        /* Footer */
         footer {
             background: var(--dark);
             color: white;
@@ -473,6 +485,60 @@
         .social-icons.dark-mode a:hover {
             background: var(--secondary-dark) !important;
         }
+        /* Footer copyright text */
+footer p {
+    margin: 0;
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* Hyperlink inside footer copyright */
+footer p a {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+footer p a:hover {
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Dark mode variant */
+footer.dark-mode p {
+    color: #e0e0e0;
+}
+
+footer.dark-mode p a {
+    color: var(--secondary-dark) !important;
+}
+
+footer.dark-mode p a:hover {
+    color: #fff !important;
+}
+
+/* Privacy Policy link inside footer */
+footer a.privacy-link {
+    color: #ccc;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+footer a.privacy-link:hover {
+    color: var(--secondary);
+    transform: translateY(-2px);
+}
+
+/* Dark mode */
+footer.dark-mode a.privacy-link {
+    color: #e0e0e0 !important;
+}
+
+footer.dark-mode a.privacy-link:hover {
+    color: var(--secondary-dark) !important;
+}
         /* Back to Top Button */
         #back-to-top {
             position: fixed;
@@ -639,6 +705,59 @@
                 column-count: 1;
             }
         }
+        /* Modal for gallery preview */
+        .modal-content.dark-mode {
+            background-color: #1e1e1e !important;
+            color: #e0e0e0 !important;
+        }
+        .modal-header .btn-close {
+            filter: invert(1);
+        }
+        /* Gallery Navigation Buttons */
+        .modal-body {
+            position: relative;
+        }
+        .modal-nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            z-index: 1051;
+        }
+        .modal-nav-button:hover {
+            background: rgba(0, 0, 0, 0.6);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .modal-nav-button.dark-mode {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .modal-nav-button.dark-mode:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        .modal-nav-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        #prevBtn {
+            left: 10px;
+        }
+        #nextBtn {
+            right: 10px;
+        }
+        #modalImage {
+            max-height: 80vh;
+        }
     </style>
 </head>
 <body>
@@ -651,19 +770,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link active animate__animated animate__fadeIn" href="#" data-page="home">Home</a>
+                        <a class="nav-link active animate__animated animate__fadeIn" href="#" data-page="home" style="animation-delay: 0.1s;">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="products" style="animation-delay: 0.1s;">Products</a>
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="products" style="animation-delay: 0.2s;">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="about" style="animation-delay: 0.2s;">About</a>
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="about" style="animation-delay: 0.3s;">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="inspiration" style="animation-delay: 0.3s;">Gallery</a>
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="inspiration" style="animation-delay: 0.4s;">Gallery</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="contact" style="animation-delay: 0.4s;">Contact</a>
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="contact" style="animation-delay: 0.5s;">Contact</a>
                     </li>
                     <li class="nav-item">
                         <form class="search-form d-flex animate__animated animate__fadeIn" style="animation-delay: 0.6s;">
@@ -833,7 +952,7 @@
                 </div>
             </div>
         </section>
-        <<section class="team">
+        <section class="team">
             <div class="container">
                 <div class="section-title animate__animated animate__fadeInDown">
                     <h2>Our Team</h2>
@@ -975,11 +1094,11 @@
                     <h3 class="text-white mb-4">Metamo Surface Studio</h3>
                     <p>Transforming spaces with modern artisanal texture surfaces. Quality, innovation, and craftsmanship are our core values.</p>
                     <div class="social-icons mt-4">
-                        <a href="#" class="animate__animated animate__pulse"><i class='bx bxl-facebook'></i></a>
-                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.1s;"><i class='bx bxl-instagram'></i></a>
-                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.2s;"><i class='bx bxl-twitter'></i></a>
-                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.3s;"><i class='bx bxl-linkedin'></i></a>
-                        <a href="https://wa.me/919846955954" target="_blank" class="animate__animated animate__pulse" style="animation-delay: 0.4s;"><i class='bx bxl-whatsapp'></i></a>
+                        <a href="https://www.facebook.com/metamosurface" class="animate__animated animate__pulse"><i class='bx bxl-facebook'></i></a>
+                        <a href="https://www.instagram.com/metamosurface" class="animate__animated animate__pulse" style="animation-delay: 0.1s;"><i class='bx bxl-instagram'></i></a>
+                        <a href="https://www.x.com/metamosurface" class="animate__animated animate__pulse" style="animation-delay: 0.2s;"><i class='bx bxl-twitter'></i></a>
+                        <a href="https://www.linkedin.com/metamosurface" class="animate__animated animate__pulse" style="animation-delay: 0.3s;"><i class='bx bxl-linkedin'></i></a>
+                        <a href="https://wa.me/919846955954?text=I'm%20interested%20in%20the%20model%20service%20offered%20by%20Metamo%20Surface%20Studio.%20Could%20you%20please%20provide%20more%20details?%20Thank%20you!" target="_blank" class="animate__animated animate__pulse" style="animation-delay: 0.4s;"><i class='bx bxl-whatsapp'></i></a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 mb-5">
@@ -987,7 +1106,7 @@
                         <h5>Quick Links</h5>
                         <ul>
                             <li><a href="#" data-page="home">Home</a></li>
-                            <li><a href="#" data-page="products">Products</a></li>
+                            <li><a href="#" data-page="products">Colletions</a></li>
                             <li><a href="#" data-page="about">About</a></li>
                             <li><a href="#" data-page="inspiration">Gallery</a></li>
                             <li><a href="#" data-page="contact">Contact</a></li>
@@ -998,10 +1117,13 @@
                     <div class="footer-links">
                         <h5>Products</h5>
                         <ul>
-                            <li><a href="#">Artisanal Marble</a></li>
-                            <li><a href="#">Textured Quartz</a></li>
-                            <li><a href="#">Artisanal Granite</a></li>
-                            <li><a href="#">Custom Solutions</a></li>
+                            <li><a href="VETRO.pdf" data-page="product-details">VETRO</a></li>
+                            <li><a href="MARMARINO.pdf" data-page="product-details">MARMARINO</a></li>
+                            <li><a href="CEMENTO.pdf" data-page="product-details">CEMENTO</a></li>
+                            <li><a href="SETA.pdf" data-page="product-details">SETA</a></li>
+                            <li><a href="VELLCCO.pdf" data-page="product-details">VELLCCO</a></li>
+                            <li><a href="VELLPLAS.pdf" data-page="product-details">VELLPLAS</a></li>
+                            <li><a href="UNIQUE.pdf">Custom Solutions</a></li>
                         </ul>
                     </div>
                 </div>
@@ -1020,7 +1142,7 @@
             <div class="border-top pt-4 mt-4">
                 <div class="row">
                     <div class="col-md-6">
-                        <p class="mb-0">© 2023 Metamo Surface Studio. All Rights Reserved.</p>
+                        <p class="mb-0">© 2023 Metamo Surface Studio. All Rights Reserved. Developed by <a href="https://heliocreation.pages.dev/">Heliocreation</a></p>
                     </div>
                     <div class="col-md-6 text-md-end">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" class="privacy-link">Privacy Policy</a>
@@ -1120,6 +1242,24 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImage" src="" alt="Gallery Image" class="img-fluid rounded animate__animated animate__fadeIn">
+                    <div id="modalContent" class="mt-3">
+                        <h4 id="modalName"></h4>
+                        <p id="modalDescription"></p>
+                    </div>
+                    <button id="prevBtn" type="button" class="modal-nav-button"><i class='bx bx-chevron-left'></i></button>
+                    <button id="nextBtn" type="button" class="modal-nav-button"><i class='bx bx-chevron-right'></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
@@ -1139,19 +1279,22 @@
         const productsRef = database.ref('products');
         const inspirationsRef = database.ref('inspirations');
         const faqsRef = database.ref('faqs');
+        
+        const navbarNav = document.getElementById('navbarNav');
 
         document.addEventListener('DOMContentLoaded', function() {
             // Theme-based logo switching
             const logoImg = document.getElementById('navbar-logo');
             function updateTheme() {
-                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (isDarkMode) {
                     document.body.classList.add('dark-mode');
                     logoImg.src = 'logo1.jpg';
-                    document.querySelectorAll('.navbar, .nav-link, .search-form, .back-arrow, .color-item, .product-card, .testimonial-card, .contact-info, .contact-form, .privacy-content, .footer-links, .social-icons, #back-to-top, .product-details-content, .inspiration-content, .product-specs').forEach(el => el.classList.add('dark-mode'));
+                    document.querySelectorAll('.navbar, .nav-link, .search-form, .back-arrow, .color-item, .product-card, .testimonial-card, .contact-info, .contact-form, .privacy-content, .footer-links, .social-icons, #back-to-top, .product-details-content, .inspiration-content, .product-specs, .modal-content, .modal-nav-button').forEach(el => el.classList.add('dark-mode'));
                 } else {
                     document.body.classList.remove('dark-mode');
                     logoImg.src = 'logo.jpg';
-                    document.querySelectorAll('.navbar, .nav-link, .search-form, .back-arrow, .color-item, .product-card, .testimonial-card, .contact-info, .contact-form, .privacy-content, .footer-links, .social-icons, #back-to-top, .product-details-content, .inspiration-content, .product-specs').forEach(el => el.classList.remove('dark-mode'));
+                    document.querySelectorAll('.navbar, .nav-link, .search-form, .back-arrow, .color-item, .product-card, .testimonial-card, .contact-info, .contact-form, .privacy-content, .footer-links, .social-icons, #back-to-top, .product-details-content, .inspiration-content, .product-specs, .modal-content, .modal-nav-button').forEach(el => el.classList.remove('dark-mode'));
                 }
             }
             updateTheme();
@@ -1170,6 +1313,10 @@
                     }
                 });
                 window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (navbarNav.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarNav, { toggle: false });
+                    bsCollapse.hide();
+                }
             }
 
             pageLinks.forEach(link => {
@@ -1214,14 +1361,26 @@
                 productsRow.innerHTML = '<div class="col-12"><p>Error loading products. Please try again later.</p></div>';
             });
             
-            // Inspiration Gallery Fetching and Rendering
+            // Inspiration Gallery Fetching and Rendering with modal preview
+            const galleryModal = new bootstrap.Modal(document.getElementById('galleryModal'));
+            const modalImage = document.getElementById('modalImage');
+            const modalName = document.getElementById('modalName');
+            const modalDescription = document.getElementById('modalDescription');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
             const inspirationGallery = document.getElementById('inspiration-gallery');
+            let inspirationsData = [];
+            let currentIndex = 0;
+
             const renderInspirations = (snapshot) => {
                 inspirationGallery.innerHTML = '';
+                inspirationsData = [];
+                let index = 0;
                 snapshot.forEach(childSnapshot => {
                     const inspiration = childSnapshot.val();
+                    inspirationsData.push(inspiration);
                     const inspirationItemHTML = `
-                        <div class="inspiration-item animate__animated animate__fadeInUp">
+                        <div class="inspiration-item animate__animated animate__fadeInUp" data-bs-toggle="modal" data-bs-target="#galleryModal" data-index="${index}">
                             <div class="inspiration-img">
                                 <img src="${inspiration.imageUrl}" alt="${inspiration.name}">
                                 <div class="inspiration-content">
@@ -1232,8 +1391,54 @@
                         </div>
                     `;
                     inspirationGallery.innerHTML += inspirationItemHTML;
+                    index++;
+                });
+
+                document.querySelectorAll('.inspiration-item').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        const index = parseInt(e.currentTarget.getAttribute('data-index'));
+                        showImage(index);
+                    });
                 });
             };
+            
+            function showImage(index) {
+                if (index >= 0 && index < inspirationsData.length) {
+                    currentIndex = index;
+                    const item = inspirationsData[currentIndex];
+                    modalImage.src = item.imageUrl;
+                    modalName.textContent = item.name;
+                    modalDescription.textContent = item.description;
+
+                    modalImage.classList.remove('animate__fadeIn');
+                    void modalImage.offsetWidth; 
+                    modalImage.classList.add('animate__fadeIn');
+
+                    prevBtn.disabled = currentIndex === 0;
+                    nextBtn.disabled = currentIndex === inspirationsData.length - 1;
+
+                    // Add dark-mode class to buttons if needed
+                    const isDarkMode = document.body.classList.contains('dark-mode');
+                    prevBtn.classList.toggle('dark-mode', isDarkMode);
+                    nextBtn.classList.toggle('dark-mode', isDarkMode);
+
+                    // Update disabled state for dark mode
+                    prevBtn.classList.toggle('disabled', prevBtn.disabled);
+                    nextBtn.classList.toggle('disabled', nextBtn.disabled);
+                }
+            }
+
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    showImage(currentIndex - 1);
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < inspirationsData.length - 1) {
+                    showImage(currentIndex + 1);
+                }
+            });
 
             inspirationsRef.on('value', renderInspirations, (error) => {
                 console.error("Error fetching inspirations:", error);
