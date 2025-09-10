@@ -4,332 +4,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Metamo Surface Studio</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="jpg" href="logo.jpg">
-
-    <!-- Open Graph for social sharing -->
-    <meta property="og:title" content="Metamo Surface Studio">
-    <meta property="og:image" content="your-logo-url.png">
-    <meta property="og:description" content="Designing immersive surfaces for a better tomorrow.">
-    <meta property="og:type" content="website">
-
-    <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-text-color: #1a1a1a;
-            --secondary-text-color: #4a4a4a;
-            --accent-color: #c7a05b;
-            --light-bg-color: #f9f9f9;
-            --dark-bg-color: #1f1f1f;
-            --white-color: #fff;
-            --header-height: 80px;
-            --transition-speed: 0.4s;
-            --chatbot-bg: #ffffff;
-            --chatbot-accent: #c7a05b;
-            --chatbot-shadow: rgba(0,0,0,0.15);
+            --primary: #2c3e50;
+            --secondary: #e67e22;
+            --secondary-dark: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --accent: #3498db;
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
         body {
             font-family: 'Poppins', sans-serif;
-            line-height: 1.7;
-            color: var(--primary-text-color);
+            color: #333;
             overflow-x: hidden;
-            background-color: var(--light-bg-color);
+            background-color: #f9f9f9;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
-
-        .container {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 0 20px;
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0 !important;
         }
-
-        /* Preloader */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--white-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
         }
-
-        .preloader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .preloader-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid var(--accent-color);
-            border-top: 5px solid transparent;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .header {
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: var(--white-color);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            z-index: 1000;
-            height: var(--header-height);
-            display: flex;
-            align-items: center;
-            transition: all var(--transition-speed) ease;
-        }
-
+        /* Navigation */
         .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-            width: 100%;
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
-
-        .logo img {
-            height: 90px;
+        .navbar.dark-mode {
+            background: linear-gradient(to bottom, #000000, #000000);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        .navbar-brand img {
+            height: 80px;
             transition: transform 0.3s ease;
         }
-
-        .logo img:hover {
+        @media (max-width: 768px) {
+            .navbar-brand img {
+                height: 60px;
+            }
+        }
+        .navbar-brand:hover img {
             transform: scale(1.05);
         }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-links li {
-            margin-left: 35px;
-            position: relative;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--primary-text-color);
+        .nav-link {
+            color: var(--dark);
             font-weight: 500;
-            transition: color var(--transition-speed) ease, transform 0.2s ease;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 10px 0;
         }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
+        .nav-link:hover {
+            color: var(--secondary);
             transform: translateY(-2px);
         }
-
-        .nav-links .dropdown-menu {
-            display: none;
+        .nav-link.active {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        .nav-link::after {
+            content: '';
             position: absolute;
-            top: 100%;
+            width: 0;
+            height: 2px;
+            bottom: 0;
             left: 0;
-            background-color: var(--white-color);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-            list-style: none;
-            min-width: 200px;
-            padding: 12px 0;
-            border-radius: 8px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(15px);
-            transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease, visibility var(--transition-speed) ease;
+            background-color: var(--secondary);
+            transition: width 0.3s ease;
         }
-
-        .nav-links li.dropdown:hover .dropdown-menu {
-            display: block;
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
         }
-
-        .nav-links .dropdown-menu li {
-            margin: 0;
+        .nav-link.dark-mode {
+            color: #f9f9f9 !important;
         }
-
-        .nav-links .dropdown-menu a {
-            padding: 12px 20px;
-            display: block;
-            font-weight: 400;
-            transition: background-color 0.2s ease, color 0.2s ease;
+        .nav-link.dark-mode:hover {
+            color: var(--secondary-dark) !important;
         }
-
-        .nav-links .dropdown-menu a:hover {
-            background-color: var(--light-bg-color);
-            color: var(--accent-color);
+        .nav-link.dark-mode.active {
+            color: var(--accent) !important;
         }
-
-        .nav-links .search-icon {
-            font-size: 26px;
-            cursor: pointer;
-            margin-left: 35px;
-            color: var(--primary-text-color);
-            transition: color var(--transition-speed) ease, transform 0.2s ease;
+        /* Navbar Toggler */
+        .navbar-toggler {
+            border-color: #f9f9f9;
         }
-
-        .nav-links .search-icon:hover {
-            color: var(--accent-color);
-            transform: scale(1.1);
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(0, 0, 0)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
-
-        .hamburger-menu {
-            display: none;
-            font-size: 32px;
-            cursor: pointer;
-            color: var(--primary-text-color);
-            z-index: 1001;
-            transition: color var(--transition-speed) ease;
+        .navbar.dark-mode .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(255, 255, 255)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -320px;
-            width: 320px;
+        /* Search Bar */
+        .search-form {
+            position: relative;
+            max-width: 200px;
+        }
+        .search-form input {
+            padding-right: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--light);
+            transition: all 0.3s ease;
+        }
+        .search-form input:focus {
+            border-color: var(--secondary);
+            box-shadow: 0 0 5px rgba(230, 126, 34, 0.3);
+        }
+        .search-form button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--dark);
+        }
+        .search-form button:hover {
+            color: var(--secondary);
+        }
+        .search-form.dark-mode input {
+            background-color: #2c2c2c !important;
+            border-color: #444 !important;
+            color: #e0e0e0 !important;
+        }
+        .search-form.dark-mode button {
+            color: #e0e0e0 !important;
+        }
+        .search-form.dark-mode button:hover {
+            color: var(--secondary-dark) !important;
+        }
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/01.jpg') no-repeat center center/cover;
             height: 100vh;
-            background-color: var(--dark-bg-color);
-            color: var(--white-color);
-            z-index: 999;
-            box-shadow: -5px 0 15px rgba(0,0,0,0.25);
-            transition: right 0.4s ease-in-out;
-            padding-top: var(--header-height);
             display: flex;
-            flex-direction: column;
-        }
-
-        .mobile-menu.open {
-            right: 0;
-        }
-
-        .mobile-menu-header {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
-        }
-
-        .mobile-menu-header .close-btn {
-            font-size: 32px;
-            cursor: pointer;
-            color: var(--white-color);
-            transition: color 0.3s ease;
-        }
-
-        .mobile-menu-header .close-btn:hover {
-            color: var(--accent-color);
-        }
-
-        .mobile-menu ul {
-            list-style: none;
-            padding: 20px 0;
-            flex-grow: 1;
-        }
-
-        .mobile-menu ul li {
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .mobile-menu ul li a {
-            display: block;
-            padding: 15px 25px;
-            color: var(--white-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
-        }
-
-        .mobile-menu ul li a:hover {
-            background-color: rgba(255,255,255,0.12);
-            color: var(--accent-color);
-        }
-
-        .mobile-menu ul li.dropdown-mobile .dropdown-icon {
-            float: right;
-            transition: transform var(--transition-speed) ease;
-        }
-
-        .mobile-menu ul li.dropdown-mobile.active .dropdown-icon {
-            transform: rotate(90deg);
-        }
-
-        .mobile-menu .dropdown-mobile-menu {
-            display: none;
-            list-style: none;
-            background-color: rgba(0,0,0,0.25);
-            padding-left: 25px;
-        }
-
-        .mobile-menu .dropdown-mobile-menu li a {
-            padding: 12px 25px;
-            font-size: 0.95em;
-            color: rgba(255,255,255,0.85);
-        }
-
-        .hero-section {
+            color: white;
             position: relative;
-            width: 100%;
-            height: 75vh;
-            background: url('https://plus.unsplash.com/premium_photo-1661780295073-98db12600af0?fm=jpg') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white-color);
-            margin-top: var(--header-height);
-            overflow: hidden;
         }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.45);
-            z-index: 0;
-        }
-
         .hero-content {
-            position: relative;
-            z-index: 1;
-            padding: 30px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+            animation: fadeInUp 1s ease-out;
         }
-
-        .hero-content.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         .hero-content h1 {
             font-size: 3.8em;
             margin-bottom: 20px;
@@ -337,44 +165,86 @@
             line-height: 1.3;
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
-
         .hero-content p {
             font-size: 1.3em;
             max-width: 850px;
             margin: 0 auto 25px;
             text-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
-
         .hero-content span {
-            color: var(--accent-color);
+            color: #c7a05b;
             font-weight: 700;
         }
-
-        section {
-            padding: 100px 0;
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-            position: relative;
+        .btn-primary {
+            background-color: var(--secondary);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
-
+        .btn-primary:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary.dark-mode {
+            background-color: var(--secondary-dark) !important;
+        }
+        .btn-primary.dark-mode:hover {
+            background-color: var(--accent) !important;
+        }
+        /* Section Styling */
+        section {
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .section-title.dark-mode h2::after {
+            background: var(--secondary-dark) !important;
+        }
+        /* About Section */
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeInLeft 1s ease-out;
+        }
+        .about-content {
+            animation: fadeInRight 1s ease-out;
+        }
         section.animated {
             opacity: 1;
             transform: translateY(0);
         }
-
         .about-section {
             background-color: var(--light-bg-color);
             text-align: center;
         }
-
         .about-section h2 {
             font-size: 2.8em;
             margin-bottom: 35px;
             color: var(--primary-text-color);
             font-weight: 600;
         }
-
         .about-section p {
             font-size: 1.15em;
             max-width: 950px;
@@ -382,1425 +252,1305 @@
             color: var(--secondary-text-color);
             line-height: 1.9;
         }
-
-        .our-story-section {
-            background-color: var(--white-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 60px;
-            flex-wrap: wrap;
-            padding-left: 20px;
-            padding-right: 20px;
+        /* Products Section */
+/* Light Mode (default) */
+.product-card {
+    background: white; /* Changed from black to white */
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    animation: fadeInUp 1s ease-out;
+    color: black; /* Added to ensure black text in light mode */
+}
+.product-card h4, .product-card p {
+    color: black; /* Added to ensure text is black in light mode */
+}
+/* Dark Mode */
+.product-card.dark-mode {
+    background: #1e1e1e !important; /* Retained dark background */
+    border: 1px solid #444;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+.product-card.dark-mode h4, .product-card.dark-mode p {
+    color: #e0e0e0; /* Retained light text for dark mode */
+}
+        .product-card.dark-mode a {
+            color: #e67e22; /* Use a brighter accent color for links */
         }
-
-        .story-content {
-            background-color: var(--light-bg-color);
-            padding: 45px;
-            border-radius: 12px;
-            max-width: 600px;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
-            text-align: left;
+        .product-card.dark-mode a:hover {
+            color: #f39c12; /* A slightly different accent for hover */
         }
-
-        .story-content h3 {
-            font-size: 2.2em;
-            margin-bottom: 25px;
-            color: var(--primary-text-color);
-            font-weight: 600;
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
-
-        .story-content p {
-            font-size: 1.05em;
-            color: var(--secondary-text-color);
-            margin-bottom: 35px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 35px;
-            background-color: var(--accent-color);
-            color: var(--white-color);
-            text-decoration: none;
-            border-radius: 50px;
-            transition: background-color var(--transition-speed) ease, transform 0.3s ease, box-shadow var(--transition-speed) ease;
-            font-weight: 500;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.12);
-        }
-
-        .btn:hover {
-            background-color: #b5914a;
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.18);
-        }
-
-        .story-image {
-            width: 550px;
-            aspect-ratio: 4 / 3;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover;
-            border-radius: 12px;
-            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
-            position: relative;
+        .product-img {
+            height: 200px;
             overflow: hidden;
-            transition: transform 0.5s ease, opacity 0.5s ease;
         }
-
-        .story-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .product-img img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.2), rgba(0,0,0,0));
-            z-index: 0;
-        }
-
-        .story-image:hover {
-            transform: scale(1.02);
-        }
-
-        .story-image img {
-            display: none;
-        }
-
-        .story-image-dots {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            background-color: rgba(0,0,0,0.35);
-            padding: 10px 20px;
-            border-radius: 25px;
-            z-index: 1;
-        }
-
-        .story-image-dots .dot {
-            width: 12px;
-            height: 12px;
-            background-color: rgba(255,255,255,0.7);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color var(--transition-speed) ease, transform 0.3s ease;
-        }
-
-        .story-image-dots .dot.active,
-        .story-image-dots .dot:hover {
-            background-color: var(--accent-color);
-            transform: scale(1.3);
-        }
-
-        .blog-section {
-            background-color: var(--light-bg-color);
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 50px;
-            align-items: flex-start;
-        }
-
-        .latest-post, .inspiration {
-            background-color: var(--white-color);
-            padding: 35px;
-            border-radius: 12px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-        }
-
-        .latest-post h3, .inspiration h3 {
-            font-size: 2em;
-            margin-bottom: 30px;
-            color: var(--primary-text-color);
-            font-weight: 600;
-        }
-
-        .latest-post-card {
-            background-color: #f0ede9;
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-            height: 420px;
-            display: flex;
-            align-items: flex-end;
-            padding: 25px;
-            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover;
-            color: var(--white-color);
-            text-shadow: 0 1px 4px rgba(0,0,0,0.6);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .latest-post-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .latest-post-card .overlay-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .latest-post-card h4 {
-            font-size: 1.6em;
-            margin-bottom: 12px;
-            font-weight: 500;
-        }
-
-        .latest-post-card p {
-            font-size: 0.95em;
-            color: rgba(255,255,255,0.95);
-        }
-
-        .inspiration-content h4 {
-            font-size: 1.6em;
-            margin-bottom: 20px;
-            color: var(--primary-text-color);
-            font-weight: 500;
-        }
-
-        .inspiration-content p {
-            font-size: 1.05em;
-            color: var(--secondary-text-color);
-            line-height: 1.8;
-        }
-
-        .how-helps-card {
-            margin-top: 35px;
-            display: flex;
-            gap: 25px;
-            align-items: center;
-            padding: 25px;
-            background-color: #fdfdfd;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .how-helps-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.12);
-        }
-
-        .how-helps-card .card-image {
-            min-width: 160px;
-            height: 110px;
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: cover;
-            border-radius: 8px;
-            flex-shrink: 0;
+            object-fit: cover;
             transition: transform 0.5s ease;
         }
-
-        .how-helps-card .card-image:hover {
-            transform: scale(1.03);
-        }
-
-        .how-helps-card .card-text h5 {
-            font-size: 1.3em;
-            margin-bottom: 10px;
-            color: var(--primary-text-color);
-            font-weight: 500;
-        }
-
-        .how-helps-card .card-text p {
-            font-size: 0.95em;
-            color: var(--secondary-text-color);
-        }
-
-        .how-helps-card-dots {
-            text-align: center;
-            margin-top: 25px;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .how-helps-card-dots .dot {
-            width: 12px;
-            height: 12px;
-            background-color: #d0d0d0;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color var(--transition-speed) ease, transform 0.3s ease;
-        }
-
-        .how-helps-card-dots .dot.active,
-        .how-helps-card-dots .dot:hover {
-            background-color: var(--accent-color);
-            transform: scale(1.3);
-        }
-
-        .btn-more-inspiration {
-            margin-top: 35px;
-            text-align: center;
-        }
-
-        .partner-section {
-            background: url('https://macoavell.com.my/wp-content/uploads/2020/01/sample5.jpg') no-repeat center center/cover;
-            height: 420px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: var(--white-color);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .partner-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.55);
-            z-index: 0;
-        }
-
-        .partner-content {
-            position: relative;
-            z-index: 1;
-            padding: 25px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
-        }
-
-        .partner-content.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .partner-content h2 {
-            font-size: 2.8em;
-            margin-bottom: 25px;
-            font-weight: 600;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .partner-content p {
-            font-size: 1.15em;
-            max-width: 750px;
-            margin: 0 auto 35px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-
-        .tagline-section {
-            background-color: var(--accent-color);
-            color: var(--white-color);
-            padding: 60px 0;
-            text-align: center;
-            font-size: 2.2em;
-            font-weight: 500;
-            box-shadow: 0 -6px 20px rgba(0,0,0,0.12);
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
-        }
-
-        .tagline-section.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .footer {
-            background-color: var(--dark-bg-color);
-            color: #d0d0d0;
-            padding: 70px 0 40px;
-            font-size: 0.95em;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 50px;
-            margin-bottom: 60px;
-        }
-
-        .footer-column h4 {
-            color: var(--white-color);
-            margin-bottom: 25px;
-            font-size: 1.2em;
-            font-weight: 600;
-        }
-
-        .footer-column ul {
-            list-style: none;
-        }
-
-        .footer-column ul li {
-            margin-bottom: 12px;
-        }
-
-        .footer-column ul li a {
-            color: #d0d0d0;
-            text-decoration: none;
-            transition: color var(--transition-speed) ease;
-        }
-
-        .footer-column ul li a:hover {
-            color: var(--accent-color);
-        }
-
-        .footer-column p {
-            margin-bottom: 12px;
-        }
-
-        .footer-column i.bx {
-            margin-right: 10px;
-            font-size: 1.3em;
-            vertical-align: middle;
-        }
-
-        .footer-social-icons {
-            display: flex;
-            gap: 18px;
-            margin-top: 25px;
-        }
-
-        .footer-social-icons a {
-            color: var(--white-color);
-            font-size: 26px;
-            transition: color var(--transition-speed) ease, transform 0.3s ease;
-        }
-
-        .footer-social-icons a:hover {
-            color: var(--accent-color);
-            transform: translateY(-3px);
-        }
-
-        .newsletter-signup img {
-            max-width: 160px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            filter: grayscale(100%);
-            transition: filter 0.4s ease, transform 0.3s ease;
-        }
-
-        .newsletter-signup img:hover {
-            filter: grayscale(0%);
-            transform: scale(1.05);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 40px;
-            border-top: 1px solid #555;
-            color: #999;
-            position: relative;
-        }
-
-        .scroll-to-top {
-            position: fixed;
-            right: 25px;
-            bottom: 25px;
-            color: var(--white-color);
-            background-color: rgba(0,0,0,0.7);
-            padding: 12px;
-            border-radius: 50%;
-            font-size: 26px;
-            cursor: pointer;
-            display: none;
-            z-index: 998;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .scroll-to-top:hover {
-            background-color: var(--accent-color);
-            transform: translateY(-5px);
-        }
-
-        /* Enhanced Chatbot Styles */
-        .chatbot-container {
-            position: fixed;
-            right: 30px;
-            bottom: 90px; /* Adjusted to position above scroll-to-top */
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        .chatbot-toggle {
-            background: linear-gradient(135deg, var(--chatbot-accent), #b5914a);
-            color: var(--white-color);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 15px var(--chatbot-shadow);
-            transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
-        }
-
-        .chatbot-toggle:hover {
-            transform: scale(1.1) rotate(360deg);
-            box-shadow: 0 6px 20px var(--chatbot-shadow);
-        }
-
-        .chatbot-toggle i {
-            font-size: 28px;
-            transition: transform 0.4s ease;
-        }
-
-        .chatbot-window {
-            display: none;
-            width: 400px;
-            max-height: 600px;
-            background: var(--chatbot-bg);
-            border-radius: 16px;
-            box-shadow: 0 8px 30px var(--chatbot-shadow);
-            overflow: hidden;
-            margin-bottom: 15px;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .chatbot-window.open {
-            display: block;
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .chatbot-header {
-            background: linear-gradient(135deg, var(--chatbot-accent), #b5914a);
-            color: var(--white-color);
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .chatbot-header h4 {
-            margin: 0;
-            font-size: 1.3em;
-            font-weight: 600;
-        }
-
-        .chatbot-header .close-chatbot {
-            cursor: pointer;
-            font-size: 22px;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-
-        .chatbot-header .close-chatbot:hover {
-            transform: rotate(90deg);
-            color: #f0f0f0;
-        }
-
-        .chatbot-body {
-            padding: 20px;
-            height: 400px;
-            overflow-y: auto;
-            background: #f8f9fa;
-            scrollbar-width: thin;
-            scrollbar-color: var(--chatbot-accent) #e0e0e0;
-        }
-
-        .chatbot-body::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .chatbot-body::-webkit-scrollbar-track {
-            background: #e0e0e0;
-            border-radius: 10px;
-        }
-
-        .chatbot-body::-webkit-scrollbar-thumb {
-            background: var(--chatbot-accent);
-            border-radius: 10px;
-        }
-
-        .chatbot-message {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-end;
-            animation: slideInChat 0.3s ease-out;
-        }
-
-        .chatbot-message.bot {
-            justify-content: flex-start;
-        }
-
-        .chatbot-message.user {
-            justify-content: flex-end;
-        }
-
-        .chatbot-message .message-content {
-            max-width: 75%;
-            padding: 12px 18px;
-            border-radius: 18px;
-            font-size: 0.95em;
-            line-height: 1.5;
-            position: relative;
-            box-shadow: 0 2px 6px var(--chatbot-shadow);
-        }
-
-        .chatbot-message.bot .message-content {
-            background: #ffffff;
-            color: var(--primary-text-color);
-            border-bottom-left-radius: 4px;
-        }
-
-        .chatbot-message.user .message-content {
-            background: var(--chatbot-accent);
-            color: var(--white-color);
-            border-bottom-right-radius: 4px;
-        }
-
-        .chatbot-message .message-time {
-            font-size: 0.75em;
-            color: var(--secondary-text-color);
-            margin-top: 5px;
-            opacity: 0.8;
-        }
-
-        .chatbot-typing {
-            display: none;
-            padding: 12px 18px;
-            color: var(--secondary-text-color);
-            font-style: italic;
-            animation: pulse 1.5s infinite;
-        }
-
-        .chatbot-typing.show {
-            display: block;
-        }
-
-        .chatbot-input {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            background: var(--chatbot-bg);
-            border-top: 1px solid #eee;
-        }
-
-        .chatbot-input input {
-            flex-grow: 1;
-            padding: 12px 20px;
-            border: 1px solid #ddd;
-            border-radius: 25px;
-            outline: none;
-            font-size: 0.95em;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .chatbot-input input:focus {
-            border-color: var(--chatbot-accent);
-            box-shadow: 0 0 6px rgba(199,160,91,0.3);
-        }
-
-        .chatbot-input button {
-            background: var(--chatbot-accent);
-            color: var(--white-color);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .chatbot-input button:hover {
-            background: #b5914a;
+        .product-card:hover .product-img img {
             transform: scale(1.1);
         }
-
-        .chatbot-input button i {
-            font-size: 20px;
+        /* Inspiration Section */
+        .inspiration {
+            padding: 80px 0;
         }
-
-        @keyframes slideInChat {
+        .inspiration-gallery {
+            column-count: 3;
+            column-gap: 20px;
+        }
+        .inspiration-item {
+            break-inside: avoid;
+            margin-bottom: 20px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+            cursor: pointer;
+        }
+        .inspiration-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .inspiration-img {
+            position: relative;
+        }
+        .inspiration-img img {
+            width: 100%;
+            display: block;
+            border-radius: 8px;
+        }
+        .inspiration-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 15px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            transition: background 0.3s ease;
+        }
+        .inspiration-content.dark-mode {
+            background: rgba(0, 0, 0, 0.75) !important;
+        }
+        .inspiration-content h4 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        .inspiration-content p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        .inspiration-item:hover .inspiration-content {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .inspiration-item.dark-mode:hover .inspiration-content {
+            background: rgba(0, 0, 0, 0.85) !important;
+        }
+        /* Testimonials Section */
+        .testimonial-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out;
+        }
+        .testimonial-card.dark-mode {
+            background: #1e1e1e !important;
+        }
+        /* Contact Section */
+        .contact-info {
+            background: var(--primary);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            animation: fadeInLeft 1s ease-out;
+        }
+        .contact-info.dark-mode {
+            background: #1e1e1e !important;
+        }
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .contact-info a:hover {
+            color: var(--secondary);
+        }
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            animation: fadeInRight 1s ease-out;
+        }
+        .contact-form.dark-mode {
+            background: #1e1e1e !important;
+        }
+        .contact-form.dark-mode .form-control {
+            background-color: #2c2c2c !important;
+            color: #e0e0e0 !important;
+            border-color: #444 !important;
+        }
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        footer.dark-mode {
+            background: #0a0a0a !important;
+        }
+        .footer-links h5 {
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        .footer-links h5::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+        .footer-links.dark-mode h5::after {
+            background: var(--secondary-dark) !important;
+        }
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s ease-out;
+        }
+        .footer-links.dark-mode a {
+            color: #e0e0e0 !important;
+        }
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        .footer-links.dark-mode a:hover {
+            color: var(--secondary-dark) !important;
+        }
+        .footer-links a.privacy-link {
+            color: #ccc;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .footer-links a.privacy-link:hover {
+            color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        .footer-links.dark-mode a.privacy-link {
+            color: #e0e0e0 !important;
+        }
+        .footer-links.dark-mode a.privacy-link:hover {
+            color: var(--secondary-dark) !important;
+        }
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s ease-out;
+        }
+        .social-icons.dark-mode a {
+            background: rgba(255, 255, 255, 0.15) !important;
+        }
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+        .social-icons.dark-mode a:hover {
+            background: var(--secondary-dark) !important;
+        }
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--secondary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+        }
+        #back-to-top.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #back-to-top:hover {
+            transform: translateY(-5px);
+        }
+        #back-to-top.dark-mode {
+            background: var(--secondary-dark) !important;
+        }
+        /* Back to Products Button */
+        .back-arrow {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        .back-arrow:hover {
+            background-color: var(--primary);
+            transform: translateX(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .back-arrow.dark-mode {
+            background-color: var(--secondary-dark) !important;
+        }
+        .back-arrow.dark-mode:hover {
+            background-color: var(--accent) !important;
+        }
+        /* Animations */
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(15px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
         @keyframes pulse {
-            0%, 100% { opacity: 0.6; transform: scale(0.95); }
-            50% { opacity: 1; transform: scale(1); }
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
-
+        .animate__animated {
+            animation-duration: 0.8s;
+        }
+        /* Page Content */
+        .page-content {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+        .page-content.active {
+            display: block;
+        }
+        /* Privacy Policy */
+        .privacy-content {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        .privacy-content.dark-mode {
+            background: #1e1e1e !important;
+        }
+        /* Share Buttons */
+        .share-buttons a {
+            margin-right: 10px;
+            color: var(--dark);
+            transition: color 0.3s ease-out;
+        }
+        .share-buttons a:hover {
+            color: var(--secondary);
+            animation: pulse 0.5s ease-out;
+        }
+        .share-buttons.dark-mode a {
+            color: #e0e0e0 !important;
+        }
+        .share-buttons.dark-mode a:hover {
+            color: var(--secondary-dark) !important;
+        }
+        /* Responsive Design */
         @media (max-width: 992px) {
-            .hero-content h1 { font-size: 3.2em; }
-            .hero-content p { font-size: 1.2em; }
-            .about-section h2, .partner-content h2 { font-size: 2.4em; }
-            .about-section p, .partner-content p { font-size: 1.1em; line-height: 1.8; }
-            .our-story-section { flex-direction: column; gap: 40px; padding: 70px 20px; }
-            .story-content { max-width: 100%; }
-            .story-image { max-width: 100%; width: 100%; aspect-ratio: 4 / 3; }
-            .blog-grid { grid-template-columns: 1fr; gap: 40px; }
-            .latest-post h3, .inspiration h3 { font-size: 1.8em; }
-            .latest-post-card { height: 380px; }
-            .how-helps-card { flex-direction: column; text-align: center; }
-            .how-helps-card .card-image { min-width: unset; width: 100%; height: 200px; }
-            .partner-section { height: 380px; }
-            .tagline-section { font-size: 1.8em; padding: 50px 20px; }
-            .footer-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
-            .chatbot-container { right: 20px; bottom: 80px; } /* Adjusted for responsive */
-            .chatbot-window { width: 360px; max-height: 550px; }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            .search-form {
+                max-width: 100%;
+                margin-top: 10px;
+            }
+            .inspiration-gallery {
+                column-count: 2;
+            }
         }
-
         @media (max-width: 768px) {
-            .navbar .nav-links { display: none; }
-            .hamburger-menu { display: block; }
-            .header { height: 65px; }
-            .logo img { height: 45px; }
-            .hero-section { height: 65vh; margin-top: 65px; }
-            .hero-content h1 { font-size: 2.4em; }
-            .hero-content p { font-size: 1.1em; }
-            section { padding: 60px 0; }
-            .about-section h2, .partner-content h2 { font-size: 2.2em; }
-            .about-section p, .partner-content p { font-size: 1.05em; }
-            .story-content { padding: 35px; }
-            .story-content h3 { font-size: 2em; }
-            .story-content p { font-size: 1.05em; }
-            .story-image { aspect-ratio: 4 / 3; }
-            .latest-post, .inspiration { padding: 25px; }
-            .latest-post h3, .inspiration h3 { font-size: 1.7em; }
-            .latest-post-card { height: 320px; }
-            .latest-post-card h4 { font-size: 1.4em; }
-            .latest-post-card p { font-size: 0.9em; }
-            .inspiration-content h4 { font-size: 1.5em; }
-            .inspiration-content p { font-size: 1.05em; }
-            .how-helps-card .card-text h5 { font-size: 1.2em; }
-            .how-helps-card .card-text p { font-size: 0.95em; }
-            .partner-section { height: 320px; }
-            .partner-content h2 { font-size: 2em; }
-            .partner-content p { font-size: 1.05em; }
-            .btn { padding: 12px 30px; font-size: 0.95em; }
-            .tagline-section { font-size: 1.6em; padding: 40px 15px; }
-            .footer-grid { grid-template-columns: 1fr; gap: 30px; text-align: center; }
-            .footer-social-icons { justify-content: center; }
-            .chatbot-container { right: 20px; bottom: 70px; } /* Adjusted for responsive */
-            .chatbot-window { width: 320px; max-height: 500px; }
-            .chatbot-body { height: 360px; }
+            .hero {
+                height: 80vh;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .about-img, .about-content {
+                margin-bottom: 30px;
+            }
+            .color-item {
+                margin-bottom: 20px;
+            }
+            .inspiration-gallery {
+                column-count: 1;
+            }
         }
-
-        @media (max-width: 480px) {
-            .hero-content h1 { font-size: 2em; }
-            .hero-content p { font-size: 1em; }
-            .story-content { padding: 25px; }
-            .story-content h3 { font-size: 1.8em; }
-            .story-image { aspect-ratio: 4 / 3; }
-            .latest-post-card { height: 280px; }
-            .latest-post-card h4 { font-size: 1.3em; }
-            .latest-post-card p { font-size: 0.85em; }
-            .how-helps-card .card-image { height: 160px; }
-            .how-helps-card-dots { margin-top: 20px; }
-            .partner-section { height: 280px; }
-            .partner-content h2 { font-size: 1.8em; }
-            .partner-content p { font-size: 0.95em; }
-            .tagline-section { font-size: 1.4em; padding: 30px 10px; }
-            .chatbot-container { right: 15px; bottom: 65px; } /* Adjusted for responsive */
-            .chatbot-window { width: 280px; max-height: 450px; }
-            .chatbot-body { height: 310px; }
-            .chatbot-input input { font-size: 0.9em; }
-            .chatbot-input button { width: 36px; height: 36px; }
-            .chatbot-input button i { font-size: 18px; }
+        /* Modal for gallery preview */
+        .modal-content.dark-mode {
+            background-color: #1e1e1e !important;
+            color: #e0e0e0 !important;
+        }
+        .modal-header .btn-close {
+            filter: invert(1);
+        }
+        /* Gallery Navigation Buttons */
+        .modal-body {
+            position: relative;
+        }
+        .modal-nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.4);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            z-index: 1051;
+        }
+        .modal-nav-button:hover {
+            background: rgba(0, 0, 0, 0.6);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .modal-nav-button.dark-mode {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        .modal-nav-button.dark-mode:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        .modal-nav-button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        #prevBtn {
+            left: 10px;
+        }
+        #nextBtn {
+            right: 10px;
+        }
+        #modalImage {
+            max-height: 80vh;
+        }
+        /* Full-screen Modal Styles */
+        .modal-xl {
+            --bs-modal-width: 100vw;
+            --bs-modal-margin: 0;
+            --bs-modal-padding: 0;
+        }
+        .modal-dialog {
+            margin: 0;
+            max-width: 100vw;
+        }
+        .modal-content {
+            height: 100vh;
+            border-radius: 0;
+            border: none;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            height: 100%;
+        }
+        .modal-body img {
+            max-width: 95vw;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+        .modal-header .btn-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1060;
+            filter: invert(1);
+            color: white;
+            font-size: 2rem;
+            opacity: 1;
+            transition: transform 0.2s ease;
+        }
+        .modal-header .btn-close:hover {
+            transform: rotate(90deg);
+        }
+        .modal-nav-button {
+            position: fixed; /* Use fixed to keep them at the screen edges */
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1060;
+            background: rgba(0, 0, 0, 0.6); /* Slightly more prominent background */
+            color: white;
+            border: none;
+            width: 60px; /* Slightly larger buttons */
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            font-size: 2rem; /* Larger icon */
+        }
+        .modal-nav-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+        #prevBtn {
+            left: 20px;
+        }
+        #nextBtn {
+            right: 20px;
+        }
+        #modalContent {
+            position: static;
+            transform: none;
+            bottom: unset;
+            left: unset;
+            text-align: center;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 8px;
+            max-width: 90%;
+            margin-top: 15px; /* Add some space above the text */
+            z-index: 1060;
+            font-size: 0.9rem; /* Adjust font size for mobile */
+            width: fit-content;
+        }
+        #modalContent h4 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        #modalContent p {
+            font-size: 1rem;
+            margin: 0;
+        }
+        .modal-content.dark-mode {
+            background-color: black !important;
+            color: #e0e0e0 !important;
         }
     </style>
 </head>
 <body>
-    <div class="preloader" id="preloader">
-        <div class="preloader-spinner"></div>
-    </div>
-
-    <header class="header" role="banner">
-        <div class="container navbar">
-            <div class="logo">
-                <a href="index.html" aria-label="Metamo Surface Studio Home"><img src="logo.jpg" alt="Metamo Surface Studio Logo" loading="lazy"></a>
-            </div>
-            <nav aria-label="Main navigation">
-                <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li class="dropdown">
-                        <a href="#" aria-haspopup="true">Products <i class='bx bx-chevron-down'></i></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="purchase-metamo-online.html">Vellma</a></li>
-                            <li><a href="purchase-metamo-online.html">Vellplas</a></li>
-                            <li><a href="purchase-metamo-online.html">Vellcco</a></li>
-                            <li><a href="purchase-metamo-online.html">Vellwax</a></li>
-                            <li><a href="purchase-metamo-online.html">Vellwax Metallic</a></li>
-                        </ul>
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand animate__animated animate__pulse" href="#"><img src="logo.jpg" alt="Metamo Surface Studio Logo" id="navbar-logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active animate__animated animate__fadeIn" href="#" data-page="home" style="animation-delay: 0.1s;">Home</a>
                     </li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="collab.html">Collab</a></li>
-                    <li><a href="purchase-metamo-online.html">Buy Online</a></li>
-                    <li><a href="search.html" class="search-icon" aria-label="Search"><i class='bx bx-search'></i></a></li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="products" style="animation-delay: 0.2s;">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="about" style="animation-delay: 0.3s;">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="inspiration" style="animation-delay: 0.4s;">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="contact" style="animation-delay: 0.5s;">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <form class="search-form d-flex animate__animated animate__fadeIn" style="animation-delay: 0.6s;">
+                            <input type="text" class="form-control" placeholder="Search products..." id="searchInput">
+                            <button type="submit"><i class='bx bx-search'></i></button>
+                        </form>
+                    </li>
                 </ul>
-            </nav>
-            <div class="hamburger-menu" aria-label="Open mobile menu" role="button">
-                <i class='bx bx-menu'></i>
             </div>
         </div>
-    </header>
-
-    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Mobile navigation">
-        <div class="mobile-menu-header">
-            <div class="logo">
-                <a href="index.html" aria-label="Metamo Surface Studio Home"><img src="logo.jpg" alt="Metamo Surface Studio Logo"></a>
-            </div>
-            <i class='bx bx-x close-btn' aria-label="Close mobile menu"></i>
-        </div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li class="dropdown-mobile">
-                <a href="#" aria-haspopup="true">Products <i class='bx bx-chevron-right dropdown-icon'></i></a>
-                <ul class="dropdown-mobile-menu" role="menu">
-                    <li><a href="#">Vellma</a></li>
-                    <li><a href="#">Vellplas</a></li>
-                    <li><a href="#">Vellcco</a></li>
-                    <li><a href="#">Vellwax</a></li>
-                    <li><a href="#">Vellwax Metallic</a></li>
-                </ul>
-            </li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="collab.html">Collab</a></li>
-            <li><a href="purchase-metamo-online.html">Buy Online</a></li>
-            <li><a href="search.html"><i class='bx bx-search'></i> Search</a></li>
-        </ul>
-    </div>
-
-    <div class="chatbot-container" role="complementary">
-        <div class="chatbot-toggle" aria-label="Open chatbot" role="button">
-            <i class='bx bx-message-rounded-dots'></i>
-        </div>
-        <div class="chatbot-window" id="chatbotWindow" role="dialog" aria-label="Chatbot">
-            <div class="chatbot-header">
-                <h4>Metamo Assistant</h4>
-                <i class='bx bx-x close-chatbot' aria-label="Close chatbot"></i>
-            </div>
-            <div class="chatbot-body" id="chatbotBody">
-                <div class="chatbot-message bot">
-                    <div class="message-content">Hello! Welcome to Metamo Surface Studio. How can I assist you today?</div>
-                    <div class="message-time"></div>
-                </div>
-            </div>
-            <div class="chatbot-input">
-                <input type="text" placeholder="Type your message..." id="chatbotInput" aria-label="Chatbot input">
-                <button id="chatbotSend" aria-label="Send message"><i class='bx bx-send'></i></button>
-            </div>
-        </div>
-    </div>
-
-    <section class="hero-section" aria-label="Hero section">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Welcome to the World of Texture Wall</h1>
-            <p>Where every surface becomes a statement, and design comes to life through depth, detail, and tactile beauty. <span>Hello Metamo</span></p>
-        </div>
-    </section>
-
-    <section class="about-section" aria-label="About section">
-        <div class="container">
-            <h2>About Metamo Textured Paint Supplier</h2>
-            <p>At Metamo Surface Studio, we bring walls to life with premium texture paint solutions designed for beauty, durability, and style. Whether you’re building something new or refreshing an existing space, our high-quality textured finishes offer a distinctive touch that lasts.</p><br>
-            <p>From subtle patterns to bold designs, we help homeowners, designers, and builders add personality and depth to every surface. Our products are formulated to withstand time, weather, and wear — all while delivering a stunning visual impact.</p>
-        </div>
-    </section>
-
-    <section class="our-story-section" aria-label="Our story section">
-        <div class="story-content">
-            <h3>Our Story So Far</h3>
-            <p>As a texture paint supplier, Metamo offers a comprehensive range of decorative plaster finishes and special effects textured walls. MacoAvell doesn't follow trends, but sets them. MacoAvell actively collaborates with interior designers, architects, builders, and painters to deliver bespoke decorative textured wall finishes tailored to every project's vision. Learn More...</p>
-            <a href="about.html" class="btn">More About Us</a>
-        </div>
-        <div class="story-image">
-            <div class="story-image-dots">
-                <span class="dot active" aria-label="Slide 1"></span>
-                <span class="dot" aria-label="Slide 2"></span>
-                <span class="dot" aria-label="Slide 3"></span>
-                <span class="dot" aria-label="Slide 4"></span>
-                <span class="dot" aria-label="Slide 5"></span>
-                <span class="dot" aria-label="Slide 6"></span>
-            </div>
-        </div>
-    </section>
-
-    <section class="blog-section" aria-label="Blog section">
-        <div class="container blog-grid">
-            <div class="latest-post">
-                <h3>LATEST POST</h3>
-                <div class="latest-post-card" style="background-image: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0)), url('https://macoavell.com.my/wp-content/uploads/2025/04/01c-500x500.jpg');">
-                    <div class="overlay-content">
-                        <h4>Depth & Detail</h4>
-                        <p>Everyone has the desire to have an astounding ambiance, which can make the surroundings beautiful and catchy. MacoAvell are the designers, with amazing and state of the art ideas, to give special look to the walls.</p>
+    </nav>
+    <div id="home" class="page-content active">
+        <section class="hero">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="hero-content animate__animated animate__fadeInUp">
+                            <h1>Welcome to the World of Texture Wall</h1>
+                            <p>Where every surface becomes a statement, and design comes to life through depth, detail, and tactile beauty. <span>Hello Metamo</span></p>
+                            <a href="#" class="btn btn-primary" data-page="products">Explore Products</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="inspiration">
-                <h3>INSPIRATION</h3>
-                <div class="inspiration-content">
-                    <h4>Polished Plaster</h4>
-                    <p>A beautiful textured wall, elegant finish that blends modern style with traditional looks. The unique patterns that form the marbling are the perfect counter to the rigid lines of walls and floors to create a spectacular look. The smooth, polished surface brings the stunning colors to life, and with the Marmorino or Vellma finish available in so many colors, it blends with any interior décor or business branding.</p>
+        </section>
+        <section class="about-section" aria-label="About section">
+            <div class="container">
+                <h2>About Metamo Textured Paint Supplier</h2>
+                <p>At Metamo Surface Studio, we bring walls to life with premium texture paint solutions designed for beauty, durability, and style. Whether you’re building something new or refreshing an existing space, our high-quality textured finishes offer a distinctive touch that lasts.</p><br>
+                <p>From subtle patterns to bold designs, we help homeowners, designers, and builders add personality and depth to every surface.</p>
+            </div>
+        </section>
+        <section class="products-preview">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h3>Featured Artisanal Products</h3>
+                    <p>Where every surface becomes a statement, and design comes to life through depth, detail, and tactile beauty.</p>
                 </div>
-                <div class="how-helps-card">
-                    <div class="card-image"></div>
-                    <div class="card-text">
-                        <h5>How Metamo Helps Interior Designers Create Unique Spaces</h5>
-                        <p>Metamo helps interior designers create unique spaces by offering high-quality texture finishes that go beyond standard paint. Each product is crafted to add depth, character, and [...]</p>
+                <div class="row" id="products-preview-row">
+                    </div>
+            </div>
+        </section>
+        <section class="features">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>Why Choose Us</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 animate__animated animate__fadeInUp">
+                        <div class="text-center">
+                            <i class='bx bx-check-shield bx-lg' style="color: var(--secondary); margin-bottom: 20px;"></i>
+                            <h4>Premium Quality</h4>
+                            <p>Our artisanal surfaces are crafted with top-tier materials.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                        <div class="text-center">
+                            <i class='bx bx-customize bx-lg' style="color: var(--secondary); margin-bottom: 20px;"></i>
+                            <h4>Artisanal Craftsmanship</h4>
+                            <p>Unique textures designed to elevate your spaces.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <div class="text-center">
+                            <i class='bx bx-time-five bx-lg' style="color: var(--secondary); margin-bottom: 20px;"></i>
+                            <h4>Timely Delivery</h4>
+                            <p>We ensure prompt delivery for all projects.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="how-helps-card-dots">
-                    <span class="dot active" aria-label="Slide 1"></span>
-                    <span class="dot" aria-label="Slide 2"></span>
-                </div>
-                <div class="btn-more-inspiration">
-                    <a href="contact.html" class="btn">Get More Inspiration</a>
+            </div>
+        </section>
+        <section class="about-preview">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 animate__animated animate__fadeInLeft">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="About Metamo Surface" class="img-fluid about-img">
+                    </div>
+                    <div class="col-lg-6 animate__animated animate__fadeInRight">
+                        <h2>About Metamo Surface Studio</h2>
+                        <p>We specialize in modern artisanal texture products, crafted in Kerala, India, to transform spaces with elegance and durability.</p>
+                        <p>Our commitment to quality and unique designs sets us apart.</p>
+                        <a href="#" class="btn btn-primary" data-page="about">Learn More</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="partner-section" aria-label="Partner section">
-        <div class="partner-content">
-            <h2>Be Our Partner</h2>
-            <p>Metamo invites professionals across the design and construction sectors: interior designers, architects, painters, contractors, and even store dealers to join our network, to grow together.</p>
-            <a href="https://wa.me/918291093932?text=MacoAvell%20invites%20you%20to%20partner%20with%20us%21%20We%27re%20looking%20for%20passionate%20professionals%20across%20design%20and%20construction%E2%80%94interior%20designers%2C%20architects%2C%20painters%2C%20contractors%2C%20and%20store%20dealers.%20Let%27s%20grow%20together.%20Click%20send%20to%20learn%20more%20about%20joining%20our%20network%21" class="btn">APPLY NOW</a>
-        </div>
-    </section>
-
-    <section class="tagline-section" aria-label="Tagline section">
+        </section>
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>What Our Clients Say</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 animate__animated animate__fadeInUp">
+                        <div class="testimonial-card">
+                            <p>"The artisanal marble textures transformed our kitchen beautifully!"</p>
+                            <h5>John Mathew</h5>
+                            <p>Residential Client</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                        <div class="testimonial-card">
+                            <p>"The textured quartz added a modern touch to our office space."</p>
+                            <h5>Anna Varghese</h5>
+                            <p>Commercial Client</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <div class="testimonial-card">
+                            <p>"The granite textures are stunning and durable!"</p>
+                            <h5>Rahul Nair</h5>
+                            <p>Residential Client</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="products" class="page-content">
+        <section class="products" style="padding-top: 120px;">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>SURFACE COLOR PALETTE</h2>
+                    <p>Explore our modern artisanal texture surfaces</p>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <form class="search-form d-flex">
+                            <input type="text" class="form-control" placeholder="Search products..." id="productSearchInput">
+                            <button type="submit"><i class='bx bx-search'></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="row" id="products-row">
+                    </div>
+            </div>
+        </section>
+    </div>
+    <div id="about" class="page-content">
+        <section class="about" style="padding-top: 120px;">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>About Us</h2>
+                    <p>Learn more about Metamo Surface Studio</p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 animate__animated animate__fadeInLeft">
+                        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="About Us" class="img-fluid about-img">
+                    </div>
+                    <div class="col-lg-6 animate__animated animate__fadeInRight">
+                        <h3>Our Story</h3>
+                        <p>Metamo Surface Studio, based in Malappuram, Kerala, specializes in modern artisanal texture products, blending traditional craftsmanship with contemporary design.</p>
+                        <p>Our surfaces are crafted to inspire and endure, transforming spaces with unique textures.</p>
+                        <h3>Our Mission</h3>
+                        <p>To deliver artisanal surface solutions that elevate spaces with quality and innovation.</p>
+                        <h3>Our Values</h3>
+                        <ul>
+                            <li>Artisanal excellence</li>
+                            <li>Innovative textures</li>
+                            <li>Customer satisfaction</li>
+                            <li>Sustainability</li>
+                        </ul>
+                        <a href="https://wa.me/919846955954" target="_blank" class="btn btn-success mt-3">
+                            <i class='bx bxl-whatsapp'></i> Contact via WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="team">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>Our Team</h2>
+                    <p>Meet the experts behind Metamo Surface Studio</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 animate__animated animate__fadeInUp">
+                        <div class="text-center">
+                            <img src="user.jpeg" alt="Team Member 1" class="img-fluid rounded-circle mb-3" style="width: 150px;">
+                            <h4>Rashid mkv</h4>
+                            <p>Founder & CEO</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+                        <div class="text-center">
+                            <img src="user.jpeg" alt="Team Member 2" class="img-fluid rounded-circle mb-3" style="width: 150px;">
+                            <h4>Niyas k</h4>
+                            <p>Creative Director</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <div class="text-center">
+                            <img src="user.jpeg" alt="Team Member 3" class="img-fluid rounded-circle mb-3" style="width: 150px;">
+                            <h4>Musthafa</h4>
+                            <p>Project Coordinator</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div id="inspiration" class="page-content">
+        <section class="inspiration" style="padding-top: 120px;">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2> Gallery</h2>
+                    <p>Discover how our artisanal textures transform spaces</p>
+                </div>
+                <div class="inspiration-gallery" id="inspiration-gallery">
+                    </div>
+            </div>
+        </section>
+        <section class="faq">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Answers to common questions about our artisanal products</p>
+                </div>
+                <div class="accordion" id="faqAccordion">
+                    </div>
+            </div>
+        </section>
+    </div>
+    <div id="contact" class="page-content">
+        <section class="contact" style="padding-top: 120px;">
+            <div class="container">
+                <div class="section-title animate__animated animate__fadeInDown">
+                    <h2>Contact Us</h2>
+                    <p>Get in touch for inquiries about our artisanal products</p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-5 animate__animated animate__fadeInLeft">
+                        <div class="contact-info">
+                            <h3 class="mb-4">Get In Touch</h3>
+                            <div class="contact-item d-flex mb-4">
+                                <i class='bx bx-map bx-md me-4'></i>
+                                <div>
+                                    <h5>Address</h5>
+                                    <p>Near AL Huda School, Kadampuzha Road, Melmuri, Malappuram, Kerala, India</p>
+                                </div>
+                            </div>
+                            <div class="contact-item d-flex mb-4">
+                                <i class='bx bx-envelope bx-md me-4'></i>
+                                <div>
+                                    <h5>Email</h5>
+                                    <p><a href="mailto:metamosurfacestudio@gmail.com">metamosurfacestudio@gmail.com</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item d-flex mb-4">
+                                <i class='bx bx-phone bx-md me-4'></i>
+                                <div>
+                                    <h5>Phone</h5>
+                                    <p><a href="tel:+919846955954">+91 98469 55954</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-item d-flex">
+                                <i class='bx bxl-whatsapp bx-md me-4'></i>
+                                <div>
+                                    <h5>WhatsApp</h5>
+                                    <p><a href="https://wa.me/919846955954" target="_blank">+91 98469 55954</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 animate__animated animate__fadeInRight">
+                        <div class="contact-form">
+                            <h3 class="mb-4">Send Message</h3>
+                            <form action="https://formspree.io/f/xeozkkag" method="POST">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Your Name</label>
+                                            <input type="text" class="form-control" id="name" name="name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Your Email</label>
+                                            <input type="email" class="form-control" id="email" name="email" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="subject" class="form-label">Subject</label>
+                                            <input type="text" class="form-control" id="subject" name="subject" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="mb-3">
+                                            <label for="message" class="form-label">Message</label>
+                                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary">Send Message</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
         <div class="container">
-            Your Textured Paint Supplier. Period!
-        </div>
-    </section>
-
-    <footer class="footer" role="contentinfo">
-        <div class="container footer-grid">
-            <div class="footer-column">
-                <h4>India</h4>
-                <p>Kerala, Malappuram</p>
-                <p>Near AL Huda School, Kadampuzha</p>
-                <p>Road, Melmuri, Malapppuram</p>
-                <p>metamosurfacestudio@gmail.com</p>
-                <p>+91 98469 55954</p>
-            </div>
-            <div class="footer-column">
-                <h4>Sign Up to Our Newsletter</h4>
-                <div class="newsletter-signup">
-                    <a href="https://wa.me/8291093932?text=Hi%20there%21%20I%27d%20love%20to%20add%20you%20to%20our%20exclusive%20newsletter%20broadcast.%20Stay%20updated%20with%20our%20latest%20news%2C%20special%20offers%2C%20and%20valuable%20content.%20Just%20click%20send%20to%20confirm%20your%20subscription%21" aria-label="Sign up for newsletter"><img src="https://macoavell.com.my/wp-content/uploads/2025/07/signup-b.jpg" alt="Sign Up for Newsletter"></a>
+            <div class="row">
+                <div class="col-lg-4 mb-5">
+                    <h3 class="text-white mb-4">Metamo Surface Studio</h3>
+                    <p>Transforming spaces with modern artisanal texture surfaces. Quality, innovation, and craftsmanship are our core values.</p>
+                    <div class="social-icons mt-4">
+                        <a href="#" class="animate__animated animate__pulse"><i class='bx bxl-facebook'></i></a>
+                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.1s;"><i class='bx bxl-instagram'></i></a>
+                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.2s;"><i class='bx bxl-twitter'></i></a>
+                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.3s;"><i class='bx bxl-linkedin'></i></a>
+                        <a href="https://wa.me/919846955954" target="_blank" class="animate__animated animate__pulse" style="animation-delay: 0.4s;"><i class='bx bxl-whatsapp'></i></a>
+                    </div>
                 </div>
-                <div class="footer-social-icons">
-                    <a href="https://www.facebook.com/metamosurface" aria-label="Facebook"><i class='bx bxl-facebook'></i></a>
-                    <a href="https://www.instagram.com/metamosurface" aria-label="Instagram"><i class='bx bxl-instagram'></i></a>
-                    <a href="#" aria-label="Pinterest"><i class='bx bxl-pinterest'></i></a>
-                    <a href="https://www.youtube.com/metamosurface" aria-label="YouTube"><i class='bx bxl-youtube'></i></a>
-                    <a href="#" aria-label="LinkedIn"><i class='bx bxl-linkedin'></i></a>
+                <div class="col-lg-2 col-md-4 mb-5">
+                    <div class="footer-links">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="#" data-page="home">Home</a></li>
+                            <li><a href="#" data-page="products">Products</a></li>
+                            <li><a href="#" data-page="about">About</a></li>
+                            <li><a href="#" data-page="inspiration">Gallery</a></li>
+                            <li><a href="#" data-page="contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-5">
+                    <div class="footer-links">
+                        <h5>Products</h5>
+                        <ul>
+                            <li><a href="#">Artisanal Marble</a></li>
+                            <li><a href="#">Textured Quartz</a></li>
+                            <li><a href="#">Artisanal Granite</a></li>
+                            <li><a href="#">Custom Solutions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-5">
+                    <div class="footer-links">
+                        <h5>Contact Info</h5>
+                        <ul>
+                            <li><i class='bx bx-map me-2'></i> Malappuram, Kerala</li>
+                            <li><i class='bx bx-phone me-2'></i> <a href="tel:+919846955954">+91 98469 55954</a></li>
+                            <li><i class='bx bx-envelope me-2'></i> <a href="mailto:metamosurfacestudio@gmail.com">metamosurfacestudio@gmail.com</a></li>
+                            <li><i class='bx bxl-whatsapp me-2'></i> <a href="https://wa.me/919846955954" target="_blank">+91 98469 55954</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="footer-column">
-                <h4>Help Centre</h4>
-                <ul>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="collab.html">Be Our Partner</a></li>
-                    <li><a href="faq.html">Frequently Asked Questions</a></li>
-                    <li><a href="terms.html">Terms & Conditions</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                </ul>
+            <div class="border-top pt-4 mt-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="mb-0">© 2023 Metamo Surface Studio. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" class="privacy-link">Privacy Policy</a>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>Copyright © Metamo Surface Studio. All rights reserved.</p>
-            <a href="#" class="scroll-to-top" aria-label="Scroll to top"><i class='bx bx-chevron-up'></i></a>
         </div>
     </footer>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-R4T5P0MWYS"></script>
+    <a href="https://wa.me/919846955954?text=I'm%20interested%20in%20the%20model%20service%20offered%20by%20Metamo%20Surface%20Studio.%20Could%20you%20please%20provide%20more%20details?%20Thank%20you!" target="_blank" class="whatsapp-shortcut animate__animated animate__pulse" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+    <i class='bx bxl-whatsapp bx-md' style="background: #25D366; color: white; padding: 10px; border-radius: 50%;"></i>
+</a>
+<a href="https://www.instagram.com/metamosurface" target="_blank" class="instagram-shortcut animate__animated animate__pulse" style="position: fixed; bottom: 20px; right: 80px; z-index: 1000;">
+    <i class='bx bxl-instagram bx-md' style="background: #E1306C; color: white; padding: 10px; border-radius: 50%;"></i>
+</a>
+
+<div id="back-to-top" title="Back to Top" class="animate__animated animate__fadeIn" style="position: fixed; bottom: 20px; right: 140px; background: var(--secondary); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); cursor: pointer; opacity: 0; transition: opacity 0.3s ease-out, transform 0.3s ease-out;">
+    <i class='bx bx-chevron-up'></i>
+</div>
+
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    document.addEventListener('DOMContentLoaded', function() {
+        // Back to top button functionality
+        const backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
 
-  gtag('config', 'G-R4T5P0MWYS');
+        // Theme-based styling for shortcuts
+        function updateTheme() {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                backToTop.style.background = '#f39c12'; // Secondary-dark for dark mode
+            } else {
+                backToTop.style.background = '#e67e22'; // Secondary for light mode
+            }
+        }
+        updateTheme();
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+    });
 </script>
+
+<style>
+    .whatsapp-shortcut, .instagram-shortcut {
+        transition: transform 0.3s ease-out;
+    }
+    .whatsapp-shortcut:hover, .instagram-shortcut:hover {
+        transform: translateY(-5px);
+    }
+    #back-to-top.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    #back-to-top:hover {
+        transform: translateY(-5px);
+    }
+</style>
+    
+    <div class="modal fade" id="privacyModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Privacy Policy</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="privacy-content animate__animated animate__fadeIn">
+                        <h3>Privacy Policy</h3>
+                        <p>Last updated: September 20, 2023</p>
+                        <h4>1. Information We Collect</h4>
+                        <p>We may collect personal information that you provide to us when using our website, including but not limited to your name, email address, phone number, and any other information you choose to provide.</p>
+                        <h4>2. How We Use Your Information</h4>
+                        <p>We use the information we collect to:</p>
+                        <ul>
+                            <li>Provide, maintain, and improve our services</li>
+                            <li>Respond to your comments, questions, and requests</li>
+                            <li>Send you technical notices, updates, and support messages</li>
+                            <li>Communicate with you about products, services, and events</li>
+                        </ul>
+                        <h4>3. Sharing Your Information</h4>
+                        <p>We do not share your personal information with third parties except as described in this Privacy Policy.</p>
+                        <h4>4. Security</h4>
+                        <p>We take reasonable measures to help protect your personal information from loss, theft, misuse, and unauthorized access.</p>
+                        <h4>5. Your Choices</h4>
+                        <p>You may update or delete your information at any time by contacting us at metamosurfacestudio@gmail.com.</p>
+                        <h4>6. Changes to This Privacy Policy</h4>
+                        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+                        <h4>7. Contact Us</h4>
+                        <p>If you have any questions about this Privacy Policy, please contact us at metamosurfacestudio@gmail.com.</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImage" src="" alt="Gallery Image" class="img-fluid rounded animate__animated animate__fadeIn">
+                    <div id="modalContent" class="mt-3">
+                        <h4 id="modalName"></h4>
+                        <p id="modalDescription"></p>
+                    </div>
+                    <button id="prevBtn" type="button" class="modal-nav-button"><i class='bx bx-chevron-left'></i></button>
+                    <button id="nextBtn" type="button" class="modal-nav-button"><i class='bx bx-chevron-right'></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Preloader ---
-            const preloader = document.getElementById('preloader');
-            window.addEventListener('load', () => {
-                setTimeout(() => {
-                    preloader.classList.add('hidden');
-                }, 500);
-            });
+        const firebaseConfig = {
+            apiKey: "AIzaSyDlIeEmGM0r9xuyCvFZXNB9Cyyu4KULXPg",
+            authDomain: "vibra-ad479.firebaseapp.com",
+            databaseURL: "https://vibra-ad479-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "vibra-ad479",
+            storageBucket: "vibra-ad479.firebasestorage.app",
+            messagingSenderId: "674699657815",
+            appId: "1:674699657815:web:51c2615670c69eddfb9912",
+            measurementId: "G-Z1VH91YW1H"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+        const productsRef = database.ref('products');
+        const inspirationsRef = database.ref('inspirations');
+        const faqsRef = database.ref('faqs');
+        
+        const navbarNav = document.getElementById('navbarNav');
 
-            // --- Debounce Utility ---
-            function debounce(func, wait) {
-                let timeout;
-                return function executedFunction(...args) {
-                    const later = () => {
-                        clearTimeout(timeout);
-                        func(...args);
-                    };
-                    clearTimeout(timeout);
-                    timeout = setTimeout(later, wait);
-                };
-            }
-
-            // --- Mobile Menu Toggle ---
-            const hamburger = document.querySelector('.hamburger-menu');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const closeBtn = document.querySelector('.mobile-menu .close-btn');
-            const mobileDropdowns = document.querySelectorAll('.mobile-menu .dropdown-mobile');
-
-            function toggleMobileMenu() {
-                mobileMenu.classList.toggle('open');
-                document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-            }
-
-            hamburger.addEventListener('click', toggleMobileMenu);
-            closeBtn.addEventListener('click', toggleMobileMenu);
-
-            mobileMenu.querySelectorAll('a:not(.dropdown-mobile > a)').forEach(link => {
-                link.addEventListener('click', toggleMobileMenu);
-            });
-
-            mobileDropdowns.forEach(dropdown => {
-                const dropdownLink = dropdown.querySelector('a');
-                const dropdownMenu = dropdown.querySelector('.dropdown-mobile-menu');
-                dropdownLink.addEventListener('click', (e) => {
-                    if (window.innerWidth <= 768) {
-                        e.preventDefault();
-                        dropdown.classList.toggle('active');
-                        dropdownMenu.style.display = dropdown.classList.contains('active') ? 'block' : 'none';
-                    }
-                });
-            });
-
-            // --- Scroll to Top ---
-            const scrollToTopBtn = document.querySelector('.scroll-to-top');
-            const handleScroll = debounce(() => {
-                scrollToTopBtn.style.display = window.scrollY > 300 ? 'flex' : 'none';
-            }, 100);
-
-            window.addEventListener('scroll', handleScroll);
-
-            scrollToTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-
-            // --- Header Scroll Effects ---
-            const header = document.querySelector('.header');
-            const updateHeader = debounce(() => {
-                if (window.scrollY > 0) {
-                    header.style.height = '65px';
-                    header.style.boxShadow = '0 5px 15px rgba(0,0,0,0.12)';
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme-based logo switching
+            const logoImg = document.getElementById('navbar-logo');
+            function updateTheme() {
+                const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+                if (isDarkMode) {
+                    document.body.classList.add('dark-mode');
+                    logoImg.src = 'logo1.jpg';
+                    document.querySelectorAll('.navbar, .nav-link, .search-form, .back-arrow, .color-item, .product-card, .testimonial-card, .contact-info, .contact-form, .privacy-content, .footer-links, .social-icons, #back-to-top, .product-details-content, .inspiration-content, .product-specs, .modal-content, .modal-nav-button').forEach(el => el.classList.add('dark-mode'));
                 } else {
-                    header.style.height = 'var(--header-height)';
-                    header.style.boxShadow = '0 2px 8px rgba(0,0,0,0.08)';
-                }
-            }, 100);
-
-            window.addEventListener('scroll', updateHeader);
-
-            // --- Image Slider for 'Our Story' ---
-            const storyImageDots = document.querySelectorAll('.story-image-dots .dot');
-            const storyImage = document.querySelector('.story-image');
-            const fallbackImage = 'https://via.placeholder.com/400x400?text=Image+Not+Found';
-            const storyImages = [
-                'https://macoavell.com.my/wp-content/uploads/2020/01/vellplas1-400x400.jpg',
-                'img1.jpg',
-                'https://macoavell.com.my/wp-content/uploads/2020/01/plaster1-400x400.jpg',
-                'https://macoavell.com.my/wp-content/uploads/2020/01/sample3-400x400.jpg',
-                'https://macoavell.com.my/wp-content/uploads/2020/01/sample2-400x400.jpg',
-                'https://macoavell.com.my/wp-content/uploads/2020/01/sample5-400x400.jpg'
-            ];
-            let currentStoryImageIndex = 0;
-            let storyImageInterval;
-
-            function preloadImages(imageUrls) {
-                imageUrls.forEach(url => {
-                    const img = new Image();
-                    img.src = url;
-                    img.loading = 'lazy';
-                    img.onerror = () => {
-                        console.warn(`Failed to load image: ${url}, using fallback.`);
-                        img.src = fallbackImage;
-                    };
-                });
-            }
-
-            function updateStoryImage() {
-                if (currentStoryImageIndex < storyImages.length) {
-                    const img = new Image();
-                    img.src = storyImages[currentStoryImageIndex];
-                    img.loading = 'lazy';
-                    storyImage.style.opacity = '0';
-                    img.onload = () => {
-                        storyImage.style.backgroundImage = `url('${img.src}')`;
-                        storyImage.style.opacity = '1';
-                        storyImageDots.forEach((dot, index) => {
-                            dot.classList.toggle('active', index === currentStoryImageIndex);
-                        });
-                    };
-                    img.onerror = () => {
-                        storyImage.style.backgroundImage = `url('${fallbackImage}')`;
-                        storyImage.style.opacity = '1';
-                        storyImageDots.forEach((dot, index) => {
-                            dot.classList.toggle('active', index === currentStoryImageIndex);
-                        });
-                    };
+                    document.body.classList.remove('dark-mode');
+                    logoImg.src = 'logo.jpg';
+                    document.querySelectorAll('.navbar, .nav-link, .search-form, .back-arrow, .color-item, .product-card, .testimonial-card, .contact-info, .contact-form, .privacy-content, .footer-links, .social-icons, #back-to-top, .product-details-content, .inspiration-content, .product-specs, .modal-content, .modal-nav-button').forEach(el => el.classList.remove('dark-mode'));
                 }
             }
+            updateTheme();
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
 
-            function startStoryImageAutoPlay() {
-                clearInterval(storyImageInterval);
-                if (storyImages.length > 1) {
-                    storyImageInterval = setInterval(() => {
-                        currentStoryImageIndex = (currentStoryImageIndex + 1) % storyImages.length;
-                        updateStoryImage();
-                    }, 5000);
-                }
-            }
-
-            if (storyImages.length > storyImageDots.length) {
-                console.warn("Number of story images exceeds number of dots.");
-            }
-
-            storyImageDots.forEach((dot, index) => {
-                if (index < storyImages.length) {
-                    dot.addEventListener('click', () => {
-                        currentStoryImageIndex = index;
-                        updateStoryImage();
-                        startStoryImageAutoPlay();
-                    });
-                }
-            });
-
-            // Touch Swipe Support
-            let touchStartX = 0;
-            let touchEndX = 0;
-            storyImage.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
-            });
-
-            storyImage.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                if (touchStartX - touchEndX > 50) {
-                    currentStoryImageIndex = (currentStoryImageIndex + 1) % storyImages.length;
-                    updateStoryImage();
-                    startStoryImageAutoPlay();
-                } else if (touchEndX - touchStartX > 50) {
-                    currentStoryImageIndex = (currentStoryImageIndex - 1 + storyImages.length) % storyImages.length;
-                    updateStoryImage();
-                    startStoryImageAutoPlay();
-                }
-            });
-
-            if (storyImages.length > 0) {
-                preloadImages(storyImages);
-                updateStoryImage();
-                startStoryImageAutoPlay();
-            }
-
-            // --- Image Slider for 'How MacoAvell Helps' ---
-            const howHelpsCardDots = document.querySelectorAll('.how-helps-card-dots .dot');
-            const howHelpsCardImage = document.querySelector('.how-helps-card .card-image');
-            const howHelpsCardText = document.querySelector('.how-helps-card .card-text');
-            const howHelpsContent = [
-                {
-                    image: 'https://www.homeglazer.com/wp-content/uploads/2024/04/5-Reason-Why-Texture-Paint-Costs-More-Than-Normal-Paint.jpg',
-                    title: 'How Metamo Helps Interior Designers Create Unique Spaces',
-                    description: 'Metamo helps interior designers create unique spaces by offering high-quality texture finishes that go beyond standard paint. Each product is crafted to add depth, character, and a unique aesthetic.'
-                },
-                {
-                    image: 'https://homeglazer.com/wp-content/uploads/2024/04/Texture-Paint-2.jpg',
-                    title: 'Innovative Finishes for Modern Homes',
-                    description: 'Explore our innovative finishes that bring a modern touch to any contemporary living space, elevating the aesthetic appeal with unique textures.'
-                }
-            ];
-            let currentHowHelpsIndex = 0;
-            let howHelpsInterval;
-
-            function updateHowHelpsCard() {
-                if (currentHowHelpsIndex < howHelpsContent.length) {
-                    const item = howHelpsContent[currentHowHelpsIndex];
-                    const img = new Image();
-                    img.src = item.image;
-                    img.loading = 'lazy';
-                    howHelpsCardImage.style.opacity = '0';
-                    img.onload = () => {
-                        howHelpsCardImage.style.backgroundImage = `url('${img.src}')`;
-                        howHelpsCardImage.style.opacity = '1';
-                        howHelpsCardText.querySelector('h5').textContent = item.title;
-                        howHelpsCardText.querySelector('p').textContent = item.description;
-                        howHelpsCardDots.forEach((dot, index) => {
-                            dot.classList.toggle('active', index === currentHowHelpsIndex);
-                        });
-                    };
-                    img.onerror = () => {
-                        howHelpsCardImage.style.backgroundImage = `url('${fallbackImage}')`;
-                        howHelpsCardImage.style.opacity = '1';
-                        howHelpsCardText.querySelector('h5').textContent = item.title;
-                        howHelpsCardText.querySelector('p').textContent = item.description;
-                        howHelpsCardDots.forEach((dot, index) => {
-                            dot.classList.toggle('active', index === currentHowHelpsIndex);
-                        });
-                    };
-                }
-            }
-
-            function startHowHelpsAutoPlay() {
-                clearInterval(howHelpsInterval);
-                if (howHelpsContent.length > 1) {
-                    howHelpsInterval = setInterval(() => {
-                        currentHowHelpsIndex = (currentHowHelpsIndex + 1) % howHelpsContent.length;
-                        updateHowHelpsCard();
-                    }, 7000);
-                }
-            }
-
-            if (howHelpsContent.length > howHelpsCardDots.length) {
-                console.warn("Number of 'How Helps' contents exceeds number of dots.");
-            }
-
-            howHelpsCardDots.forEach((dot, index) => {
-                if (index < howHelpsContent.length) {
-                    dot.addEventListener('click', () => {
-                        currentHowHelpsIndex = index;
-                        updateHowHelpsCard();
-                        startHowHelpsAutoPlay();
-                    });
-                }
-            });
-
-            if (howHelpsContent.length > 0) {
-                preloadImages(howHelpsContent.map(item => item.image));
-                updateHowHelpsCard();
-                startHowHelpsAutoPlay();
-            }
-
-            // --- Enhanced Chatbot Functionality ---
-            const chatbotToggle = document.querySelector('.chatbot-toggle');
-            const chatbotWindow = document.getElementById('chatbotWindow');
-            const chatbotClose = document.querySelector('.close-chatbot');
-            const chatbotInput = document.getElementById('chatbotInput');
-            const chatbotSend = document.getElementById('chatbotSend');
-            const chatbotBody = document.getElementById('chatbotBody');
-
-            const responses = {
-                'hello': 'Hi! How can I assist you with Metamo’s textured wall solutions today?',
-                'hi': 'Hello! Excited to help you explore our premium textured paints. What’s on your mind?',
-                'good morning': 'Good morning! Ready to transform your walls with Metamo’s textures? How can I assist?',
-                'good afternoon': 'Good afternoon! Looking to elevate your space with our unique finishes? Let’s talk!',
-                'good evening': 'Good evening! Let’s discuss how Metamo can bring your interior visions to life.',
-                'bye': 'Goodbye! Come back anytime to explore our textured wall solutions!',
-                'thank you': 'You’re welcome! Anything else I can help with regarding our products?',
-                'thanks': 'No problem! Let me know if you have more questions about our textures!',
-                'how are you': 'I’m great, thanks! Ready to dive into some wall texture ideas for you?',
-                'what’s up': 'Just here to help with Metamo’s textured paints! What’s up with you?',
-                'products': 'We offer Vellma, Vellplas, Vellcco, Vellwax, and Vellwax Metallic in Glossy, Matte, Rough, Stones, and Metallic finishes. Want details on any specific product?',
-                'vellma': 'Vellma is a lime-based textured paint, eco-friendly and elegant. Curious about its applications or colors?',
-                'vellplas': 'Vellplas is versatile for interior and exterior walls. Want to know about its unique features?',
-                'vellcco': 'Vellcco blends modern and traditional aesthetics. Shall I share more about its benefits?',
-                'vellwax': 'Vellwax enhances durability and shine. Interested in its metallic variant too?',
-                'vellwax metallic': 'Vellwax Metallic adds a luxurious metallic sheen. Need application tips?',
-                'contact': 'Reach us at metamosurfacestudio@gmail.com or +91 98469 55954. Want more contact options?',
-                'buy': 'Purchase our products on our "Buy Online" page. Need the link or help with the process?',
-                'shop': 'Our online store has Vellma, Vellplas, and more! Need help choosing a product?',
-                'online store': 'Explore our full range on the "Buy Online" page. Want details on specific products?',
-                'partner': 'Join our network via the "Be Our Partner" page or WhatsApp at +91 8291093932!',
-                'colors': 'We offer vibrant to subtle tones. Want color options for a specific product?',
-                'eco-friendly': 'Products like Vellma are made with sustainable materials. Want to know more about our eco practices?',
-                'application': 'Our paints are easy to apply with the right techniques. Need tips for a specific product?',
-                'price': 'Pricing varies by product. Visit our "Buy Online" page or call +91 98469 55954 for a quote!',
-                'samples': 'Request a sample kit via our website or contact us at +91 98469 55954. Which product interests you?',
-                'durability': 'Our finishes like Vellwax are built to last. Need maintenance tips?',
-                'interior': 'Perfect for interiors with textures from smooth to metallic. Which room are you designing?',
-                'exterior': 'Vellplas is ideal for weather-resistant exteriors. Need advice on applications?',
-                'custom': 'We offer bespoke solutions. Tell me about your project for tailored suggestions!',
-                'delivery': 'We ship across India. Check delivery details on our "Buy Online" page!',
-                'warranty': 'Our products come with a quality guarantee. Want warranty details?',
-                'maintenance': 'Easy maintenance with regular cleaning. Need care instructions for a specific product?',
-                'inspiration': 'Check our "Inspiration" section or ask for project-specific ideas!',
-                'architects': 'We collaborate with architects for unique finishes. Interested in our programs?',
-                'designers': 'We help designers bring visions to life. Want to enhance your designs with our textures?',
-                'painters': 'Our products are painter-friendly. Need application tips or resources?',
-                'stores': 'Stock our products via our "Be Our Partner" page. Interested in dealer benefits?',
-                'youtube': 'Our YouTube has tutorials and showcases. Need the link or specific video details?',
-                'glossy': 'Glossy finishes like Vellwax add a sleek look. Interested in glossy options?',
-                'matte': 'Matte finishes like Vellma are subtle and elegant. Best for which spaces?',
-                'rough': 'Rough textures like Vellplas create bold surfaces. Want to incorporate them?',
-                'stones': 'Stones finish mimics natural stone. Need ideas for using it?',
-                'metallic': 'Metallic finishes like Vellwax Metallic add luxury. Pairing tips needed?',
-                'order': 'Place orders on our "Buy Online" page or call +91 98469 55954. Need help?',
-                'payment': 'We accept cards and online transfers. Want payment option details?',
-                'shipping': 'Shipping details are on our "Buy Online" page. Need specifics?',
-                'discount': 'Check our website or call +91 98469 55954 for promotions. Need bulk discounts?',
-                'catalog': 'Our catalog is on the website. Want a digital copy or product details?',
-                'texture': 'From smooth plasters to rugged stones, which texture interests you?',
-                'consultation': 'We offer consultations for perfect finishes. Want to schedule one?',
-                'installation': 'Easy installation with guidance. Need a guide or installer recommendations?',
-                'quality': 'Premium quality and durability. Curious about our process?',
-                'support': 'Contact us at metamosurfacestudio@gmail.com or +91 98469 55954. How can we help?',
-                'feedback': 'Share feedback via our Contact Us page or email. What’s your input?',
-                'portfolio': 'See our portfolio in the "Inspiration" section. Need ideas for a space?',
-                'trends': 'We set trends with innovative textures. Want the latest design trends?',
-                'samples request': 'Request samples via our website or +91 98469 55954. Which product?',
-                'dealer': 'Join our dealer program via "Be Our Partner". Interested in benefits?',
-                'nadeem': 'Hi Nadeem! Tell me about your project, and I’ll tailor some suggestions!',
-                'developer': 'For developer queries, email nadeemmuhammed702@gmail.com. Need specific help?',
-                'default': 'I’m not sure about that. Could you clarify or ask about our products or services?'
-            };
-
-            function formatTime(date) {
-                return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            }
-
-            function addMessage(message, type) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `chatbot-message ${type}`;
-                const time = formatTime(new Date());
-                messageDiv.innerHTML = `
-                    <div class="message-content">${message}</div>
-                    <div class="message-time">${time}</div>
-                `;
-                chatbotBody.appendChild(messageDiv);
-                chatbotBody.scrollTop = chatbotBody.scrollHeight;
-            }
-
-            function showTypingIndicator() {
-                const typingDiv = document.createElement('div');
-                typingDiv.className = 'chatbot-typing show';
-                typingDiv.textContent = 'Metamo Assistant is typing...';
-                chatbotBody.appendChild(typingDiv);
-                chatbotBody.scrollTop = chatbotBody.scrollHeight;
-                return typingDiv;
-            }
-
-            function removeTypingIndicator(typingDiv) {
-                if (typingDiv && typingDiv.parentNode) {
-                    typingDiv.remove();
-                }
-            }
-
-            function getBotResponse(userInput) {
-                const input = userInput.toLowerCase().trim();
-                for (const key in responses) {
-                    if (input.includes(key)) {
-                        return responses[key];
+            const pageLinks = document.querySelectorAll('[data-page]');
+            const pageContents = document.querySelectorAll('.page-content');
+            
+            function showPage(pageId) {
+                pageContents.forEach(page => page.classList.remove('active'));
+                document.getElementById(pageId).classList.add('active');
+                pageLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-page') === pageId) {
+                        link.classList.add('active');
                     }
-                }
-                return responses['default'];
-            }
-
-            function handleChatbotInput() {
-                const userInput = chatbotInput.value.trim();
-                if (userInput) {
-                    addMessage(userInput, 'user');
-                    chatbotInput.value = '';
-                    const typingDiv = showTypingIndicator();
-                    setTimeout(() => {
-                        removeTypingIndicator(typingDiv);
-                        const botResponse = getBotResponse(userInput);
-                        addMessage(botResponse, 'bot');
-                    }, 1000);
+                });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (navbarNav.classList.contains('show')) {
+                    const bsCollapse = new bootstrap.Collapse(navbarNav, { toggle: false });
+                    bsCollapse.hide();
                 }
             }
 
-            function closeChatbot() {
-                chatbotWindow.classList.remove('open');
-            }
-
-            chatbotToggle.addEventListener('click', (e) => {
-                e.stopPropagation();
-                chatbotWindow.classList.toggle('open');
-            });
-
-            chatbotClose.addEventListener('click', (e) => {
-                e.stopPropagation();
-                closeChatbot();
-            });
-
-            chatbotSend.addEventListener('click', (e) => {
-                e.stopPropagation();
-                handleChatbotInput();
-            });
-
-            chatbotInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter' && chatbotInput.value.trim()) {
+            pageLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    handleChatbotInput();
-                }
+                    const pageId = link.getAttribute('data-page');
+                    showPage(pageId);
+                });
             });
 
-            document.addEventListener('click', (e) => {
-                if (chatbotWindow.classList.contains('open') && !chatbotWindow.contains(e.target) && !chatbotToggle.contains(e.target)) {
-                    closeChatbot();
-                }
-            });
-
-            chatbotWindow.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
-
-            // --- Scroll-based Animations ---
-            const animateElements = document.querySelectorAll('section, .hero-content, .partner-content, .tagline-section');
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.2
+            // Product Fetching and Rendering
+            const productsRow = document.getElementById('products-row');
+            const productsPreviewRow = document.getElementById('products-preview-row');
+            
+            const renderProducts = (snapshot) => {
+                productsRow.innerHTML = '';
+                productsPreviewRow.innerHTML = '';
+                snapshot.forEach(childSnapshot => {
+                    const product = childSnapshot.val();
+                    const productId = childSnapshot.key;
+                    const productCardHTML = `
+                        <div class="col-md-4 animate__animated animate__fadeInUp">
+                            <div class="product-card" data-product-id="${productId}">
+                                <div class="product-img">
+                                    <img src="${product.imageUrl}" alt="${product.name}">
+                                </div>
+                                <div class="product-content p-4">
+                                    <h4>${product.name}</h4>
+                                    <p>${product.description}</p>
+                                    <a href="${product.pdfUrl}" class="btn btn-outline-primary" target="_blank">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    productsRow.innerHTML += productCardHTML;
+                    productsPreviewRow.innerHTML += productCardHTML;
+                });
             };
 
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animated');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            animateElements.forEach(el => {
-                observer.observe(el);
+            productsRef.on('value', renderProducts, (error) => {
+                console.error("Error fetching products:", error);
+                productsRow.innerHTML = '<div class="col-12"><p>Error loading products. Please try again later.</p></div>';
             });
+            
+            // Inspiration Gallery Fetching and Rendering with modal preview
+            const galleryModal = new bootstrap.Modal(document.getElementById('galleryModal'));
+            const modalImage = document.getElementById('modalImage');
+            const modalName = document.getElementById('modalName');
+            const modalDescription = document.getElementById('modalDescription');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const inspirationGallery = document.getElementById('inspiration-gallery');
+            let inspirationsData = [];
+            let currentIndex = 0;
 
-            const heroSection = document.querySelector('.hero-section');
-            if (heroSection && heroSection.getBoundingClientRect().top < window.innerHeight) {
-                document.querySelector('.hero-content').classList.add('animated');
+            const renderInspirations = (snapshot) => {
+                inspirationGallery.innerHTML = '';
+                inspirationsData = [];
+                let index = 0;
+                snapshot.forEach(childSnapshot => {
+                    const inspiration = childSnapshot.val();
+                    inspirationsData.push(inspiration);
+                    const inspirationItemHTML = `
+                        <div class="inspiration-item animate__animated animate__fadeInUp" data-bs-toggle="modal" data-bs-target="#galleryModal" data-index="${index}">
+                            <div class="inspiration-img">
+                                <img src="${inspiration.imageUrl}" alt="${inspiration.name}">
+                                <div class="inspiration-content">
+                                    <h4>${inspiration.name}</h4>
+                                    <p>${inspiration.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    inspirationGallery.innerHTML += inspirationItemHTML;
+                    index++;
+                });
+
+                document.querySelectorAll('.inspiration-item').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        const index = parseInt(e.currentTarget.getAttribute('data-index'));
+                        showImage(index);
+                    });
+                });
+            };
+            
+            function showImage(index) {
+                if (index >= 0 && index < inspirationsData.length) {
+                    currentIndex = index;
+                    const item = inspirationsData[currentIndex];
+                    modalImage.src = item.imageUrl;
+                    modalName.textContent = item.name;
+                    modalDescription.textContent = item.description;
+
+                    modalImage.classList.remove('animate__fadeIn');
+                    void modalImage.offsetWidth; 
+                    modalImage.classList.add('animate__fadeIn');
+
+                    prevBtn.disabled = currentIndex === 0;
+                    nextBtn.disabled = currentIndex === inspirationsData.length - 1;
+
+                    // Add dark-mode class to buttons if needed
+                    const isDarkMode = document.body.classList.contains('dark-mode');
+                    prevBtn.classList.toggle('dark-mode', isDarkMode);
+                    nextBtn.classList.toggle('dark-mode', isDarkMode);
+
+                    // Update disabled state for dark mode
+                    prevBtn.classList.toggle('disabled', prevBtn.disabled);
+                    nextBtn.classList.toggle('disabled', nextBtn.disabled);
+                }
             }
 
-            // --- Cleanup on Page Unload ---
-            window.addEventListener('unload', () => {
-                clearInterval(storyImageInterval);
-                clearInterval(howHelpsInterval);
-                window.removeEventListener('scroll', handleScroll);
-                window.removeEventListener('scroll', updateHeader);
+            prevBtn.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    showImage(currentIndex - 1);
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentIndex < inspirationsData.length - 1) {
+                    showImage(currentIndex + 1);
+                }
+            });
+
+            inspirationsRef.on('value', renderInspirations, (error) => {
+                console.error("Error fetching inspirations:", error);
+                inspirationGallery.innerHTML = '<p>Error loading inspirations. Please try again later.</p>';
+            });
+
+            // FAQ Fetching and Rendering
+            const faqAccordion = document.getElementById('faqAccordion');
+            const renderFaqs = (snapshot) => {
+                faqAccordion.innerHTML = '';
+                let index = 0;
+                snapshot.forEach(childSnapshot => {
+                    const faq = childSnapshot.val();
+                    const faqItemHTML = `
+                        <div class="accordion-item animate__animated animate__fadeInUp" style="animation-delay: ${index * 0.2}s;">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq${childSnapshot.key}">
+                                    ${faq.question}
+                                </button>
+                            </h2>
+                            <div id="faq${childSnapshot.key}" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    ${faq.answer}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    faqAccordion.innerHTML += faqItemHTML;
+                    index++;
+                });
+            };
+
+            faqsRef.on('value', renderFaqs, (error) => {
+                console.error("Error fetching FAQs:", error);
+                faqAccordion.innerHTML = '<p>Error loading FAQs. Please try again later.</p>';
+            });
+
+
+            // Search functionality
+            const searchInputs = document.querySelectorAll('#searchInput, #productSearchInput');
+            searchInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const query = this.value.toLowerCase();
+                    const productCards = document.querySelectorAll('.product-card');
+                    productCards.forEach(card => {
+                        const title = card.querySelector('h4').textContent.toLowerCase();
+                        const description = card.querySelector('p').textContent.toLowerCase();
+                        if (title.includes(query) || description.includes(query)) {
+                            card.closest('.col-md-4').style.display = 'block';
+                        } else {
+                            card.closest('.col-md-4').style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            const backToTop = document.getElementById('back-to-top');
+            backToTop.classList.add('show');
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
     </script>
-    </body>
-
-    </html>
-
-
+</body>
+</html>
