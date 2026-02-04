@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Metamo Surface Studio</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
@@ -17,11 +20,13 @@
             --dark: #2c3e50;
             --accent: #3498db;
         }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Poppins', sans-serif;
             color: #333;
@@ -29,14 +34,21 @@
             background-color: #f9f9f9;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
+
         body.dark-mode {
             background-color: #121212;
             color: #e0e0e0 !important;
         }
-        h1, h2, h3, h4, h5 {
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
             font-family: 'Playfair Display', serif;
             font-weight: 600;
         }
+
         /* Navigation */
         .navbar {
             padding: 15px 0;
@@ -44,22 +56,27 @@
             background-color: rgba(255, 255, 255, 0.95);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+
         .navbar.dark-mode {
             background: linear-gradient(to bottom, #000000, #000000);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
+
         .navbar-brand img {
             height: 80px;
             transition: transform 0.3s ease;
         }
+
         @media (max-width: 768px) {
             .navbar-brand img {
                 height: 60px;
             }
         }
+
         .navbar-brand:hover img {
             transform: scale(1.05);
         }
+
         .nav-link {
             color: var(--dark);
             font-weight: 500;
@@ -68,14 +85,17 @@
             position: relative;
             padding: 10px 0;
         }
+
         .nav-link:hover {
             color: var(--secondary);
             transform: translateY(-2px);
         }
+
         .nav-link.active {
             color: var(--secondary);
             font-weight: 600;
         }
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -86,43 +106,61 @@
             background-color: var(--secondary);
             transition: width 0.3s ease;
         }
-        .nav-link:hover::after, .nav-link.active::after {
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
             width: 100%;
         }
+
         .nav-link.dark-mode {
             color: #f9f9f9 !important;
         }
+
         .nav-link.dark-mode:hover {
             color: var(--secondary-dark) !important;
         }
+
         .nav-link.dark-mode.active {
             color: var(--accent) !important;
         }
+
         /* Navbar Toggler */
         .navbar-toggler {
             border-color: #f9f9f9;
         }
+
         .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(0, 0, 0)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
+
         .navbar.dark-mode .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(255, 255, 255)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
+
         /* Search Bar */
         .search-form {
             position: relative;
             max-width: 200px;
         }
+
         .search-form input {
-            padding-right: 40px;
-            border-radius: 20px;
-            border: 1px solid var(--light);
-            transition: all 0.3s ease;
+            padding: 10px 45px 10px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+            font-size: 0.95rem;
+            width: 100%;
         }
+
         .search-form input:focus {
             border-color: var(--secondary);
-            box-shadow: 0 0 5px rgba(230, 126, 34, 0.3);
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(230, 126, 34, 0.15);
+            outline: none;
         }
+
         .search-form button {
             position: absolute;
             right: 5px;
@@ -132,20 +170,25 @@
             border: none;
             color: var(--dark);
         }
+
         .search-form button:hover {
             color: var(--secondary);
         }
+
         .search-form.dark-mode input {
             background-color: #2c2c2c !important;
             border-color: #444 !important;
             color: #e0e0e0 !important;
         }
+
         .search-form.dark-mode button {
             color: #e0e0e0 !important;
         }
+
         .search-form.dark-mode button:hover {
             color: var(--secondary-dark) !important;
         }
+
         /* Hero Section */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://www.twaf.com.my/inspiration/assets/products/aurora-colours/seta/01.jpg') no-repeat center center/cover;
@@ -155,26 +198,31 @@
             color: white;
             position: relative;
         }
+
         .hero-content {
             animation: fadeInUp 1s ease-out;
         }
+
         .hero-content h1 {
             font-size: 3.8em;
             margin-bottom: 20px;
             font-weight: 700;
             line-height: 1.3;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
+
         .hero-content p {
             font-size: 1.3em;
             max-width: 850px;
             margin: 0 auto 25px;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
+
         .hero-content span {
             color: #c7a05b;
             font-weight: 700;
         }
+
         .btn-primary {
             background-color: var(--secondary);
             border: none;
@@ -183,31 +231,38 @@
             transition: all 0.3s ease;
             animation: fadeInUp 1s ease-out 0.6s both;
         }
+
         .btn-primary:hover {
             background-color: var(--primary);
             transform: translateY(-3px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
+
         .btn-primary.dark-mode {
             background-color: var(--secondary-dark) !important;
         }
+
         .btn-primary.dark-mode:hover {
             background-color: var(--accent) !important;
         }
+
         /* Section Styling */
         section {
             padding: 80px 0;
         }
+
         .section-title {
             text-align: center;
             margin-bottom: 60px;
         }
+
         .section-title h2 {
             font-size: 2.5rem;
             position: relative;
             display: inline-block;
             padding-bottom: 15px;
         }
+
         .section-title h2::after {
             content: '';
             position: absolute;
@@ -218,9 +273,11 @@
             left: 50%;
             transform: translateX(-50%);
         }
+
         .section-title.dark-mode h2::after {
             background: var(--secondary-dark) !important;
         }
+
         /* About Section */
         .about-img {
             border-radius: 10px;
@@ -228,23 +285,28 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             animation: fadeInLeft 1s ease-out;
         }
+
         .about-content {
             animation: fadeInRight 1s ease-out;
         }
+
         section.animated {
             opacity: 1;
             transform: translateY(0);
         }
+
         .about-section {
             background-color: var(--light-bg-color);
             text-align: center;
         }
+
         .about-section h2 {
             font-size: 2.8em;
             margin-bottom: 35px;
             color: var(--primary-text-color);
             font-weight: 600;
         }
+
         .about-section p {
             font-size: 1.15em;
             max-width: 950px;
@@ -252,61 +314,145 @@
             color: var(--secondary-text-color);
             line-height: 1.9;
         }
+
         /* Products Section */
-/* Light Mode (default) */
-.product-card {
-    background: white; /* Changed from black to white */
-    border-radius: 10px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    margin-bottom: 30px;
-    animation: fadeInUp 1s ease-out;
-    color: black; /* Added to ensure black text in light mode */
-}
-.product-card h4, .product-card p {
-    color: black; /* Added to ensure text is black in light mode */
-}
-/* Dark Mode */
-.product-card.dark-mode {
-    background: #1e1e1e !important; /* Retained dark background */
-    border: 1px solid #444;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-.product-card.dark-mode h4, .product-card.dark-mode p {
-    color: #e0e0e0; /* Retained light text for dark mode */
-}
-        .product-card.dark-mode a {
-            color: #e67e22; /* Use a brighter accent color for links */
-        }
-        .product-card.dark-mode a:hover {
-            color: #f39c12; /* A slightly different accent for hover */
-        }
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        .product-img {
-            height: 200px;
+        /* Light Mode (default) */
+        /* Product Card Design */
+        .product-card {
+            background: white;
+            border-radius: 12px;
             overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            animation: fadeInUp 0.8s ease-out;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0, 0, 0, 0.03);
         }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .product-img {
+            height: 240px;
+            overflow: hidden;
+            position: relative;
+        }
+
         .product-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.215, 0.610, 0.355, 1.000);
         }
+
         .product-card:hover .product-img img {
-            transform: scale(1.1);
+            transform: scale(1.12);
         }
+
+        /* Overlay effect on image hover */
+        .product-img::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover .product-img::after {
+            opacity: 1;
+        }
+
+        .product-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            position: relative;
+            z-index: 2;
+        }
+
+        .product-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-card p {
+            font-family: 'Poppins', sans-serif;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .btn-view-details {
+            align-self: flex-start;
+            padding: 10px 24px;
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+            background: transparent;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: auto;
+        }
+
+        .btn-view-details:hover {
+            background: var(--secondary);
+            color: white;
+            box-shadow: 0 5px 15px rgba(230, 126, 34, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Dark Mode overrides */
+        .product-card.dark-mode {
+            background: #1e1e1e !important;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .product-card.dark-mode .product-content {
+            background: #1e1e1e;
+        }
+
+        .product-card.dark-mode h4 {
+            color: #f1f1f1;
+        }
+
+        .product-card.dark-mode p {
+            color: #b0b0b0;
+        }
+
         /* Inspiration Section */
         .inspiration {
             padding: 80px 0;
         }
+
         .inspiration-gallery {
             column-count: 3;
             column-gap: 20px;
         }
+
         .inspiration-item {
             break-inside: avoid;
             margin-bottom: 20px;
@@ -318,18 +464,22 @@
             animation: fadeInUp 1s ease-out;
             cursor: pointer;
         }
+
         .inspiration-item:hover {
             transform: scale(1.03);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
         }
+
         .inspiration-img {
             position: relative;
         }
+
         .inspiration-img img {
             width: 100%;
             display: block;
             border-radius: 8px;
         }
+
         .inspiration-content {
             position: absolute;
             bottom: 0;
@@ -342,23 +492,29 @@
             border-bottom-right-radius: 8px;
             transition: background 0.3s ease;
         }
+
         .inspiration-content.dark-mode {
             background: rgba(0, 0, 0, 0.75) !important;
         }
+
         .inspiration-content h4 {
             margin-bottom: 5px;
             font-size: 1.2rem;
         }
+
         .inspiration-content p {
             margin: 0;
             font-size: 0.9rem;
         }
+
         .inspiration-item:hover .inspiration-content {
             background: rgba(0, 0, 0, 0.8);
         }
+
         .inspiration-item.dark-mode:hover .inspiration-content {
             background: rgba(0, 0, 0, 0.85) !important;
         }
+
         /* Testimonials Section */
         .testimonial-card {
             background: white;
@@ -368,9 +524,11 @@
             margin-bottom: 30px;
             animation: fadeInUp 1s ease-out;
         }
+
         .testimonial-card.dark-mode {
             background: #1e1e1e !important;
         }
+
         /* Contact Section */
         .contact-info {
             background: var(--primary);
@@ -379,17 +537,21 @@
             border-radius: 10px;
             animation: fadeInLeft 1s ease-out;
         }
+
         .contact-info.dark-mode {
             background: #1e1e1e !important;
         }
+
         .contact-info a {
             color: white;
             text-decoration: none;
             transition: color 0.3s ease;
         }
+
         .contact-info a:hover {
             color: var(--secondary);
         }
+
         .contact-form {
             background: white;
             padding: 40px;
@@ -397,127 +559,173 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             animation: fadeInRight 1s ease-out;
         }
+
         .contact-form.dark-mode {
             background: #1e1e1e !important;
         }
+
         .contact-form.dark-mode .form-control {
             background-color: #2c2c2c !important;
             color: #e0e0e0 !important;
             border-color: #444 !important;
         }
+
         /* Footer */
         footer {
-            background: var(--dark);
-            color: white;
-            padding: 60px 0 30px;
-        }
-        footer.dark-mode {
-            background: #0a0a0a !important;
-        }
-        .footer-links h5 {
-            margin-bottom: 20px;
+            background: #111111;
+            color: #a0a0a0;
+            padding: 80px 0 30px;
             position: relative;
-            padding-bottom: 10px;
+            overflow: hidden;
         }
-        .footer-links h5::after {
+
+        footer::before {
             content: '';
             position: absolute;
-            width: 40px;
-            height: 2px;
-            background: var(--secondary);
-            bottom: 0;
+            top: 0;
             left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--secondary-dark), var(--secondary));
         }
-        .footer-links.dark-mode h5::after {
-            background: var(--secondary-dark) !important;
+
+        footer.dark-mode {
+            background: #050505 !important;
         }
+
+        footer h3,
+        footer h5 {
+            color: #ffffff;
+            margin-bottom: 25px;
+            position: relative;
+            font-weight: 600;
+        }
+
+        footer h5 {
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+
         .footer-links ul {
             list-style: none;
             padding: 0;
         }
+
         .footer-links li {
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
+
         .footer-links a {
-            color: #ccc;
+            color: #a0a0a0;
             text-decoration: none;
-            transition: all 0.3s ease-out;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
         }
+
         .footer-links.dark-mode a {
-            color: #e0e0e0 !important;
+            color: #a0a0a0 !important;
         }
+
         .footer-links a:hover {
             color: var(--secondary);
-            padding-left: 5px;
+            transform: translateX(8px);
         }
+
+        .footer-links a::before {
+            content: '›';
+            margin-right: 0;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+            font-size: 1.2em;
+            line-height: 1;
+        }
+
+        .footer-links a:hover::before {
+            opacity: 1;
+            margin-right: 8px;
+            transform: translateX(0);
+        }
+
         .footer-links.dark-mode a:hover {
             color: var(--secondary-dark) !important;
         }
-        .footer-links a.privacy-link {
-            color: #ccc;
-            font-weight: 500;
-            transition: color 0.3s ease, transform 0.3s ease;
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
         }
-        .footer-links a.privacy-link:hover {
-            color: var(--secondary);
-            transform: translateY(-2px);
-        }
-        .footer-links.dark-mode a.privacy-link {
-            color: #e0e0e0 !important;
-        }
-        .footer-links.dark-mode a.privacy-link:hover {
-            color: var(--secondary-dark) !important;
-        }
+
         .social-icons a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            color: white;
-            margin-right: 10px;
-            transition: all 0.3s ease-out;
-        }
-        .social-icons.dark-mode a {
-            background: rgba(255, 255, 255, 0.15) !important;
-        }
-        .social-icons a:hover {
-            background: var(--secondary);
-            transform: translateY(-5px);
-        }
-        .social-icons.dark-mode a:hover {
-            background: var(--secondary-dark) !important;
-        }
-        /* Back to Top Button */
-        #back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--secondary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+            width: 42px;
+            height: 42px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: #ffffff;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
         }
-        #back-to-top.show {
-            opacity: 1;
-            transform: translateY(0);
+
+        .social-icons.dark-mode a {
+            background: rgba(255, 255, 255, 0.1) !important;
+            border-color: rgba(255, 255, 255, 0.25);
         }
-        #back-to-top:hover {
-            transform: translateY(-5px);
+
+        .social-icons a:hover {
+            background: var(--secondary);
+            border-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(230, 126, 34, 0.4);
+            color: white;
         }
-        #back-to-top.dark-mode {
+
+        .social-icons.dark-mode a:hover {
             background: var(--secondary-dark) !important;
+            border-color: var(--secondary-dark);
         }
+
+        /* Footer Bottom Styling */
+        footer .border-top {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .privacy-link {
+            color: #a0a0a0;
+            font-weight: 500;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .privacy-link:hover {
+            color: var(--secondary);
+        }
+
+        .footer-links.dark-mode a.privacy-link {
+            color: #a0a0a0 !important;
+        }
+
+        .footer-links.dark-mode a.privacy-link:hover {
+            color: var(--secondary-dark) !important;
+        }
+
+        /* Contact Info Icons override */
+        .footer-links li i {
+            color: var(--secondary);
+            font-size: 1.2em;
+            vertical-align: middle;
+        }
+
+        /* Back to Top Button */
+        /* Old Back to Top styles removed to prevent conflict */
+
         /* Back to Products Button */
         .back-arrow {
             display: inline-flex;
@@ -531,72 +739,96 @@
             transition: all 0.3s ease;
             margin-bottom: 20px;
         }
+
         .back-arrow:hover {
             background-color: var(--primary);
             transform: translateX(-5px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
+
         .back-arrow.dark-mode {
             background-color: var(--secondary-dark) !important;
         }
+
         .back-arrow.dark-mode:hover {
             background-color: var(--accent) !important;
         }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+
         @keyframes fadeInLeft {
             from {
                 opacity: 0;
                 transform: translateX(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
+
         @keyframes fadeInRight {
             from {
                 opacity: 0;
                 transform: translateX(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
         }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
         }
+
         @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
+
         .animate__animated {
             animation-duration: 0.8s;
         }
+
         /* Page Content */
         .page-content {
             display: none;
             animation: fadeInUp 0.5s ease-out;
         }
+
         .page-content.active {
             display: block;
         }
+
         /* Privacy Policy */
         .privacy-content {
             background: white;
@@ -604,70 +836,89 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
+
         .privacy-content.dark-mode {
             background: #1e1e1e !important;
         }
+
         /* Share Buttons */
         .share-buttons a {
             margin-right: 10px;
             color: var(--dark);
             transition: color 0.3s ease-out;
         }
+
         .share-buttons a:hover {
             color: var(--secondary);
             animation: pulse 0.5s ease-out;
         }
+
         .share-buttons.dark-mode a {
             color: #e0e0e0 !important;
         }
+
         .share-buttons.dark-mode a:hover {
             color: var(--secondary-dark) !important;
         }
+
         /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
                 font-size: 2.5rem;
             }
+
             .section-title h2 {
                 font-size: 2rem;
             }
+
             .search-form {
                 max-width: 100%;
                 margin-top: 10px;
             }
+
             .inspiration-gallery {
                 column-count: 2;
             }
         }
+
         @media (max-width: 768px) {
             .hero {
                 height: 80vh;
             }
+
             .hero h1 {
                 font-size: 2rem;
             }
-            .about-img, .about-content {
+
+            .about-img,
+            .about-content {
                 margin-bottom: 30px;
             }
+
             .color-item {
                 margin-bottom: 20px;
             }
+
             .inspiration-gallery {
                 column-count: 1;
             }
         }
+
         /* Modal for gallery preview */
         .modal-content.dark-mode {
             background-color: #1e1e1e !important;
             color: #e0e0e0 !important;
         }
+
         .modal-header .btn-close {
             filter: invert(1);
         }
+
         /* Gallery Navigation Buttons */
         .modal-body {
             position: relative;
         }
+
         .modal-nav-button {
             position: absolute;
             top: 50%;
@@ -686,39 +937,49 @@
             transition: background 0.3s, transform 0.2s;
             z-index: 1051;
         }
+
         .modal-nav-button:hover {
             background: rgba(0, 0, 0, 0.6);
             transform: translateY(-50%) scale(1.1);
         }
+
         .modal-nav-button.dark-mode {
             background: rgba(255, 255, 255, 0.2);
         }
+
         .modal-nav-button.dark-mode:hover {
             background: rgba(255, 255, 255, 0.4);
         }
+
         .modal-nav-button.disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
+
         #prevBtn {
             left: 10px;
         }
+
         #nextBtn {
             right: 10px;
         }
+
         #modalImage {
             max-height: 80vh;
         }
+
         /* Full-screen Modal Styles */
         .modal-xl {
             --bs-modal-width: 100vw;
             --bs-modal-margin: 0;
             --bs-modal-padding: 0;
         }
+
         .modal-dialog {
             margin: 0;
             max-width: 100vw;
         }
+
         .modal-content {
             height: 100vh;
             border-radius: 0;
@@ -728,6 +989,7 @@
             justify-content: center;
             align-items: center;
         }
+
         .modal-body {
             display: flex;
             flex-direction: column;
@@ -736,11 +998,13 @@
             padding: 0;
             height: 100%;
         }
+
         .modal-body img {
             max-width: 95vw;
             max-height: 85vh;
             object-fit: contain;
         }
+
         .modal-header .btn-close {
             position: absolute;
             top: 20px;
@@ -752,18 +1016,23 @@
             opacity: 1;
             transition: transform 0.2s ease;
         }
+
         .modal-header .btn-close:hover {
             transform: rotate(90deg);
         }
+
         .modal-nav-button {
-            position: fixed; /* Use fixed to keep them at the screen edges */
+            position: fixed;
+            /* Use fixed to keep them at the screen edges */
             top: 50%;
             transform: translateY(-50%);
             z-index: 1060;
-            background: rgba(0, 0, 0, 0.6); /* Slightly more prominent background */
+            background: rgba(0, 0, 0, 0.6);
+            /* Slightly more prominent background */
             color: white;
             border: none;
-            width: 60px; /* Slightly larger buttons */
+            width: 60px;
+            /* Slightly larger buttons */
             height: 60px;
             border-radius: 50%;
             display: flex;
@@ -771,18 +1040,23 @@
             justify-content: center;
             cursor: pointer;
             transition: background 0.3s, transform 0.2s;
-            font-size: 2rem; /* Larger icon */
+            font-size: 2rem;
+            /* Larger icon */
         }
+
         .modal-nav-button:hover {
             background: rgba(0, 0, 0, 0.8);
             transform: translateY(-50%) scale(1.1);
         }
+
         #prevBtn {
             left: 20px;
         }
+
         #nextBtn {
             right: 20px;
         }
+
         #modalContent {
             position: static;
             transform: none;
@@ -794,51 +1068,64 @@
             padding: 10px 20px;
             border-radius: 8px;
             max-width: 90%;
-            margin-top: 15px; /* Add some space above the text */
+            margin-top: 15px;
+            /* Add some space above the text */
             z-index: 1060;
-            font-size: 0.9rem; /* Adjust font size for mobile */
+            font-size: 0.9rem;
+            /* Adjust font size for mobile */
             width: fit-content;
         }
+
         #modalContent h4 {
             font-size: 1.5rem;
             margin: 0;
         }
+
         #modalContent p {
             font-size: 1rem;
             margin: 0;
         }
+
         .modal-content.dark-mode {
             background-color: black !important;
             color: #e0e0e0 !important;
         }
     </style>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container">
-            <a class="navbar-brand animate__animated animate__pulse" href="#"><img src="logo.jpg" alt="Metamo Surface Studio Logo" id="navbar-logo"></a>
+            <a class="navbar-brand animate__animated animate__pulse" href="#"><img src="logo.jpg"
+                    alt="Metamo Surface Studio Logo" id="navbar-logo"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link active animate__animated animate__fadeIn" href="#" data-page="home" style="animation-delay: 0.1s;">Home</a>
+                        <a class="nav-link active animate__animated animate__fadeIn" href="#" data-page="home"
+                            style="animation-delay: 0.1s;">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="products" style="animation-delay: 0.2s;">Products</a>
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="products"
+                            style="animation-delay: 0.2s;">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="about" style="animation-delay: 0.3s;">About</a>
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="about"
+                            style="animation-delay: 0.3s;">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="inspiration" style="animation-delay: 0.4s;">Gallery</a>
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="inspiration"
+                            style="animation-delay: 0.4s;">Gallery</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="contact" style="animation-delay: 0.5s;">Contact</a>
+                        <a class="nav-link animate__animated animate__fadeIn" href="#" data-page="contact"
+                            style="animation-delay: 0.5s;">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <form class="search-form d-flex animate__animated animate__fadeIn" style="animation-delay: 0.6s;">
+                        <form class="search-form d-flex animate__animated animate__fadeIn"
+                            style="animation-delay: 0.6s;">
                             <input type="text" class="form-control" placeholder="Search products..." id="searchInput">
                             <button type="submit"><i class='bx bx-search'></i></button>
                         </form>
@@ -854,7 +1141,8 @@
                     <div class="col-lg-8">
                         <div class="hero-content animate__animated animate__fadeInUp">
                             <h1>Welcome to the World of Texture Wall</h1>
-                            <p>Where every surface becomes a statement, and design comes to life through depth, detail, and tactile beauty. <span>Hello Metamo</span></p>
+                            <p>Where every surface becomes a statement, and design comes to life through depth, detail,
+                                and tactile beauty. <span>Hello Metamo</span></p>
                             <a href="#" class="btn btn-primary" data-page="products">Explore Products</a>
                         </div>
                     </div>
@@ -864,18 +1152,22 @@
         <section class="about-section" aria-label="About section">
             <div class="container">
                 <h2>About Metamo Textured Paint Supplier</h2>
-                <p>At Metamo Surface Studio, we bring walls to life with premium texture paint solutions designed for beauty, durability, and style. Whether you’re building something new or refreshing an existing space, our high-quality textured finishes offer a distinctive touch that lasts.</p><br>
-                <p>From subtle patterns to bold designs, we help homeowners, designers, and builders add personality and depth to every surface.</p>
+                <p>At Metamo Surface Studio, we bring walls to life with premium texture paint solutions designed for
+                    beauty, durability, and style. Whether you’re building something new or refreshing an existing
+                    space, our high-quality textured finishes offer a distinctive touch that lasts.</p><br>
+                <p>From subtle patterns to bold designs, we help homeowners, designers, and builders add personality and
+                    depth to every surface.</p>
             </div>
         </section>
         <section class="products-preview">
             <div class="container">
                 <div class="section-title animate__animated animate__fadeInDown">
                     <h3>Featured Artisanal Products</h3>
-                    <p>Where every surface becomes a statement, and design comes to life through depth, detail, and tactile beauty.</p>
+                    <p>Where every surface becomes a statement, and design comes to life through depth, detail, and
+                        tactile beauty.</p>
                 </div>
                 <div class="row" id="products-preview-row">
-                    </div>
+                </div>
             </div>
         </section>
         <section class="features">
@@ -886,7 +1178,8 @@
                 <div class="row">
                     <div class="col-md-4 animate__animated animate__fadeInUp">
                         <div class="text-center">
-                            <i class='bx bx-check-shield bx-lg' style="color: var(--secondary); margin-bottom: 20px;"></i>
+                            <i class='bx bx-check-shield bx-lg'
+                                style="color: var(--secondary); margin-bottom: 20px;"></i>
                             <h4>Premium Quality</h4>
                             <p>Our artisanal surfaces are crafted with top-tier materials.</p>
                         </div>
@@ -912,11 +1205,13 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6 animate__animated animate__fadeInLeft">
-                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="About Metamo Surface" class="img-fluid about-img">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="About Metamo Surface" class="img-fluid about-img">
                     </div>
                     <div class="col-lg-6 animate__animated animate__fadeInRight">
                         <h2>About Metamo Surface Studio</h2>
-                        <p>We specialize in modern artisanal texture products, crafted in Kerala, India, to transform spaces with elegance and durability.</p>
+                        <p>We specialize in modern artisanal texture products, crafted in Kerala, India, to transform
+                            spaces with elegance and durability.</p>
                         <p>Our commitment to quality and unique designs sets us apart.</p>
                         <a href="#" class="btn btn-primary" data-page="about">Learn More</a>
                     </div>
@@ -964,13 +1259,14 @@
                 <div class="row mb-4">
                     <div class="col-md-4">
                         <form class="search-form d-flex">
-                            <input type="text" class="form-control" placeholder="Search products..." id="productSearchInput">
+                            <input type="text" class="form-control" placeholder="Search products..."
+                                id="productSearchInput">
                             <button type="submit"><i class='bx bx-search'></i></button>
                         </form>
                     </div>
                 </div>
                 <div class="row" id="products-row">
-                    </div>
+                </div>
             </div>
         </section>
     </div>
@@ -983,11 +1279,13 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6 animate__animated animate__fadeInLeft">
-                        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="About Us" class="img-fluid about-img">
+                        <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="About Us" class="img-fluid about-img">
                     </div>
                     <div class="col-lg-6 animate__animated animate__fadeInRight">
                         <h3>Our Story</h3>
-                        <p>Metamo Surface Studio, based in Malappuram, Kerala, specializes in modern artisanal texture products, blending traditional craftsmanship with contemporary design.</p>
+                        <p>Metamo Surface Studio, based in Malappuram, Kerala, specializes in modern artisanal texture
+                            products, blending traditional craftsmanship with contemporary design.</p>
                         <p>Our surfaces are crafted to inspire and endure, transforming spaces with unique textures.</p>
                         <h3>Our Mission</h3>
                         <p>To deliver artisanal surface solutions that elevate spaces with quality and innovation.</p>
@@ -1014,21 +1312,24 @@
                 <div class="row">
                     <div class="col-md-4 animate__animated animate__fadeInUp">
                         <div class="text-center">
-                            <img src="user.jpeg" alt="Team Member 1" class="img-fluid rounded-circle mb-3" style="width: 150px;">
+                            <img src="user.jpeg" alt="Team Member 1" class="img-fluid rounded-circle mb-3"
+                                style="width: 150px;">
                             <h4>Rashid mkv</h4>
                             <p>Founder & CEO</p>
                         </div>
                     </div>
                     <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
                         <div class="text-center">
-                            <img src="user.jpeg" alt="Team Member 2" class="img-fluid rounded-circle mb-3" style="width: 150px;">
+                            <img src="user.jpeg" alt="Team Member 2" class="img-fluid rounded-circle mb-3"
+                                style="width: 150px;">
                             <h4>Niyas k</h4>
                             <p>Creative Director</p>
                         </div>
                     </div>
                     <div class="col-md-4 animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
                         <div class="text-center">
-                            <img src="user.jpeg" alt="Team Member 3" class="img-fluid rounded-circle mb-3" style="width: 150px;">
+                            <img src="user.jpeg" alt="Team Member 3" class="img-fluid rounded-circle mb-3"
+                                style="width: 150px;">
                             <h4>Musthafa</h4>
                             <p>Project Coordinator</p>
                         </div>
@@ -1045,7 +1346,7 @@
                     <p>Discover how our artisanal textures transform spaces</p>
                 </div>
                 <div class="inspiration-gallery" id="inspiration-gallery">
-                    </div>
+                </div>
             </div>
         </section>
         <section class="faq">
@@ -1055,7 +1356,7 @@
                     <p>Answers to common questions about our artisanal products</p>
                 </div>
                 <div class="accordion" id="faqAccordion">
-                    </div>
+                </div>
             </div>
         </section>
     </div>
@@ -1081,7 +1382,8 @@
                                 <i class='bx bx-envelope bx-md me-4'></i>
                                 <div>
                                     <h5>Email</h5>
-                                    <p><a href="mailto:metamosurfacestudio@gmail.com">metamosurfacestudio@gmail.com</a></p>
+                                    <p><a href="mailto:metamosurfacestudio@gmail.com">metamosurfacestudio@gmail.com</a>
+                                    </p>
                                 </div>
                             </div>
                             <div class="contact-item d-flex mb-4">
@@ -1120,13 +1422,15 @@
                                     <div class="col-12">
                                         <div class="mb-3">
                                             <label for="subject" class="form-label">Subject</label>
-                                            <input type="text" class="form-control" id="subject" name="subject" required>
+                                            <input type="text" class="form-control" id="subject" name="subject"
+                                                required>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="mb-3">
                                             <label for="message" class="form-label">Message</label>
-                                            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                            <textarea class="form-control" id="message" name="message" rows="5"
+                                                required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -1145,13 +1449,18 @@
             <div class="row">
                 <div class="col-lg-4 mb-5">
                     <h3 class="text-white mb-4">Metamo Surface Studio</h3>
-                    <p>Transforming spaces with modern artisanal texture surfaces. Quality, innovation, and craftsmanship are our core values.</p>
+                    <p>Transforming spaces with modern artisanal texture surfaces. Quality, innovation, and
+                        craftsmanship are our core values.</p>
                     <div class="social-icons mt-4">
                         <a href="#" class="animate__animated animate__pulse"><i class='bx bxl-facebook'></i></a>
-                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.1s;"><i class='bx bxl-instagram'></i></a>
-                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.2s;"><i class='bx bxl-twitter'></i></a>
-                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.3s;"><i class='bx bxl-linkedin'></i></a>
-                        <a href="https://wa.me/919846955954" target="_blank" class="animate__animated animate__pulse" style="animation-delay: 0.4s;"><i class='bx bxl-whatsapp'></i></a>
+                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.1s;"><i
+                                class='bx bxl-instagram'></i></a>
+                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.2s;"><i
+                                class='bx bxl-twitter'></i></a>
+                        <a href="#" class="animate__animated animate__pulse" style="animation-delay: 0.3s;"><i
+                                class='bx bxl-linkedin'></i></a>
+                        <a href="https://wa.me/919846955954" target="_blank" class="animate__animated animate__pulse"
+                            style="animation-delay: 0.4s;"><i class='bx bxl-whatsapp'></i></a>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-4 mb-5">
@@ -1180,79 +1489,195 @@
                 <div class="col-lg-3 col-md-4 mb-5">
                     <div class="footer-links">
                         <h5>Contact Info</h5>
-                        <ul>
-                            <li><i class='bx bx-map me-2'></i> Malappuram, Kerala</li>
-                            <li><i class='bx bx-phone me-2'></i> <a href="tel:+919846955954">+91 98469 55954</a></li>
-                            <li><i class='bx bx-envelope me-2'></i> <a href="mailto:metamosurfacestudio@gmail.com">metamosurfacestudio@gmail.com</a></li>
-                            <li><i class='bx bxl-whatsapp me-2'></i> <a href="https://wa.me/919846955954" target="_blank">+91 98469 55954</a></li>
+                        <ul class="contact-list">
+                            <li class="d-flex align-items-start mb-3">
+                                <i class='flex-shrink-0 bx bx-map mt-1 me-2'></i>
+                                <span>Malappuram, Kerala</span>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class='flex-shrink-0 bx bx-phone me-2'></i>
+                                <a href="tel:+919846955954">+91 98469 55954</a>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class='flex-shrink-0 bx bx-envelope me-2'></i>
+                                <a href="mailto:metamosurfacestudio@gmail.com"
+                                    class="text-break">metamosurfacestudio@gmail.com</a>
+                            </li>
+                            <li class="d-flex align-items-center mb-3">
+                                <i class='flex-shrink-0 bx bxl-whatsapp me-2'></i>
+                                <a href="https://wa.me/919846955954" target="_blank">+91 98469 55954</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="border-top pt-4 mt-4">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="mb-0">© 2023 Metamo Surface Studio. All Rights Reserved.</p>
-                    </div>
-                    <div class="col-md-6 text-md-end">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" class="privacy-link">Privacy Policy</a>
+
+            <div class="border-top pt-4 footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-12 text-center">
+                        <p class="mb-0 text-white-50 small">
+                            ©2026 Metamo Surface Studio. All Rights Reserved.
+                        </p>
+                        <div class="mt-2">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal"
+                                class="privacy-link small">Privacy Policy</a>
+                            <span class="mx-2 text-white-50">|</span>
+                            <a href="https://wa.me/917306062228?text=Hi%20Nadeem,%20I%20visited%20the%20Metamo%20Surface%20website%20and%20loved%20the%20design.%20I'm%20interested%20in%20hiring%20you%20for%20a%20project."
+                                target="_blank" class="privacy-link small">Designed by Nadeem</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <a href="https://wa.me/919846955954?text=I'm%20interested%20in%20the%20model%20service%20offered%20by%20Metamo%20Surface%20Studio.%20Could%20you%20please%20provide%20more%20details?%20Thank%20you!" target="_blank" class="whatsapp-shortcut animate__animated animate__pulse" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
-    <i class='bx bxl-whatsapp bx-md' style="background: #25D366; color: white; padding: 10px; border-radius: 50%;"></i>
-</a>
-<a href="https://www.instagram.com/metamosurface" target="_blank" class="instagram-shortcut animate__animated animate__pulse" style="position: fixed; bottom: 20px; right: 80px; z-index: 1000;">
-    <i class='bx bxl-instagram bx-md' style="background: #E1306C; color: white; padding: 10px; border-radius: 50%;"></i>
-</a>
+    <!-- Floating Action Buttons -->
+    <div class="floating-actions">
+        <!-- Back to Top -->
+        <div id="back-to-top" class="floating-btn btn-top" title="Back to Top">
+            <i class='bx bx-chevron-up'></i>
+        </div>
 
-<div id="back-to-top" title="Back to Top" class="animate__animated animate__fadeIn" style="position: fixed; bottom: 20px; right: 140px; background: var(--secondary); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); cursor: pointer; opacity: 0; transition: opacity 0.3s ease-out, transform 0.3s ease-out;">
-    <i class='bx bx-chevron-up'></i>
-</div>
+        <!-- WhatsApp -->
+        <a href="https://wa.me/919846955954?text=I'm%20interested%20in%20the%20model%20service%20offered%20by%20Metamo%20Surface%20Studio.%20Could%20you%20please%20provide%20more%20details?%20Thank%20you!"
+            target="_blank" class="floating-btn btn-whatsapp" title="Chat on WhatsApp">
+            <i class='bx bxl-whatsapp'></i>
+        </a>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Back to top button functionality
-        const backToTop = document.getElementById('back-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-        });
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/metamosurface" target="_blank" class="floating-btn btn-instagram"
+            title="Follow on Instagram">
+            <i class='bx bxl-instagram'></i>
+        </a>
+    </div>
 
-        // Theme-based styling for shortcuts
-        function updateTheme() {
-            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                backToTop.style.background = '#f39c12'; // Secondary-dark for dark mode
-            } else {
-                backToTop.style.background = '#e67e22'; // Secondary for light mode
-            }
+    <style>
+        .floating-actions {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column-reverse;
+            /* Stack from bottom up */
+            align-items: center;
+            gap: 15px;
         }
-        updateTheme();
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
-    });
-</script>
 
-<style>
-    .whatsapp-shortcut, .instagram-shortcut {
-        transition: transform 0.3s ease-out;
-    }
-    .whatsapp-shortcut:hover, .instagram-shortcut:hover {
-        transform: translateY(-5px);
-    }
-    #back-to-top.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    #back-to-top:hover {
-        transform: translateY(-5px);
-    }
-</style>
-    
+        .floating-btn {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-size: 28px;
+            text-decoration: none !important;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            color: white;
+        }
+
+        /* Tooltip style */
+        .floating-btn::before {
+            content: attr(title);
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%) translateX(10px);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .floating-btn:hover::before {
+            opacity: 1;
+            transform: translateY(-50%) translateX(0);
+        }
+
+        .btn-whatsapp {
+            background: #25D366;
+        }
+
+        .btn-instagram {
+            background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+        }
+
+        .btn-top {
+            background: var(--secondary);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+
+        .btn-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Back to top button functionality
+            const backToTop = document.getElementById('back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('show');
+                } else {
+                    backToTop.classList.remove('show');
+                }
+            });
+
+            // Theme-based styling for shortcuts
+            function updateTheme() {
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    backToTop.style.background = '#f39c12'; // Secondary-dark for dark mode
+                } else {
+                    backToTop.style.background = '#e67e22'; // Secondary for light mode
+                }
+            }
+            updateTheme();
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateTheme);
+        });
+    </script>
+
+    <style>
+        .whatsapp-shortcut,
+        .instagram-shortcut {
+            transition: transform 0.3s ease-out;
+        }
+
+        .whatsapp-shortcut:hover,
+        .instagram-shortcut:hover {
+            transform: translateY(-5px);
+        }
+
+        #back-to-top.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #back-to-top:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+
     <div class="modal fade" id="privacyModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -1265,7 +1690,9 @@
                         <h3>Privacy Policy</h3>
                         <p>Last updated: September 20, 2023</p>
                         <h4>1. Information We Collect</h4>
-                        <p>We may collect personal information that you provide to us when using our website, including but not limited to your name, email address, phone number, and any other information you choose to provide.</p>
+                        <p>We may collect personal information that you provide to us when using our website, including
+                            but not limited to your name, email address, phone number, and any other information you
+                            choose to provide.</p>
                         <h4>2. How We Use Your Information</h4>
                         <p>We use the information we collect to:</p>
                         <ul>
@@ -1275,15 +1702,20 @@
                             <li>Communicate with you about products, services, and events</li>
                         </ul>
                         <h4>3. Sharing Your Information</h4>
-                        <p>We do not share your personal information with third parties except as described in this Privacy Policy.</p>
+                        <p>We do not share your personal information with third parties except as described in this
+                            Privacy Policy.</p>
                         <h4>4. Security</h4>
-                        <p>We take reasonable measures to help protect your personal information from loss, theft, misuse, and unauthorized access.</p>
+                        <p>We take reasonable measures to help protect your personal information from loss, theft,
+                            misuse, and unauthorized access.</p>
                         <h4>5. Your Choices</h4>
-                        <p>You may update or delete your information at any time by contacting us at metamosurfacestudio@gmail.com.</p>
+                        <p>You may update or delete your information at any time by contacting us at
+                            metamosurfacestudio@gmail.com.</p>
                         <h4>6. Changes to This Privacy Policy</h4>
-                        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.</p>
+                        <p>We may update our Privacy Policy from time to time. We will notify you of any changes by
+                            posting the new Privacy Policy on this page.</p>
                         <h4>7. Contact Us</h4>
-                        <p>If you have any questions about this Privacy Policy, please contact us at metamosurfacestudio@gmail.com.</p>
+                        <p>If you have any questions about this Privacy Policy, please contact us at
+                            metamosurfacestudio@gmail.com.</p>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -1299,13 +1731,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-center">
-                    <img id="modalImage" src="" alt="Gallery Image" class="img-fluid rounded animate__animated animate__fadeIn">
+                    <img id="modalImage" src="" alt="Gallery Image"
+                        class="img-fluid rounded animate__animated animate__fadeIn">
                     <div id="modalContent" class="mt-3">
                         <h4 id="modalName"></h4>
                         <p id="modalDescription"></p>
                     </div>
-                    <button id="prevBtn" type="button" class="modal-nav-button"><i class='bx bx-chevron-left'></i></button>
-                    <button id="nextBtn" type="button" class="modal-nav-button"><i class='bx bx-chevron-right'></i></button>
+                    <button id="prevBtn" type="button" class="modal-nav-button"><i
+                            class='bx bx-chevron-left'></i></button>
+                    <button id="nextBtn" type="button" class="modal-nav-button"><i
+                            class='bx bx-chevron-right'></i></button>
                 </div>
             </div>
         </div>
@@ -1329,10 +1764,10 @@
         const productsRef = database.ref('products');
         const inspirationsRef = database.ref('inspirations');
         const faqsRef = database.ref('faqs');
-        
+
         const navbarNav = document.getElementById('navbarNav');
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Theme-based logo switching
             const logoImg = document.getElementById('navbar-logo');
             function updateTheme() {
@@ -1352,7 +1787,7 @@
 
             const pageLinks = document.querySelectorAll('[data-page]');
             const pageContents = document.querySelectorAll('.page-content');
-            
+
             function showPage(pageId) {
                 pageContents.forEach(page => page.classList.remove('active'));
                 document.getElementById(pageId).classList.add('active');
@@ -1380,7 +1815,7 @@
             // Product Fetching and Rendering
             const productsRow = document.getElementById('products-row');
             const productsPreviewRow = document.getElementById('products-preview-row');
-            
+
             const renderProducts = (snapshot) => {
                 productsRow.innerHTML = '';
                 productsPreviewRow.innerHTML = '';
@@ -1388,15 +1823,15 @@
                     const product = childSnapshot.val();
                     const productId = childSnapshot.key;
                     const productCardHTML = `
-                        <div class="col-md-4 animate__animated animate__fadeInUp">
+                        <div class="col-md-4 mb-4 animate__animated animate__fadeInUp">
                             <div class="product-card" data-product-id="${productId}">
                                 <div class="product-img">
                                     <img src="${product.imageUrl}" alt="${product.name}">
                                 </div>
-                                <div class="product-content p-4">
+                                <div class="product-content">
                                     <h4>${product.name}</h4>
                                     <p>${product.description}</p>
-                                    <a href="${product.pdfUrl}" class="btn btn-outline-primary" target="_blank">View Details</a>
+                                    <a href="${product.pdfUrl}" class="btn-view-details" target="_blank">View Details</a>
                                 </div>
                             </div>
                         </div>
@@ -1410,7 +1845,7 @@
                 console.error("Error fetching products:", error);
                 productsRow.innerHTML = '<div class="col-12"><p>Error loading products. Please try again later.</p></div>';
             });
-            
+
             // Inspiration Gallery Fetching and Rendering with modal preview
             const galleryModal = new bootstrap.Modal(document.getElementById('galleryModal'));
             const modalImage = document.getElementById('modalImage');
@@ -1451,7 +1886,7 @@
                     });
                 });
             };
-            
+
             function showImage(index) {
                 if (index >= 0 && index < inspirationsData.length) {
                     currentIndex = index;
@@ -1461,7 +1896,7 @@
                     modalDescription.textContent = item.description;
 
                     modalImage.classList.remove('animate__fadeIn');
-                    void modalImage.offsetWidth; 
+                    void modalImage.offsetWidth;
                     modalImage.classList.add('animate__fadeIn');
 
                     prevBtn.disabled = currentIndex === 0;
@@ -1528,29 +1963,79 @@
 
 
             // Search functionality
+            const searchForms = document.querySelectorAll('.search-form');
             const searchInputs = document.querySelectorAll('#searchInput, #productSearchInput');
+
+            function performSearch(query) {
+                query = query.toLowerCase();
+                const productCards = document.querySelectorAll('.product-card');
+                let found = false;
+                productCards.forEach(card => {
+                    const title = card.querySelector('h4').textContent.toLowerCase();
+                    const description = card.querySelector('p').textContent.toLowerCase();
+                    if (title.includes(query) || description.includes(query)) {
+                        card.closest('.col-md-4').style.display = 'block';
+                        found = true;
+                    } else {
+                        card.closest('.col-md-4').style.display = 'none';
+                    }
+                });
+                return found;
+            }
+
             searchInputs.forEach(input => {
-                input.addEventListener('input', function() {
-                    const query = this.value.toLowerCase();
-                    const productCards = document.querySelectorAll('.product-card');
-                    productCards.forEach(card => {
-                        const title = card.querySelector('h4').textContent.toLowerCase();
-                        const description = card.querySelector('p').textContent.toLowerCase();
-                        if (title.includes(query) || description.includes(query)) {
-                            card.closest('.col-md-4').style.display = 'block';
-                        } else {
-                            card.closest('.col-md-4').style.display = 'none';
-                        }
-                    });
+                input.addEventListener('input', function () {
+                    performSearch(this.value);
                 });
             });
-            
+
+            searchForms.forEach(form => {
+                form.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const input = this.querySelector('input');
+                    const query = input.value;
+
+                    // Switch to products page if not already active
+                    const productsPage = document.getElementById('products');
+                    if (!productsPage.classList.contains('active')) {
+                        showPage('products');
+                    }
+
+                    performSearch(query);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            // Back to top button functionality
             const backToTop = document.getElementById('back-to-top');
-            backToTop.classList.add('show');
+
+            // Initial state: hidden
+            backToTop.style.display = 'none';
+            backToTop.classList.remove('show');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) {
+                    backToTop.style.display = 'flex';
+                    // Small delay to allow display:flex to apply before transition
+                    setTimeout(() => {
+                        backToTop.classList.add('show');
+                    }, 10);
+                } else {
+                    backToTop.classList.remove('show');
+                    // Wait for transition to finish before hiding
+                    setTimeout(() => {
+                        if (!backToTop.classList.contains('show')) {
+                            backToTop.style.display = 'none';
+                        }
+                    }, 300);
+                }
+            });
+
             backToTop.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
     </script>
 </body>
+
 </html>
